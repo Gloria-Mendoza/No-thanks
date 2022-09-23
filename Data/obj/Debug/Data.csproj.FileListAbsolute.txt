@@ -1,0 +1,12 @@
+D:\semestre\Tecnologias\Data\bin\Debug\Data.dll.config
+D:\semestre\Tecnologias\Data\bin\Debug\Data.dll
+D:\semestre\Tecnologias\Data\bin\Debug\Data.pdb
+D:\semestre\Tecnologias\Data\bin\Debug\EntityFramework.dll
+D:\semestre\Tecnologias\Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\semestre\Tecnologias\Data\bin\Debug\EntityFramework.xml
+D:\semestre\Tecnologias\Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\semestre\Tecnologias\Data\obj\Debug\Data.csproj.AssemblyReference.cache
+D:\semestre\Tecnologias\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
+D:\semestre\Tecnologias\Data\obj\Debug\Data.csproj.CopyComplete
+D:\semestre\Tecnologias\Data\obj\Debug\Data.dll
+D:\semestre\Tecnologias\Data\obj\Debug\Data.pdb

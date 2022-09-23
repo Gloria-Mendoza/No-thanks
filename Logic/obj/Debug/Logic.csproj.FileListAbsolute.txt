@@ -1,0 +1,6 @@
+D:\semestre\Tecnologias\Logic\bin\Debug\Logic.dll
+D:\semestre\Tecnologias\Logic\bin\Debug\Logic.pdb
+D:\semestre\Tecnologias\Logic\obj\Debug\Logic.csproj.AssemblyReference.cache
+D:\semestre\Tecnologias\Logic\obj\Debug\Logic.csproj.CoreCompileInputs.cache
+D:\semestre\Tecnologias\Logic\obj\Debug\Logic.dll
+D:\semestre\Tecnologias\Logic\obj\Debug\Logic.pdb

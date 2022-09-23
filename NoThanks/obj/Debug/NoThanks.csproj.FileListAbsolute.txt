@@ -1,0 +1,15 @@
+D:\semestre\Tecnologias\NoThanks\bin\Debug\NoThanks.exe.config
+D:\semestre\Tecnologias\NoThanks\bin\Debug\NoThanks.exe
+D:\semestre\Tecnologias\NoThanks\bin\Debug\NoThanks.pdb
+D:\semestre\Tecnologias\NoThanks\obj\Debug\NoThanks.csproj.AssemblyReference.cache
+D:\semestre\Tecnologias\NoThanks\obj\Debug\MainWindow.g.cs
+D:\semestre\Tecnologias\NoThanks\obj\Debug\App.g.cs
+D:\semestre\Tecnologias\NoThanks\obj\Debug\NoThanks_MarkupCompile.cache
+D:\semestre\Tecnologias\NoThanks\obj\Debug\NoThanks_MarkupCompile.lref
+D:\semestre\Tecnologias\NoThanks\obj\Debug\MainWindow.baml
+D:\semestre\Tecnologias\NoThanks\obj\Debug\NoThanks.g.resources
+D:\semestre\Tecnologias\NoThanks\obj\Debug\NoThanks.Properties.Resources.resources
+D:\semestre\Tecnologias\NoThanks\obj\Debug\NoThanks.csproj.GenerateResource.cache
+D:\semestre\Tecnologias\NoThanks\obj\Debug\NoThanks.csproj.CoreCompileInputs.cache
+D:\semestre\Tecnologias\NoThanks\obj\Debug\NoThanks.exe
+D:\semestre\Tecnologias\NoThanks\obj\Debug\NoThanks.pdb
