@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NoThanksModelStoreContainer" CdmEntityContainer="NoThanksDataEntities">
+    <EntitySetMapping Name="Friends">
+      <EntityTypeMapping TypeName="NoThanksModel.Friend">
+        <MappingFragment StoreEntitySet="Friend">
+          <ScalarProperty Name="idFriend" ColumnName="idFriend" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="NoThanksModel.Game">
+        <MappingFragment StoreEntitySet="Game">
+          <ScalarProperty Name="idGame" ColumnName="idGame" />
+          <ScalarProperty Name="result" ColumnName="result" />
+          <ScalarProperty Name="idMatch" ColumnName="idMatch" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MatchHistories">
+      <EntityTypeMapping TypeName="NoThanksModel.MatchHistory">
+        <MappingFragment StoreEntitySet="MatchHistory">
+          <ScalarProperty Name="idMatch" ColumnName="idMatch" />
+          <ScalarProperty Name="point" ColumnName="point" />
+          <ScalarProperty Name="result" ColumnName="result" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="NoThanksModel.Player">
+        <MappingFragment StoreEntitySet="Player">
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="totalScore" ColumnName="totalScore" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="idMatch" ColumnName="idMatch" />
+          <ScalarProperty Name="idGame" ColumnName="idGame" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
