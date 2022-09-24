@@ -29,3 +29,9 @@ C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego
 C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\NoThanks\obj\Debug\NoThanks.csproj.CoreCompileInputs.cache
 C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\NoThanks\obj\Debug\NoThanks.exe
 C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\NoThanks\obj\Debug\NoThanks.pdb
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\NoThanks\obj\Debug\ChangePassword.g.cs
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\NoThanks\obj\Debug\JoinWithCode.g.cs
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\NoThanks\obj\Debug\ChangePassword.baml
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\NoThanks\obj\Debug\JoinWithCode.baml
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\NoThanks\obj\Debug\ExpelPlayer.g.cs
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\NoThanks\obj\Debug\ExpelPlayer.baml

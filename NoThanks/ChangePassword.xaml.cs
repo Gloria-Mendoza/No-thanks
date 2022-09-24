@@ -18,7 +18,7 @@ namespace NoThanks
     /// <summary>
     /// Lógica de interacción para ChangePassword.xaml
     /// </summary>
-    public partial class ChangePassword : Page
+    public partial class ChangePassword : Window
     {
         public ChangePassword()
         {
