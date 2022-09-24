@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace NoThanks
 {
     /// <summary>
-    /// Lógica de interacción para JoinWithCode.xaml
+    /// Lógica de interacción para ExpelPlayer.xaml
     /// </summary>
-    public partial class JoinWithCode : Window
+    public partial class ExpelPlayer : Window
     {
-        public JoinWithCode()
+        public ExpelPlayer()
         {
             InitializeComponent();
         }
