@@ -8,7 +8,8 @@ Proyecto final de la Experiencia Educativa Tecnologías para la construcción de
 - Cada jugador recibe 11 fichas.
 - Se separan nueve cartas al azar y se sacan del juego (se descarta).
 - Cada ronda se revela una carta, así cada jugador puede elegir entre pasar o elegir la carta:
-    - **Para pasar:** Debes dejar una ficha 
+    - **Para pasar:** Debes dejar una ficha
+        - En caso de que nadie tome la carta, se dará otra vuelta hasta que alguien la tome.
     - **Para obtener la carta:** Se toman las fichas de los anteriores jugadores (turno).
 - El puntaje final se obtiene sumando el numero de las cartas menos el número de fichas obtenidos.
     - Si se tienen al menos 3 cartas continuas (14, 15, 16), solo se considera el valor más bajo.

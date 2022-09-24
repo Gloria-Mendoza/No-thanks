@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 
 namespace Logic
 {
-    class Authentication
+    public class Authentication
     {
         public Authentication()
         {
