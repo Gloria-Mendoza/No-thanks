@@ -10,3 +10,15 @@ D:\semestre\Tecnologias\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
 D:\semestre\Tecnologias\Data\obj\Debug\Data.csproj.CopyComplete
 D:\semestre\Tecnologias\Data\obj\Debug\Data.dll
 D:\semestre\Tecnologias\Data\obj\Debug\Data.pdb
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\Data\bin\Debug\Data.dll.config
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\Data\bin\Debug\Data.dll
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\Data\bin\Debug\Data.pdb
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\Data\bin\Debug\EntityFramework.dll
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\Data\bin\Debug\EntityFramework.xml
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\Data\obj\Debug\Data.csproj.AssemblyReference.cache
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\Data\obj\Debug\Data.csproj.CopyComplete
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\Data\obj\Debug\Data.dll
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\Data\obj\Debug\Data.pdb
