@@ -4,17 +4,30 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 D:\semestre\Tecnologias\No-thanks\NoThanks\obj\Debug\
+=======
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\NoThanks\obj\Debug\
+>>>>>>> 2ea770e23413b72c3a6e5ccf6f31b8eca9a863e5
 NoThanks
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 D:\semestre\Tecnologias\No-thanks\NoThanks\App.xaml
 2939758816
 
 7-76892622
 13-1505183044
 MainWindow.xaml;Register.xaml;
+=======
+C:\Users\yo\Desktop\JP_Desktop\Universidad\Semestre-5\Construccion\ProyectoJuego\No-thanks\NoThanks\App.xaml
+4509764352
+
+101449257701
+18-1934464844
+ChangePassword.xaml;ExpelPlayer.xaml;JoinWithCode.xaml;MainWindow.xaml;
+>>>>>>> 2ea770e23413b72c3a6e5ccf6f31b8eca9a863e5
 
 True
 
