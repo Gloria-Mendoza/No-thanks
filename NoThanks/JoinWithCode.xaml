@@ -4,14 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NoThanks"
+      xmlns:p = "clr-namespace:NoThanks.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="JoinWithCode">
+      Title="{x:Static p:Resources.JOINGAME_TITLE_WINDOW}">
 
     <Grid>
-        <Label HorizontalAlignment="Center" Margin="0,42,0,0" VerticalAlignment="Top" Content="Código" FontSize="36"/>
+        <Label Content="{x:Static p:Resources.JOINGAME_GAMECODE_LABEL}" HorizontalAlignment="Center" Margin="0,42,0,0" VerticalAlignment="Top" FontSize="36"/>
         <TextBox HorizontalAlignment="Center" Margin="0,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" FontSize="72" Height="122"/>
-        <Button Content="Unirse" HorizontalAlignment="Left" Margin="539,377,0,0" VerticalAlignment="Top" Height="33" Width="90" FontSize="18"/>
-        <Button Content="Cancelar" HorizontalAlignment="Left" Margin="661,377,0,0" VerticalAlignment="Top" FontSize="18" Height="33" Width="89"/>
+        <Button Content="{x:Static p:Resources.JOINGAME_JOIN_BUTTON}" HorizontalAlignment="Left" Margin="539,377,0,0" VerticalAlignment="Top" Height="33" Width="90" FontSize="18"/>
+        <Button Content="{x:Static p:Resources.GENERAL_CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="661,377,0,0" VerticalAlignment="Top" FontSize="18" Height="33" Width="89"/>
     </Grid>
 </Window>

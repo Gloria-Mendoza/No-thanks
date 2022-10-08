@@ -61,6 +61,204 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Contraseña Actual.
+        /// </summary>
+        public static string CHANGEPASSWORD_ACTUALPASSWORD_LABEL {
+            get {
+                return ResourceManager.GetString("CHANGEPASSWORD_ACTUALPASSWORD_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirmar Nueva Contraseña.
+        /// </summary>
+        public static string CHANGEPASSWORD_COMFIRMPASSWORD_LABEL {
+            get {
+                return ResourceManager.GetString("CHANGEPASSWORD_COMFIRMPASSWORD_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nueva Contraseña.
+        /// </summary>
+        public static string CHANGEPASSWORD_NEWPASSWORD_LABEL {
+            get {
+                return ResourceManager.GetString("CHANGEPASSWORD_NEWPASSWORD_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No Thanks: el Juego – Cambiar Contraseña.
+        /// </summary>
+        public static string CHANGEPASSWORD_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("CHANGEPASSWORD_TITLE-WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Token.
+        /// </summary>
+        public static string CHANGEPASSWORD_TOKEN_LABEL {
+            get {
+                return ResourceManager.GetString("CHANGEPASSWORD_TOKEN_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enviar.
+        /// </summary>
+        public static string CHAT_SEND_BUTTON {
+            get {
+                return ResourceManager.GetString("CHAT_SEND_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Chat.
+        /// </summary>
+        public static string CHAT_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("CHAT_TITLE_WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a AFK.
+        /// </summary>
+        public static string EXPEL_REASONAFK_CHECKBOX {
+            get {
+                return ResourceManager.GetString("EXPEL_REASONAFK_CHECKBOX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Trampas.
+        /// </summary>
+        public static string EXPEL_REASONCHEAT_CHECKBOX {
+            get {
+                return ResourceManager.GetString("EXPEL_REASONCHEAT_CHECKBOX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Recuerda mantener un comportamiento sano para no arruinar la experiencia de juego de los demás.
+        /// </summary>
+        public static string EXPEL_REASONMESSAGE_CHECKBOX {
+            get {
+                return ResourceManager.GetString("EXPEL_REASONMESSAGE_CHECKBOX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comportamiento Toxico.
+        /// </summary>
+        public static string EXPEL_REASONTOXIC_CHECKBOK {
+            get {
+                return ResourceManager.GetString("EXPEL_REASONTOXIC_CHECKBOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Motivo de la Expulsión.
+        /// </summary>
+        public static string EXPEL_TITLE_LABEL {
+            get {
+                return ResourceManager.GetString("EXPEL_TITLE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Expulsar Jugador.
+        /// </summary>
+        public static string EXPEL_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("EXPEL_TITLE_WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cancelar.
+        /// </summary>
+        public static string GENERAL_CANCEL_BUTTON {
+            get {
+                return ResourceManager.GetString("GENERAL_CANCEL_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirmar.
+        /// </summary>
+        public static string GENERAL_CONFIRM_BUTTON {
+            get {
+                return ResourceManager.GetString("GENERAL_CONFIRM_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código.
+        /// </summary>
+        public static string JOINGAME_GAMECODE_LABEL {
+            get {
+                return ResourceManager.GetString("JOINGAME_GAMECODE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Unirse.
+        /// </summary>
+        public static string JOINGAME_JOIN_BUTTON {
+            get {
+                return ResourceManager.GetString("JOINGAME_JOIN_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Unirse a Partida (con Código).
+        /// </summary>
+        public static string JOINGAME_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("JOINGAME_TITLE_WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a English.
+        /// </summary>
+        public static string LANGUAGE_ENGLISH_COLUMN {
+            get {
+                return ResourceManager.GetString("LANGUAGE_ENGLISH_COLUMN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Seleccionar.
+        /// </summary>
+        public static string LANGUAGE_SELECT_BUTTON {
+            get {
+                return ResourceManager.GetString("LANGUAGE_SELECT_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Español.
+        /// </summary>
+        public static string LANGUAGE_SPANISH_COLUMN {
+            get {
+                return ResourceManager.GetString("LANGUAGE_SPANISH_COLUMN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lenguaje.
+        /// </summary>
+        public static string LANGUAGE_TITLE_TABLE {
+            get {
+                return ResourceManager.GetString("LANGUAGE_TITLE_TABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Jugar como Invitado.
         /// </summary>
         public static string LOGIN_GUEST_LABEL {
@@ -120,6 +318,87 @@ namespace NoThanks.Properties {
         public static string LOGIN_USERNAME_LABEL {
             get {
                 return ResourceManager.GetString("LOGIN_USERNAME_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre del jugador.
+        /// </summary>
+        public static string RESULT_PLAYERNAME_LABEL {
+            get {
+                return ResourceManager.GetString("RESULT_PLAYERNAME_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a puntos.
+        /// </summary>
+        public static string RESULT_SCOREUNIT_LABEL {
+            get {
+                return ResourceManager.GetString("RESULT_SCOREUNIT_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Resultados.
+        /// </summary>
+        public static string RESULT_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("RESULT_TITLE_WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ganador.
+        /// </summary>
+        public static string RESULT_WINNER_LABEL {
+            get {
+                return ResourceManager.GetString("RESULT_WINNER_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tú.
+        /// </summary>
+        public static string RESULT_YOU_LABEL {
+            get {
+                return ResourceManager.GetString("RESULT_YOU_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Iniciar Partida.
+        /// </summary>
+        public static string ROOM_STARTGAME_BUTTON {
+            get {
+                return ResourceManager.GetString("ROOM_STARTGAME_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sala.
+        /// </summary>
+        public static string ROOM_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("ROOM_TITLE_WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Esperando a que el anfitrión comience la partida….
+        /// </summary>
+        public static string ROOM_WAITING_MESSAGE {
+            get {
+                return ResourceManager.GetString("ROOM_WAITING_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a dfdfd.
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }
