@@ -117,6 +117,72 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CHANGEPASSWORD_ACTUALPASSWORD_LABEL" xml:space="preserve">
+    <value>Contraseña Actual</value>
+  </data>
+  <data name="CHANGEPASSWORD_COMFIRMPASSWORD_LABEL" xml:space="preserve">
+    <value>Confirmar Nueva Contraseña</value>
+  </data>
+  <data name="CHANGEPASSWORD_NEWPASSWORD_LABEL" xml:space="preserve">
+    <value>Nueva Contraseña</value>
+  </data>
+  <data name="CHANGEPASSWORD_TITLE-WINDOW" xml:space="preserve">
+    <value>No Thanks: el Juego – Cambiar Contraseña</value>
+  </data>
+  <data name="CHANGEPASSWORD_TOKEN_LABEL" xml:space="preserve">
+    <value>Token</value>
+  </data>
+  <data name="CHAT_SEND_BUTTON" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="CHAT_TITLE_WINDOW" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="EXPEL_REASONAFK_CHECKBOX" xml:space="preserve">
+    <value>AFK</value>
+  </data>
+  <data name="EXPEL_REASONCHEAT_CHECKBOX" xml:space="preserve">
+    <value>Trampas</value>
+  </data>
+  <data name="EXPEL_REASONMESSAGE_CHECKBOX" xml:space="preserve">
+    <value>Recuerda mantener un comportamiento sano para no arruinar la experiencia de juego de los demás</value>
+  </data>
+  <data name="EXPEL_REASONTOXIC_CHECKBOK" xml:space="preserve">
+    <value>Comportamiento Toxico</value>
+  </data>
+  <data name="EXPEL_TITLE_LABEL" xml:space="preserve">
+    <value>Motivo de la Expulsión</value>
+  </data>
+  <data name="EXPEL_TITLE_WINDOW" xml:space="preserve">
+    <value>Expulsar Jugador</value>
+  </data>
+  <data name="GENERAL_CANCEL_BUTTON" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="GENERAL_CONFIRM_BUTTON" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="JOINGAME_GAMECODE_LABEL" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="JOINGAME_JOIN_BUTTON" xml:space="preserve">
+    <value>Unirse</value>
+  </data>
+  <data name="JOINGAME_TITLE_WINDOW" xml:space="preserve">
+    <value>Unirse a Partida (con Código)</value>
+  </data>
+  <data name="LANGUAGE_ENGLISH_COLUMN" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="LANGUAGE_SELECT_BUTTON" xml:space="preserve">
+    <value>Seleccionar</value>
+  </data>
+  <data name="LANGUAGE_SPANISH_COLUMN" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="LANGUAGE_TITLE_TABLE" xml:space="preserve">
+    <value>Lenguaje</value>
+  </data>
   <data name="LOGIN_GUEST_LABEL" xml:space="preserve">
     <value>Jugar como Invitado</value>
   </data>
@@ -137,5 +203,32 @@
   </data>
   <data name="LOGIN_USERNAME_LABEL" xml:space="preserve">
     <value>Nombre de Usuario</value>
+  </data>
+  <data name="RESULT_PLAYERNAME_LABEL" xml:space="preserve">
+    <value>Nombre del jugador</value>
+  </data>
+  <data name="RESULT_SCOREUNIT_LABEL" xml:space="preserve">
+    <value>puntos</value>
+  </data>
+  <data name="RESULT_TITLE_WINDOW" xml:space="preserve">
+    <value>Resultados</value>
+  </data>
+  <data name="RESULT_WINNER_LABEL" xml:space="preserve">
+    <value>Ganador</value>
+  </data>
+  <data name="RESULT_YOU_LABEL" xml:space="preserve">
+    <value>Tú</value>
+  </data>
+  <data name="ROOM_STARTGAME_BUTTON" xml:space="preserve">
+    <value>Iniciar Partida</value>
+  </data>
+  <data name="ROOM_TITLE_WINDOW" xml:space="preserve">
+    <value>Sala</value>
+  </data>
+  <data name="ROOM_WAITING_MESSAGE" xml:space="preserve">
+    <value>Esperando a que el anfitrión comience la partida…</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>dfdfd</value>
   </data>
 </root>
