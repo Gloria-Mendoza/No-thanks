@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Data {
+namespace Server {
     
     
     /// <summary>
@@ -2342,7 +2342,7 @@ namespace Data {
         }
     }
 }
-namespace Data.NoThanksDataSetTableAdapters {
+namespace Server.NoThanksDataSetTableAdapters {
     
     
     /// <summary>
@@ -2509,7 +2509,7 @@ SELECT idFriend, idPlayer1, idPlayer2 FROM Friends WHERE (idFriend = @idFriend)"
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.NoThanksConnectionString;
+            this._connection.ConnectionString = global::Server.Properties.Settings.Default.NoThanksConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2861,7 +2861,7 @@ SELECT idFriend, idPlayer1, idPlayer2 FROM Friends WHERE (idFriend = @idFriend)"
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.NoThanksConnectionString;
+            this._connection.ConnectionString = global::Server.Properties.Settings.Default.NoThanksConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3206,7 +3206,7 @@ SELECT idMatch, point, result, idGame, idPlayer FROM MatchsHistory WHERE (idMatc
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.NoThanksConnectionString;
+            this._connection.ConnectionString = global::Server.Properties.Settings.Default.NoThanksConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3648,7 +3648,7 @@ SELECT idPlayer, nickname, password, email, totalScore, name, lastName FROM Play
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Data.Properties.Settings.Default.NoThanksConnectionString;
+            this._connection.ConnectionString = global::Server.Properties.Settings.Default.NoThanksConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -15,7 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Logic;
+
 
 namespace NoThanks
 {
@@ -33,10 +33,10 @@ namespace NoThanks
             var username = txtUsername.Text;
             var password = pfPassword.Password;
 
-            if (!String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
+            if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
             {
-                Authentication login = new Authentication();
-                var aux = login.Login(username, password);
+                PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
+                var aux = client.Login(username, password);
                 if (aux)
                 {
                     //TODO
@@ -44,11 +44,13 @@ namespace NoThanks
                 }
                 else
                 {
+                    //TODO
                     MessageBox.Show("No Funciona", "Upss", MessageBoxButton.OK);
                 }
             }
             else
             {
+                //TODO
                 MessageBox.Show("Debes ingresar tú usuario y contraseña");
             }
         }
@@ -60,6 +62,7 @@ namespace NoThanks
             }
             catch (EntityException entityException)
             {
+                //TODO
                 Console.WriteLine(entityException.Message);
             }
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="bb4c5b15-a6ef-4118-b467-72ee159b72b3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/Server/PlayerManager/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="ed52d87f-03c3-4a3f-94a5-b75ca20d5f3c" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Server/PlayerManager/?xsd=xsd1" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="adff39ba-c893-40b1-84aa-7a5ef856cf3f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Server/PlayerManager/?xsd=xsd2" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="cbe223f6-8437-490f-885e-3827a793dbb6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Server/PlayerManager/?xsd=xsd0" />
+    <MetadataFile FileName="PlayerManager.wsdl" MetadataType="Wsdl" ID="d17c3724-7fcf-44d3-a1a4-8da3e0d0b8fc" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Server/PlayerManager/?wsdl" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="9ec3505a-1a5d-4d09-b314-ee760a64ec3f" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Server/PlayerManager/?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

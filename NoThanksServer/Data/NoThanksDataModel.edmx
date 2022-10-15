@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NoThanksModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="NoThanksDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Friends">
           <Key>
             <PropertyRef Name="idFriend" />
@@ -42,7 +42,7 @@
           <Property Name="name" Type="nvarchar" MaxLength="1" />
           <Property Name="lastName" Type="nvarchar" MaxLength="1" />
         </EntityType>
-        <Association Name="FK__Friends__idPlaye__6E01572D">
+        <Association Name="FK__Friends__idPlaye__29572725">
           <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
           <End Role="Friends" Type="Self.Friends" Multiplicity="*" />
           <ReferentialConstraint>
@@ -54,7 +54,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Friends__idPlaye__6EF57B66">
+        <Association Name="FK__Friends__idPlaye__2A4B4B5E">
           <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
           <End Role="Friends" Type="Self.Friends" Multiplicity="*" />
           <ReferentialConstraint>
@@ -66,7 +66,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MatchsHis__idGam__71D1E811">
+        <Association Name="FK__MatchsHis__idGam__2D27B809">
           <End Role="Games" Type="Self.Games" Multiplicity="0..1" />
           <End Role="MatchsHistory" Type="Self.MatchsHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -78,7 +78,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MatchsHis__idPla__72C60C4A">
+        <Association Name="FK__MatchsHis__idPla__2E1BDC42">
           <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
           <End Role="MatchsHistory" Type="Self.MatchsHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -90,24 +90,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NoThanksModelStoreContainer">
+        <EntityContainer Name="NoThanksDataModelStoreContainer">
           <EntitySet Name="Friends" EntityType="Self.Friends" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MatchsHistory" EntityType="Self.MatchsHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Friends__idPlaye__6E01572D" Association="Self.FK__Friends__idPlaye__6E01572D">
+          <AssociationSet Name="FK__Friends__idPlaye__29572725" Association="Self.FK__Friends__idPlaye__29572725">
             <End Role="Players" EntitySet="Players" />
             <End Role="Friends" EntitySet="Friends" />
           </AssociationSet>
-          <AssociationSet Name="FK__Friends__idPlaye__6EF57B66" Association="Self.FK__Friends__idPlaye__6EF57B66">
+          <AssociationSet Name="FK__Friends__idPlaye__2A4B4B5E" Association="Self.FK__Friends__idPlaye__2A4B4B5E">
             <End Role="Players" EntitySet="Players" />
             <End Role="Friends" EntitySet="Friends" />
           </AssociationSet>
-          <AssociationSet Name="FK__MatchsHis__idGam__71D1E811" Association="Self.FK__MatchsHis__idGam__71D1E811">
+          <AssociationSet Name="FK__MatchsHis__idGam__2D27B809" Association="Self.FK__MatchsHis__idGam__2D27B809">
             <End Role="Games" EntitySet="Games" />
             <End Role="MatchsHistory" EntitySet="MatchsHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK__MatchsHis__idPla__72C60C4A" Association="Self.FK__MatchsHis__idPla__72C60C4A">
+          <AssociationSet Name="FK__MatchsHis__idPla__2E1BDC42" Association="Self.FK__MatchsHis__idPla__2E1BDC42">
             <End Role="Players" EntitySet="Players" />
             <End Role="MatchsHistory" EntitySet="MatchsHistory" />
           </AssociationSet>
@@ -116,7 +116,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="NoThanksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="NoThanksDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Friend">
           <Key>
             <PropertyRef Name="idFriend" />
@@ -124,8 +124,8 @@
           <Property Name="idFriend" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idPlayer1" Type="Int32" />
           <Property Name="idPlayer2" Type="Int32" />
-          <NavigationProperty Name="Player" Relationship="Self.FK__Friends__idPlaye__6E01572D" FromRole="Friends" ToRole="Players" />
-          <NavigationProperty Name="Player1" Relationship="Self.FK__Friends__idPlaye__6EF57B66" FromRole="Friends" ToRole="Players" />
+          <NavigationProperty Name="Player" Relationship="Self.FK__Friends__idPlaye__29572725" FromRole="Friends" ToRole="Players" />
+          <NavigationProperty Name="Player1" Relationship="Self.FK__Friends__idPlaye__2A4B4B5E" FromRole="Friends" ToRole="Players" />
         </EntityType>
         <EntityType Name="Game">
           <Key>
@@ -133,7 +133,7 @@
           </Key>
           <Property Name="idGame" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="result" Type="Int32" />
-          <NavigationProperty Name="MatchsHistories" Relationship="Self.FK__MatchsHis__idGam__71D1E811" FromRole="Games" ToRole="MatchsHistory" />
+          <NavigationProperty Name="MatchsHistories" Relationship="Self.FK__MatchsHis__idGam__2D27B809" FromRole="Games" ToRole="MatchsHistory" />
         </EntityType>
         <EntityType Name="MatchsHistory">
           <Key>
@@ -144,8 +144,8 @@
           <Property Name="result" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="idGame" Type="Int32" />
           <Property Name="idPlayer" Type="Int32" />
-          <NavigationProperty Name="Game" Relationship="Self.FK__MatchsHis__idGam__71D1E811" FromRole="MatchsHistory" ToRole="Games" />
-          <NavigationProperty Name="Player" Relationship="Self.FK__MatchsHis__idPla__72C60C4A" FromRole="MatchsHistory" ToRole="Players" />
+          <NavigationProperty Name="Game" Relationship="Self.FK__MatchsHis__idGam__2D27B809" FromRole="MatchsHistory" ToRole="Games" />
+          <NavigationProperty Name="Player" Relationship="Self.FK__MatchsHis__idPla__2E1BDC42" FromRole="MatchsHistory" ToRole="Players" />
         </EntityType>
         <EntityType Name="Player">
           <Key>
@@ -158,11 +158,11 @@
           <Property Name="totalScore" Type="Int32" />
           <Property Name="name" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="lastName" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Friends" Relationship="Self.FK__Friends__idPlaye__6E01572D" FromRole="Players" ToRole="Friends" />
-          <NavigationProperty Name="Friends1" Relationship="Self.FK__Friends__idPlaye__6EF57B66" FromRole="Players" ToRole="Friends" />
-          <NavigationProperty Name="MatchsHistories" Relationship="Self.FK__MatchsHis__idPla__72C60C4A" FromRole="Players" ToRole="MatchsHistory" />
+          <NavigationProperty Name="Friends" Relationship="Self.FK__Friends__idPlaye__29572725" FromRole="Players" ToRole="Friends" />
+          <NavigationProperty Name="Friends1" Relationship="Self.FK__Friends__idPlaye__2A4B4B5E" FromRole="Players" ToRole="Friends" />
+          <NavigationProperty Name="MatchsHistories" Relationship="Self.FK__MatchsHis__idPla__2E1BDC42" FromRole="Players" ToRole="MatchsHistory" />
         </EntityType>
-        <Association Name="FK__Friends__idPlaye__6E01572D">
+        <Association Name="FK__Friends__idPlaye__29572725">
           <End Role="Players" Type="Self.Player" Multiplicity="0..1" />
           <End Role="Friends" Type="Self.Friend" Multiplicity="*" />
           <ReferentialConstraint>
@@ -174,7 +174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Friends__idPlaye__6EF57B66">
+        <Association Name="FK__Friends__idPlaye__2A4B4B5E">
           <End Role="Players" Type="Self.Player" Multiplicity="0..1" />
           <End Role="Friends" Type="Self.Friend" Multiplicity="*" />
           <ReferentialConstraint>
@@ -186,7 +186,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MatchsHis__idGam__71D1E811">
+        <Association Name="FK__MatchsHis__idGam__2D27B809">
           <End Role="Games" Type="Self.Game" Multiplicity="0..1" />
           <End Role="MatchsHistory" Type="Self.MatchsHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -198,7 +198,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MatchsHis__idPla__72C60C4A">
+        <Association Name="FK__MatchsHis__idPla__2E1BDC42">
           <End Role="Players" Type="Self.Player" Multiplicity="0..1" />
           <End Role="MatchsHistory" Type="Self.MatchsHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -215,19 +215,19 @@
           <EntitySet Name="Games" EntityType="Self.Game" />
           <EntitySet Name="MatchsHistories" EntityType="Self.MatchsHistory" />
           <EntitySet Name="Players" EntityType="Self.Player" />
-          <AssociationSet Name="FK__Friends__idPlaye__6E01572D" Association="Self.FK__Friends__idPlaye__6E01572D">
+          <AssociationSet Name="FK__Friends__idPlaye__29572725" Association="Self.FK__Friends__idPlaye__29572725">
             <End Role="Players" EntitySet="Players" />
             <End Role="Friends" EntitySet="Friends" />
           </AssociationSet>
-          <AssociationSet Name="FK__Friends__idPlaye__6EF57B66" Association="Self.FK__Friends__idPlaye__6EF57B66">
+          <AssociationSet Name="FK__Friends__idPlaye__2A4B4B5E" Association="Self.FK__Friends__idPlaye__2A4B4B5E">
             <End Role="Players" EntitySet="Players" />
             <End Role="Friends" EntitySet="Friends" />
           </AssociationSet>
-          <AssociationSet Name="FK__MatchsHis__idGam__71D1E811" Association="Self.FK__MatchsHis__idGam__71D1E811">
+          <AssociationSet Name="FK__MatchsHis__idGam__2D27B809" Association="Self.FK__MatchsHis__idGam__2D27B809">
             <End Role="Games" EntitySet="Games" />
             <End Role="MatchsHistory" EntitySet="MatchsHistories" />
           </AssociationSet>
-          <AssociationSet Name="FK__MatchsHis__idPla__72C60C4A" Association="Self.FK__MatchsHis__idPla__72C60C4A">
+          <AssociationSet Name="FK__MatchsHis__idPla__2E1BDC42" Association="Self.FK__MatchsHis__idPla__2E1BDC42">
             <End Role="Players" EntitySet="Players" />
             <End Role="MatchsHistory" EntitySet="MatchsHistories" />
           </AssociationSet>
@@ -237,9 +237,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NoThanksModelStoreContainer" CdmEntityContainer="NoThanksEntities">
+        <EntityContainerMapping StorageEntityContainer="NoThanksDataModelStoreContainer" CdmEntityContainer="NoThanksEntities">
           <EntitySetMapping Name="Friends">
-            <EntityTypeMapping TypeName="NoThanksModel.Friend">
+            <EntityTypeMapping TypeName="NoThanksDataModel.Friend">
               <MappingFragment StoreEntitySet="Friends">
                 <ScalarProperty Name="idFriend" ColumnName="idFriend" />
                 <ScalarProperty Name="idPlayer1" ColumnName="idPlayer1" />
@@ -248,7 +248,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Games">
-            <EntityTypeMapping TypeName="NoThanksModel.Game">
+            <EntityTypeMapping TypeName="NoThanksDataModel.Game">
               <MappingFragment StoreEntitySet="Games">
                 <ScalarProperty Name="idGame" ColumnName="idGame" />
                 <ScalarProperty Name="result" ColumnName="result" />
@@ -256,7 +256,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MatchsHistories">
-            <EntityTypeMapping TypeName="NoThanksModel.MatchsHistory">
+            <EntityTypeMapping TypeName="NoThanksDataModel.MatchsHistory">
               <MappingFragment StoreEntitySet="MatchsHistory">
                 <ScalarProperty Name="idMatch" ColumnName="idMatch" />
                 <ScalarProperty Name="point" ColumnName="point" />
@@ -267,7 +267,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Players">
-            <EntityTypeMapping TypeName="NoThanksModel.Player">
+            <EntityTypeMapping TypeName="NoThanksDataModel.Player">
               <MappingFragment StoreEntitySet="Players">
                 <ScalarProperty Name="idPlayer" ColumnName="idPlayer" />
                 <ScalarProperty Name="nickname" ColumnName="nickname" />
