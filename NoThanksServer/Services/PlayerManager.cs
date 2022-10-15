@@ -2,33 +2,35 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 using System.Security.Cryptography;
+using System.ServiceModel;
+using System.Text;
 
-namespace Logic
+namespace Services
 {
-    public class Authentication
+    public class PlayerManager : IPlayerManager
     {
-        public Authentication()
-        {
-        }
-
-        public Boolean Login(string nickname, string password)
+        public bool Login(String nickname, String password)
         {
             var status = false;
             string passwordHashed = ComputeSHA512Hash(password);
             using (var context = new NoThanksEntities())
             {
                 var accounts = (from players in context.Players
-                               where players.nickname == nickname && players.password == passwordHashed
-                               select players).Count();
-                if(accounts > 0)
+                                where players.nickname == nickname && players.password == passwordHashed
+                                select players).Count();
+                if (accounts > 0)
                 {
                     status = true;
                 }
             }
-                return status;
+            return status;
+        }
+
+        public bool Register(Player player)
+        {
+            return false;
         }
 
         private string ComputeSHA512Hash(string input)
