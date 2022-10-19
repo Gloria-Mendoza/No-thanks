@@ -1,11 +1,12 @@
-﻿using Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.ServiceModel;
 using System.Text;
+using Logic;
 
 namespace Services
 {
@@ -14,16 +15,15 @@ namespace Services
         public bool Login(String nickname, String password)
         {
             var status = false;
-            string passwordHashed = ComputeSHA512Hash(password);
-            using (var context = new NoThanksEntities())
+            try
             {
-                var accounts = (from players in context.Players
-                                where players.nickname == nickname && players.password == passwordHashed
-                                select players).Count();
-                if (accounts > 0)
-                {
-                    status = true;
-                }
+                Authentication client = new Authentication();
+                status = client.Login(nickname, password);
+            }
+            catch (EntityException entityException)
+            {
+                //TODO
+                Console.WriteLine(entityException.Message);
             }
             return status;
         }
@@ -31,17 +31,6 @@ namespace Services
         public bool Register(Player player)
         {
             return false;
-        }
-
-        private string ComputeSHA512Hash(string input)
-        {
-            var encryptedPassword = "";
-            using (SHA512 sHA512Hash = SHA512.Create())
-            {
-                byte[] hash = sHA512Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-                encryptedPassword = BitConverter.ToString(hash).Replace("-", string.Empty).ToLowerInvariant();
-            }
-            return encryptedPassword;
         }
     }
 }

@@ -8,13 +8,14 @@
         mc:Ignorable="d"
         Title="{x:Static p:Resources.LOGIN_TITLE_WINDOW}" Height="525" Width="770">
     <Grid>
-        <Label Content="{x:Static p:Resources.LOGIN_LOGINTITLE_LABEL}" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
-        <Label Content="{x:Static p:Resources.LOGIN_USERNAME_LABEL}" HorizontalAlignment="Center" Margin="0,117,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Images/5053309.jpg" Stretch="UniformToFill"/>
+        <Label Content="{x:Static p:Resources.LOGIN_LOGINTITLE_LABEL}" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Foreground="White"/>
+        <Label Content="{x:Static p:Resources.LOGIN_USERNAME_LABEL}" HorizontalAlignment="Center" Margin="0,117,0,0" VerticalAlignment="Top" Foreground="White"/>
         <TextBox x:Name="txtUsername" HorizontalAlignment="Center" Margin="0,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230" Height="30"/>
-        <Label Content="{x:Static p:Resources.LOGIN_PASSWORD_LABEL}" HorizontalAlignment="Center" Margin="0,222,0,0" VerticalAlignment="Top"/>
+        <Label Content="{x:Static p:Resources.LOGIN_PASSWORD_LABEL}" HorizontalAlignment="Center" Margin="0,222,0,0" VerticalAlignment="Top" Foreground="White"/>
         <PasswordBox x:Name="pfPassword" HorizontalAlignment="Center" Margin="0,253,0,0" VerticalAlignment="Top" Width="230" Height="30"/>
         <Button Content="{x:Static p:Resources.LOGIN_LOGIN_BUTTON}" HorizontalAlignment="Center" Margin="0,334,0,0" VerticalAlignment="Top" Height="38" Width="142" FontSize="18" Click="LoginClick"/>
         <Button Content="{x:Static p:Resources.LOGIN_REGISTER_BUTTON}" HorizontalAlignment="Center" Margin="0,399,0,0" VerticalAlignment="Top" Height="29" Width="88" Click="RegisterClick"/>
-        <Label Content="{x:Static p:Resources.LOGIN_GUEST_LABEL}" HorizontalAlignment="Center" Margin="0,450,0,0" VerticalAlignment="Top" Height="32" Width="122"/>
+        <Label Content="{x:Static p:Resources.LOGIN_GUEST_LABEL}" HorizontalAlignment="Center" Margin="0,450,0,0" VerticalAlignment="Top" Height="32" Width="122" Foreground="White"/>
     </Grid>
 </Window>

@@ -1,4 +1,4 @@
-﻿using Data;
+﻿using Logic;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +18,8 @@ namespace Services
         bool Register(Player player);
     }
 
-    public partial class Player
+    [DataContract]
+    public class Player
     {
         private int idPlayer;
         private string nickname;
@@ -28,17 +29,19 @@ namespace Services
         private string name;
         private string lastName;
 
-        public Player()
-        {
-            
-        }
-
+        [DataMember]
         public int IdPlayer { get { return idPlayer; } set { idPlayer = value; } }
+        [DataMember]
         public string Nickname { get { return nickname; } set { nickname = value; } }
+        [DataMember]
         public string Password { get { return password; } set { password = value; } }
+        [DataMember]
         public string Email { get { return email; } set { email = value; } }
+        [DataMember]
         public Nullable<int> TotalScore { get { return totalScore; } set { totalScore = value; } }
+        [DataMember]
         public string Name { get { return name; } set { name = value; } }
+        [DataMember]
         public string LastName { get { return lastName; } set { lastName = value; } }
 
     }
