@@ -392,14 +392,5 @@ namespace NoThanks.Properties {
                 return ResourceManager.GetString("ROOM_WAITING_MESSAGE", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a dfdfd.
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
-            }
-        }
     }
 }

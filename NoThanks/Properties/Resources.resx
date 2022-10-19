@@ -228,7 +228,4 @@
   <data name="ROOM_WAITING_MESSAGE" xml:space="preserve">
     <value>Esperando a que el anfitrión comience la partida…</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>dfdfd</value>
-  </data>
 </root>

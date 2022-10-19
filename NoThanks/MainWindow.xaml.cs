@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Authentication;
@@ -60,10 +59,10 @@ namespace NoThanks
             {
                 LoginAction();
             }
-            catch (EntityException entityException)
+            catch (Exception exception)
             {
                 //TODO
-                Console.WriteLine(entityException.Message);
+                Console.WriteLine(exception.Message);
             }
 
         }
