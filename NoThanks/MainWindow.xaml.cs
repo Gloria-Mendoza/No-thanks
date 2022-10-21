@@ -39,7 +39,9 @@ namespace NoThanks
                 if (aux)
                 {
                     //TODO
-                    MessageBox.Show("Funciona", "Yeah",MessageBoxButton.OK);
+                    MenuPrincipal go = new MenuPrincipal();
+                    go.Show();
+                    this.Hide();
                 }
                 else
                 {
@@ -56,7 +58,9 @@ namespace NoThanks
         private void LoginClick(object sender, RoutedEventArgs e)
         {
             try
-            {
+            { 
+                MenuPrincipal nameprofile = new MenuPrincipal();
+            
                 LoginAction();
             }
             catch (Exception exception)
@@ -70,6 +74,23 @@ namespace NoThanks
         private void RegisterClick(object sender, RoutedEventArgs e)
         {
             //TODO
+        }
+
+        private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MenuPrincipal go = new MenuPrincipal();
+            go.Show();
+            this.Hide();
+        }
+
+        public struct DateName
+        {
+            public string Name;
         }
     }
 }
