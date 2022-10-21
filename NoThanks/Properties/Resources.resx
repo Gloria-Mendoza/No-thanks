@@ -156,6 +156,9 @@
   <data name="EXPEL_TITLE_WINDOW" xml:space="preserve">
     <value>Expulsar Jugador</value>
   </data>
+  <data name="GENERAL_BACK_BUTTON" xml:space="preserve">
+    <value>Volver</value>
+  </data>
   <data name="GENERAL_CANCEL_BUTTON" xml:space="preserve">
     <value>Cancelar</value>
   </data>
@@ -203,6 +206,21 @@
   </data>
   <data name="LOGIN_USERNAME_LABEL" xml:space="preserve">
     <value>Nombre de Usuario</value>
+  </data>
+  <data name="MAINMENU_TITLE-WINDOW" xml:space="preserve">
+    <value>No Thanks: Menu Principal</value>
+  </data>
+  <data name="PERSONALIZATION_BUTTON" xml:space="preserve">
+    <value>Personalizacion</value>
+  </data>
+  <data name="PERSONALIZATION_TITLE-WINDOW" xml:space="preserve">
+    <value>No Thanks: Personalizacion</value>
+  </data>
+  <data name="PLAY_BUTTON" xml:space="preserve">
+    <value>Jugar</value>
+  </data>
+  <data name="PROFILE_TITLE-WINDOW" xml:space="preserve">
+    <value>No Thanks: Perfil</value>
   </data>
   <data name="RESULT_PLAYERNAME_LABEL" xml:space="preserve">
     <value>Nombre del jugador</value>

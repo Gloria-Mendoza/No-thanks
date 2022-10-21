@@ -178,6 +178,15 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Volver.
+        /// </summary>
+        public static string GENERAL_BACK_BUTTON {
+            get {
+                return ResourceManager.GetString("GENERAL_BACK_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancelar.
         /// </summary>
         public static string GENERAL_CANCEL_BUTTON {
@@ -318,6 +327,51 @@ namespace NoThanks.Properties {
         public static string LOGIN_USERNAME_LABEL {
             get {
                 return ResourceManager.GetString("LOGIN_USERNAME_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No Thanks: Menu Principal.
+        /// </summary>
+        public static string MAINMENU_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("MAINMENU_TITLE-WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Personalizacion.
+        /// </summary>
+        public static string PERSONALIZATION_BUTTON {
+            get {
+                return ResourceManager.GetString("PERSONALIZATION_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No Thanks: Personalizacion.
+        /// </summary>
+        public static string PERSONALIZATION_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("PERSONALIZATION_TITLE-WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Jugar.
+        /// </summary>
+        public static string PLAY_BUTTON {
+            get {
+                return ResourceManager.GetString("PLAY_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No Thanks: Perfil.
+        /// </summary>
+        public static string PROFILE_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("PROFILE_TITLE-WINDOW", resourceCulture);
             }
         }
         
