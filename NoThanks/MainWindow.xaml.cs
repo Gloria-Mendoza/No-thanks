@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Authentication;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -44,6 +45,7 @@ namespace NoThanks
                         Nickname = username
                     };
                     MenuPrincipal go = new MenuPrincipal();
+                    go.WindowState = this.WindowState;
                     go.SettingData(player);
                     go.Show();
                     this.Close();
@@ -66,10 +68,10 @@ namespace NoThanks
             {           
                 LoginAction();
             }
-            catch (Exception exception)
+            catch (EndpointNotFoundException)
             {
                 //TODO
-                Console.WriteLine(exception.Message);
+                MessageBox.Show("No se pudo establecer conexión con el servidor", "Upss", MessageBoxButton.OK);
             }
 
         }
@@ -79,21 +81,17 @@ namespace NoThanks
             //TODO
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Guest_Click(object sender, RoutedEventArgs e)
         {
             MenuPrincipal go = new MenuPrincipal();
             Player player = new Player()
             {
                 Nickname = "Guest" + new Random().Next()
             };
+            go.WindowState = this.WindowState;
             go.SettingData(player);
             go.Show();
             this.Close();
-        }
-
-        public struct DateName
-        {
-            public string Name;
         }
     }
 }

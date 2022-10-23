@@ -81,6 +81,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.es-MX.Designer.cs">
+      <DependentUpon>Resources.es-MX.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Room.xaml.cs">
       <DependentUpon>Room.xaml</DependentUpon>
     </Compile>
@@ -157,6 +162,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.es-MX.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.es-MX.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -183,9 +192,6 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="5053309.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\5053309.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -196,12 +202,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\persona.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="persona.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -235,9 +235,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\11773.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="11773.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,6 +44,7 @@ namespace NoThanks
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             MainWindow go = new MainWindow();
+            go.WindowState = this.WindowState;
             go.Show();
             this.Close();
         }
@@ -51,6 +52,7 @@ namespace NoThanks
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             Profile go = new Profile();
+            go.WindowState = this.WindowState;
             go.Show();
             this.Close();
         }
@@ -58,6 +60,7 @@ namespace NoThanks
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             Personalization go = new Personalization();
+            go.WindowState = this.WindowState;
             go.Show();
             this.Close();
         }

@@ -7,11 +7,11 @@
         xmlns:p = "clr-namespace:NoThanks.Properties"
         mc:Ignorable="d"
         Title="{x:Static p:Resources.PERSONALIZATION_TITLE_WINDOW}" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/5053309.jpg"/>
+    </Window.Background>
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/Images/5053309.jpg"/>
-        </Grid.Background>
-        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" HorizontalAlignment="Left" Margin="672,33,0,0" VerticalAlignment="Top" Height="34" Width="62" FontFamily="Arial" FontWeight="Bold" FontSize="16" Click="Button_Click"/>
+        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" Margin="0,33,66,0" FontFamily="Arial" FontWeight="Bold" FontSize="16" Click="Button_Click" Height="34" VerticalAlignment="Top" HorizontalAlignment="Right" Width="62"/>
 
     </Grid>
 </Window>

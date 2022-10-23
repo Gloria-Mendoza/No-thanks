@@ -11,7 +11,7 @@
         <ImageBrush ImageSource="/Images/5053309.jpg"/>
     </Window.Background>
     <Grid>
-        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" HorizontalAlignment="Left" Margin="677,10,0,0" VerticalAlignment="Top" Height="27" Width="70" Click="Button_Click" FontFamily="Arial" FontWeight="Bold"/>
+        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" HorizontalAlignment="Right" Margin="0,10,53,397" Width="70" Click="Button_Click" FontFamily="Arial" FontWeight="Bold"/>
 
     </Grid>
 </Window>
