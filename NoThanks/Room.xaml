@@ -8,7 +8,9 @@
         mc:Ignorable="d"
         Title="{x:Static p:Resources.ROOM_TITLE_WINDOW}" Height="450" Width="800" Closing="Window_Closing" Background="{x:Null}">
     <Grid>
-        <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Images/5053309.jpg" Stretch="Fill"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/5053309.jpg"/>
+        </Grid.Background>
         <Grid HorizontalAlignment="Right" Width="235">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="216*"/>

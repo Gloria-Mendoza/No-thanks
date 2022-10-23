@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -46,8 +47,16 @@ namespace NoThanks
             if (!isConected)
             {
                 chatServiceClient = new ChatServiceClient(new System.ServiceModel.InstanceContext(this));
-                chatServiceClient.Connect(player.Nickname);
-                isConected = true;
+                try
+                {
+                    chatServiceClient.Connect(player.Nickname);
+                    isConected = true;
+                }
+                catch (EndpointNotFoundException)
+                {
+                    MessageBox.Show("No se pudo conectar con el servidor", "Upss",MessageBoxButton.OK);
+                }
+                
 
             }
         }
@@ -80,7 +89,8 @@ namespace NoThanks
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow go = new MainWindow();
+            MenuPrincipal go = new MenuPrincipal();
+            go.WindowState = this.WindowState;
             go.Show();
             this.Close();
         }

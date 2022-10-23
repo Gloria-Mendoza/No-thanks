@@ -13,14 +13,14 @@
     <Grid>
         <Button Content="{x:Static p:Resources.PLAY_BUTTON}" HorizontalAlignment="Left" Margin="20,186,0,0" VerticalAlignment="Top" Height="69" Width="161" Click="Button_Click" FontFamily="Arial" FontSize="48" Grid.Row="0" MinWidth="0" Background="#FFDDDDDD" BorderThickness="0,0,0,0" FontWeight="Bold" RenderTransformOrigin="0.55,0.5"></Button>
         <Label x:Name="LabelName" Content="Invitado" HorizontalAlignment="Left" Margin="113,43,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" FontWeight="Bold"/>
-        <Image Margin="0,94,13,93" Source="/logo.png" HorizontalAlignment="Right" Width="372"/>
+        <Image Margin="0,94,13,93" Source="/Images/logo.png" HorizontalAlignment="Right" Width="372"/>
         <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" Margin="0,0,55,56" Click="Button_Click_1" FontFamily="Arial" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right" Width="68" Height="32" VerticalAlignment="Bottom"/>
         <Button Content="" HorizontalAlignment="Left" Margin="18,20,0,0" VerticalAlignment="Top" Height="90" Width="90" Click="Button_Click_2" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ClickMode="Press">
             <Button.BorderBrush>
                 <ImageBrush/>
             </Button.BorderBrush>
             <Button.Background>
-                <ImageBrush ImageSource="/persona.png"/>
+                <ImageBrush ImageSource="Images/persona.png"/>
             </Button.Background>
         </Button>
         <Button Content="{x:Static p:Resources.PERSONALIZATION_BUTTON}" HorizontalAlignment="Left" Margin="20,287,0,0" VerticalAlignment="Top" FontFamily="Arial" FontWeight="Bold" FontSize="24" Height="72" Width="319" Click="Button_Click_3"/>
