@@ -7,8 +7,10 @@
         xmlns:local="clr-namespace:NoThanks"
         mc:Ignorable="d"
         Title="{x:Static p:Resources.PROFILE_TITLE_WINDOW}" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/5053309.jpg"/>
+    </Window.Background>
     <Grid>
-        <Image HorizontalAlignment="Left" Height="536" VerticalAlignment="Top" Width="960" Source="/5053309.jpg"/>
         <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" HorizontalAlignment="Left" Margin="677,10,0,0" VerticalAlignment="Top" Height="27" Width="70" Click="Button_Click" FontFamily="Arial" FontWeight="Bold"/>
 
     </Grid>

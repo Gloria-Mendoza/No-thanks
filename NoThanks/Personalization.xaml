@@ -8,7 +8,9 @@
         mc:Ignorable="d"
         Title="{x:Static p:Resources.PERSONALIZATION_TITLE_WINDOW}" Height="450" Width="800">
     <Grid>
-        <Image HorizontalAlignment="Left" Height="562" VerticalAlignment="Top" Width="1277" Source="/5053309.jpg"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/5053309.jpg"/>
+        </Grid.Background>
         <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" HorizontalAlignment="Left" Margin="672,33,0,0" VerticalAlignment="Top" Height="34" Width="62" FontFamily="Arial" FontWeight="Bold" FontSize="16" Click="Button_Click"/>
 
     </Grid>

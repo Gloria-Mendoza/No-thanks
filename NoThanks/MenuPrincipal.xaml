@@ -7,12 +7,14 @@
         xmlns:p = "clr-namespace:NoThanks.Properties"
         mc:Ignorable="d"
         Title="{x:Static p:Resources.MAINMENU_TITLE_WINDOW}" Height="525" Width="770">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/5053309.jpg"/>
+    </Window.Background>
     <Grid>
-        <Image x:Name="fondo" HorizontalAlignment="Center" Height="527" VerticalAlignment="Center" Width="800" Source="/5053309.jpg"/>
         <Button Content="{x:Static p:Resources.PLAY_BUTTON}" HorizontalAlignment="Left" Margin="20,186,0,0" VerticalAlignment="Top" Height="69" Width="161" Click="Button_Click" FontFamily="Arial" FontSize="48" Grid.Row="0" MinWidth="0" Background="#FFDDDDDD" BorderThickness="0,0,0,0" FontWeight="Bold" RenderTransformOrigin="0.55,0.5"></Button>
         <Label x:Name="LabelName" Content="Invitado" HorizontalAlignment="Left" Margin="113,43,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" FontWeight="Bold"/>
-        <Image HorizontalAlignment="Left" Height="322" Margin="419,0,0,0" VerticalAlignment="Center" Width="372" Source="/logo.png"/>
-        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" HorizontalAlignment="Left" Margin="647,421,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="32" Width="68" FontFamily="Arial" FontWeight="Bold" FontSize="14"/>
+        <Image Margin="0,94,13,93" Source="/logo.png" HorizontalAlignment="Right" Width="372"/>
+        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" Margin="0,0,55,56" Click="Button_Click_1" FontFamily="Arial" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right" Width="68" Height="32" VerticalAlignment="Bottom"/>
         <Button Content="" HorizontalAlignment="Left" Margin="18,20,0,0" VerticalAlignment="Top" Height="90" Width="90" Click="Button_Click_2" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Visible" ClickMode="Press">
             <Button.BorderBrush>
                 <ImageBrush/>
