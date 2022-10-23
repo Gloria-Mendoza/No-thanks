@@ -28,7 +28,7 @@ namespace NoThanks
         {
             MenuPrincipal go = new MenuPrincipal();
             go.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

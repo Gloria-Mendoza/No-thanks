@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NoThanks.PlayerManager;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -38,10 +39,14 @@ namespace NoThanks
                 var aux = client.Login(username, password);
                 if (aux)
                 {
-                    //TODO
+                    Player player = new Player()
+                    {
+                        Nickname = username
+                    };
                     MenuPrincipal go = new MenuPrincipal();
+                    go.SettingData(player);
                     go.Show();
-                    this.Hide();
+                    this.Close();
                 }
                 else
                 {
@@ -58,9 +63,7 @@ namespace NoThanks
         private void LoginClick(object sender, RoutedEventArgs e)
         {
             try
-            { 
-                MenuPrincipal nameprofile = new MenuPrincipal();
-            
+            {           
                 LoginAction();
             }
             catch (Exception exception)
@@ -76,16 +79,16 @@ namespace NoThanks
             //TODO
         }
 
-        private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MenuPrincipal go = new MenuPrincipal();
+            Player player = new Player()
+            {
+                Nickname = "Guest" + new Random().Next()
+            };
+            go.SettingData(player);
             go.Show();
-            this.Hide();
+            this.Close();
         }
 
         public struct DateName
