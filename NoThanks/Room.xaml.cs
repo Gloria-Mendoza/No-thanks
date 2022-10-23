@@ -67,6 +67,7 @@ namespace NoThanks
             {
                 chatServiceClient.Disconnect(player.Nickname);
                 chatServiceClient = null;
+                isConected=false;
             }
         }
 

@@ -35,30 +35,29 @@ namespace Services
         }
     }
 
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public partial class PlayerManager : IChatService
     {
         private List<Player> players = new List<Player>();
-        private int nextID = 1;
 
         public void Connect(string username)
         {
             Player player = new Player()
             {
-                IdPlayer = nextID,
-                Nickname = username
+                Nickname = username,
+                AOperationContext = OperationContext.Current
             };
-            nextID++;
-            SendMessage($": {player.Nickname} se ha conectado!", "");
+            SendMessage($": {player.Nickname} se ha conectado!", player.Nickname);
             players.Add(player);
         }
 
         public void Disconnect(string username)
         {
-            var player = players.FirstOrDefault(i => i.Nickname == username);
+            var player = players.FirstOrDefault(i => i.Nickname.Equals(username));
             if(player != null)
             {
                 players.Remove(player);
-                SendMessage($": {player.Nickname} se ha desconectado!", "");
+                SendMessage($": {player.Nickname} se ha desconectado!", player.Nickname);
             }
         }
 
@@ -67,13 +66,13 @@ namespace Services
             foreach(var player in players)
             {
                 string answer = DateTime.Now.ToShortTimeString();
-                var anotherPlayer = players.FirstOrDefault(i => i.Nickname == player.Nickname);
+                var anotherPlayer = players.FirstOrDefault(i => i.Nickname.Equals(username));
                 if(anotherPlayer != null)
                 {
-                    answer += $": {player.Nickname} ";
+                    answer += $": {anotherPlayer.Nickname} ";
                 }
                 answer += message;
-                OperationContext.Current.GetCallbackChannel<IChatServiceCallback>().MessageCallBack(answer);
+                player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().MessageCallBack(answer);
             }
         }
     }
