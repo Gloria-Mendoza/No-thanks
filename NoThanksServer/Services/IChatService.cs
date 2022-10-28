@@ -18,6 +18,9 @@ namespace Services
 
         [OperationContract(IsOneWay = true)]
         void SendMessage(string message, string username);
+
+        [OperationContract(IsOneWay = true)]
+        void SendWhisper(string sender, string receiver, string message);
     }
 
     [ServiceContract]
@@ -25,5 +28,8 @@ namespace Services
     {
         [OperationContract(IsOneWay = true)]
         void MessageCallBack(string message);
+
+        [OperationContract (IsOneWay = true)]
+        void WhisperCallBack(string sender, string message);   
     }
 }

@@ -77,10 +77,27 @@ namespace NoThanks
             {
                 if(chatServiceClient != null)
                 {
-                    chatServiceClient.SendMessage(txtMesageContainer.Text, player.Nickname);
+                    if (txtMesageContainer.Text.StartsWith("/whisper"))
+                    {
+                        string[] args = txtMesageContainer.Text.Split(' ');
+                        if (args.Length > 2)
+                        {
+                            string message = "";
+                            for (int i = 2; i < args.Length; i++)
+                            {
+                                message += args[i] + " ";
+                            }
+                            chatServiceClient.SendWhisper(player.Nickname, args[1], message);
+                        }
+                    } 
+                    else
+                    {
+                        chatServiceClient.SendMessage(txtMesageContainer.Text, player.Nickname);
+                    }
                 }
                 txtMesageContainer.Text = string.Empty;
             }
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -94,6 +111,12 @@ namespace NoThanks
             go.WindowState = this.WindowState;
             go.Show();
             this.Close();
+        }
+
+        public void WhisperCallBack(string sender, string message)
+        {
+            txtChatBox.Items.Add(message);
+            txtChatBox.ScrollIntoView(txtChatBox.Items[txtChatBox.Items.Count - 1]);
         }
     }
 }
