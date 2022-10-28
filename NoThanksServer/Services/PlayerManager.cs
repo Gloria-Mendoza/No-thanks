@@ -18,7 +18,7 @@ namespace Services
             var status = false;
             try
             {
-                Authentication client = new Authentication();
+                var client = new Authentication();
                 status = client.Login(nickname, password);
             }
             catch (EntityException entityException)
@@ -74,6 +74,12 @@ namespace Services
                 answer += message;
                 player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().MessageCallBack(answer);
             }
+        }
+
+        public void SendWhisper(string sender, string receiver, string message)
+        {
+            var player = players.Find(i => i.Nickname.Equals(receiver));
+            player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().WhisperCallBack(sender, message);
         }
     }
 }
