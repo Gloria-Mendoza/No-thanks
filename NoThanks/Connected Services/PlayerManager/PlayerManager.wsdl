@@ -92,8 +92,14 @@
   <wsdl:message name="IChatService_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
   </wsdl:message>
+  <wsdl:message name="IChatService_SendWhisper_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendWhisper" />
+  </wsdl:message>
   <wsdl:message name="IChatService_MessageCallBack_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MessageCallBack" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_WhisperCallBack_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:WhisperCallBack" />
   </wsdl:message>
   <wsdl:portType name="IPlayerManager">
     <wsdl:operation name="Login">
@@ -117,8 +123,14 @@
     <wsdl:operation name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendMessage" message="tns:IChatService_SendMessage_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SendWhisper">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendWhisper" message="tns:IChatService_SendWhisper_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="MessageCallBack">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/MessageCallBack" message="tns:IChatService_MessageCallBack_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WhisperCallBack">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/WhisperCallBack" message="tns:IChatService_WhisperCallBack_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPlayerManager" type="tns:IPlayerManager">
@@ -170,8 +182,20 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="SendWhisper">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/SendWhisper" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="MessageCallBack">
       <soap12:operation soapAction="http://tempuri.org/IChatService/MessageCallBack" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WhisperCallBack">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/WhisperCallBack" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

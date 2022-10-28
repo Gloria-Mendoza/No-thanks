@@ -18,7 +18,7 @@ namespace Services
             var status = false;
             try
             {
-                Authentication client = new Authentication();
+                var client = new Authentication();
                 status = client.Login(nickname, password);
             }
             catch (EntityException entityException)
@@ -73,6 +73,49 @@ namespace Services
                 }
                 answer += message;
                 player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().MessageCallBack(answer);
+            }
+        }
+
+        public void SendWhisper(string sender, string receiver, string message)
+        {
+            var player = players.Find(i => i.Nickname.Equals(receiver));
+            player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().WhisperCallBack(sender, message);
+        }
+
+        public partial class PlayerManager : IDeckOfCards
+        {
+            public void CreateDeck()
+            {
+                var deck = new List<CardType>();
+                for (int i = 0; i < Enum.GetValues(typeof(CardType)).Length; i++)
+                {
+                    deck.Add((CardType)i);
+                }
+                var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
+                callback.CreateDeckCallBack(deck.ToArray());
+            }
+
+            public void DiscardFirstNine(CardType[] gameDeck)
+            {
+                var newDeck = new List<CardType>(gameDeck);
+                newDeck.RemoveRange(0, 9);
+                var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
+                callback.DiscardFirstNineCallback(newDeck.ToArray());
+            }
+
+            public void ShuffleDeck(CardType[] gameDeck)
+            {
+                var newDeck = new List<CardType>(gameDeck);
+                var random = new Random();
+                for (int i = 0; i < newDeck.Count; i++)
+                {
+                    var temp = newDeck[i];
+                    var randomIndex = random.Next(0, newDeck.Count);
+                    newDeck[i] = newDeck[randomIndex];
+                    newDeck[randomIndex] = temp;
+                }
+                var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
+                callback.ShuffleDeckCallBack(newDeck.ToArray());
             }
         }
     }
