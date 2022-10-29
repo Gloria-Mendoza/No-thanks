@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services
+namespace Logic
 {
     [DataContract]
     public class Player
@@ -18,10 +18,13 @@ namespace Services
         private Nullable<int> totalScore;
         private string name;
         private string lastName;
+        private bool status;
         private OperationContext aOperationContext;
 
         public OperationContext AOperationContext { get { return aOperationContext; } set { aOperationContext = value; } }
 
+        [DataMember]
+        public bool Status { get { return status; } set { status = value; } }
         [DataMember]
         public int IdPlayer { get { return idPlayer; } set { idPlayer = value; } }
         [DataMember]
@@ -36,6 +39,6 @@ namespace Services
         public string Name { get { return name; } set { name = value; } }
         [DataMember]
         public string LastName { get { return lastName; } set { lastName = value; } }
-        
+
     }
 }

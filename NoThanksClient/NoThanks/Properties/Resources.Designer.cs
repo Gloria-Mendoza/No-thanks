@@ -205,6 +205,15 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Siguiente.
+        /// </summary>
+        public static string GENERAL_NEXT_BUTTON {
+            get {
+                return ResourceManager.GetString("GENERAL_NEXT_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Código.
         /// </summary>
         public static string JOINGAME_GAMECODE_LABEL {

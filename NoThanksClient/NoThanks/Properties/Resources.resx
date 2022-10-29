@@ -165,6 +165,9 @@
   <data name="GENERAL_CONFIRM_BUTTON" xml:space="preserve">
     <value>Confirmar</value>
   </data>
+  <data name="GENERAL_NEXT_BUTTON" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
   <data name="JOINGAME_GAMECODE_LABEL" xml:space="preserve">
     <value>Código</value>
   </data>
