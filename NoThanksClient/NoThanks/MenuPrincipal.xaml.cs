@@ -1,5 +1,4 @@
-﻿using NoThanks.PlayerManager;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,47 +19,57 @@ namespace NoThanks
     /// </summary>
     public partial class MenuPrincipal : Window
     {
-        private Player player = new Player();
         public MenuPrincipal()
         {
             InitializeComponent();
+            ConfigureWindow();
         }
 
-        public void SettingData(Player player)
+        private void ConfigureWindow()
         {
-            this.player = player;
-            LabelName.Content = player.Nickname;
+            LabelName.Content = Domain.Player.PlayerClient.Nickname;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Room go = new Room();
-            go.WindowState = this.WindowState;
-            go.SettingData(this.player);
+            Room go = new Room()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
             go.Show();
             this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            MainWindow go = new MainWindow();
-            go.WindowState = this.WindowState;
+            MainWindow go = new MainWindow()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
             go.Show();
             this.Close();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Profile go = new Profile();
-            go.WindowState = this.WindowState;
+            Profile go = new Profile()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
             go.Show();
             this.Close();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Personalization go = new Personalization();
-            go.WindowState = this.WindowState;
+            Personalization go = new Personalization()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
             go.Show();
             this.Close();
         }

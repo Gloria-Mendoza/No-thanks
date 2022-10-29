@@ -26,8 +26,11 @@ namespace NoThanks
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal go = new MenuPrincipal();
-            go.WindowState = this.WindowState;
+            MenuPrincipal go = new MenuPrincipal()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
             go.Show();
             this.Close();
         }

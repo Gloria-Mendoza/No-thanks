@@ -13,20 +13,23 @@ namespace Services
 {
     public partial class PlayerManager : IPlayerManager
     {
-        public bool Login(String nickname, String password)
+        public Logic.Player Login(String nickname, String password)
         {
-            var status = false;
+            var player = new Logic.Player()
+            {
+                Status = false
+            };
             try
             {
                 var client = new Authentication();
-                status = client.Login(nickname, password);
+                player = client.Login(nickname, password);
             }
             catch (EntityException entityException)
             {
                 //TODO
                 Console.WriteLine(entityException.Message);
             }
-            return status;
+            return player;
         }
 
         public bool Register(Player player)

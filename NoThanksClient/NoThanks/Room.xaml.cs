@@ -23,11 +23,11 @@ namespace NoThanks
     {
         private bool isConected = false;
         private ChatServiceClient chatServiceClient;
-        private Player player;
 
         public Room()
         {
             InitializeComponent();
+            Start();
         }
 
         public void MessageCallBack(string message)
@@ -36,39 +36,10 @@ namespace NoThanks
             txtChatBox.ScrollIntoView(txtChatBox.Items[txtChatBox.Items.Count - 1]);
         }
 
-        public void SettingData(Player player)
+        public void WhisperCallBack(string sender, string message)
         {
-            this.player = player;
-            Start();
-        }
-
-        private void Start()
-        {
-            if (!isConected)
-            {
-                chatServiceClient = new ChatServiceClient(new System.ServiceModel.InstanceContext(this));
-                try
-                {
-                    chatServiceClient.Connect(player.Nickname);
-                    isConected = true;
-                }
-                catch (EndpointNotFoundException)
-                {
-                    MessageBox.Show("No se pudo conectar con el servidor", "Upss",MessageBoxButton.OK);
-                }
-                
-
-            }
-        }
-
-        private void End()
-        {
-            if(isConected)
-            {
-                chatServiceClient.Disconnect(player.Nickname);
-                chatServiceClient = null;
-                isConected=false;
-            }
+            txtChatBox.Items.Add(message);
+            txtChatBox.ScrollIntoView(txtChatBox.Items[txtChatBox.Items.Count - 1]);
         }
 
         private void TxtMesageContainer_KeyDown(object sender, KeyEventArgs e)
@@ -87,12 +58,12 @@ namespace NoThanks
                             {
                                 message += args[i] + " ";
                             }
-                            chatServiceClient.SendWhisper(player.Nickname, args[1], message);
+                            chatServiceClient.SendWhisper(Domain.Player.PlayerClient.Nickname, args[1], message);
                         }
                     } 
                     else
                     {
-                        chatServiceClient.SendMessage(txtMesageContainer.Text, player.Nickname);
+                        chatServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname);
                     }
                 }
                 txtMesageContainer.Text = string.Empty;
@@ -107,16 +78,43 @@ namespace NoThanks
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal go = new MenuPrincipal();
-            go.WindowState = this.WindowState;
+            MenuPrincipal go = new MenuPrincipal()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
             go.Show();
             this.Close();
         }
 
-        public void WhisperCallBack(string sender, string message)
+        private void Start()
         {
-            txtChatBox.Items.Add(message);
-            txtChatBox.ScrollIntoView(txtChatBox.Items[txtChatBox.Items.Count - 1]);
+            if (!isConected)
+            {
+                chatServiceClient = new ChatServiceClient(new System.ServiceModel.InstanceContext(this));
+                try
+                {
+                    chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname);
+                    isConected = true;
+                }
+                catch (EndpointNotFoundException)
+                {
+                    MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                }
+
+
+            }
         }
+
+        private void End()
+        {
+            if (isConected)
+            {
+                chatServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname);
+                chatServiceClient = null;
+                isConected = false;
+            }
+        }
+
     }
 }

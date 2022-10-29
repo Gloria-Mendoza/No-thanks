@@ -13,7 +13,7 @@ namespace Services
     public interface IPlayerManager
     {
         [OperationContract]
-        bool Login(String nickname, String password);
+        Logic.Player Login(String nickname, String password);
         [OperationContract]
         bool Register(Player player);
     }

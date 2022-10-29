@@ -1,10 +1,5 @@
 ﻿using Data;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
 
 namespace Logic
 {
@@ -14,32 +9,26 @@ namespace Logic
         {
         }
 
-        public Boolean Login(string nickname, string password)
+        public Logic.Player Login(string nickname, string password)
         {
-            var status = false;
-            string passwordHashed = ComputeSHA512Hash(password);
+            Logic.Player player = new Logic.Player();
             using (var context = new NoThanksEntities())
             {
                 var accounts = (from players in context.Players
-                                where players.nickname == nickname && players.password == passwordHashed
-                                select players).Count();
-                if (accounts > 0)
+                                where players.nickname == nickname && players.password == password
+                                select players);
+                if (accounts.Any())
                 {
-                    status = true;
+                    player.IdPlayer = accounts.First().idPlayer;
+                    player.Nickname = accounts.First().nickname;
+                    player.Email = accounts.First().email;
+                    player.Name = accounts.First().name;
+                    player.LastName = accounts.First().lastName;
+                    player.TotalScore = accounts.First().totalScore;
+                    player.Status = true;
                 }
             }
-            return status;
-        }
-
-        private string ComputeSHA512Hash(string input)
-        {
-            var encryptedPassword = "";
-            using (SHA512 sHA512Hash = SHA512.Create())
-            {
-                byte[] hash = sHA512Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-                encryptedPassword = BitConverter.ToString(hash).Replace("-", string.Empty).ToLowerInvariant();
-            }
-            return encryptedPassword;
+            return player;
         }
     }
 }
