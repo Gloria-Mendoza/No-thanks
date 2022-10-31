@@ -11,16 +11,20 @@ namespace Services
     public interface IChatService
     {
         [OperationContract]
-        void Connect(string username);
+        void CreateRoom(Logic.Room room);
+        [OperationContract]
+        string GenerateRoomCode();
+        [OperationContract]
+        void Connect(string username,string idRoom);
 
         [OperationContract]
-        void Disconnect(string username);
+        void Disconnect(string username, string idRoom);
 
         [OperationContract(IsOneWay = true)]
-        void SendMessage(string message, string username);
+        void SendMessage(string message, string username, string idRoom);
 
         [OperationContract(IsOneWay = true)]
-        void SendWhisper(string sender, string receiver, string message);
+        void SendWhisper(string sender, string receiver, string message, string idRoom);
     }
 
     [ServiceContract]

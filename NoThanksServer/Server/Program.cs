@@ -15,8 +15,23 @@ namespace Server
         {
             using (ServiceHost host = new ServiceHost(typeof(Services.PlayerManager)))
             {
-                host.Open();
-                Console.WriteLine("Server is running");
+                try
+                {
+                    host.Open();
+                    /*NetTcpBinding binding = new NetTcpBinding()
+                    {
+
+                        OpenTimeout = new TimeSpan(0, 10, 0),
+                        CloseTimeout = new TimeSpan(0, 10, 0),
+                        SendTimeout = new TimeSpan(0, 10, 0),
+                        ReceiveTimeout = new TimeSpan(0, 10, 0),
+                    };*/
+                    Console.WriteLine("Server is running");
+                }
+                catch (AddressAccessDeniedException)
+                {
+                    Console.WriteLine("Server isn't running");
+                }
                 Console.ReadLine();
             }
         }

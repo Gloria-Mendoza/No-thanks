@@ -24,5 +24,30 @@ namespace NoThanks
         {
             InitializeComponent();
         }
+
+        private void JoinClick(object sender, RoutedEventArgs e)
+        {
+            Room go = new Room()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left,
+                IsNewRoom = false,
+                IdRoom = txtCode.Text
+            };
+            go.Show();
+            this.Close();
+
+        }
+
+        private void CancelClick(object sender, RoutedEventArgs e)
+        {
+            MenuPrincipal go = new MenuPrincipal()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
+            go.Show();
+            this.Close();
+        }
     }
 }

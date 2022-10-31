@@ -1,35 +1,33 @@
 ﻿using NoThanks.PlayerManager;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace NoThanks
 {
     /// <summary>
     /// Lógica de interacción para Room.xaml
     /// </summary>
-    public partial class Room : Window, IChatServiceCallback
+    public partial class Room : Window , IChatServiceCallback
     {
         private bool isConected = false;
         private ChatServiceClient chatServiceClient;
+        private bool isNewRoom = false;
+        private string idRoom = "";
+
+        public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
+
+        public string IdRoom { get => idRoom; set => idRoom = value; }
 
         public Room()
         {
             InitializeComponent();
+            txtCode.IsReadOnly = true;
+            txtCode.Text = idRoom;
             Start();
         }
-
+        
         public void MessageCallBack(string message)
         {
             txtChatBox.Items.Add(message);
@@ -58,12 +56,12 @@ namespace NoThanks
                             {
                                 message += args[i] + " ";
                             }
-                            chatServiceClient.SendWhisper(Domain.Player.PlayerClient.Nickname, args[1], message);
+                            chatServiceClient.SendWhisper(Domain.Player.PlayerClient.Nickname, args[1], message, idRoom);
                         }
                     } 
                     else
                     {
-                        chatServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname);
+                        chatServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname,idRoom);
                     }
                 }
                 txtMesageContainer.Text = string.Empty;
@@ -94,10 +92,30 @@ namespace NoThanks
                 chatServiceClient = new ChatServiceClient(new System.ServiceModel.InstanceContext(this));
                 try
                 {
-                    chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname);
+                    //TODO
+                    if (isNewRoom)
+                    {
+                        idRoom = chatServiceClient.GenerateRoomCode();
+                        chatServiceClient.CreateRoom(new PlayerManager.Room()
+                        {
+                            Id = idRoom,
+                            Round = 0,
+                            Scores = new List<int>().ToArray(),
+                            Winner = "",
+                            Players = new List<PlayerManager.Player>().ToArray(),
+                        });
+                    }
+                    //ENDTODO
+                    chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname,idRoom);
+                    //chatServiceClient.SendMessage($": {Domain.Player.PlayerClient.Nickname} se ha conectado!", null,idRoom);
                     isConected = true;
                 }
                 catch (EndpointNotFoundException)
+                {
+                    //TODO
+                    MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                }
+                catch (CommunicationObjectFaultedException)
                 {
                     MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
                 }
@@ -110,7 +128,9 @@ namespace NoThanks
         {
             if (isConected)
             {
-                chatServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname);
+                chatServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom);
+                //TODO
+                //chatServiceClient.SendMessage($": {Domain.Player.PlayerClient.Nickname} se ha desconectado!", null, idRoom);
                 chatServiceClient = null;
                 isConected = false;
             }

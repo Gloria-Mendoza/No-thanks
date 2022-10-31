@@ -1,10 +1,13 @@
 ﻿using Data;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace Logic
 {
     public class Authentication
     {
+        public List<Player> PlayersList { get; set; }
         public Authentication()
         {
         }
@@ -29,6 +32,18 @@ namespace Logic
                 }
             }
             return player;
+        }
+
+        public bool UpdatePlayerPassword(string password,string email)
+        {
+            var status = false;
+            using (var context = new NoThanksEntities())
+            {
+                var playerToUpdate = context.Players.First(e => e.email.Equals(email));
+                playerToUpdate.password = password;
+                status = context.SaveChanges() > 0;
+            }
+            return status;
         }
     }
 }

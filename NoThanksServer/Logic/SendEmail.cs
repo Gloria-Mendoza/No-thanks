@@ -8,8 +8,8 @@ namespace Logic
     public class SendEmail
     {
         public const string FROM_EMAIL = "";
-        public const string DISPLAY_NAME = "";
-        public const string BODY = "";
+        public const string DISPLAY_NAME = "No Thanks: The Game!";
+        public const string BODY = "Your validation code is: ";
 
         public bool SendNewEmail(String toEmail, String affair, int validationCode)
         {

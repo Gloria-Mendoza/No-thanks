@@ -16,5 +16,9 @@ namespace Services
         Logic.Player Login(String nickname, String password);
         [OperationContract]
         bool Register(Player player);
+        [OperationContract]
+        bool SendNewEmail(String toEmail, String affair, int validationCode);
+        [OperationContract]
+        bool UpdatePassword(string password, string email);
     }
 }

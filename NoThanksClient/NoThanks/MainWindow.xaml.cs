@@ -60,7 +60,7 @@ namespace NoThanks
             if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
             {
                 PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
-                var playerLogin = client.Login(username, ComputeSHA512Hash(password));
+                var playerLogin = client.Login(username, Security.PasswordEncryptor.ComputeSHA512Hash(password));
                 if (playerLogin.Status)
                 {
                     Domain.Player.PlayerClient = new Domain.Player()
@@ -91,19 +91,6 @@ namespace NoThanks
                 //TODO
                 MessageBox.Show("Debes ingresar tú usuario y contraseña");
             }
-        }
-
-        private string ComputeSHA512Hash(string input)
-        {
-            var encryptedPassword = "";
-            using (SHA512 sHA512Hash = SHA512.Create())
-            {
-                byte[] hash = sHA512Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-                encryptedPassword = BitConverter.ToString(hash)
-                    .Replace("-", string.Empty)
-                    .ToLowerInvariant();
-            }
-            return encryptedPassword;
         }
     }
 }
