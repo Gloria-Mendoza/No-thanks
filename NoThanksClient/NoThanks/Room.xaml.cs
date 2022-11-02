@@ -1,4 +1,5 @@
 ﻿using NoThanks.PlayerManager;
+using System;
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.Windows;
@@ -9,7 +10,7 @@ namespace NoThanks
     /// <summary>
     /// Lógica de interacción para Room.xaml
     /// </summary>
-    public partial class Room : Window , IChatServiceCallback
+    public partial class Room : Window, IChatServiceCallback
     {
         private bool isConected = false;
         private ChatServiceClient chatServiceClient;
@@ -25,9 +26,27 @@ namespace NoThanks
             InitializeComponent();
             txtCode.IsReadOnly = true;
             txtCode.Text = idRoom;
-            Start();
+            try
+            {
+                Start();
+            }
+            catch (EndpointNotFoundException)
+            {
+                //TODO
+                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+            }
+            catch (CommunicationObjectFaultedException)
+            {
+                //TODO
+                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+            }
+            catch (NullReferenceException)
+            {
+                //TODO
+                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+            }
         }
-        
+
         public void MessageCallBack(string message)
         {
             txtChatBox.Items.Add(message);
@@ -48,11 +67,49 @@ namespace NoThanks
             return aviable;
         }
 
+        private void Start()
+        {
+            if (!isConected)
+            {
+                chatServiceClient = new ChatServiceClient(new InstanceContext(this));
+                //TODO
+                if (isNewRoom)
+                {
+                    idRoom = chatServiceClient.GenerateRoomCode();
+                    chatServiceClient.CreateRoom(new PlayerManager.Room()
+                    {
+                        Id = idRoom,
+                        Round = 0,
+                        Scores = new List<int>().ToArray(),
+                        Winner = "",
+                        Players = new List<PlayerManager.Player>().ToArray(),
+                    });
+                }
+                //ENDTODO
+                chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom);
+                //chatServiceClient.SendMessage($": {Domain.Player.PlayerClient.Nickname} se ha conectado!", null,idRoom);
+                isConected = true;
+            }
+        }
+
+        private void End()
+        {
+            if (isConected)
+            {
+                chatServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom);
+                //TODO
+                //chatServiceClient.SendMessage($": {Domain.Player.PlayerClient.Nickname} se ha desconectado!", null, idRoom);
+                chatServiceClient.Close();
+                chatServiceClient = null;
+                isConected = false;
+            }
+        }
+
         private void TxtMesageContainer_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
-                if(chatServiceClient != null)
+                if (chatServiceClient != null)
                 {
                     if (txtMesageContainer.Text.StartsWith("/whisper"))
                     {
@@ -66,10 +123,10 @@ namespace NoThanks
                             }
                             chatServiceClient.SendWhisper(Domain.Player.PlayerClient.Nickname, args[1], message, idRoom);
                         }
-                    } 
+                    }
                     else
                     {
-                        chatServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname,idRoom);
+                        chatServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname, idRoom);
                     }
                 }
                 txtMesageContainer.Text = string.Empty;
@@ -79,7 +136,25 @@ namespace NoThanks
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            End();
+            try
+            {
+                End();
+            }
+            catch (EndpointNotFoundException)
+            {
+                //TODO
+                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+            }
+            catch (CommunicationObjectFaultedException)
+            {
+                //TODO
+                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+            }
+            catch (NullReferenceException)
+            {
+                //TODO
+                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -93,57 +168,14 @@ namespace NoThanks
             this.Close();
         }
 
-        private void Start()
+        private void TakeClick(object sender, RoutedEventArgs e)
         {
-            if (!isConected)
-            {
-                chatServiceClient = new ChatServiceClient(new InstanceContext(this));
-                try
-                {
-                    //TODO
-                    if (isNewRoom)
-                    {
-                        idRoom = chatServiceClient.GenerateRoomCode();
-                        chatServiceClient.CreateRoom(new PlayerManager.Room()
-                        {
-                            Id = idRoom,
-                            Round = 0,
-                            Scores = new List<int>().ToArray(),
-                            Winner = "",
-                            Players = new List<PlayerManager.Player>().ToArray(),
-                        });
-                    }
-                    //ENDTODO
-                    chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname,idRoom);
-                    //chatServiceClient.SendMessage($": {Domain.Player.PlayerClient.Nickname} se ha conectado!", null,idRoom);
-                    isConected = true;
-                }
-                catch (EndpointNotFoundException)
-                {
-                    //TODO
-                    MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
-                }
-                catch (CommunicationObjectFaultedException)
-                {
-                    //TODO
-                    MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
-                }
 
-
-            }
         }
 
-        private void End()
+        private void PassClick(object sender, RoutedEventArgs e)
         {
-            if (isConected)
-            {
-                chatServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom);
-                //TODO
-                //chatServiceClient.SendMessage($": {Domain.Player.PlayerClient.Nickname} se ha desconectado!", null, idRoom);
-                chatServiceClient = null;
-                isConected = false;
-            }
-        }
 
+        }
     }
 }

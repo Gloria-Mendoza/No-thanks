@@ -85,6 +85,7 @@ namespace NoThanks
                     //TODO
                     MessageBox.Show("No Funciona", "Upss", MessageBoxButton.OK);
                 }
+                client.Close();
             }
             else
             {

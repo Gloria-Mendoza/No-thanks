@@ -430,11 +430,29 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Pasar.
+        /// </summary>
+        public static string ROOM_PASS_BUTTON {
+            get {
+                return ResourceManager.GetString("ROOM_PASS_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Iniciar Partida.
         /// </summary>
         public static string ROOM_STARTGAME_BUTTON {
             get {
                 return ResourceManager.GetString("ROOM_STARTGAME_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tomar.
+        /// </summary>
+        public static string ROOM_TAKE_BUTTON {
+            get {
+                return ResourceManager.GetString("ROOM_TAKE_BUTTON", resourceCulture);
             }
         }
         
