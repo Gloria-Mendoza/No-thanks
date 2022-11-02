@@ -34,9 +34,16 @@ namespace NoThanks
                 IsNewRoom = false,
                 IdRoom = txtCode.Text
             };
-            go.Show();
-            this.Close();
-
+            if (go.CheckQuota())
+            {
+                go.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("No se puede unir a la sala, está llena", "Upss", MessageBoxButton.OK);
+                txtCode.Text = string.Empty;
+            }
         }
 
         private void CancelClick(object sender, RoutedEventArgs e)
@@ -49,5 +56,6 @@ namespace NoThanks
             go.Show();
             this.Close();
         }
+        
     }
 }

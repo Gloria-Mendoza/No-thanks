@@ -74,10 +74,19 @@ namespace Services
         {
             globalRooms.Add(room);
         }
-
+        public bool CheckQuota(string idRoom)
+        {
+            var status = false;
+            var room = globalRooms.Find(r => r.Id.Equals(idRoom));
+            if (room.HasSpace())
+            {
+                status = true;
+            }
+            return status;
+        }
         public string GenerateRoomCode()
         {
-            var roomCode = new Guid(1, 2, 3, new byte[] { 0, 1, 2, 3, 4, 5, 6, 7 }).ToString();
+            string roomCode = new Guid().ToString();
             return roomCode;
         }
 

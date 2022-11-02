@@ -13,6 +13,8 @@ namespace Services
         [OperationContract]
         void CreateRoom(Logic.Room room);
         [OperationContract]
+        bool CheckQuota(string idRoom);
+        [OperationContract]
         string GenerateRoomCode();
         [OperationContract]
         void Connect(string username,string idRoom);

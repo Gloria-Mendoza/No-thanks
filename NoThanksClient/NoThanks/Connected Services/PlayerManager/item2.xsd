@@ -73,6 +73,20 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="CheckQuota">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckQuotaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CheckQuotaResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GenerateRoomCode">
     <xs:complexType>
       <xs:sequence />

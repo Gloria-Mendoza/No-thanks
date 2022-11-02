@@ -16,7 +16,10 @@
   <xs:element name="Player" nillable="true" type="tns:Player" />
   <xs:complexType name="Room">
     <xs:sequence>
+      <xs:element minOccurs="0" name="ActualPlayersCount" type="xs:int" />
       <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MAX_PLAYERS1" type="xs:int" />
+      <xs:element minOccurs="0" name="MIN_PLAYERS1" type="xs:int" />
       <xs:element minOccurs="0" name="Players" nillable="true" type="tns:ArrayOfPlayer" />
       <xs:element minOccurs="0" name="Round" type="xs:int" />
       <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Scores" nillable="true" type="q1:ArrayOfint" />

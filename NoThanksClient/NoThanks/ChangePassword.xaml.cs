@@ -42,7 +42,6 @@ namespace NoThanks
             if (!String.IsNullOrWhiteSpace(pfActualPassword.Password) && !String.IsNullOrWhiteSpace(pfConfirmPassword.Password) && !String.IsNullOrWhiteSpace(pfNewPassword.Password))
             {
                 SendVerification();
-                btnNext.IsEnabled = false;
             }
             else
             {
@@ -71,6 +70,7 @@ namespace NoThanks
                     pfActualPassword.IsEnabled = false;
                     pfConfirmPassword.IsEnabled = false;
                     pfNewPassword.IsEnabled = false;
+                    btnNext.IsEnabled = false;
                     btnConfirm.IsEnabled = true;
                     result = true;
                 }

@@ -40,29 +40,6 @@ namespace Logic
             }
             return status;
         }
-
-        
-
-        /*public void AddCurrentGame(Logic.Room room)
-        {
-            if (room != null)
-            {
-                Logic.Room game = new Logic.Room()
-                {
-                    Id = room.Id,
-                    Players = room.Players,
-                    Scores = room.Scores,
-                    Winner = room.Winner,
-                    Round = room.Round
-                };
-                Logic.Room.Rooms.Add(game);
-            }
-        }
-
-        public void JoinGame(int idRoom, Logic.Player player)
-        {
-            Logic.Room.Rooms.Find(r => r.Id == idRoom).Players.Add(player);
-        }*/
         
     }
 }

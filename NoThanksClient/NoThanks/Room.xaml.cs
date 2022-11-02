@@ -18,7 +18,7 @@ namespace NoThanks
 
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
 
-        public string IdRoom { get => idRoom; set => idRoom = value; }
+        public string IdRoom { get { return idRoom; } set { idRoom = value; } }
 
         public Room()
         {
@@ -38,6 +38,14 @@ namespace NoThanks
         {
             txtChatBox.Items.Add(message);
             txtChatBox.ScrollIntoView(txtChatBox.Items[txtChatBox.Items.Count - 1]);
+        }
+
+        public bool CheckQuota()
+        {
+            chatServiceClient = new ChatServiceClient(new InstanceContext(this));
+            var aviable = chatServiceClient.CheckQuota(IdRoom);
+            chatServiceClient.Close();
+            return aviable;
         }
 
         private void TxtMesageContainer_KeyDown(object sender, KeyEventArgs e)
@@ -89,7 +97,7 @@ namespace NoThanks
         {
             if (!isConected)
             {
-                chatServiceClient = new ChatServiceClient(new System.ServiceModel.InstanceContext(this));
+                chatServiceClient = new ChatServiceClient(new InstanceContext(this));
                 try
                 {
                     //TODO
@@ -117,6 +125,7 @@ namespace NoThanks
                 }
                 catch (CommunicationObjectFaultedException)
                 {
+                    //TODO
                     MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
                 }
 

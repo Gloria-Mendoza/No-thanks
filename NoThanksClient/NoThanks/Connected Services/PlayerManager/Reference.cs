@@ -180,7 +180,16 @@ namespace NoThanks.PlayerManager {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ActualPlayersCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MAX_PLAYERS1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MIN_PLAYERS1Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private NoThanks.PlayerManager.Player[] PlayersField;
@@ -205,6 +214,19 @@ namespace NoThanks.PlayerManager {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ActualPlayersCount {
+            get {
+                return this.ActualPlayersCountField;
+            }
+            set {
+                if ((this.ActualPlayersCountField.Equals(value) != true)) {
+                    this.ActualPlayersCountField = value;
+                    this.RaisePropertyChanged("ActualPlayersCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Id {
             get {
                 return this.IdField;
@@ -213,6 +235,32 @@ namespace NoThanks.PlayerManager {
                 if ((object.ReferenceEquals(this.IdField, value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MAX_PLAYERS1 {
+            get {
+                return this.MAX_PLAYERS1Field;
+            }
+            set {
+                if ((this.MAX_PLAYERS1Field.Equals(value) != true)) {
+                    this.MAX_PLAYERS1Field = value;
+                    this.RaisePropertyChanged("MAX_PLAYERS1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MIN_PLAYERS1 {
+            get {
+                return this.MIN_PLAYERS1Field;
+            }
+            set {
+                if ((this.MIN_PLAYERS1Field.Equals(value) != true)) {
+                    this.MIN_PLAYERS1Field = value;
+                    this.RaisePropertyChanged("MIN_PLAYERS1");
                 }
             }
         }
@@ -378,6 +426,12 @@ namespace NoThanks.PlayerManager {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CreateRoom", ReplyAction="http://tempuri.org/IChatService/CreateRoomResponse")]
         System.Threading.Tasks.Task CreateRoomAsync(NoThanks.PlayerManager.Room room);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CheckQuota", ReplyAction="http://tempuri.org/IChatService/CheckQuotaResponse")]
+        bool CheckQuota(string idRoom);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CheckQuota", ReplyAction="http://tempuri.org/IChatService/CheckQuotaResponse")]
+        System.Threading.Tasks.Task<bool> CheckQuotaAsync(string idRoom);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GenerateRoomCode", ReplyAction="http://tempuri.org/IChatService/GenerateRoomCodeResponse")]
         string GenerateRoomCode();
         
@@ -453,6 +507,14 @@ namespace NoThanks.PlayerManager {
         
         public System.Threading.Tasks.Task CreateRoomAsync(NoThanks.PlayerManager.Room room) {
             return base.Channel.CreateRoomAsync(room);
+        }
+        
+        public bool CheckQuota(string idRoom) {
+            return base.Channel.CheckQuota(idRoom);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckQuotaAsync(string idRoom) {
+            return base.Channel.CheckQuotaAsync(idRoom);
         }
         
         public string GenerateRoomCode() {
