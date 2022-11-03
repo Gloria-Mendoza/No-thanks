@@ -19,7 +19,7 @@ namespace NoThanks.Properties {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -453,6 +453,132 @@ namespace NoThanks.Properties {
         public static string ROOM_WAITING_MESSAGE {
             get {
                 return ResourceManager.GetString("ROOM_WAITING_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Correo electrónico:.
+        /// </summary>
+        public static string SIGNIN_EMAIL_LABEL {
+            get {
+                return ResourceManager.GetString("SIGNIN_EMAIL_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Apellidos:.
+        /// </summary>
+        public static string SIGNIN_LASTNAME_LABEL {
+            get {
+                return ResourceManager.GetString("SIGNIN_LASTNAME_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre:.
+        /// </summary>
+        public static string SIGNIN_NAME_LABEL {
+            get {
+                return ResourceManager.GetString("SIGNIN_NAME_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Contraseña:.
+        /// </summary>
+        public static string SIGNIN_PASSWORD_LABEL {
+            get {
+                return ResourceManager.GetString("SIGNIN_PASSWORD_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Repetir contraseña:.
+        /// </summary>
+        public static string SIGNIN_REPEATPASSWORD_LABEL {
+            get {
+                return ResourceManager.GetString("SIGNIN_REPEATPASSWORD_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registrarse.
+        /// </summary>
+        public static string SIGNIN_SIGNIN_BUTTON {
+            get {
+                return ResourceManager.GetString("SIGNIN_SIGNIN_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registrarse.
+        /// </summary>
+        public static string SIGNIN_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("SIGNIN_TITLE_WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Registro.
+        /// </summary>
+        public static string SIGNIN_TITLESIGNIN_LABEL {
+            get {
+                return ResourceManager.GetString("SIGNIN_TITLESIGNIN_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre de usuario:.
+        /// </summary>
+        public static string SIGNIN_USERNAME_LABEL {
+            get {
+                return ResourceManager.GetString("SIGNIN_USERNAME_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enviar código.
+        /// </summary>
+        public static string VERIFYEMAIL_BUTTON {
+            get {
+                return ResourceManager.GetString("VERIFYEMAIL_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Se ha enviado un código para verificar su correo electrónico.
+        /// </summary>
+        public static string VERIFYEMAIL_INSTRUCTIONS_LABEL {
+            get {
+                return ResourceManager.GetString("VERIFYEMAIL_INSTRUCTIONS_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Número de verificación:.
+        /// </summary>
+        public static string VERIFYEMAIL_NUMBER_LABEL {
+            get {
+                return ResourceManager.GetString("VERIFYEMAIL_NUMBER_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Comprobación de correo electrónico.
+        /// </summary>
+        public static string VERIFYEMAIL_TITLE_LABEL {
+            get {
+                return ResourceManager.GetString("VERIFYEMAIL_TITLE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Verificación de correo electrónico.
+        /// </summary>
+        public static string VERIFYEMAIL_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("VERIFYEMAIL_TITLE_WINDOW", resourceCulture);
             }
         }
     }

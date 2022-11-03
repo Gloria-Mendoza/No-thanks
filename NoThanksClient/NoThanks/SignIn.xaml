@@ -1,0 +1,31 @@
+﻿<Window x:Class="NoThanks.SignIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NoThanks"
+        xmlns:p = "clr-namespace:NoThanks.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.SIGNIN_TITLE_WINDOW}" Height="553" Width="770">
+    <Window.Background>
+        <ImageBrush ImageSource="Images/5053309.jpg"/>
+    </Window.Background>
+    <Grid Margin="0,0,0,-1">
+        <Label Content="{x:Static p:Resources.SIGNIN_TITLESIGNIN_LABEL}" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="36" Foreground="White"/>
+        <Label Content="{x:Static p:Resources.SIGNIN_NAME_LABEL}" HorizontalAlignment="Left" Margin="96,111,0,0" VerticalAlignment="Top" FontSize="14" Foreground="White" FontWeight="Bold"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="25" Margin="235,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="460"/>
+        <Label Content="{x:Static p:Resources.SIGNIN_LASTNAME_LABEL}" HorizontalAlignment="Left" Margin="96,169,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" Foreground="White"/>
+        <TextBox x:Name="txtLastName" HorizontalAlignment="Left" Height="25" Margin="235,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="460"/>
+        <Label Content="{x:Static p:Resources.SIGNIN_USERNAME_LABEL}" HorizontalAlignment="Left" Margin="96,229,0,0" VerticalAlignment="Top" FontSize="14" Foreground="White" FontWeight="Bold"/>
+        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="25" Margin="235,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="460"/>
+        <Label Content="{x:Static p:Resources.SIGNIN_EMAIL_LABEL}" HorizontalAlignment="Left" Margin="96,291,0,0" VerticalAlignment="Top" FontSize="14" Foreground="White" FontWeight="Bold"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Height="25" Margin="235,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="460"/>
+        <Label Content="{x:Static p:Resources.SIGNIN_PASSWORD_LABEL}" HorizontalAlignment="Left" Margin="96,355,0,0" VerticalAlignment="Top" FontSize="14" Foreground="White" FontWeight="Bold"/>
+        <Label Content="{x:Static p:Resources.SIGNIN_REPEATPASSWORD_LABEL}" HorizontalAlignment="Left" Margin="96,423,0,0" VerticalAlignment="Top" FontSize="14" Foreground="White" FontWeight="Bold"/>
+        <PasswordBox x:Name="pfPassword" HorizontalAlignment="Left" Margin="235,355,0,0" VerticalAlignment="Top" Width="460" Height="25"/>
+        <PasswordBox x:Name="pfRepeatPassword" HorizontalAlignment="Left" Margin="235,423,0,0" VerticalAlignment="Top" Width="460" Height="25"/>
+        <Button Content="{x:Static p:Resources.SIGNIN_SIGNIN_BUTTON}" HorizontalAlignment="Left" Margin="620,476,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="2.52,1.05" Click="SignInClick"/>
+        <Button Content="{x:Static p:Resources.GENERAL_CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="487,476,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="2.52,1.05" Click="CancelClick"/>
+
+    </Grid>
+</Window>

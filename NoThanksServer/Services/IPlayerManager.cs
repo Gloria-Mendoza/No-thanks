@@ -1,4 +1,5 @@
 ﻿using Logic;
+using System.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,5 +17,11 @@ namespace Services
         Logic.Player Login(String nickname, String password);
         [OperationContract]
         bool Register(Player player);
+        [OperationContract]
+        bool SendCode(string emailFrom, int code);
+        [OperationContract]
+        int GenerateCode();
+        [OperationContract]
+        int GetGenerateCode();
     }
 }
