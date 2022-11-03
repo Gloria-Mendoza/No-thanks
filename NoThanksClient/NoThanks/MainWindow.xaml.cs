@@ -34,6 +34,9 @@ namespace NoThanks
         private void RegisterClick(object sender, RoutedEventArgs e)
         {
             //TODO
+            SignIn register = new SignIn();
+            register.Show();
+            this.Close();
         }
 
         private void GuestClick(object sender, RoutedEventArgs e)
