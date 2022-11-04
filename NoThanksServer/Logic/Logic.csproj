@@ -61,6 +61,7 @@
     <Compile Include="Register.cs" />
     <Compile Include="SendCode.cs" />
     <Compile Include="SendEmail.cs" />
+    <Compile Include="Validation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

@@ -30,7 +30,7 @@ namespace Logic
                     nickname = player.Nickname,
                     email = player.Email,
                     password = player.Password
-                };
+                };              
 
                 context.Players.Add(player1);
                 try
@@ -49,11 +49,8 @@ namespace Logic
                         }
                     }
                 }
-
-
             }
             return status;
         }
-
     }
 }

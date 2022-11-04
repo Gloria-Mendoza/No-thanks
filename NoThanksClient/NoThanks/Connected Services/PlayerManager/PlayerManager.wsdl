@@ -126,6 +126,18 @@
   <wsdl:message name="IPlayerManager_GetGenerateCode_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetGenerateCodeResponse" />
   </wsdl:message>
+  <wsdl:message name="IPlayerManager_ExitsEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExitsEmail" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_ExitsEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExitsEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_ExitsNickname_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExitsNickname" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_ExitsNickname_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExitsNicknameResponse" />
+  </wsdl:message>
   <wsdl:message name="IChatService_Connect_InputMessage">
     <wsdl:part name="parameters" element="tns:Connect" />
   </wsdl:message>
@@ -178,6 +190,14 @@
     <wsdl:operation name="GetGenerateCode">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/GetGenerateCode" message="tns:IPlayerManager_GetGenerateCode_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/GetGenerateCodeResponse" message="tns:IPlayerManager_GetGenerateCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExitsEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/ExitsEmail" message="tns:IPlayerManager_ExitsEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/ExitsEmailResponse" message="tns:IPlayerManager_ExitsEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExitsNickname">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/ExitsNickname" message="tns:IPlayerManager_ExitsNickname_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/ExitsNicknameResponse" message="tns:IPlayerManager_ExitsNickname_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IChatService">
@@ -273,6 +293,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetGenerateCode">
       <soap12:operation soapAction="http://tempuri.org/IPlayerManager/GetGenerateCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExitsEmail">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/ExitsEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExitsNickname">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/ExitsNickname" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

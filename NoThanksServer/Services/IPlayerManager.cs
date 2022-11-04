@@ -27,5 +27,9 @@ namespace Services
         bool SendNewEmail(String toEmail, String affair, int validationCode);
         [OperationContract]
         bool UpdatePassword(string password, string email);
+        [OperationContract]
+        bool ExitsEmail(string text);
+        [OperationContract]
+        bool ExitsNickname(string text);
     }
 }
