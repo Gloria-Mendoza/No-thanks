@@ -354,6 +354,24 @@ namespace NoThanks.PlayerManager {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/UpdatePassword", ReplyAction="http://tempuri.org/IPlayerManager/UpdatePasswordResponse")]
         System.Threading.Tasks.Task<bool> UpdatePasswordAsync(string password, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendCode", ReplyAction="http://tempuri.org/IPlayerManager/SendCodeResponse")]
+        bool SendCode(string emailFrom, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendCode", ReplyAction="http://tempuri.org/IPlayerManager/SendCodeResponse")]
+        System.Threading.Tasks.Task<bool> SendCodeAsync(string emailFrom, int code);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GenerateCodeResponse")]
+        int GenerateCode();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GenerateCodeResponse")]
+        System.Threading.Tasks.Task<int> GenerateCodeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetGenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GetGenerateCodeResponse")]
+        int GetGenerateCode();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetGenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GetGenerateCodeResponse")]
+        System.Threading.Tasks.Task<int> GetGenerateCodeAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -413,6 +431,30 @@ namespace NoThanks.PlayerManager {
         
         public System.Threading.Tasks.Task<bool> UpdatePasswordAsync(string password, string email) {
             return base.Channel.UpdatePasswordAsync(password, email);
+        }
+        
+        public bool SendCode(string emailFrom, int code) {
+            return base.Channel.SendCode(emailFrom, code);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SendCodeAsync(string emailFrom, int code) {
+            return base.Channel.SendCodeAsync(emailFrom, code);
+        }
+        
+        public int GenerateCode() {
+            return base.Channel.GenerateCode();
+        }
+        
+        public System.Threading.Tasks.Task<int> GenerateCodeAsync() {
+            return base.Channel.GenerateCodeAsync();
+        }
+        
+        public int GetGenerateCode() {
+            return base.Channel.GetGenerateCode();
+        }
+        
+        public System.Threading.Tasks.Task<int> GetGenerateCodeAsync() {
+            return base.Channel.GetGenerateCodeAsync();
         }
     }
     

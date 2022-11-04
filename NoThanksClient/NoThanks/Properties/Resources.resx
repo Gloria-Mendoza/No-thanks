@@ -255,4 +255,46 @@
   <data name="ROOM_PASS_BUTTON" xml:space="preserve">
     <value>Pasar</value>
   </data>
+  <data name="SIGNIN_EMAIL_LABEL" xml:space="preserve">
+    <value>Correo electrónico:</value>
+  </data>
+  <data name="SIGNIN_LASTNAME_LABEL" xml:space="preserve">
+    <value>Apellidos:</value>
+  </data>
+  <data name="SIGNIN_NAME_LABEL" xml:space="preserve">
+    <value>Nombre:</value>
+  </data>
+  <data name="SIGNIN_PASSWORD_LABEL" xml:space="preserve">
+    <value>Contraseña:</value>
+  </data>
+  <data name="SIGNIN_REPEATPASSWORD_LABEL" xml:space="preserve">
+    <value>Repetir contraseña:</value>
+  </data>
+  <data name="SIGNIN_SIGNIN_BUTTON" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="SIGNIN_TITLESIGNIN_LABEL" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="SIGNIN_TITLE_WINDOW" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="SIGNIN_USERNAME_LABEL" xml:space="preserve">
+    <value>Nombre de usuario:</value>
+  </data>
+  <data name="VERIFYEMAIL_BUTTON" xml:space="preserve">
+    <value>Enviar código</value>
+  </data>
+  <data name="VERIFYEMAIL_INSTRUCTIONS_LABEL" xml:space="preserve">
+    <value>Se ha enviado un código para verificar su correo electrónico</value>
+  </data>
+  <data name="VERIFYEMAIL_NUMBER_LABEL" xml:space="preserve">
+    <value>Número de verificación:</value>
+  </data>
+  <data name="VERIFYEMAIL_TITLE_LABEL" xml:space="preserve">
+    <value>Comprobación de correo electrónico</value>
+  </data>
+  <data name="VERIFYEMAIL_TITLE_WINDOW" xml:space="preserve">
+    <value>Verificación de correo electrónico</value>
+  </data>
 </root>

@@ -17,6 +17,7 @@ namespace Services
 
         private List<Logic.Room> globalRooms = new List<Room>();
 
+        int number = 0;
         public Logic.Player Login(String nickname, String password)
         {
             var player = new Logic.Player()
@@ -38,7 +39,57 @@ namespace Services
 
         public bool Register(Player player)
         {
-            return false;
+            var status = false;
+            try
+            {
+                Register register = new Register();
+                Logic.Player player1 = new Logic.Player()
+                {
+                    Name = player.Name,
+                    LastName = player.LastName,
+                    Nickname = player.Nickname,
+                    Email = player.Email,
+                    Password = player.Password
+                };
+                status = register.NewRegister(player1);
+            }
+            catch (EntityException entityException)
+            {
+                //TODO
+                Console.WriteLine(entityException.StackTrace);
+            }
+            return status;
+        }
+
+        public bool SendCode(String emailFrom, int code)
+        {
+            var status = false;
+            try
+            {
+                SendCode email = new SendCode();
+                email.SendMail(emailFrom, code);
+            }
+            catch (EntityException entityException)
+            {
+                //TODO
+                Console.WriteLine(entityException.StackTrace);
+            }
+            return status;
+        }
+
+        public int GenerateCode()
+        {
+            Random random = new Random();
+            int maximum = 999999;
+            int minimum = 100000;
+
+            number = random.Next(minimum, maximum + 1);
+            return number;
+        }
+
+        public int GetGenerateCode()
+        {
+            return number;
         }
 
         public bool SendNewEmail(string toEmail, string affair, int validationCode)
