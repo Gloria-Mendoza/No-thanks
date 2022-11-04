@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity.Core;
@@ -13,6 +13,7 @@ namespace Services
 {
     public partial class PlayerManager : IPlayerManager
     {
+        int number = 0;
         public Logic.Player Login(String nickname, String password)
         {
             var player = new Logic.Player()
@@ -26,7 +27,6 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                //TODO
                 Console.WriteLine(entityException.Message);
             }
             return player;
@@ -34,7 +34,57 @@ namespace Services
 
         public bool Register(Player player)
         {
-            return false;
+            var status = false;
+            try
+            {
+                Register register = new Register();
+                Logic.Player player1 = new Logic.Player()
+                {
+                    Name = player.Name,
+                    LastName = player.LastName,
+                    Nickname = player.Nickname,
+                    Email = player.Email,
+                    Password = player.Password
+                };
+                status = register.NewRegister(player1);
+            }
+            catch (EntityException entityException)
+            {
+                //TODO
+                Console.WriteLine(entityException.StackTrace);
+            }
+            return status;
+        }
+
+        public bool SendCode(String emailFrom, int code)
+        {
+            var status = false;
+            try
+            {
+                SendCode email = new SendCode();
+                email.SendMail(emailFrom, code);
+            }
+            catch (EntityException entityException)
+            {
+                //TODO
+                Console.WriteLine(entityException.StackTrace);
+            }
+            return status;
+        }
+
+        public int GenerateCode()
+        {
+            Random random = new Random();
+            int maximum = 999999;
+            int minimum = 100000;
+
+            number = random.Next(minimum, maximum + 1);
+            return number;
+        }
+
+        public int GetGenerateCode()
+        {
+            return number;
         }
     }
 
@@ -83,6 +133,43 @@ namespace Services
         {
             var player = players.Find(i => i.Nickname.Equals(receiver));
             player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().WhisperCallBack(sender, message);
+        }
+
+        public partial class PlayerManager : IDeckOfCards
+        {
+            public void CreateDeck()
+            {
+                var deck = new List<CardType>();
+                for (int i = 0; i < Enum.GetValues(typeof(CardType)).Length; i++)
+                {
+                    deck.Add((CardType)i);
+                }
+                var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
+                callback.CreateDeckCallBack(deck.ToArray());
+            }
+
+            public void DiscardFirstNine(CardType[] gameDeck)
+            {
+                var newDeck = new List<CardType>(gameDeck);
+                newDeck.RemoveRange(0, 9);
+                var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
+                callback.DiscardFirstNineCallback(newDeck.ToArray());
+            }
+
+            public void ShuffleDeck(CardType[] gameDeck)
+            {
+                var newDeck = new List<CardType>(gameDeck);
+                var random = new Random();
+                for (int i = 0; i < newDeck.Count; i++)
+                {
+                    var temp = newDeck[i];
+                    var randomIndex = random.Next(0, newDeck.Count);
+                    newDeck[i] = newDeck[randomIndex];
+                    newDeck[randomIndex] = temp;
+                }
+                var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
+                callback.ShuffleDeckCallBack(newDeck.ToArray());
+            }
         }
     }
 }
