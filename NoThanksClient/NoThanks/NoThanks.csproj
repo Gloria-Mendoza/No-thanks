@@ -210,6 +210,9 @@
     <None Include="Connected Services\PlayerManager\item2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\PlayerManager\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\PlayerManager\NoThanks.PlayerManager.Player.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -274,6 +277,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{a2d0710f-c678-4c40-a16a-5c79f042b48c}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Security\Security.csproj">
+      <Project>{a055f5b4-7ee9-44cb-b639-6af9f51db68f}</Project>
+      <Name>Security</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

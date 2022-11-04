@@ -19,9 +19,12 @@ namespace Logic
         private string name;
         private string lastName;
         private bool status;
+
+        #region ChatCallbacks
         private OperationContext aOperationContext;
 
         public OperationContext AOperationContext { get { return aOperationContext; } set { aOperationContext = value; } }
+        #endregion
 
         [DataMember]
         public bool Status { get { return status; } set { status = value; } }

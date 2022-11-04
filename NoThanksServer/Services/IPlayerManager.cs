@@ -23,5 +23,9 @@ namespace Services
         int GenerateCode();
         [OperationContract]
         int GetGenerateCode();
+        [OperationContract]
+        bool SendNewEmail(String toEmail, String affair, int validationCode);
+        [OperationContract]
+        bool UpdatePassword(string password, string email);
     }
 }
