@@ -13,24 +13,78 @@ namespace Services
 {
     public partial class PlayerManager : IPlayerManager
     {
-        public bool Login(String nickname, String password)
+        int number = 0;
+        public Logic.Player Login(String nickname, String password)
         {
-            var status = false;
+            var player = new Logic.Player()
+            {
+                Status = false
+            };
             try
             {
                 var client = new Authentication();
-                status = client.Login(nickname, password);
+                player = client.Login(nickname, password);
             }
             catch (EntityException entityException)
             {
                 Console.WriteLine(entityException.Message);
             }
-            return status;
+            return player;
         }
 
         public bool Register(Player player)
         {
-            return false;
+            var status = false;
+            try
+            {
+                Register register = new Register();
+                Logic.Player player1 = new Logic.Player()
+                {
+                    Name = player.Name,
+                    LastName = player.LastName,
+                    Nickname = player.Nickname,
+                    Email = player.Email,
+                    Password = player.Password
+                };
+                status = register.NewRegister(player1);
+            }
+            catch (EntityException entityException)
+            {
+                //TODO
+                Console.WriteLine(entityException.StackTrace);
+            }
+            return status;
+        }
+
+        public bool SendCode(String emailFrom, int code)
+        {
+            var status = false;
+            try
+            {
+                SendCode email = new SendCode();
+                email.SendMail(emailFrom, code);
+            }
+            catch (EntityException entityException)
+            {
+                //TODO
+                Console.WriteLine(entityException.StackTrace);
+            }
+            return status;
+        }
+
+        public int GenerateCode()
+        {
+            Random random = new Random();
+            int maximum = 999999;
+            int minimum = 100000;
+
+            number = random.Next(minimum, maximum + 1);
+            return number;
+        }
+
+        public int GetGenerateCode()
+        {
+            return number;
         }
     }
 
