@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity.Core;
@@ -23,7 +23,6 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                //TODO
                 Console.WriteLine(entityException.Message);
             }
             return status;
