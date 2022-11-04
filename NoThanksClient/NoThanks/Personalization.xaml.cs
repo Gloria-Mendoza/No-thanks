@@ -34,5 +34,23 @@ namespace NoThanks
             go.Show();
             this.Close();
         }
+
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmb.SelectedIndex == 0)
+                Properties.Settings.Default.LanguageCode = "en-US";
+            else
+                Properties.Settings.Default.LanguageCode = "es-MX";
+            Properties.Settings.Default.Save();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Personalization go = new Personalization();
+            go.Activate();
+            go.Show();
+            this.Close();
+        }
     }
 }

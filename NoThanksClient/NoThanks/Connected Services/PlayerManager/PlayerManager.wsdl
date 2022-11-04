@@ -63,6 +63,7 @@
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Logic" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IPlayerManager_Login_InputMessage">
@@ -76,6 +77,36 @@
   </wsdl:message>
   <wsdl:message name="IPlayerManager_Register_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_SendNewEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendNewEmail" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_SendNewEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendNewEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_UpdatePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePassword" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_UpdatePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_CreateRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateRoom" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_CreateRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_CheckQuota_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckQuota" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_CheckQuota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckQuotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GenerateRoomCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateRoomCode" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GenerateRoomCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateRoomCodeResponse" />
   </wsdl:message>
   <wsdl:message name="IPlayerManager_SendCode_InputMessage">
     <wsdl:part name="parameters" element="tns:SendCode" />
@@ -140,6 +171,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/Register" message="tns:IPlayerManager_Register_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/RegisterResponse" message="tns:IPlayerManager_Register_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SendNewEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/SendNewEmail" message="tns:IPlayerManager_SendNewEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/SendNewEmailResponse" message="tns:IPlayerManager_SendNewEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/UpdatePassword" message="tns:IPlayerManager_UpdatePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/UpdatePasswordResponse" message="tns:IPlayerManager_UpdatePassword_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SendCode">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/SendCode" message="tns:IPlayerManager_SendCode_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/SendCodeResponse" message="tns:IPlayerManager_SendCode_OutputMessage" />
@@ -162,6 +201,18 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IChatService">
+    <wsdl:operation name="CreateRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/CreateRoom" message="tns:IChatService_CreateRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/CreateRoomResponse" message="tns:IChatService_CreateRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckQuota">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/CheckQuota" message="tns:IChatService_CheckQuota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/CheckQuotaResponse" message="tns:IChatService_CheckQuota_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateRoomCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GenerateRoomCode" message="tns:IChatService_GenerateRoomCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GenerateRoomCodeResponse" message="tns:IChatService_GenerateRoomCode_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Connect">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Connect" message="tns:IChatService_Connect_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/ConnectResponse" message="tns:IChatService_Connect_OutputMessage" />
@@ -197,6 +248,24 @@
     </wsdl:operation>
     <wsdl:operation name="Register">
       <soap12:operation soapAction="http://tempuri.org/IPlayerManager/Register" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendNewEmail">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/SendNewEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePassword">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/UpdatePassword" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -253,6 +322,33 @@
   <wsdl:binding name="NetTcpBinding_IChatService" type="tns:IChatService">
     <wsp:PolicyReference URI="#NetTcpBinding_IChatService_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="CreateRoom">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/CreateRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckQuota">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/CheckQuota" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateRoomCode">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/GenerateRoomCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Connect">
       <soap12:operation soapAction="http://tempuri.org/IChatService/Connect" style="document" />
       <wsdl:input>

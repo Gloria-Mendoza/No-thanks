@@ -11,11 +11,11 @@
         <ImageBrush ImageSource="/Images/5053309.jpg"/>
     </Window.Background>
     <Grid>
-        <Label Content="{x:Static p:Resources.EXPEL_TITLE_LABEL}" HorizontalAlignment="Left" Margin="89,86,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <CheckBox Content="{x:Static p:Resources.EXPEL_REASONTOXIC_CHECKBOK}" HorizontalAlignment="Left" Margin="465,91,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <CheckBox Content="{x:Static p:Resources.EXPEL_REASONCHEAT_CHECKBOX}" HorizontalAlignment="Left" Margin="465,139,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <CheckBox Content="{x:Static p:Resources.EXPEL_REASONAFK_CHECKBOX}" HorizontalAlignment="Left" Margin="465,180,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBlock HorizontalAlignment="Left" Margin="89,191,0,0" TextWrapping="Wrap" Text="{x:Static p:Resources.EXPEL_REASONMESSAGE_CHECKBOX}" VerticalAlignment="Top" Height="118" Width="262" FontSize="18"/>
+        <Label Content="{x:Static p:Resources.EXPEL_TITLE_LABEL}" HorizontalAlignment="Left" Margin="89,86,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
+        <CheckBox Content="{x:Static p:Resources.EXPEL_REASONTOXIC_CHECKBOK}" HorizontalAlignment="Left" Margin="465,91,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
+        <CheckBox Content="{x:Static p:Resources.EXPEL_REASONCHEAT_CHECKBOX}" HorizontalAlignment="Left" Margin="465,139,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
+        <CheckBox Content="{x:Static p:Resources.EXPEL_REASONAFK_CHECKBOX}" HorizontalAlignment="Left" Margin="465,180,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="89,191,0,0" TextWrapping="Wrap" Text="{x:Static p:Resources.EXPEL_REASONMESSAGE_CHECKBOX}" VerticalAlignment="Top" Height="118" Width="262" FontSize="18" Foreground="White"/>
         <Button Content="{x:Static p:Resources.GENERAL_CONFIRM_BUTTON}" HorizontalAlignment="Left" Margin="541,368,0,0" VerticalAlignment="Top" Height="40" Width="109" FontSize="18"/>
         <Button Content="{x:Static p:Resources.GENERAL_CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="681,368,0,0" VerticalAlignment="Top" FontSize="18" Height="40" Width="109"/>
     </Grid>

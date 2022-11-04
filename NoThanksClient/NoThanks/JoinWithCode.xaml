@@ -13,9 +13,14 @@
     </Window.Background>
 
     <Grid>
-        <Label Content="{x:Static p:Resources.JOINGAME_GAMECODE_LABEL}" HorizontalAlignment="Center" Margin="0,42,0,0" VerticalAlignment="Top" FontSize="36"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" FontSize="72" Height="122"/>
-        <Button Content="{x:Static p:Resources.JOINGAME_JOIN_BUTTON}" HorizontalAlignment="Left" Margin="539,377,0,0" VerticalAlignment="Top" Height="33" Width="90" FontSize="18"/>
-        <Button Content="{x:Static p:Resources.GENERAL_CANCEL_BUTTON}" HorizontalAlignment="Left" Margin="661,377,0,0" VerticalAlignment="Top" FontSize="18" Height="33" Width="89"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="280*"/>
+        </Grid.RowDefinitions>
+        <Label Content="{x:Static p:Resources.JOINGAME_GAMECODE_LABEL}" HorizontalAlignment="Center" Margin="0,0,0,10" FontSize="36" Foreground="White" Grid.Row="1" Height="59" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="txtCode" HorizontalAlignment="Center" TextWrapping="Wrap" Width="582" FontSize="36" Margin="0,14,0,0" Grid.Row="2" Height="122" VerticalAlignment="Top"/>
+        <Button Content="{x:Static p:Resources.JOINGAME_JOIN_BUTTON}" HorizontalAlignment="Right" Margin="0,0,151,24" VerticalAlignment="Bottom" Height="33" Width="90" FontSize="18" Click="JoinClick" Grid.Row="2"/>
+        <Button Content="{x:Static p:Resources.GENERAL_CANCEL_BUTTON}" Margin="0,0,25,24" FontSize="18" Click="CancelClick" HorizontalAlignment="Right" Width="89" Height="33" VerticalAlignment="Bottom" Grid.Row="2"/>
     </Grid>
 </Window>
