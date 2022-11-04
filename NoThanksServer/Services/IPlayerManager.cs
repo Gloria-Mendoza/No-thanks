@@ -23,5 +23,9 @@ namespace Services
         int GenerateCode();
         [OperationContract]
         int GetGenerateCode();
+        [OperationContract]
+        bool ExitsEmail(string text);
+        [OperationContract]
+        bool ExitsNickname(string text);
     }
 }

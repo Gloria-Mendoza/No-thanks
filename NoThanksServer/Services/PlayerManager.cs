@@ -73,6 +73,20 @@ namespace Services
             return status;
         }
 
+        public bool ExitsEmail(string text)
+        {
+            var status = false;
+            Validation validation = new Validation();
+            return status = validation.ExistEmail(text);
+        }
+
+        public bool ExitsNickname(string text)
+        {
+            var status = false;
+            Validation validation = new Validation();
+            return status = validation.ExistNickname(text);
+        }
+
         public int GenerateCode()
         {
             Random random = new Random();
@@ -87,6 +101,7 @@ namespace Services
         {
             return number;
         }
+
     }
 
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]

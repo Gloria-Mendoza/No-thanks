@@ -203,6 +203,18 @@ namespace NoThanks.PlayerManager {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetGenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GetGenerateCodeResponse")]
         System.Threading.Tasks.Task<int> GetGenerateCodeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/ExitsEmail", ReplyAction="http://tempuri.org/IPlayerManager/ExitsEmailResponse")]
+        bool ExitsEmail(string text);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/ExitsEmail", ReplyAction="http://tempuri.org/IPlayerManager/ExitsEmailResponse")]
+        System.Threading.Tasks.Task<bool> ExitsEmailAsync(string text);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/ExitsNickname", ReplyAction="http://tempuri.org/IPlayerManager/ExitsNicknameResponse")]
+        bool ExitsNickname(string text);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/ExitsNickname", ReplyAction="http://tempuri.org/IPlayerManager/ExitsNicknameResponse")]
+        System.Threading.Tasks.Task<bool> ExitsNicknameAsync(string text);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -270,6 +282,22 @@ namespace NoThanks.PlayerManager {
         
         public System.Threading.Tasks.Task<int> GetGenerateCodeAsync() {
             return base.Channel.GetGenerateCodeAsync();
+        }
+        
+        public bool ExitsEmail(string text) {
+            return base.Channel.ExitsEmail(text);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ExitsEmailAsync(string text) {
+            return base.Channel.ExitsEmailAsync(text);
+        }
+        
+        public bool ExitsNickname(string text) {
+            return base.Channel.ExitsNickname(text);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ExitsNicknameAsync(string text) {
+            return base.Channel.ExitsNicknameAsync(text);
         }
     }
     

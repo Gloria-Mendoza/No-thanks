@@ -49,10 +49,22 @@ namespace NoThanks
             email = txtEmail.Text;
             password = pfPassword.Password;
             repeatPassword = pfRepeatPassword.Password;
-
-            if (!existsInvalidFields())
+            PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
+            var exitsEmail = client.ExitsEmail(email);
+            var exitsNickname = client.ExitsNickname(username);
+            if (exitsEmail == true)
             {
-                PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
+                MessageBox.Show("El correo ingresado ya se encuentra registrado. \n" +
+                                "Por favor ingrese uno nuevo", "Correo registrado", MessageBoxButton.OK);
+            }
+            if (exitsNickname == true)
+            {
+                MessageBox.Show("El nombre de usuario ingresado ya se encuentra registrado. \n" +
+                                "Por favor ingrese uno nuevo", "Nombre de usuario registrado", MessageBoxButton.OK);
+            }
+
+            if (!existsInvalidFields() && !exitsEmail && !exitsNickname)
+            {
                 string passwordHashed = ComputeSHA512Hash(password);
                 Player player = new Player()
                 {
@@ -67,8 +79,10 @@ namespace NoThanks
                // verifyEmail.ShowDialog();
                // var result = verifyEmail.GetVerifyEmail();
                 var aux = client.Register(player);
+
                 if (aux) // && result)
                 {
+
                     //TODO
                     MessageBox.Show("Registro exitoso", "Confirmación de registro", MessageBoxButton.OK);
                     MainWindow mainWindow = new MainWindow();
