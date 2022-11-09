@@ -36,11 +36,13 @@ namespace NoThanks
             };
             if (go.CheckQuota())
             {
+                go.CreateNewRoom(false);
                 go.Show();
                 this.Close();
             }
             else
             {
+                go.Close();
                 MessageBox.Show("No se puede unir a la sala, está llena", "Upss", MessageBoxButton.OK);
                 txtCode.Text = string.Empty;
             }
@@ -48,7 +50,7 @@ namespace NoThanks
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal go = new MenuPrincipal()
+            PlaySelection go = new PlaySelection()
             {
                 WindowState = this.WindowState,
                 Left = this.Left

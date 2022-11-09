@@ -48,7 +48,7 @@
 
         <Grid Margin="0,0,12,0" Height="40" VerticalAlignment="Bottom">
             <Button x:Name="Back" Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" Margin="23,5,0,5" Click="Back_Click" HorizontalAlignment="Left" Height="30" Width="60"/>
-            <TextBox x:Name="txtCode" Margin="171,11,0,11" TextWrapping="Wrap" HorizontalAlignment="Left" Width="215" >
+            <TextBox x:Name="txtCode" Margin="171,11,20,11" TextWrapping="Wrap" >
                 <TextBox.OpacityMask>
                     <SolidColorBrush Color="White" Opacity="0.8"/>
                 </TextBox.OpacityMask>

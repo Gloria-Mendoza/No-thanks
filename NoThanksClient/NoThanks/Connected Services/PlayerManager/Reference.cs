@@ -170,161 +170,108 @@ namespace NoThanks.PlayerManager {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Room", Namespace="http://schemas.datacontract.org/2004/07/Logic")]
-    [System.SerializableAttribute()]
-    public partial class Room : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    [System.Runtime.Serialization.DataContractAttribute(Name="CardType", Namespace="http://schemas.datacontract.org/2004/07/Services")]
+    public enum CardType : int {
         
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Three = 0,
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ActualPlayersCountField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Four = 1,
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string IdField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Five = 2,
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MAX_PLAYERS1Field;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Six = 3,
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int MIN_PLAYERS1Field;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Seven = 4,
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NoThanks.PlayerManager.Player[] PlayersField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Eight = 5,
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RoundField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Nine = 6,
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int[] ScoresField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Ten = 7,
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string WinnerField;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Eleven = 8,
         
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Twelve = 9,
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ActualPlayersCount {
-            get {
-                return this.ActualPlayersCountField;
-            }
-            set {
-                if ((this.ActualPlayersCountField.Equals(value) != true)) {
-                    this.ActualPlayersCountField = value;
-                    this.RaisePropertyChanged("ActualPlayersCount");
-                }
-            }
-        }
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Thirteen = 10,
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.IdField, value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Fourteen = 11,
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MAX_PLAYERS1 {
-            get {
-                return this.MAX_PLAYERS1Field;
-            }
-            set {
-                if ((this.MAX_PLAYERS1Field.Equals(value) != true)) {
-                    this.MAX_PLAYERS1Field = value;
-                    this.RaisePropertyChanged("MAX_PLAYERS1");
-                }
-            }
-        }
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Fifteen = 12,
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int MIN_PLAYERS1 {
-            get {
-                return this.MIN_PLAYERS1Field;
-            }
-            set {
-                if ((this.MIN_PLAYERS1Field.Equals(value) != true)) {
-                    this.MIN_PLAYERS1Field = value;
-                    this.RaisePropertyChanged("MIN_PLAYERS1");
-                }
-            }
-        }
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Sixteen = 13,
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public NoThanks.PlayerManager.Player[] Players {
-            get {
-                return this.PlayersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PlayersField, value) != true)) {
-                    this.PlayersField = value;
-                    this.RaisePropertyChanged("Players");
-                }
-            }
-        }
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Seventeen = 14,
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Round {
-            get {
-                return this.RoundField;
-            }
-            set {
-                if ((this.RoundField.Equals(value) != true)) {
-                    this.RoundField = value;
-                    this.RaisePropertyChanged("Round");
-                }
-            }
-        }
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Eightteen = 15,
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int[] Scores {
-            get {
-                return this.ScoresField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ScoresField, value) != true)) {
-                    this.ScoresField = value;
-                    this.RaisePropertyChanged("Scores");
-                }
-            }
-        }
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Nineteen = 16,
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Winner {
-            get {
-                return this.WinnerField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.WinnerField, value) != true)) {
-                    this.WinnerField = value;
-                    this.RaisePropertyChanged("Winner");
-                }
-            }
-        }
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Twenty = 17,
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyOne = 18,
         
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyTwo = 19,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyThree = 20,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyFour = 21,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyFive = 22,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentySix = 23,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentySeven = 24,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyEight = 25,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyNine = 26,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Thirty = 27,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ThirtyOne = 28,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ThirtyTwo = 29,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ThirtyThree = 30,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ThirtyFour = 31,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ThirtyFive = 32,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -343,18 +290,6 @@ namespace NoThanks.PlayerManager {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/Register", ReplyAction="http://tempuri.org/IPlayerManager/RegisterResponse")]
         System.Threading.Tasks.Task<bool> RegisterAsync(NoThanks.PlayerManager.Player player);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendNewEmail", ReplyAction="http://tempuri.org/IPlayerManager/SendNewEmailResponse")]
-        bool SendNewEmail(string toEmail, string affair, int validationCode);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendNewEmail", ReplyAction="http://tempuri.org/IPlayerManager/SendNewEmailResponse")]
-        System.Threading.Tasks.Task<bool> SendNewEmailAsync(string toEmail, string affair, int validationCode);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/UpdatePassword", ReplyAction="http://tempuri.org/IPlayerManager/UpdatePasswordResponse")]
-        bool UpdatePassword(string password, string email);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/UpdatePassword", ReplyAction="http://tempuri.org/IPlayerManager/UpdatePasswordResponse")]
-        System.Threading.Tasks.Task<bool> UpdatePasswordAsync(string password, string email);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendCode", ReplyAction="http://tempuri.org/IPlayerManager/SendCodeResponse")]
         bool SendCode(string emailFrom, int code);
         
@@ -372,6 +307,18 @@ namespace NoThanks.PlayerManager {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetGenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GetGenerateCodeResponse")]
         System.Threading.Tasks.Task<int> GetGenerateCodeAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendNewEmail", ReplyAction="http://tempuri.org/IPlayerManager/SendNewEmailResponse")]
+        bool SendNewEmail(string toEmail, string affair, int validationCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendNewEmail", ReplyAction="http://tempuri.org/IPlayerManager/SendNewEmailResponse")]
+        System.Threading.Tasks.Task<bool> SendNewEmailAsync(string toEmail, string affair, int validationCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/UpdatePassword", ReplyAction="http://tempuri.org/IPlayerManager/UpdatePasswordResponse")]
+        bool UpdatePassword(string password, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/UpdatePassword", ReplyAction="http://tempuri.org/IPlayerManager/UpdatePasswordResponse")]
+        System.Threading.Tasks.Task<bool> UpdatePasswordAsync(string password, string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/ExitsEmail", ReplyAction="http://tempuri.org/IPlayerManager/ExitsEmailResponse")]
         bool ExitsEmail(string text);
@@ -429,22 +376,6 @@ namespace NoThanks.PlayerManager {
             return base.Channel.RegisterAsync(player);
         }
         
-        public bool SendNewEmail(string toEmail, string affair, int validationCode) {
-            return base.Channel.SendNewEmail(toEmail, affair, validationCode);
-        }
-        
-        public System.Threading.Tasks.Task<bool> SendNewEmailAsync(string toEmail, string affair, int validationCode) {
-            return base.Channel.SendNewEmailAsync(toEmail, affair, validationCode);
-        }
-        
-        public bool UpdatePassword(string password, string email) {
-            return base.Channel.UpdatePassword(password, email);
-        }
-        
-        public System.Threading.Tasks.Task<bool> UpdatePasswordAsync(string password, string email) {
-            return base.Channel.UpdatePasswordAsync(password, email);
-        }
-        
         public bool SendCode(string emailFrom, int code) {
             return base.Channel.SendCode(emailFrom, code);
         }
@@ -469,6 +400,22 @@ namespace NoThanks.PlayerManager {
             return base.Channel.GetGenerateCodeAsync();
         }
         
+        public bool SendNewEmail(string toEmail, string affair, int validationCode) {
+            return base.Channel.SendNewEmail(toEmail, affair, validationCode);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SendNewEmailAsync(string toEmail, string affair, int validationCode) {
+            return base.Channel.SendNewEmailAsync(toEmail, affair, validationCode);
+        }
+        
+        public bool UpdatePassword(string password, string email) {
+            return base.Channel.UpdatePassword(password, email);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdatePasswordAsync(string password, string email) {
+            return base.Channel.UpdatePasswordAsync(password, email);
+        }
+        
         public bool ExitsEmail(string text) {
             return base.Channel.ExitsEmail(text);
         }
@@ -490,11 +437,11 @@ namespace NoThanks.PlayerManager {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PlayerManager.IChatService", CallbackContract=typeof(NoThanks.PlayerManager.IChatServiceCallback))]
     public interface IChatService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CreateRoom", ReplyAction="http://tempuri.org/IChatService/CreateRoomResponse")]
-        void CreateRoom(NoThanks.PlayerManager.Room room);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/NewRoom", ReplyAction="http://tempuri.org/IChatService/NewRoomResponse")]
+        bool NewRoom(string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CreateRoom", ReplyAction="http://tempuri.org/IChatService/CreateRoomResponse")]
-        System.Threading.Tasks.Task CreateRoomAsync(NoThanks.PlayerManager.Room room);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/NewRoom", ReplyAction="http://tempuri.org/IChatService/NewRoomResponse")]
+        System.Threading.Tasks.Task<bool> NewRoomAsync(string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CheckQuota", ReplyAction="http://tempuri.org/IChatService/CheckQuotaResponse")]
         bool CheckQuota(string idRoom);
@@ -571,12 +518,12 @@ namespace NoThanks.PlayerManager {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void CreateRoom(NoThanks.PlayerManager.Room room) {
-            base.Channel.CreateRoom(room);
+        public bool NewRoom(string idRoom) {
+            return base.Channel.NewRoom(idRoom);
         }
         
-        public System.Threading.Tasks.Task CreateRoomAsync(NoThanks.PlayerManager.Room room) {
-            return base.Channel.CreateRoomAsync(room);
+        public System.Threading.Tasks.Task<bool> NewRoomAsync(string idRoom) {
+            return base.Channel.NewRoomAsync(idRoom);
         }
         
         public bool CheckQuota(string idRoom) {
@@ -625,6 +572,95 @@ namespace NoThanks.PlayerManager {
         
         public System.Threading.Tasks.Task SendWhisperAsync(string sender, string receiver, string message, string idRoom) {
             return base.Channel.SendWhisperAsync(sender, receiver, message, idRoom);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PlayerManager.IDeckOfCards", CallbackContract=typeof(NoThanks.PlayerManager.IDeckOfCardsCallback))]
+    public interface IDeckOfCards {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/CreateDeck")]
+        void CreateDeck();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/CreateDeck")]
+        System.Threading.Tasks.Task CreateDeckAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/ShuffleDeck")]
+        void ShuffleDeck(NoThanks.PlayerManager.CardType[] gameDeck);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/ShuffleDeck")]
+        System.Threading.Tasks.Task ShuffleDeckAsync(NoThanks.PlayerManager.CardType[] gameDeck);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/DiscardFirstNine")]
+        void DiscardFirstNine(NoThanks.PlayerManager.CardType[] gameDeck);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/DiscardFirstNine")]
+        System.Threading.Tasks.Task DiscardFirstNineAsync(NoThanks.PlayerManager.CardType[] gameDeck);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IDeckOfCardsCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/CreateDeckCallBack")]
+        void CreateDeckCallBack(NoThanks.PlayerManager.CardType[] gameDeck);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/ShuffleDeckCallBack")]
+        void ShuffleDeckCallBack(NoThanks.PlayerManager.CardType[] shuffledDeck);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/DiscardFirstNineCallback")]
+        void DiscardFirstNineCallback(NoThanks.PlayerManager.CardType[] gameDeck);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IDeckOfCardsChannel : NoThanks.PlayerManager.IDeckOfCards, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class DeckOfCardsClient : System.ServiceModel.DuplexClientBase<NoThanks.PlayerManager.IDeckOfCards>, NoThanks.PlayerManager.IDeckOfCards {
+        
+        public DeckOfCardsClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public DeckOfCardsClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public DeckOfCardsClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public DeckOfCardsClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public DeckOfCardsClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void CreateDeck() {
+            base.Channel.CreateDeck();
+        }
+        
+        public System.Threading.Tasks.Task CreateDeckAsync() {
+            return base.Channel.CreateDeckAsync();
+        }
+        
+        public void ShuffleDeck(NoThanks.PlayerManager.CardType[] gameDeck) {
+            base.Channel.ShuffleDeck(gameDeck);
+        }
+        
+        public System.Threading.Tasks.Task ShuffleDeckAsync(NoThanks.PlayerManager.CardType[] gameDeck) {
+            return base.Channel.ShuffleDeckAsync(gameDeck);
+        }
+        
+        public void DiscardFirstNine(NoThanks.PlayerManager.CardType[] gameDeck) {
+            base.Channel.DiscardFirstNine(gameDeck);
+        }
+        
+        public System.Threading.Tasks.Task DiscardFirstNineAsync(NoThanks.PlayerManager.CardType[] gameDeck) {
+            return base.Channel.DiscardFirstNineAsync(gameDeck);
         }
     }
 }

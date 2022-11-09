@@ -11,11 +11,14 @@ namespace Services
     public interface IChatService
     {
         [OperationContract]
-        void CreateRoom(Logic.Room room);
+        bool NewRoom(string idRoom);
+
         [OperationContract]
         bool CheckQuota(string idRoom);
+
         [OperationContract]
         string GenerateRoomCode();
+
         [OperationContract]
         void Connect(string username,string idRoom);
 

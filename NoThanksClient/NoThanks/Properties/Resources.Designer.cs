@@ -19,7 +19,7 @@ namespace NoThanks.Properties {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -372,6 +372,51 @@ namespace NoThanks.Properties {
         public static string PLAY_BUTTON {
             get {
                 return ResourceManager.GetString("PLAY_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Encontrar Partida.
+        /// </summary>
+        public static string PLAYSELECTION_FINDMATCH_BUTTON {
+            get {
+                return ResourceManager.GetString("PLAYSELECTION_FINDMATCH_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Unirse con Codigo.
+        /// </summary>
+        public static string PLAYSELECTION_JOIN_BUTTON {
+            get {
+                return ResourceManager.GetString("PLAYSELECTION_JOIN_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Crear Sala.
+        /// </summary>
+        public static string PLAYSELECTION_NEWROOM_BUTTON {
+            get {
+                return ResourceManager.GetString("PLAYSELECTION_NEWROOM_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Unirse a partida o Crear una nueva Sala.
+        /// </summary>
+        public static string PLAYSELECTION_TITLE_LABEL {
+            get {
+                return ResourceManager.GetString("PLAYSELECTION_TITLE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Unirse o Crear Sala.
+        /// </summary>
+        public static string PLAYSELECTION_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("PLAYSELECTION_TITLE_WINDOW", resourceCulture);
             }
         }
         
