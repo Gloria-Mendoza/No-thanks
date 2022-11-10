@@ -11,28 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace NoThanks
 {
     /// <summary>
-    /// Lógica de interacción para MenuPrincipal.xaml
+    /// Lógica de interacción para PlaySelection.xaml
     /// </summary>
-    public partial class MenuPrincipal : Window
+    public partial class PlaySelection : Window
     {
-        public MenuPrincipal()
+        public PlaySelection()
         {
             InitializeComponent();
-            ConfigureWindow();
         }
 
-        private void ConfigureWindow()
+        private void JoinWithCodeClick(object sender, RoutedEventArgs e)
         {
-            LabelName.Content = Domain.Player.PlayerClient.Nickname;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            PlaySelection go = new PlaySelection()
+            JoinWithCode go = new JoinWithCode()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
@@ -41,31 +36,27 @@ namespace NoThanks
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void FastMatchClick(object sender, RoutedEventArgs e)
         {
-            MainWindow go = new MainWindow()
+            //TODO
+        }
+
+        private void NewGameClick(object sender, RoutedEventArgs e)
+        {
+            Room go = new Room()
             {
                 WindowState = this.WindowState,
-                Left = this.Left
+                Left = this.Left,
+                IsNewRoom = true
             };
+            go.CreateNewRoom(true);
             go.Show();
             this.Close();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void BackClick(object sender, RoutedEventArgs e)
         {
-            Profile go = new Profile()
-            {
-                WindowState = this.WindowState,
-                Left = this.Left
-            };
-            go.Show();
-            this.Close();
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            Personalization go = new Personalization()
+            MenuPrincipal go = new MenuPrincipal()
             {
                 WindowState = this.WindowState,
                 Left = this.Left

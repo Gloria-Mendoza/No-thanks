@@ -14,9 +14,6 @@ namespace Services
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public partial class PlayerManager : IPlayerManager
     {
-
-        private List<Logic.Room> globalRooms = new List<Room>();
-
         int number = 0;
         public Logic.Player Login(String nickname, String password)
         {
@@ -129,29 +126,43 @@ namespace Services
         }
     }
 
-    //[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public partial class PlayerManager : IChatService
     {
-        //private List<Player> players = new List<Player>();
+        private List<Logic.Room> globalRooms = new List<Room>();
 
-        public void CreateRoom(Logic.Room room)
+        public string GenerateRoomCode()
         {
-            globalRooms.Add(room);
+            Guid roomId = Guid.NewGuid();
+            return roomId.ToString();
         }
+
+        public bool NewRoom(string idRoom)
+        {
+            var newRoom = new Logic.Room()
+            {
+                Id = idRoom,
+                ActualPlayersCount = 0,
+                Players = new List<Player>(),
+                Round = 0,
+                Scores = new List<int>(),
+                Winner = ""
+            };
+            globalRooms.Add(newRoom);
+            return true;
+        }
+
         public bool CheckQuota(string idRoom)
         {
             var status = false;
             var room = globalRooms.Find(r => r.Id.Equals(idRoom));
-            if (room.HasSpace())
+            if (room != null)
             {
-                status = true;
+                if (room.HasSpace())
+                {
+                    status = true;
+                }
             }
             return status;
-        }
-        public string GenerateRoomCode()
-        {
-            string roomCode = new Guid().ToString();
-            return roomCode;
         }
 
         public void Connect(string username, string idRoom)
@@ -165,18 +176,15 @@ namespace Services
             {
                 if (globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Count() > 0)
                 {
-                    SendMessage($": {player.Nickname} se ha conectado!", player.Nickname, idRoom);
+                    SendMessage($": {player.Nickname} se ha conectado!", player.Nickname, idRoom);//TODO
                 }
                 globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Add(player);
+                globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).ActualPlayersCount++;
             }
             catch(NullReferenceException e)
             {
                 Console.WriteLine(e);
             }
-            
-
-            
-            //players.Add(player);
         }
 
         public void Disconnect(string username, string idRoom)
@@ -191,20 +199,19 @@ namespace Services
             {
                 Console.WriteLine(e);
             }
-            //var player = players.FirstOrDefault(i => i.Nickname.Equals(username));
+
             if (player != null)
             {
-                var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
-                room.Players.Remove(player);
-                if(room.Players.Count() == 0)
+                globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Remove(player);
+                globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).ActualPlayersCount--;
+                if(globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Count() == 0)
                 {
-                    globalRooms.Remove(room);
+                    globalRooms.Remove(globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)));
                 }
                 else
                 {
-                    SendMessage($": {player.Nickname} se ha desconectado!", player.Nickname, idRoom);
+                    SendMessage($": {player.Nickname} se ha desconectado!", player.Nickname, idRoom);//TODO
                 }
-                //players.Remove(player);
             }
         }
 
@@ -221,18 +228,6 @@ namespace Services
                 answer += message;
                 player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().MessageCallBack(answer);
             }
-            /*
-            foreach(var player in players)
-            {
-                string answer = DateTime.Now.ToShortTimeString();
-                var anotherPlayer = players.FirstOrDefault(i => i.Nickname.Equals(username));
-                if(anotherPlayer != null)
-                {
-                    answer += $": {anotherPlayer.Nickname} ";
-                }
-                answer += message;
-                player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().MessageCallBack(answer);
-            }*/
         }
 
         public void SendWhisper(string sender, string receiver, string message, string idRoom)
@@ -240,45 +235,45 @@ namespace Services
             globalRooms.ForEach(e => e.Players.ForEach(p => Console.WriteLine($"{p.Nickname}")));
             var player = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom))
                 .Players.FirstOrDefault(i => i.Nickname.Equals(receiver));
-            //var player = players.Find(i => i.Nickname.Equals(receiver));
             player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().WhisperCallBack(sender, message);
         }
 
-        public partial class PlayerManager : IDeckOfCards
+    }
+    
+    public partial class PlayerManager : IDeckOfCards
+    {
+        public void CreateDeck()
         {
-            public void CreateDeck()
+            var deck = new List<CardType>();
+            for (int i = 0; i < Enum.GetValues(typeof(CardType)).Length; i++)
             {
-                var deck = new List<CardType>();
-                for (int i = 0; i < Enum.GetValues(typeof(CardType)).Length; i++)
-                {
-                    deck.Add((CardType)i);
-                }
-                var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
-                callback.CreateDeckCallBack(deck.ToArray());
+                deck.Add((CardType)i);
             }
+            var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
+            callback.CreateDeckCallBack(deck.ToArray());
+        }
 
-            public void DiscardFirstNine(CardType[] gameDeck)
-            {
-                var newDeck = new List<CardType>(gameDeck);
-                newDeck.RemoveRange(0, 9);
-                var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
-                callback.DiscardFirstNineCallback(newDeck.ToArray());
-            }
+        public void DiscardFirstNine(CardType[] gameDeck)
+        {
+            var newDeck = new List<CardType>(gameDeck);
+            newDeck.RemoveRange(0, 9);
+            var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
+            callback.DiscardFirstNineCallback(newDeck.ToArray());
+        }
 
-            public void ShuffleDeck(CardType[] gameDeck)
+        public void ShuffleDeck(CardType[] gameDeck)
+        {
+            var newDeck = new List<CardType>(gameDeck);
+            var random = new Random();
+            for (int i = 0; i < newDeck.Count; i++)
             {
-                var newDeck = new List<CardType>(gameDeck);
-                var random = new Random();
-                for (int i = 0; i < newDeck.Count; i++)
-                {
-                    var temp = newDeck[i];
-                    var randomIndex = random.Next(0, newDeck.Count);
-                    newDeck[i] = newDeck[randomIndex];
-                    newDeck[randomIndex] = temp;
-                }
-                var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
-                callback.ShuffleDeckCallBack(newDeck.ToArray());
+                var temp = newDeck[i];
+                var randomIndex = random.Next(0, newDeck.Count);
+                newDeck[i] = newDeck[randomIndex];
+                newDeck[randomIndex] = temp;
             }
+            var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
+            callback.ShuffleDeckCallBack(newDeck.ToArray());
         }
     }
 }

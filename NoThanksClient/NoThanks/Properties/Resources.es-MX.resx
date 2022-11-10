@@ -255,4 +255,19 @@
   <data name="ROOM_PASS_BUTTON" xml:space="preserve">
     <value>Pasar</value>
   </data>
+  <data name="PLAYSELECTION_TITLE_WINDOW" xml:space="preserve">
+    <value>Unirse o Crear Sala</value>
+  </data>
+  <data name="PLAYSELECTION_JOIN_BUTTON" xml:space="preserve">
+    <value>Unirse con Codigo</value>
+  </data>
+  <data name="PLAYSELECTION_FINDMATCH_BUTTON" xml:space="preserve">
+    <value>Encontrar Partida</value>
+  </data>
+  <data name="PLAYSELECTION_NEWROOM_BUTTON" xml:space="preserve">
+    <value>Crear Sala</value>
+  </data>
+  <data name="PLAYSELECTION_TITLE_LABEL" xml:space="preserve">
+    <value>Unirse a partida o Crear una nueva Sala</value>
+  </data>
 </root>

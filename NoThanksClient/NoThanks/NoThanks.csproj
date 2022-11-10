@@ -82,6 +82,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="PlaySelection.xaml.cs">
+      <DependentUpon>PlaySelection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProfileEdit.xaml.cs">
       <DependentUpon>ProfileEdit.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PlaySelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProfileEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,9 +215,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\PlayerManager\item.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\PlayerManager\item1.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -218,6 +222,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\PlayerManager\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\PlayerManager\item4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\PlayerManager\NoThanks.PlayerManager.Player.datasource">
@@ -260,24 +267,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\PlayerManager\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\PlayerManager\item.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\PlayerManager\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\PlayerManager\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\PlayerManager\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\11773.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +284,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="pincel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\PlayerManager\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PlayerManager\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PlayerManager\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PlayerManager\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PlayerManager\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
