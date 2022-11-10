@@ -19,16 +19,25 @@ namespace NoThanks
         
         private void LoginClick(object sender, RoutedEventArgs e)
         {
-            try
-            {           
-                LoginAction();
+            var username = txtUsername.Text;
+            var password = pfPassword.Password;
+            if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
+            {
+                try
+                {
+                    LoginAction(username, password);
+                }
+                catch (EndpointNotFoundException)
+                {
+                    //TODO
+                    MessageBox.Show("No se pudo establecer conexión con el servidor", "Upss", MessageBoxButton.OK);
+                }
             }
-            catch (EndpointNotFoundException)
+            else
             {
                 //TODO
-                MessageBox.Show("No se pudo establecer conexión con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show("Debes ingresar tú usuario y contraseña");
             }
-
         }
 
         private void RegisterClick(object sender, RoutedEventArgs e)
@@ -55,46 +64,36 @@ namespace NoThanks
             this.Close();
         }
 
-        private void LoginAction()
+        private void LoginAction(string username, string password)
         {
-            var username = txtUsername.Text;
-            var password = pfPassword.Password;
-
-            if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
+            PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
+            var playerLogin = client.Login(username, Security.PasswordEncryptor.ComputeSHA512Hash(password));
+            if (playerLogin.Status)
             {
-                PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
-                var playerLogin = client.Login(username, Security.PasswordEncryptor.ComputeSHA512Hash(password));
-                if (playerLogin.Status)
+                Domain.Player.PlayerClient = new Domain.Player()
                 {
-                    Domain.Player.PlayerClient = new Domain.Player()
-                    {
-                        IdPlayer = playerLogin.IdPlayer,
-                        Nickname = playerLogin.Nickname,
-                        Name = playerLogin.Name,
-                        LastName = playerLogin.LastName,
-                        Email = playerLogin.Email,
-                        TotalScore = playerLogin.TotalScore,
-                    };
-                    MenuPrincipal go = new MenuPrincipal()
-                    {
-                        WindowState = this.WindowState,
-                        Left = this.Left
-                    };
-                    go.Show();
-                    this.Close();
-                }
-                else
+                    IdPlayer = playerLogin.IdPlayer,
+                    Nickname = playerLogin.Nickname,
+                    Name = playerLogin.Name,
+                    LastName = playerLogin.LastName,
+                    Email = playerLogin.Email,
+                    TotalScore = playerLogin.TotalScore,
+                };
+                MenuPrincipal go = new MenuPrincipal()
                 {
-                    //TODO
-                    MessageBox.Show("No Funciona", "Upss", MessageBoxButton.OK);
-                }
-                client.Close();
+                    WindowState = this.WindowState,
+                    Left = this.Left
+                };
+                go.Show();
+                this.Close();
             }
             else
             {
                 //TODO
-                MessageBox.Show("Debes ingresar tú usuario y contraseña");
+                MessageBox.Show("No Funciona", "Upss", MessageBoxButton.OK);
             }
+            client.Close();
+            
         }
     }
 }

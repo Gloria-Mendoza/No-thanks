@@ -55,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeckOfCards.cs" />
     <Compile Include="IChatService.cs" />
     <Compile Include="IDeckOfCards.cs" />
     <Compile Include="IPlayerManager.cs" />

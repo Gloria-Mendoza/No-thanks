@@ -14,8 +14,8 @@ namespace NoThanks
     {
         private bool isConected = false;
         private ChatServiceClient chatServiceClient;
-        private bool isNewRoom = false;
-        private string idRoom = "";
+        private bool isNewRoom;
+        private string idRoom;
 
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
 
@@ -25,7 +25,11 @@ namespace NoThanks
         {
             InitializeComponent();
             txtCode.IsReadOnly = true;
-            txtCode.Text = idRoom;
+        }
+
+        public void CreateNewRoom(bool isNewRoom)
+        {
+            this.isNewRoom = isNewRoom;
             try
             {
                 Start();
@@ -43,6 +47,12 @@ namespace NoThanks
             catch (NullReferenceException)
             {
                 //TODO
+                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+            }
+            catch (FaultException<ServiceBehaviorAttribute> ex)
+            {
+                //TODO
+                Console.WriteLine(ex.StackTrace);
                 MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
             }
         }
@@ -72,22 +82,14 @@ namespace NoThanks
             if (!isConected)
             {
                 chatServiceClient = new ChatServiceClient(new InstanceContext(this));
-                //TODO
                 if (isNewRoom)
                 {
                     idRoom = chatServiceClient.GenerateRoomCode();
-                    chatServiceClient.CreateRoom(new PlayerManager.Room()
-                    {
-                        Id = idRoom,
-                        Round = 0,
-                        Scores = new List<int>().ToArray(),
-                        Winner = "",
-                        Players = new List<PlayerManager.Player>().ToArray(),
-                    });
+                    txtCode.Text = idRoom;
+                    chatServiceClient.NewRoom(idRoom);
                 }
-                //ENDTODO
+                txtCode.Text = idRoom;
                 chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom);
-                //chatServiceClient.SendMessage($": {Domain.Player.PlayerClient.Nickname} se ha conectado!", null,idRoom);
                 isConected = true;
             }
         }
@@ -97,8 +99,6 @@ namespace NoThanks
             if (isConected)
             {
                 chatServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom);
-                //TODO
-                //chatServiceClient.SendMessage($": {Domain.Player.PlayerClient.Nickname} se ha desconectado!", null, idRoom);
                 chatServiceClient.Close();
                 chatServiceClient = null;
                 isConected = false;

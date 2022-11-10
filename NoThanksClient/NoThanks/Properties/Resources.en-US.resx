@@ -249,4 +249,25 @@
   <data name="ROOM_WAITING_MESSAGE" xml:space="preserve">
     <value>Waiting for the host to start the game...</value>
   </data>
+  <data name="PLAYSELECTION_JOIN_BUTTON" xml:space="preserve">
+    <value>Join With Code</value>
+  </data>
+  <data name="PLAYSELECTION_FINDMATCH_BUTTON" xml:space="preserve">
+    <value>Find Match</value>
+  </data>
+  <data name="PLAYSELECTION_TITLE_WINDOW" xml:space="preserve">
+    <value>Join or Create Room</value>
+  </data>
+  <data name="PLAYSELECTION_NEWROOM_BUTTON" xml:space="preserve">
+    <value>New Room</value>
+  </data>
+  <data name="PLAYSELECTION_TITLE_LABEL" xml:space="preserve">
+    <value>Join game or create a new group</value>
+  </data>
+  <data name="ROOM_PASS_BUTTON" xml:space="preserve">
+    <value>Pass</value>
+  </data>
+  <data name="ROOM_TAKE_BUTTON" xml:space="preserve">
+    <value>Take</value>
+  </data>
 </root>

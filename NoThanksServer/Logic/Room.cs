@@ -39,6 +39,6 @@ namespace Logic
         public bool HasSpace()
         {
             return actualPlayersCount < MAX_PLAYERS;
-        }
+        }        
     }
 }
