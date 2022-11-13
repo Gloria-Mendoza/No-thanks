@@ -1,4 +1,4 @@
-﻿using NoThanks.PlayerManager;
+using NoThanks.PlayerManager;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
@@ -10,12 +10,14 @@ namespace NoThanks
     /// <summary>
     /// Lógica de interacción para Room.xaml
     /// </summary>
-    public partial class Room : Window, IChatServiceCallback
+    public partial class Room : Window, IChatServiceCallback, IDeckOfCardsCallback
     {
         private bool isConected = false;
         private ChatServiceClient chatServiceClient;
+        private DeckOfCardsClient deckServiceClient;
         private bool isNewRoom;
         private string idRoom;
+        private CardType[] gameDeck;
 
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
 
@@ -33,6 +35,7 @@ namespace NoThanks
             try
             {
                 Start();
+
             }
             catch (EndpointNotFoundException)
             {
@@ -81,12 +84,16 @@ namespace NoThanks
         {
             if (!isConected)
             {
+                deckServiceClient = new DeckOfCardsClient(new InstanceContext(this));
                 chatServiceClient = new ChatServiceClient(new InstanceContext(this));
                 if (isNewRoom)
                 {
                     idRoom = chatServiceClient.GenerateRoomCode();
                     txtCode.Text = idRoom;
                     chatServiceClient.NewRoom(idRoom);
+
+                    deckServiceClient.CreateDeck();
+
                 }
                 txtCode.Text = idRoom;
                 chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom);
@@ -176,6 +183,21 @@ namespace NoThanks
         private void PassClick(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        public void CreateDeckCallBack(CardType[] gameDeck)
+        {
+            deckServiceClient.DiscardFirstNine(gameDeck);
+        }
+
+        public void ShuffleDeckCallBack(CardType[] shuffledDeck)
+        {
+            this.gameDeck = shuffledDeck;
+        }
+
+        public void DiscardFirstNineCallback(CardType[] gameDeck)
+        {
+            deckServiceClient.ShuffleDeck(gameDeck);
         }
     }
 }
