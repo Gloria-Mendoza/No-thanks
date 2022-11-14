@@ -136,11 +136,13 @@ namespace Services
             return roomId.ToString();
         }
 
-        public bool NewRoom(string idRoom)
+        public bool NewRoom(string hostUsername,string idRoom)
         {
             var newRoom = new Logic.Room()
             {
                 Id = idRoom,
+                HostUsername = hostUsername,
+                MatchStatus = RoomStatus.Waitting,
                 ActualPlayersCount = 0,
                 Players = new List<Player>(),
                 Round = 0,
@@ -151,6 +153,29 @@ namespace Services
             return true;
         }
 
+        public List<Logic.Player> RecoverRoomPlayers(string idRoom)
+        {
+            var roomPlayersList = globalRooms.Find(r => r.Id.Equals(idRoom)).Players;
+            return roomPlayersList;
+        }
+
+        public void StartGame(string idRoom)
+        {
+            var room = globalRooms.Find(r => r.Id.Equals(idRoom));
+            if (room != null)
+            {
+                globalRooms.Find(r => r.Id.Equals(idRoom)).Round++;
+                globalRooms.Find(r => r.Id.Equals(idRoom)).MatchStatus = RoomStatus.Started;
+                Player[] players = room.Players.ToArray();
+                foreach (var player in room.Players)
+                {
+                    if (!player.Nickname.Equals(room.HostUsername))
+                    {
+                        player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().StartGameRoom(RoomStatus.Started,players);
+                    }
+                }
+            }
+        }
         public bool CheckQuota(string idRoom)
         {
             var status = false;
@@ -160,6 +185,10 @@ namespace Services
                 if (room.HasSpace())
                 {
                     status = true;
+                }
+                if(room.MatchStatus == RoomStatus.Started)
+                {
+                    status = false;
                 }
             }
             return status;
@@ -232,7 +261,6 @@ namespace Services
 
         public void SendWhisper(string sender, string receiver, string message, string idRoom)
         {
-            globalRooms.ForEach(e => e.Players.ForEach(p => Console.WriteLine($"{p.Nickname}")));
             var player = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom))
                 .Players.FirstOrDefault(i => i.Nickname.Equals(receiver));
             player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().WhisperCallBack(sender, message);

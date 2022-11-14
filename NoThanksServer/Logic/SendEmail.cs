@@ -7,7 +7,7 @@ namespace Logic
 {
     public class SendEmail
     {
-        public const string FROM_EMAIL = "";
+        public const string FROM_EMAIL = "nothanks364@outlook.com";
         public const string DISPLAY_NAME = "No Thanks: The Game!";
         public const string BODY = "Your validation code is: ";
 
@@ -20,7 +20,7 @@ namespace Logic
                 {
                     From = new MailAddress(FROM_EMAIL, DISPLAY_NAME),
                     Subject = affair,
-                    Body = $"{DISPLAY_NAME} {validationCode}",
+                    Body = $"{BODY} {validationCode}",
                     BodyEncoding = Encoding.UTF8,
                     IsBodyHtml = true
                 };
@@ -28,7 +28,7 @@ namespace Logic
 
                 SmtpClient client = new SmtpClient("smtp.office365.com", 587)
                 {
-                    Credentials = new NetworkCredential(FROM_EMAIL, ""),
+                    Credentials = new NetworkCredential(FROM_EMAIL, "Holamundo3"),
                     EnableSsl = true
                 };
                 client.Send(mailMessage);

@@ -92,7 +92,8 @@
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Logic" />
-      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Services" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Services" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IPlayerManager_Login_InputMessage">
@@ -155,17 +156,29 @@
   <wsdl:message name="IChatService_NewRoom_OutputMessage">
     <wsdl:part name="parameters" element="tns:NewRoomResponse" />
   </wsdl:message>
+  <wsdl:message name="IChatService_GenerateRoomCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateRoomCode" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GenerateRoomCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateRoomCodeResponse" />
+  </wsdl:message>
   <wsdl:message name="IChatService_CheckQuota_InputMessage">
     <wsdl:part name="parameters" element="tns:CheckQuota" />
   </wsdl:message>
   <wsdl:message name="IChatService_CheckQuota_OutputMessage">
     <wsdl:part name="parameters" element="tns:CheckQuotaResponse" />
   </wsdl:message>
-  <wsdl:message name="IChatService_GenerateRoomCode_InputMessage">
-    <wsdl:part name="parameters" element="tns:GenerateRoomCode" />
+  <wsdl:message name="IChatService_RecoverRoomPlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecoverRoomPlayers" />
   </wsdl:message>
-  <wsdl:message name="IChatService_GenerateRoomCode_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GenerateRoomCodeResponse" />
+  <wsdl:message name="IChatService_RecoverRoomPlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecoverRoomPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_StartGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartGame" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_StartGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartGameResponse" />
   </wsdl:message>
   <wsdl:message name="IChatService_Connect_InputMessage">
     <wsdl:part name="parameters" element="tns:Connect" />
@@ -190,6 +203,9 @@
   </wsdl:message>
   <wsdl:message name="IChatService_WhisperCallBack_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:WhisperCallBack" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_StartGameRoom_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:StartGameRoom" />
   </wsdl:message>
   <wsdl:message name="IDeckOfCards_CreateDeck_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateDeck" />
@@ -252,13 +268,21 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/NewRoom" message="tns:IChatService_NewRoom_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/NewRoomResponse" message="tns:IChatService_NewRoom_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GenerateRoomCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GenerateRoomCode" message="tns:IChatService_GenerateRoomCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GenerateRoomCodeResponse" message="tns:IChatService_GenerateRoomCode_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="CheckQuota">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/CheckQuota" message="tns:IChatService_CheckQuota_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/CheckQuotaResponse" message="tns:IChatService_CheckQuota_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GenerateRoomCode">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GenerateRoomCode" message="tns:IChatService_GenerateRoomCode_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GenerateRoomCodeResponse" message="tns:IChatService_GenerateRoomCode_OutputMessage" />
+    <wsdl:operation name="RecoverRoomPlayers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/RecoverRoomPlayers" message="tns:IChatService_RecoverRoomPlayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/RecoverRoomPlayersResponse" message="tns:IChatService_RecoverRoomPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/StartGame" message="tns:IChatService_StartGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/StartGameResponse" message="tns:IChatService_StartGame_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Connect">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Connect" message="tns:IChatService_Connect_InputMessage" />
@@ -279,6 +303,9 @@
     </wsdl:operation>
     <wsdl:operation name="WhisperCallBack">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/WhisperCallBack" message="tns:IChatService_WhisperCallBack_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartGameRoom">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/StartGameRoom" message="tns:IChatService_StartGameRoom_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IDeckOfCards">
@@ -398,6 +425,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GenerateRoomCode">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/GenerateRoomCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CheckQuota">
       <soap12:operation soapAction="http://tempuri.org/IChatService/CheckQuota" style="document" />
       <wsdl:input>
@@ -407,8 +443,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GenerateRoomCode">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/GenerateRoomCode" style="document" />
+    <wsdl:operation name="RecoverRoomPlayers">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/RecoverRoomPlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartGame">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/StartGame" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -454,6 +499,12 @@
     </wsdl:operation>
     <wsdl:operation name="WhisperCallBack">
       <soap12:operation soapAction="http://tempuri.org/IChatService/WhisperCallBack" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartGameRoom">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/StartGameRoom" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

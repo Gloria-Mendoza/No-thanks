@@ -23,5 +23,40 @@ namespace NoThanks
         {
             InitializeComponent();
         }
+
+        #region Listeners
+        private void ConfirmClick(object sender, RoutedEventArgs e)
+        {
+            Expel();
+        }
+
+        private void CancelClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        #endregion
+
+        #region Private Funcitons
+        private void Expel()
+        {
+            string expelReason = DateTime.Now.ToString();
+
+            if (chAfk.IsChecked == true)
+            {
+                expelReason += $" {chAfk.Content}";
+            }
+
+            if (chCheats.IsChecked == true)
+            {
+                expelReason += $" {chCheats.Content}";
+            }
+
+            if (chToxic.IsChecked == true)
+            {
+                expelReason += $" {chCheats.Content}";
+            }
+
+        }
+        #endregion
     }
 }

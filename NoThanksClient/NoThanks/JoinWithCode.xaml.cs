@@ -43,7 +43,7 @@ namespace NoThanks
             else
             {
                 go.Close();
-                MessageBox.Show("No se puede unir a la sala, está llena", "Upss", MessageBoxButton.OK);
+                MessageBox.Show("No se puede unir a la sala, está llena o la partida ha iniciado", "Upss", MessageBoxButton.OK);
                 txtCode.Text = string.Empty;
             }
         }

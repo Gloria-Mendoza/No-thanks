@@ -23,6 +23,9 @@ namespace NoThanks.PlayerManager {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] CardsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -53,6 +56,19 @@ namespace NoThanks.PlayerManager {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] Cards {
+            get {
+                return this.CardsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CardsField, value) != true)) {
+                    this.CardsField = value;
+                    this.RaisePropertyChanged("Cards");
+                }
             }
         }
         
@@ -168,6 +184,20 @@ namespace NoThanks.PlayerManager {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RoomStatus", Namespace="http://schemas.datacontract.org/2004/07/Logic")]
+    public enum RoomStatus : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Waitting = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Started = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Finished = 2,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -438,10 +468,16 @@ namespace NoThanks.PlayerManager {
     public interface IChatService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/NewRoom", ReplyAction="http://tempuri.org/IChatService/NewRoomResponse")]
-        bool NewRoom(string idRoom);
+        bool NewRoom(string hostUsername, string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/NewRoom", ReplyAction="http://tempuri.org/IChatService/NewRoomResponse")]
-        System.Threading.Tasks.Task<bool> NewRoomAsync(string idRoom);
+        System.Threading.Tasks.Task<bool> NewRoomAsync(string hostUsername, string idRoom);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GenerateRoomCode", ReplyAction="http://tempuri.org/IChatService/GenerateRoomCodeResponse")]
+        string GenerateRoomCode();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GenerateRoomCode", ReplyAction="http://tempuri.org/IChatService/GenerateRoomCodeResponse")]
+        System.Threading.Tasks.Task<string> GenerateRoomCodeAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CheckQuota", ReplyAction="http://tempuri.org/IChatService/CheckQuotaResponse")]
         bool CheckQuota(string idRoom);
@@ -449,11 +485,17 @@ namespace NoThanks.PlayerManager {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CheckQuota", ReplyAction="http://tempuri.org/IChatService/CheckQuotaResponse")]
         System.Threading.Tasks.Task<bool> CheckQuotaAsync(string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GenerateRoomCode", ReplyAction="http://tempuri.org/IChatService/GenerateRoomCodeResponse")]
-        string GenerateRoomCode();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/RecoverRoomPlayers", ReplyAction="http://tempuri.org/IChatService/RecoverRoomPlayersResponse")]
+        NoThanks.PlayerManager.Player[] RecoverRoomPlayers(string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GenerateRoomCode", ReplyAction="http://tempuri.org/IChatService/GenerateRoomCodeResponse")]
-        System.Threading.Tasks.Task<string> GenerateRoomCodeAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/RecoverRoomPlayers", ReplyAction="http://tempuri.org/IChatService/RecoverRoomPlayersResponse")]
+        System.Threading.Tasks.Task<NoThanks.PlayerManager.Player[]> RecoverRoomPlayersAsync(string idRoom);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/StartGame", ReplyAction="http://tempuri.org/IChatService/StartGameResponse")]
+        void StartGame(string idRoom);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/StartGame", ReplyAction="http://tempuri.org/IChatService/StartGameResponse")]
+        System.Threading.Tasks.Task StartGameAsync(string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Connect", ReplyAction="http://tempuri.org/IChatService/ConnectResponse")]
         void Connect(string username, string idRoom);
@@ -488,6 +530,9 @@ namespace NoThanks.PlayerManager {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/WhisperCallBack")]
         void WhisperCallBack(string sender, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/StartGameRoom")]
+        void StartGameRoom(NoThanks.PlayerManager.RoomStatus roomStatus, NoThanks.PlayerManager.Player[] players);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -518,12 +563,20 @@ namespace NoThanks.PlayerManager {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public bool NewRoom(string idRoom) {
-            return base.Channel.NewRoom(idRoom);
+        public bool NewRoom(string hostUsername, string idRoom) {
+            return base.Channel.NewRoom(hostUsername, idRoom);
         }
         
-        public System.Threading.Tasks.Task<bool> NewRoomAsync(string idRoom) {
-            return base.Channel.NewRoomAsync(idRoom);
+        public System.Threading.Tasks.Task<bool> NewRoomAsync(string hostUsername, string idRoom) {
+            return base.Channel.NewRoomAsync(hostUsername, idRoom);
+        }
+        
+        public string GenerateRoomCode() {
+            return base.Channel.GenerateRoomCode();
+        }
+        
+        public System.Threading.Tasks.Task<string> GenerateRoomCodeAsync() {
+            return base.Channel.GenerateRoomCodeAsync();
         }
         
         public bool CheckQuota(string idRoom) {
@@ -534,12 +587,20 @@ namespace NoThanks.PlayerManager {
             return base.Channel.CheckQuotaAsync(idRoom);
         }
         
-        public string GenerateRoomCode() {
-            return base.Channel.GenerateRoomCode();
+        public NoThanks.PlayerManager.Player[] RecoverRoomPlayers(string idRoom) {
+            return base.Channel.RecoverRoomPlayers(idRoom);
         }
         
-        public System.Threading.Tasks.Task<string> GenerateRoomCodeAsync() {
-            return base.Channel.GenerateRoomCodeAsync();
+        public System.Threading.Tasks.Task<NoThanks.PlayerManager.Player[]> RecoverRoomPlayersAsync(string idRoom) {
+            return base.Channel.RecoverRoomPlayersAsync(idRoom);
+        }
+        
+        public void StartGame(string idRoom) {
+            base.Channel.StartGame(idRoom);
+        }
+        
+        public System.Threading.Tasks.Task StartGameAsync(string idRoom) {
+            return base.Channel.StartGameAsync(idRoom);
         }
         
         public void Connect(string username, string idRoom) {
