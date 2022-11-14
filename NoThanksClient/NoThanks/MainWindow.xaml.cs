@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
+using System.Media;
 using System.Security.Cryptography;
 using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 
 namespace NoThanks
@@ -17,6 +22,7 @@ namespace NoThanks
             InitializeComponent();
         }
         
+
         private void LoginClick(object sender, RoutedEventArgs e)
         {
             var username = txtUsername.Text;
@@ -94,6 +100,12 @@ namespace NoThanks
             }
             client.Close();
             
+        }
+
+        private void MusicClick(object sender, RoutedEventArgs e)
+        {
+            SoundPlayer musicPlayer = new SoundPlayer("noThanksMusic.wav");
+            musicPlayer.PlaySync();
         }
     }
 }
