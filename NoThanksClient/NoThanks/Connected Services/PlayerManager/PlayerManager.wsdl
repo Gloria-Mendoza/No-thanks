@@ -126,11 +126,11 @@
   <wsdl:message name="IPlayerManager_GetGenerateCode_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetGenerateCodeResponse" />
   </wsdl:message>
-  <wsdl:message name="IPlayerManager_SendNewEmail_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendNewEmail" />
+  <wsdl:message name="IPlayerManager_SendValidationEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendValidationEmail" />
   </wsdl:message>
-  <wsdl:message name="IPlayerManager_SendNewEmail_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendNewEmailResponse" />
+  <wsdl:message name="IPlayerManager_SendValidationEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendValidationEmailResponse" />
   </wsdl:message>
   <wsdl:message name="IPlayerManager_UpdatePassword_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdatePassword" />
@@ -192,6 +192,18 @@
   <wsdl:message name="IChatService_Disconnect_OutputMessage">
     <wsdl:part name="parameters" element="tns:DisconnectResponse" />
   </wsdl:message>
+  <wsdl:message name="IChatService_ExpelPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExpelPlayer" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_ExpelPlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExpelPlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_SendExpelReason_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendExpelReason" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_SendExpelReason_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendExpelReasonResponse" />
+  </wsdl:message>
   <wsdl:message name="IChatService_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
   </wsdl:message>
@@ -206,6 +218,9 @@
   </wsdl:message>
   <wsdl:message name="IChatService_StartGameRoom_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:StartGameRoom" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_PlayerExpeled_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerExpeled" />
   </wsdl:message>
   <wsdl:message name="IDeckOfCards_CreateDeck_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateDeck" />
@@ -246,9 +261,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/GetGenerateCode" message="tns:IPlayerManager_GetGenerateCode_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/GetGenerateCodeResponse" message="tns:IPlayerManager_GetGenerateCode_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SendNewEmail">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/SendNewEmail" message="tns:IPlayerManager_SendNewEmail_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/SendNewEmailResponse" message="tns:IPlayerManager_SendNewEmail_OutputMessage" />
+    <wsdl:operation name="SendValidationEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/SendValidationEmail" message="tns:IPlayerManager_SendValidationEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/SendValidationEmailResponse" message="tns:IPlayerManager_SendValidationEmail_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdatePassword">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/UpdatePassword" message="tns:IPlayerManager_UpdatePassword_InputMessage" />
@@ -292,6 +307,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Disconnect" message="tns:IChatService_Disconnect_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/DisconnectResponse" message="tns:IChatService_Disconnect_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ExpelPlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/ExpelPlayer" message="tns:IChatService_ExpelPlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/ExpelPlayerResponse" message="tns:IChatService_ExpelPlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendExpelReason">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendExpelReason" message="tns:IChatService_SendExpelReason_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/SendExpelReasonResponse" message="tns:IChatService_SendExpelReason_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendMessage" message="tns:IChatService_SendMessage_InputMessage" />
     </wsdl:operation>
@@ -306,6 +329,9 @@
     </wsdl:operation>
     <wsdl:operation name="StartGameRoom">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/StartGameRoom" message="tns:IChatService_StartGameRoom_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlayerExpeled">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/PlayerExpeled" message="tns:IChatService_PlayerExpeled_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IDeckOfCards">
@@ -376,8 +402,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SendNewEmail">
-      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/SendNewEmail" style="document" />
+    <wsdl:operation name="SendValidationEmail">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/SendValidationEmail" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -479,6 +505,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ExpelPlayer">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/ExpelPlayer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendExpelReason">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/SendExpelReason" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <soap12:operation soapAction="http://tempuri.org/IChatService/SendMessage" style="document" />
       <wsdl:input>
@@ -505,6 +549,12 @@
     </wsdl:operation>
     <wsdl:operation name="StartGameRoom">
       <soap12:operation soapAction="http://tempuri.org/IChatService/StartGameRoom" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlayerExpeled">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/PlayerExpeled" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Text;
 using Logic;
 
@@ -31,6 +32,37 @@ namespace Services
                 Console.WriteLine(entityException.Message);
             }
             return player;
+        }
+        public string RecoverEmail(string username)
+        {
+            string email = "";
+            Authentication authentication = new Authentication();
+            email = authentication.RecoverPlayerEmail(username);
+
+            return email;
+        }
+
+        public bool SendValidationEmail(string toEmail, string affair, int validationCode)
+        {
+            var client = new EmailSender();
+            var status = client.SendValidationEmail(toEmail, affair, validationCode);
+            return status;
+        }
+
+        public bool UpdatePassword(string password, string email)
+        {
+            var status = false;
+            try
+            {
+                var client = new Authentication();
+                status = client.UpdatePlayerPassword(password, email);
+            }
+            catch (EntityException entityException)
+            {
+                //TODO
+                Console.WriteLine(entityException.Message);
+            }
+            return status;
         }
 
         public bool Register(Player player)
@@ -100,29 +132,6 @@ namespace Services
         public int GetGenerateCode()
         {
             return number;
-        }
-
-        public bool SendNewEmail(string toEmail, string affair, int validationCode)
-        {
-            var client = new SendEmail();
-            var status = client.SendNewEmail(toEmail, affair, validationCode);
-            return status;
-        }
-
-        public bool UpdatePassword(string password,string email)
-        {
-            var status = false;
-            try
-            {
-                var client = new Authentication();
-                status = client.UpdatePlayerPassword(password, email);
-            }
-            catch (EntityException entityException)
-            {
-                //TODO
-                Console.WriteLine(entityException.Message);
-            }
-            return status;
         }
     }
 
@@ -242,6 +251,24 @@ namespace Services
                     SendMessage($": {player.Nickname} se ha desconectado!", player.Nickname, idRoom);//TODO
                 }
             }
+        }
+
+        public void ExpelPlayer(string username, string idRoom)
+        {
+            var room = globalRooms.Find(r => r.Id.Equals(idRoom));
+            if (room != null)
+            {
+                Player[] players = room.Players.ToArray();
+                foreach (var player in room.Players)
+                {
+                    if (!player.Nickname.Equals(room.HostUsername))
+                    {
+                        player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().PlayerExpeled(username);
+                    }
+                    Console.WriteLine($"Nick name: {player.Nickname}");
+                }
+            }
+            //Disconnect(username, idRoom);
         }
 
         public void SendMessage(string message, string username, string idRoom)

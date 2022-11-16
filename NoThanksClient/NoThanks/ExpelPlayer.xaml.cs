@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain;
+using NoThanks.PlayerManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +21,10 @@ namespace NoThanks
     /// </summary>
     public partial class ExpelPlayer : Window
     {
+        private PlayerManager.Player player;
+        private ChatServiceClient chatServiceClient1;
+        private string idRoom1;
+
         public ExpelPlayer()
         {
             InitializeComponent();
@@ -28,10 +34,13 @@ namespace NoThanks
         private void ConfirmClick(object sender, RoutedEventArgs e)
         {
             Expel();
+            DialogResult = true;
+            this.Close();
         }
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
+            DialogResult = false;
             this.Close();
         }
         #endregion
@@ -39,7 +48,7 @@ namespace NoThanks
         #region Private Funcitons
         private void Expel()
         {
-            string expelReason = DateTime.Now.ToString();
+            string expelReason = $"{DateTime.Now}: {txtReason.Content}: ";
 
             if (chAfk.IsChecked == true)
             {
@@ -53,9 +62,20 @@ namespace NoThanks
 
             if (chToxic.IsChecked == true)
             {
-                expelReason += $" {chCheats.Content}";
+                expelReason += $" {chToxic.Content}";
             }
+            expelReason += $" {txtMessage.Text}";
 
+            chatServiceClient1.ExpelPlayer(player.Nickname, idRoom1);
+        }
+        #endregion
+
+        #region Public Functions
+        public void SendPlayer(PlayerManager.Player playerToExpel, PlayerManager.ChatServiceClient chatServiceClient, string idRoom)
+        {
+            player = playerToExpel;
+            chatServiceClient1 = chatServiceClient;
+            idRoom1 = idRoom;
         }
         #endregion
     }

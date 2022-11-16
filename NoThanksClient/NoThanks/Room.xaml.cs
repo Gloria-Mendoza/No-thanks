@@ -1,4 +1,5 @@
-﻿using NoThanks.PlayerManager;
+﻿using Domain;
+using NoThanks.PlayerManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace NoThanks
     /// <summary>
     /// Lógica de interacción para Room.xaml
     /// </summary>
+    [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
     public partial class Room : Window, IChatServiceCallback
     {
         #region Atributtes & Properties
@@ -19,6 +21,7 @@ namespace NoThanks
         private ChatServiceClient chatServiceClient;
         private bool isNewRoom;
         private string idRoom;
+        private PlayerManager.Player[] playerList;
 
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
         public string IdRoom { get { return idRoom; } set { idRoom = value; } }
@@ -82,23 +85,40 @@ namespace NoThanks
         #region Callbacks
         public void MessageCallBack(string message)
         {
-            txtChatBox.Items.Add(message);
-            txtChatBox.ScrollIntoView(txtChatBox.Items[txtChatBox.Items.Count - 1]);
+            lxtChatBox.Items.Add(message);
+            lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
         }
 
         public void WhisperCallBack(string sender, string message)
         {
-            txtChatBox.Items.Add(message);
-            txtChatBox.ScrollIntoView(txtChatBox.Items[txtChatBox.Items.Count - 1]);
+            lxtChatBox.Items.Add(message);
+            lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
         }
 
-        public void StartGameRoom(RoomStatus roomStatus, Player[] players)
+        public void StartGameRoom(RoomStatus roomStatus, PlayerManager.Player[] players)
         {
-            if(roomStatus == RoomStatus.Started)
+            if (roomStatus == RoomStatus.Started)
             {
-                txtPlayersBox.ItemsSource = players;
+                lxtPlayersBox.ItemsSource = players;
                 gridLobby.Visibility = Visibility.Collapsed;
             }
+        }
+
+        public void PlayerExpeled(string nickname)
+        {
+            
+            if (Domain.Player.PlayerClient.Nickname.Equals(nickname))
+            {
+                MenuPrincipal go = new MenuPrincipal()
+                {
+                    WindowState = this.WindowState,
+                    Left = this.Left
+                };
+                go.Show();
+                this.Close();
+                MessageBox.Show($"Result: {nickname} expulsado", "Upss", MessageBoxButton.OK);
+            }
+
         }
         #endregion
 
@@ -181,7 +201,8 @@ namespace NoThanks
             gridLobby.Visibility = Visibility.Collapsed;
             try
             {
-                txtPlayersBox.ItemsSource = chatServiceClient.RecoverRoomPlayers(IdRoom);
+                playerList = chatServiceClient.RecoverRoomPlayers(IdRoom);
+                lxtPlayersBox.ItemsSource = playerList;
                 chatServiceClient.StartGame(IdRoom);
             }
             catch (EndpointNotFoundException)
@@ -203,7 +224,12 @@ namespace NoThanks
 
         private void ExpelClick(object sender, MouseButtonEventArgs e)
         {
+            Image expelImage = (Image)sender;
+            Grid parent = (Grid)expelImage.Parent;
+            PlayerManager.Player player = (PlayerManager.Player)parent.DataContext;
+
             ExpelPlayer go = new ExpelPlayer();
+            go.SendPlayer(player, chatServiceClient,IdRoom);
             go.ShowDialog();
         }
         #endregion

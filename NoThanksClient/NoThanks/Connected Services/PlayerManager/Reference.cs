@@ -338,11 +338,11 @@ namespace NoThanks.PlayerManager {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetGenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GetGenerateCodeResponse")]
         System.Threading.Tasks.Task<int> GetGenerateCodeAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendNewEmail", ReplyAction="http://tempuri.org/IPlayerManager/SendNewEmailResponse")]
-        bool SendNewEmail(string toEmail, string affair, int validationCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendValidationEmail", ReplyAction="http://tempuri.org/IPlayerManager/SendValidationEmailResponse")]
+        bool SendValidationEmail(string toEmail, string affair, int validationCode);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendNewEmail", ReplyAction="http://tempuri.org/IPlayerManager/SendNewEmailResponse")]
-        System.Threading.Tasks.Task<bool> SendNewEmailAsync(string toEmail, string affair, int validationCode);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendValidationEmail", ReplyAction="http://tempuri.org/IPlayerManager/SendValidationEmailResponse")]
+        System.Threading.Tasks.Task<bool> SendValidationEmailAsync(string toEmail, string affair, int validationCode);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/UpdatePassword", ReplyAction="http://tempuri.org/IPlayerManager/UpdatePasswordResponse")]
         bool UpdatePassword(string password, string email);
@@ -430,12 +430,12 @@ namespace NoThanks.PlayerManager {
             return base.Channel.GetGenerateCodeAsync();
         }
         
-        public bool SendNewEmail(string toEmail, string affair, int validationCode) {
-            return base.Channel.SendNewEmail(toEmail, affair, validationCode);
+        public bool SendValidationEmail(string toEmail, string affair, int validationCode) {
+            return base.Channel.SendValidationEmail(toEmail, affair, validationCode);
         }
         
-        public System.Threading.Tasks.Task<bool> SendNewEmailAsync(string toEmail, string affair, int validationCode) {
-            return base.Channel.SendNewEmailAsync(toEmail, affair, validationCode);
+        public System.Threading.Tasks.Task<bool> SendValidationEmailAsync(string toEmail, string affair, int validationCode) {
+            return base.Channel.SendValidationEmailAsync(toEmail, affair, validationCode);
         }
         
         public bool UpdatePassword(string password, string email) {
@@ -509,6 +509,18 @@ namespace NoThanks.PlayerManager {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Disconnect", ReplyAction="http://tempuri.org/IChatService/DisconnectResponse")]
         System.Threading.Tasks.Task DisconnectAsync(string username, string idRoom);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/ExpelPlayer", ReplyAction="http://tempuri.org/IChatService/ExpelPlayerResponse")]
+        void ExpelPlayer(string username, string idRoom);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/ExpelPlayer", ReplyAction="http://tempuri.org/IChatService/ExpelPlayerResponse")]
+        System.Threading.Tasks.Task ExpelPlayerAsync(string username, string idRoom);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendExpelReason", ReplyAction="http://tempuri.org/IChatService/SendExpelReasonResponse")]
+        void SendExpelReason(string username, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendExpelReason", ReplyAction="http://tempuri.org/IChatService/SendExpelReasonResponse")]
+        System.Threading.Tasks.Task SendExpelReasonAsync(string username, string message);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendMessage")]
         void SendMessage(string message, string username, string idRoom);
         
@@ -533,6 +545,9 @@ namespace NoThanks.PlayerManager {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/StartGameRoom")]
         void StartGameRoom(NoThanks.PlayerManager.RoomStatus roomStatus, NoThanks.PlayerManager.Player[] players);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/PlayerExpeled")]
+        void PlayerExpeled(string nickname);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -617,6 +632,22 @@ namespace NoThanks.PlayerManager {
         
         public System.Threading.Tasks.Task DisconnectAsync(string username, string idRoom) {
             return base.Channel.DisconnectAsync(username, idRoom);
+        }
+        
+        public void ExpelPlayer(string username, string idRoom) {
+            base.Channel.ExpelPlayer(username, idRoom);
+        }
+        
+        public System.Threading.Tasks.Task ExpelPlayerAsync(string username, string idRoom) {
+            return base.Channel.ExpelPlayerAsync(username, idRoom);
+        }
+        
+        public void SendExpelReason(string username, string message) {
+            base.Channel.SendExpelReason(username, message);
+        }
+        
+        public System.Threading.Tasks.Task SendExpelReasonAsync(string username, string message) {
+            return base.Channel.SendExpelReasonAsync(username, message);
         }
         
         public void SendMessage(string message, string username, string idRoom) {

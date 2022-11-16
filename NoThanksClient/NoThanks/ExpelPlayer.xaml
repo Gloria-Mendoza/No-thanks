@@ -19,8 +19,8 @@
             <RowDefinition Height="50*"/>
             <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
-        <Label Content="{x:Static p:Resources.EXPEL_TITLE_LABEL}" HorizontalAlignment="Left" Margin="89,86,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White" Grid.Column="0"/>
-        <TextBlock HorizontalAlignment="Left" Margin="89,191,0,0" TextWrapping="Wrap" Text="{x:Static p:Resources.EXPEL_REASONMESSAGE_CHECKBOX}" VerticalAlignment="Top" Height="118" Width="262" FontSize="18" Foreground="White" Grid.Column="0"/>
+        <Label x:Name="txtReason" Content="{x:Static p:Resources.EXPEL_TITLE_LABEL}" HorizontalAlignment="Left" Margin="89,86,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White" Grid.Column="0"/>
+        <TextBlock x:Name="txtMessage" HorizontalAlignment="Left" Margin="89,191,0,0" TextWrapping="Wrap" Text="{x:Static p:Resources.EXPEL_REASONMESSAGE_CHECKBOX}" VerticalAlignment="Top" Height="118" Width="262" FontSize="18" Foreground="White" Grid.Column="0"/>
         <Grid Grid.Column="1">
             <CheckBox x:Name="chAfk" Content="{x:Static p:Resources.EXPEL_REASONAFK_CHECKBOX}" HorizontalAlignment="Left" Margin="95,188,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>
             <CheckBox x:Name="chCheats" Content="{x:Static p:Resources.EXPEL_REASONCHEAT_CHECKBOX}" HorizontalAlignment="Left" Margin="95,72,0,0" VerticalAlignment="Top" FontSize="18" Foreground="White"/>

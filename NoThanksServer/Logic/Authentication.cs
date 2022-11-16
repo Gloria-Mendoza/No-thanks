@@ -45,5 +45,21 @@ namespace Logic
             }
             return status;
         }
+
+        public string RecoverPlayerEmail(string username)
+        {
+            string email = "";
+            using (var context = new NoThanksEntities())
+            {
+                var accounts = (from players in context.Players
+                                where players.nickname == username
+                                select players);
+                if (accounts.Any())
+                {
+                    email = accounts.First().email;
+                }
+            }
+            return email;
+        }
     }
 }

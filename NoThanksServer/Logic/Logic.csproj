@@ -61,7 +61,7 @@
     <Compile Include="Register.cs" />
     <Compile Include="RoomStatus.cs" />
     <Compile Include="SendCode.cs" />
-    <Compile Include="SendEmail.cs" />
+    <Compile Include="EmailSender.cs" />
     <Compile Include="Validation.cs" />
   </ItemGroup>
   <ItemGroup>

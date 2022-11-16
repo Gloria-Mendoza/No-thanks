@@ -31,6 +31,8 @@ namespace Services
 
         [OperationContract]
         void Disconnect(string username, string idRoom);
+        [OperationContract]
+        void ExpelPlayer(string username, string idRoom);
 
         [OperationContract(IsOneWay = true)]
         void SendMessage(string message, string username, string idRoom);
@@ -49,5 +51,7 @@ namespace Services
         void WhisperCallBack(string sender, string message);
         [OperationContract(IsOneWay = true)]
         void StartGameRoom(RoomStatus roomStatus, Player[] players);
+        [OperationContract(IsOneWay = true)]
+        void PlayerExpeled(string nickname);
     }
 }

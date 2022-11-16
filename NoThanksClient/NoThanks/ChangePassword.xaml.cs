@@ -19,6 +19,19 @@ namespace NoThanks
             btnConfirm.IsEnabled = false;
         }
 
+        #region Listeners
+        private void NextClick(object sender, RoutedEventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(pfActualPassword.Password) && !String.IsNullOrWhiteSpace(pfConfirmPassword.Password) && !String.IsNullOrWhiteSpace(pfNewPassword.Password))
+            {
+                SendVerification();
+            }
+            else
+            {
+                //TODO
+                MessageBox.Show("No puedes dejar campos vacios", "Upss", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
         private void ConfirmClick(object sender, RoutedEventArgs e)
         {
             if (Convert.ToInt32(txtToken.Text).Equals(validationCode))
@@ -34,21 +47,10 @@ namespace NoThanks
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
+            client.Close();
             Close();
         }
-
-        private void NextClick(object sender, RoutedEventArgs e)
-        {
-            if (!String.IsNullOrWhiteSpace(pfActualPassword.Password) && !String.IsNullOrWhiteSpace(pfConfirmPassword.Password) && !String.IsNullOrWhiteSpace(pfNewPassword.Password))
-            {
-                SendVerification();
-            }
-            else
-            {
-                //TODO
-                MessageBox.Show("No puedes dejar campos vacios", "Upss", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-        }
+        #endregion
 
         public bool SendVerification()
         {
@@ -60,7 +62,7 @@ namespace NoThanks
 
             if (ValidatePassword())
             {
-                if (client.SendNewEmail(Domain.Player.PlayerClient.Email, affair, validationCode))
+                if (client.SendValidationEmail(Domain.Player.PlayerClient.Email, affair, validationCode))
                 {
                     //TODO
                     MessageBox.Show("Código de validación enviado con exito");

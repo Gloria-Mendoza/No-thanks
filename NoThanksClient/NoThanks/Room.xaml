@@ -43,7 +43,7 @@
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <ListBox x:Name="txtPlayersBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,0,0,0">
+                    <ListBox x:Name="lxtPlayersBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,0,0,0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Height="45" Width="497">
@@ -53,7 +53,7 @@
                                         <ColumnDefinition Width="304*"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Content="{Binding Nickname}" Grid.Column="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-                                    <Image x:Name="ExpelIcon" Source="images/LETTER_X_ICON.PNG" Grid.Column="1" Margin="16,15,24,15" MouseLeftButtonDown="ExpelClick"/>
+                                    <Image Source="images/LETTER_X_ICON.PNG" Grid.Column="1" Margin="16,15,24,15" MouseLeftButtonDown="ExpelClick"/>
                                     <Label Content="{Binding Cards}" Grid.Column="2" HorizontalContentAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
                                 </Grid>
                             </DataTemplate>
@@ -75,14 +75,14 @@
                         <SolidColorBrush Color="White" Opacity="0.8"/>
                     </TextBox.Background>
                 </TextBox>
-                <ListBox x:Name="txtChatBox" Margin="10,10,10,39" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <ListBox x:Name="lxtChatBox" Margin="10,10,10,39" Grid.ColumnSpan="2" Grid.RowSpan="2">
                     <ListBox.Background>
                         <SolidColorBrush Color="White" Opacity="0.8"/>
                     </ListBox.Background>
                 </ListBox>
             </Grid>
         </Grid>
-
+<!---->
         <Grid x:Name="gridLobby">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="530*"/>
@@ -92,6 +92,6 @@
             <TextBlock Margin="98,94,98,238" FontSize="24" FontWeight="Bold" FontStyle="Italic" TextWrapping="Wrap" Text="{x:Static p:Resources.ROOM_WAITING_MESSAGE}"/>
             <Button x:Name="btnStartGame" Margin="165,293,165,0" Content="{x:Static p:Resources.ROOM_STARTGAME_BUTTON}" FontSize="22" Grid.Column="0" Click="StartGameClick" Height="50" VerticalAlignment="Top"/>
         </Grid>
-
+<!---->
     </Grid>
 </Window>
