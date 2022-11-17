@@ -198,12 +198,6 @@
   <wsdl:message name="IChatService_ExpelPlayer_OutputMessage">
     <wsdl:part name="parameters" element="tns:ExpelPlayerResponse" />
   </wsdl:message>
-  <wsdl:message name="IChatService_SendExpelReason_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendExpelReason" />
-  </wsdl:message>
-  <wsdl:message name="IChatService_SendExpelReason_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendExpelReasonResponse" />
-  </wsdl:message>
   <wsdl:message name="IChatService_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
   </wsdl:message>
@@ -310,10 +304,6 @@
     <wsdl:operation name="ExpelPlayer">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/ExpelPlayer" message="tns:IChatService_ExpelPlayer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/ExpelPlayerResponse" message="tns:IChatService_ExpelPlayer_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SendExpelReason">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendExpelReason" message="tns:IChatService_SendExpelReason_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/SendExpelReasonResponse" message="tns:IChatService_SendExpelReason_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendMessage" message="tns:IChatService_SendMessage_InputMessage" />
@@ -507,15 +497,6 @@
     </wsdl:operation>
     <wsdl:operation name="ExpelPlayer">
       <soap12:operation soapAction="http://tempuri.org/IChatService/ExpelPlayer" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SendExpelReason">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/SendExpelReason" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

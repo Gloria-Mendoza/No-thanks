@@ -126,7 +126,7 @@
   <data name="CHANGEPASSWORD_NEWPASSWORD_LABEL" xml:space="preserve">
     <value>New Password</value>
   </data>
-  <data name="CHANGEPASSWORD_TITLE-WINDOW" xml:space="preserve">
+  <data name="CHANGEPASSWORD_TITLE_WINDOW" xml:space="preserve">
     <value>No Thanks: The Game – Change Password</value>
   </data>
   <data name="CHANGEPASSWORD_TOKEN_LABEL" xml:space="preserve">
@@ -269,5 +269,47 @@
   </data>
   <data name="ROOM_TAKE_BUTTON" xml:space="preserve">
     <value>Take</value>
+  </data>
+  <data name="CHAT_JOINMESSAGE_MESSAGE" xml:space="preserve">
+    <value>joined the game</value>
+  </data>
+  <data name="CHAT_LEAVEMESSAGE_MESSAGE" xml:space="preserve">
+    <value>left the game</value>
+  </data>
+  <data name="GENERAL_NOCONNECTION_MESSAGE" xml:space="preserve">
+    <value>Could not connect to the server</value>
+  </data>
+  <data name="JOINGAME_CANTJOIN_MESSAGE" xml:space="preserve">
+    <value>Cannot join room, room is full, or game has started</value>
+  </data>
+  <data name="GENERAL_WHITESPACES_MESSAGE" xml:space="preserve">
+    <value>You can not leave empty fields</value>
+  </data>
+  <data name="CHANGEPASSWORD_INCORRECTTOKEN_MESSAGE" xml:space="preserve">
+    <value>Incorrect Token</value>
+  </data>
+  <data name="CHANGEPASSWORD_VALIDATIONSEND_MESSAGE" xml:space="preserve">
+    <value>Validation code sent successfully</value>
+  </data>
+  <data name="GENERAL_CANTSEND_MESSAGE" xml:space="preserve">
+    <value>Could not send message</value>
+  </data>
+  <data name="CHANGEPASSWORD_SUCCESSFUL_MESSAGE" xml:space="preserve">
+    <value>The password has been changed successfully</value>
+  </data>
+  <data name="GENERAL_SUCCSESSFUL_TITLE" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="GENERAL_ERROR_TITLE" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="GENERAL_WARNING_TITLE" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="LOGIN_NOUSERORPASSWORD_MESSAGE" xml:space="preserve">
+    <value>You must enter your username and password</value>
+  </data>
+  <data name="LOGIN_CANTLOGIN_MESSAGE" xml:space="preserve">
+    <value>Failed to log in, please try again later</value>
   </data>
 </root>

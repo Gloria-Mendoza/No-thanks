@@ -52,21 +52,21 @@ namespace NoThanks
 
             if (chAfk.IsChecked == true)
             {
-                expelReason += $" {chAfk.Content}";
+                expelReason += $"\n{chAfk.Content} ";
             }
 
             if (chCheats.IsChecked == true)
             {
-                expelReason += $" {chCheats.Content}";
+                expelReason += $"\n{chCheats.Content} ";
             }
 
             if (chToxic.IsChecked == true)
             {
-                expelReason += $" {chToxic.Content}";
+                expelReason += $"\n{chToxic.Content} ";
             }
-            expelReason += $" {txtMessage.Text}";
+            expelReason += $"\n{txtMessage.Text} ";
 
-            chatServiceClient1.ExpelPlayer(player.Nickname, idRoom1);
+            chatServiceClient1.ExpelPlayer(player.Nickname, idRoom1, expelReason);
         }
         #endregion
 

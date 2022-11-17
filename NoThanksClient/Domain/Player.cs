@@ -15,6 +15,7 @@ namespace Domain
         private Nullable<int> totalScore;
         private string name;
         private string lastName;
+        private bool isGuest;
         private string photo;
 
         #region Singletone
@@ -34,6 +35,6 @@ namespace Domain
         public string LastName { get { return lastName; } set { lastName = value; } }
         public string Photo { get { return photo; } set { photo = value; } }
 
-
+        public bool IsGuest { get { return isGuest; } set { isGuest = value; } }
     }
 }

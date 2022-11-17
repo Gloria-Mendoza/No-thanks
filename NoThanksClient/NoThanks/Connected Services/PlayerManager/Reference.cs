@@ -498,28 +498,22 @@ namespace NoThanks.PlayerManager {
         System.Threading.Tasks.Task StartGameAsync(string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Connect", ReplyAction="http://tempuri.org/IChatService/ConnectResponse")]
-        void Connect(string username, string idRoom);
+        void Connect(string username, string idRoom, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Connect", ReplyAction="http://tempuri.org/IChatService/ConnectResponse")]
-        System.Threading.Tasks.Task ConnectAsync(string username, string idRoom);
+        System.Threading.Tasks.Task ConnectAsync(string username, string idRoom, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Disconnect", ReplyAction="http://tempuri.org/IChatService/DisconnectResponse")]
-        void Disconnect(string username, string idRoom);
+        void Disconnect(string username, string idRoom, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Disconnect", ReplyAction="http://tempuri.org/IChatService/DisconnectResponse")]
-        System.Threading.Tasks.Task DisconnectAsync(string username, string idRoom);
+        System.Threading.Tasks.Task DisconnectAsync(string username, string idRoom, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/ExpelPlayer", ReplyAction="http://tempuri.org/IChatService/ExpelPlayerResponse")]
-        void ExpelPlayer(string username, string idRoom);
+        void ExpelPlayer(string username, string idRoom, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/ExpelPlayer", ReplyAction="http://tempuri.org/IChatService/ExpelPlayerResponse")]
-        System.Threading.Tasks.Task ExpelPlayerAsync(string username, string idRoom);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendExpelReason", ReplyAction="http://tempuri.org/IChatService/SendExpelReasonResponse")]
-        void SendExpelReason(string username, string message);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendExpelReason", ReplyAction="http://tempuri.org/IChatService/SendExpelReasonResponse")]
-        System.Threading.Tasks.Task SendExpelReasonAsync(string username, string message);
+        System.Threading.Tasks.Task ExpelPlayerAsync(string username, string idRoom, string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendMessage")]
         void SendMessage(string message, string username, string idRoom);
@@ -547,7 +541,7 @@ namespace NoThanks.PlayerManager {
         void StartGameRoom(NoThanks.PlayerManager.RoomStatus roomStatus, NoThanks.PlayerManager.Player[] players);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/PlayerExpeled")]
-        void PlayerExpeled(string nickname);
+        void PlayerExpeled(string nickname, string message);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -618,36 +612,28 @@ namespace NoThanks.PlayerManager {
             return base.Channel.StartGameAsync(idRoom);
         }
         
-        public void Connect(string username, string idRoom) {
-            base.Channel.Connect(username, idRoom);
+        public void Connect(string username, string idRoom, string message) {
+            base.Channel.Connect(username, idRoom, message);
         }
         
-        public System.Threading.Tasks.Task ConnectAsync(string username, string idRoom) {
-            return base.Channel.ConnectAsync(username, idRoom);
+        public System.Threading.Tasks.Task ConnectAsync(string username, string idRoom, string message) {
+            return base.Channel.ConnectAsync(username, idRoom, message);
         }
         
-        public void Disconnect(string username, string idRoom) {
-            base.Channel.Disconnect(username, idRoom);
+        public void Disconnect(string username, string idRoom, string message) {
+            base.Channel.Disconnect(username, idRoom, message);
         }
         
-        public System.Threading.Tasks.Task DisconnectAsync(string username, string idRoom) {
-            return base.Channel.DisconnectAsync(username, idRoom);
+        public System.Threading.Tasks.Task DisconnectAsync(string username, string idRoom, string message) {
+            return base.Channel.DisconnectAsync(username, idRoom, message);
         }
         
-        public void ExpelPlayer(string username, string idRoom) {
-            base.Channel.ExpelPlayer(username, idRoom);
+        public void ExpelPlayer(string username, string idRoom, string message) {
+            base.Channel.ExpelPlayer(username, idRoom, message);
         }
         
-        public System.Threading.Tasks.Task ExpelPlayerAsync(string username, string idRoom) {
-            return base.Channel.ExpelPlayerAsync(username, idRoom);
-        }
-        
-        public void SendExpelReason(string username, string message) {
-            base.Channel.SendExpelReason(username, message);
-        }
-        
-        public System.Threading.Tasks.Task SendExpelReasonAsync(string username, string message) {
-            return base.Channel.SendExpelReasonAsync(username, message);
+        public System.Threading.Tasks.Task ExpelPlayerAsync(string username, string idRoom, string message) {
+            return base.Channel.ExpelPlayerAsync(username, idRoom, message);
         }
         
         public void SendMessage(string message, string username, string idRoom) {

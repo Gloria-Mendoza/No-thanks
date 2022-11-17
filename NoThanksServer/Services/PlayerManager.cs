@@ -203,7 +203,7 @@ namespace Services
             return status;
         }
 
-        public void Connect(string username, string idRoom)
+        public void Connect(string username, string idRoom, string message)
         {
             Player player = new Player()
             {
@@ -214,7 +214,7 @@ namespace Services
             {
                 if (globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Count() > 0)
                 {
-                    SendMessage($": {player.Nickname} se ha conectado!", player.Nickname, idRoom);//TODO
+                    SendMessage($": {player.Nickname} {message}!", player.Nickname, idRoom);//TODO
                 }
                 globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Add(player);
                 globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).ActualPlayersCount++;
@@ -225,7 +225,7 @@ namespace Services
             }
         }
 
-        public void Disconnect(string username, string idRoom)
+        public void Disconnect(string username, string idRoom, string message)
         {
             Logic.Player player = null;
             try
@@ -248,12 +248,12 @@ namespace Services
                 }
                 else
                 {
-                    SendMessage($": {player.Nickname} se ha desconectado!", player.Nickname, idRoom);//TODO
+                    SendMessage($": {player.Nickname} {message}!", player.Nickname, idRoom);//TODO
                 }
             }
         }
 
-        public void ExpelPlayer(string username, string idRoom)
+        public void ExpelPlayer(string username, string idRoom, string message)
         {
             var room = globalRooms.Find(r => r.Id.Equals(idRoom));
             if (room != null)
@@ -263,12 +263,10 @@ namespace Services
                 {
                     if (!player.Nickname.Equals(room.HostUsername))
                     {
-                        player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().PlayerExpeled(username);
+                        player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().PlayerExpeled(username, message);
                     }
-                    Console.WriteLine($"Nick name: {player.Nickname}");
                 }
             }
-            //Disconnect(username, idRoom);
         }
 
         public void SendMessage(string message, string username, string idRoom)

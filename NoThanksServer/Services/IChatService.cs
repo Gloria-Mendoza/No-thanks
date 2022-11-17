@@ -27,12 +27,12 @@ namespace Services
         void StartGame(string idRoom);
 
         [OperationContract]
-        void Connect(string username,string idRoom);
+        void Connect(string username,string idRoom, string message);
 
         [OperationContract]
-        void Disconnect(string username, string idRoom);
+        void Disconnect(string username, string idRoom, string message);
         [OperationContract]
-        void ExpelPlayer(string username, string idRoom);
+        void ExpelPlayer(string username, string idRoom, string message);
 
         [OperationContract(IsOneWay = true)]
         void SendMessage(string message, string username, string idRoom);
@@ -52,6 +52,6 @@ namespace Services
         [OperationContract(IsOneWay = true)]
         void StartGameRoom(RoomStatus roomStatus, Player[] players);
         [OperationContract(IsOneWay = true)]
-        void PlayerExpeled(string nickname);
+        void PlayerExpeled(string nickname, string message);
     }
 }

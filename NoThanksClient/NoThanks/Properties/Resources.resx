@@ -126,7 +126,7 @@
   <data name="CHANGEPASSWORD_NEWPASSWORD_LABEL" xml:space="preserve">
     <value>Nueva Contraseña</value>
   </data>
-  <data name="CHANGEPASSWORD_TITLE-WINDOW" xml:space="preserve">
+  <data name="CHANGEPASSWORD_TITLE_WINDOW" xml:space="preserve">
     <value>No Thanks: el Juego – Cambiar Contraseña</value>
   </data>
   <data name="CHANGEPASSWORD_TOKEN_LABEL" xml:space="preserve">
@@ -311,5 +311,47 @@
   </data>
   <data name="PLAYSELECTION_TITLE_LABEL" xml:space="preserve">
     <value>Unirse a partida o Crear una nueva Sala</value>
+  </data>
+  <data name="CHAT_JOINMESSAGE_MESSAGE" xml:space="preserve">
+    <value>se ha conectado</value>
+  </data>
+  <data name="CHAT_LEAVEMESSAGE_MESSAGE" xml:space="preserve">
+    <value>se ha desconectado</value>
+  </data>
+  <data name="GENERAL_NOCONNECTION_MESSAGE" xml:space="preserve">
+    <value>No se pudo conectar con el servidor</value>
+  </data>
+  <data name="JOINGAME_CANTJOIN_MESSAGE" xml:space="preserve">
+    <value>No se puede unir a la sala, está llena o la partida ha iniciado</value>
+  </data>
+  <data name="GENERAL_WHITESPACES_MESSAGE" xml:space="preserve">
+    <value>No puedes dejar campos vacios</value>
+  </data>
+  <data name="CHANGEPASSWORD_INCORRECTTOKEN_MESSAGE" xml:space="preserve">
+    <value>Token Incorrecto</value>
+  </data>
+  <data name="CHANGEPASSWORD_VALIDATIONSEND_MESSAGE" xml:space="preserve">
+    <value>Código de validación enviado con exito</value>
+  </data>
+  <data name="GENERAL_CANTSEND_MESSAGE" xml:space="preserve">
+    <value>No se pudo enviar el mensaje</value>
+  </data>
+  <data name="CHANGEPASSWORD_SUCCESSFUL_MESSAGE" xml:space="preserve">
+    <value>La contraseña ha sido cambiada con exito</value>
+  </data>
+  <data name="GENERAL_SUCCSESSFUL_TITLE" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
+  <data name="GENERAL_ERROR_TITLE" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="GENERAL_WARNING_TITLE" xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
+  <data name="LOGIN_NOUSERORPASSWORD_MESSAGE" xml:space="preserve">
+    <value>Debes ingresar tu usuario y contraseña</value>
+  </data>
+  <data name="LOGIN_CANTLOGIN_MESSAGE" xml:space="preserve">
+    <value>No se pudo iniciar sesión, intentelo mas tarde</value>
   </data>
 </root>

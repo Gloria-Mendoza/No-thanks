@@ -29,7 +29,7 @@ namespace NoThanks
             else
             {
                 //TODO
-                MessageBox.Show("No puedes dejar campos vacios", "Upss", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show(Properties.Resources.GENERAL_WHITESPACES_MESSAGE, Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void ConfirmClick(object sender, RoutedEventArgs e)
@@ -41,7 +41,7 @@ namespace NoThanks
             else
             {
                 //TODO
-                MessageBox.Show("Token Incorrecto", "Upss", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show(Properties.Resources.CHANGEPASSWORD_INCORRECTTOKEN_MESSAGE, Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -65,7 +65,7 @@ namespace NoThanks
                 if (client.SendValidationEmail(Domain.Player.PlayerClient.Email, affair, validationCode))
                 {
                     //TODO
-                    MessageBox.Show("Código de validación enviado con exito");
+                    MessageBox.Show(Properties.Resources.CHANGEPASSWORD_VALIDATIONSEND_MESSAGE, Properties.Resources.GENERAL_SUCCSESSFUL_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
                     txtToken.Visibility = Visibility.Visible;
                     lbToken.Visibility = Visibility.Visible;
 
@@ -80,7 +80,7 @@ namespace NoThanks
             else
             {
                 //TODO
-                MessageBox.Show("No se pudo enviar el codigo", "Upss", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.GENERAL_CANTSEND_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return result;
@@ -91,7 +91,7 @@ namespace NoThanks
             if (client.UpdatePassword(password, email))
             {
                 //TODO
-                MessageBox.Show("La contraseña ha sido cambiada con exito", "Yay", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Properties.Resources.CHANGEPASSWORD_SUCCESSFUL_MESSAGE, Properties.Resources.GENERAL_SUCCSESSFUL_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
         }

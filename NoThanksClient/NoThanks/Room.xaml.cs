@@ -54,22 +54,22 @@ namespace NoThanks
             catch (EndpointNotFoundException)
             {
                 //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
             }
             catch (CommunicationObjectFaultedException)
             {
                 //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
             }
             catch (NullReferenceException)
             {
                 //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
             }
             catch (FaultException)
             {
                 //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
             }
         }
 
@@ -104,7 +104,7 @@ namespace NoThanks
             }
         }
 
-        public void PlayerExpeled(string nickname)
+        public void PlayerExpeled(string nickname, string message)
         {
             
             if (Domain.Player.PlayerClient.Nickname.Equals(nickname))
@@ -116,7 +116,7 @@ namespace NoThanks
                 };
                 go.Show();
                 this.Close();
-                MessageBox.Show($"Result: {nickname} expulsado", "Upss", MessageBoxButton.OK);
+                MessageBox.Show($"{nickname} \n{message}", Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
         }
@@ -161,17 +161,17 @@ namespace NoThanks
             catch (EndpointNotFoundException)
             {
                 //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
             }
             catch (CommunicationObjectFaultedException)
             {
                 //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
             }
             catch (NullReferenceException)
             {
                 //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
             }
         }
 
@@ -208,17 +208,17 @@ namespace NoThanks
             catch (EndpointNotFoundException)
             {
                 //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
             }
             catch (CommunicationObjectFaultedException)
             {
                 //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
             }
             catch (NullReferenceException)
             {
                 //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
             }
         }
 
@@ -247,7 +247,7 @@ namespace NoThanks
                     chatServiceClient.NewRoom(Domain.Player.PlayerClient.Nickname, idRoom);
                 }
                 txtCode.Text = idRoom;
-                chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom);
+                chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_JOINMESSAGE_MESSAGE);
                 isConected = true;
             }
         }
@@ -256,7 +256,7 @@ namespace NoThanks
         {
             if (isConected)
             {
-                chatServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom);
+                chatServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_LEAVEMESSAGE_MESSAGE);
                 chatServiceClient.Close();
                 chatServiceClient = null;
                 isConected = false;
