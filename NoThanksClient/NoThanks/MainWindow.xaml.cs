@@ -29,20 +29,17 @@ namespace NoThanks
                 }
                 catch (EndpointNotFoundException)
                 {
-                    //TODO
                     MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                //TODO
                 MessageBox.Show(Properties.Resources.LOGIN_NOUSERORPASSWORD_MESSAGE, Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
         private void RegisterClick(object sender, RoutedEventArgs e)
         {
-            //TODO
             SignIn register = new SignIn();
             register.Show();
             this.Close();
@@ -93,7 +90,6 @@ namespace NoThanks
             }
             else
             {
-                //TODO
                 MessageBox.Show(Properties.Resources.LOGIN_CANTLOGIN_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             client.Close();

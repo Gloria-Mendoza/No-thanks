@@ -312,4 +312,7 @@
   <data name="LOGIN_CANTLOGIN_MESSAGE" xml:space="preserve">
     <value>Failed to log in, please try again later</value>
   </data>
+  <data name="ROOM_CANTEXPEL_MESSAGE" xml:space="preserve">
+    <value>Only the host of the game can kick a player</value>
+  </data>
 </root>

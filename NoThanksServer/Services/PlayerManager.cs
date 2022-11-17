@@ -33,15 +33,7 @@ namespace Services
             }
             return player;
         }
-        public string RecoverEmail(string username)
-        {
-            string email = "";
-            Authentication authentication = new Authentication();
-            email = authentication.RecoverPlayerEmail(username);
-
-            return email;
-        }
-
+        
         public bool SendValidationEmail(string toEmail, string affair, int validationCode)
         {
             var client = new EmailSender();
@@ -214,7 +206,7 @@ namespace Services
             {
                 if (globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Count() > 0)
                 {
-                    SendMessage($": {player.Nickname} {message}!", player.Nickname, idRoom);//TODO
+                    SendMessage($": {player.Nickname} {message}!", player.Nickname, idRoom);
                 }
                 globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Add(player);
                 globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).ActualPlayersCount++;
@@ -248,7 +240,7 @@ namespace Services
                 }
                 else
                 {
-                    SendMessage($": {player.Nickname} {message}!", player.Nickname, idRoom);//TODO
+                    SendMessage($": {player.Nickname} {message}!", player.Nickname, idRoom);
                 }
             }
         }

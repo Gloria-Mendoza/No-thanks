@@ -354,4 +354,7 @@
   <data name="LOGIN_CANTLOGIN_MESSAGE" xml:space="preserve">
     <value>No se pudo iniciar sesión, intentelo mas tarde</value>
   </data>
+  <data name="ROOM_CANTEXPEL_MESSAGE" xml:space="preserve">
+    <value>Solo el anfitrión de la partida puede expulsar a un jugador</value>
+  </data>
 </root>

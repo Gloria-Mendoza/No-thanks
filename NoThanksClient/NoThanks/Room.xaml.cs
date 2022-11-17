@@ -20,6 +20,7 @@ namespace NoThanks
         private bool isConected = false;
         private ChatServiceClient chatServiceClient;
         private bool isNewRoom;
+        private bool isHost = false;
         private string idRoom;
         private PlayerManager.Player[] playerList;
 
@@ -53,23 +54,19 @@ namespace NoThanks
             }
             catch (EndpointNotFoundException)
             {
-                //TODO
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationObjectFaultedException)
             {
-                //TODO
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (NullReferenceException)
             {
-                //TODO
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (FaultException)
             {
-                //TODO
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -160,18 +157,15 @@ namespace NoThanks
             }
             catch (EndpointNotFoundException)
             {
-                //TODO
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationObjectFaultedException)
             {
-                //TODO
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (NullReferenceException)
             {
-                //TODO
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -207,18 +201,15 @@ namespace NoThanks
             }
             catch (EndpointNotFoundException)
             {
-                //TODO
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationObjectFaultedException)
             {
-                //TODO
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (NullReferenceException)
             {
-                //TODO
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -227,10 +218,16 @@ namespace NoThanks
             Image expelImage = (Image)sender;
             Grid parent = (Grid)expelImage.Parent;
             PlayerManager.Player player = (PlayerManager.Player)parent.DataContext;
-
-            ExpelPlayer go = new ExpelPlayer();
-            go.SendPlayer(player, chatServiceClient,IdRoom);
-            go.ShowDialog();
+            if (isHost)
+            {
+                ExpelPlayer go = new ExpelPlayer();
+                go.SendPlayer(player, chatServiceClient, IdRoom);
+                go.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.ROOM_CANTEXPEL_MESSAGE, Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
         #endregion
 
@@ -245,6 +242,7 @@ namespace NoThanks
                     idRoom = chatServiceClient.GenerateRoomCode();
                     txtCode.Text = idRoom;
                     chatServiceClient.NewRoom(Domain.Player.PlayerClient.Nickname, idRoom);
+                    isHost = true;
                 }
                 txtCode.Text = idRoom;
                 chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_JOINMESSAGE_MESSAGE);

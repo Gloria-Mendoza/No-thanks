@@ -48,7 +48,7 @@ namespace NoThanks
         #region Private Funcitons
         private void Expel()
         {
-            string expelReason = $"{DateTime.Now}: {txtReason.Content}: ";
+            string expelReason = $"{DateTime.Now} \n{txtReason.Content}: ";
 
             if (chAfk.IsChecked == true)
             {

@@ -601,6 +601,15 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Solo el anfitrión de la partida puede expulsar a un jugador.
+        /// </summary>
+        public static string ROOM_CANTEXPEL_MESSAGE {
+            get {
+                return ResourceManager.GetString("ROOM_CANTEXPEL_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Pasar.
         /// </summary>
         public static string ROOM_PASS_BUTTON {
