@@ -83,18 +83,6 @@
   <wsdl:message name="IPlayerManager_SendCode_OutputMessage">
     <wsdl:part name="parameters" element="tns:SendCodeResponse" />
   </wsdl:message>
-  <wsdl:message name="IPlayerManager_GenerateCode_InputMessage">
-    <wsdl:part name="parameters" element="tns:GenerateCode" />
-  </wsdl:message>
-  <wsdl:message name="IPlayerManager_GenerateCode_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GenerateCodeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IPlayerManager_GetGenerateCode_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetGenerateCode" />
-  </wsdl:message>
-  <wsdl:message name="IPlayerManager_GetGenerateCode_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetGenerateCodeResponse" />
-  </wsdl:message>
   <wsdl:message name="IPlayerManager_ExitsEmail_InputMessage">
     <wsdl:part name="parameters" element="tns:ExitsEmail" />
   </wsdl:message>
@@ -143,14 +131,6 @@
     <wsdl:operation name="SendCode">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/SendCode" message="tns:IPlayerManager_SendCode_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/SendCodeResponse" message="tns:IPlayerManager_SendCode_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GenerateCode">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/GenerateCode" message="tns:IPlayerManager_GenerateCode_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/GenerateCodeResponse" message="tns:IPlayerManager_GenerateCode_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetGenerateCode">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/GetGenerateCode" message="tns:IPlayerManager_GetGenerateCode_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/GetGenerateCodeResponse" message="tns:IPlayerManager_GetGenerateCode_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ExitsEmail">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/ExitsEmail" message="tns:IPlayerManager_ExitsEmail_InputMessage" />
@@ -206,24 +186,6 @@
     </wsdl:operation>
     <wsdl:operation name="SendCode">
       <soap12:operation soapAction="http://tempuri.org/IPlayerManager/SendCode" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GenerateCode">
-      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/GenerateCode" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetGenerateCode">
-      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/GetGenerateCode" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

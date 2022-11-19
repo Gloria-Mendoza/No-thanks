@@ -187,22 +187,10 @@ namespace NoThanks.PlayerManager {
         System.Threading.Tasks.Task<bool> RegisterAsync(NoThanks.PlayerManager.Player player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendCode", ReplyAction="http://tempuri.org/IPlayerManager/SendCodeResponse")]
-        bool SendCode(string emailFrom, int code);
+        bool SendCode(string emailFrom);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendCode", ReplyAction="http://tempuri.org/IPlayerManager/SendCodeResponse")]
-        System.Threading.Tasks.Task<bool> SendCodeAsync(string emailFrom, int code);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GenerateCodeResponse")]
-        int GenerateCode();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GenerateCodeResponse")]
-        System.Threading.Tasks.Task<int> GenerateCodeAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetGenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GetGenerateCodeResponse")]
-        int GetGenerateCode();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetGenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GetGenerateCodeResponse")]
-        System.Threading.Tasks.Task<int> GetGenerateCodeAsync();
+        System.Threading.Tasks.Task<bool> SendCodeAsync(string emailFrom);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/ExitsEmail", ReplyAction="http://tempuri.org/IPlayerManager/ExitsEmailResponse")]
         bool ExitsEmail(string text);
@@ -260,28 +248,12 @@ namespace NoThanks.PlayerManager {
             return base.Channel.RegisterAsync(player);
         }
         
-        public bool SendCode(string emailFrom, int code) {
-            return base.Channel.SendCode(emailFrom, code);
+        public bool SendCode(string emailFrom) {
+            return base.Channel.SendCode(emailFrom);
         }
         
-        public System.Threading.Tasks.Task<bool> SendCodeAsync(string emailFrom, int code) {
-            return base.Channel.SendCodeAsync(emailFrom, code);
-        }
-        
-        public int GenerateCode() {
-            return base.Channel.GenerateCode();
-        }
-        
-        public System.Threading.Tasks.Task<int> GenerateCodeAsync() {
-            return base.Channel.GenerateCodeAsync();
-        }
-        
-        public int GetGenerateCode() {
-            return base.Channel.GetGenerateCode();
-        }
-        
-        public System.Threading.Tasks.Task<int> GetGenerateCodeAsync() {
-            return base.Channel.GetGenerateCodeAsync();
+        public System.Threading.Tasks.Task<bool> SendCodeAsync(string emailFrom) {
+            return base.Channel.SendCodeAsync(emailFrom);
         }
         
         public bool ExitsEmail(string text) {

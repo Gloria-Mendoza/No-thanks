@@ -18,11 +18,7 @@ namespace Services
         [OperationContract]
         bool Register(Player player);
         [OperationContract]
-        bool SendCode(string emailFrom, int code);
-        [OperationContract]
-        int GenerateCode();
-        [OperationContract]
-        int GetGenerateCode();
+        bool SendCode(string emailFrom);
         [OperationContract]
         bool ExitsEmail(string text);
         [OperationContract]

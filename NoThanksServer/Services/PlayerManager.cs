@@ -13,7 +13,6 @@ namespace Services
 {
     public partial class PlayerManager : IPlayerManager
     {
-        int number = 0;
         public Logic.Player Login(String nickname, String password)
         {
             var player = new Logic.Player()
@@ -57,13 +56,13 @@ namespace Services
             return status;
         }
 
-        public bool SendCode(String emailFrom, int code)
+        public bool SendCode(String emailFrom)
         {
             var status = false;
             try
             {
                 SendCode email = new SendCode();
-                email.SendMail(emailFrom, code);
+                email.SendMail(emailFrom);
             }
             catch (EntityException entityException)
             {
@@ -85,21 +84,6 @@ namespace Services
             var status = false;
             Validation validation = new Validation();
             return status = validation.ExistNickname(text);
-        }
-
-        public int GenerateCode()
-        {
-            Random random = new Random();
-            int maximum = 999999;
-            int minimum = 100000;
-
-            number = random.Next(minimum, maximum + 1);
-            return number;
-        }
-
-        public int GetGenerateCode()
-        {
-            return number;
         }
 
     }

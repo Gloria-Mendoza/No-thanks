@@ -40,32 +40,21 @@ namespace NoThanks
         private void SendCodeClick(object sender, RoutedEventArgs e)
         {
             PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
-            var number = txtNumber.Text;
-            var numberCode = client.GetGenerateCode();
-            if (!String.IsNullOrWhiteSpace(number) && existsInvalidField(number))
+            var code = txtNumber.Text;
+            var codeCorrect = "HTY025RG#789/4DX";
+            if (!String.IsNullOrWhiteSpace(code))
             {
-                if (number.Equals(numberCode))
+                if (code.Equals(codeCorrect))
                 {
-                    MessageBox.Show("El correo electróncio se ha verificado correctamente", "Confirmación de correo", MessageBoxButton.OK);
+                    MessageBox.Show($"{Properties.Resources.VERIFYEMAIL_CONFIRMATION_MESSAGE}", $"{Properties.Resources.VERIFYEMAIL_CONFIRMATION_MESSAGEWINDOW}", MessageBoxButton.OK);
                     result = true;
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("El código ingresado es incorrecto. Verifique la información", "Error de corfirmación de correo", MessageBoxButton.OK);
+                    MessageBox.Show($"{Properties.Resources.VERIFYEMAIL_CONFIRMATIONERROR_MESSAGE}", $"{Properties.Resources.VERIFYEMAIL_CONFIRMATIONERROR_MESSAGEWINDOW}", MessageBoxButton.OK);
                 }
             }
-        }
-
-        private Boolean existsInvalidField(String textValid)
-        {
-            Boolean invalidNumber = false;
-            if (Regex.IsMatch(textValid, "^\\d+$") == false)
-            {
-                MessageBox.Show("El código ingresado es inválido. Verifique la información", "Campo inválido", MessageBoxButton.OK);
-                invalidNumber = true;
-            }
-            return invalidNumber;
         }
     }
 }

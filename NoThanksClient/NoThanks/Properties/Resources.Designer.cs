@@ -178,6 +178,42 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Salir.
+        /// </summary>
+        public static string GAMEMENU_BUTTON_LEAVE {
+            get {
+                return ResourceManager.GetString("GAMEMENU_BUTTON_LEAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Partida rápida.
+        /// </summary>
+        public static string GAMEMENU_BUTTON_QUICKPLAY {
+            get {
+                return ResourceManager.GetString("GAMEMENU_BUTTON_QUICKPLAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Iniciar partida.
+        /// </summary>
+        public static string GAMEMENU_BUTTON_START {
+            get {
+                return ResourceManager.GetString("GAMEMENU_BUTTON_START", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Menú de partidas.
+        /// </summary>
+        public static string GAMEMENU_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("GAMEMENU_TITLE_WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Volver.
         /// </summary>
         public static string GENERAL_BACK_BUTTON {
@@ -457,11 +493,155 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Registro exitoso.
+        /// </summary>
+        public static string SIGNIN_CONFIRMATION_MESSAGE {
+            get {
+                return ResourceManager.GetString("SIGNIN_CONFIRMATION_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirmación de registro.
+        /// </summary>
+        public static string SIGNIN_CONFIRMATION_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("SIGNIN_CONFIRMATION_MESSAGEWINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Correo electrónico:.
         /// </summary>
         public static string SIGNIN_EMAIL_LABEL {
             get {
                 return ResourceManager.GetString("SIGNIN_EMAIL_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Existen campos vacíos. Verifica los datos.
+        /// </summary>
+        public static string SIGNIN_EMPTYFIELDS_MESSAGE {
+            get {
+                return ResourceManager.GetString("SIGNIN_EMPTYFIELDS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Campos vacíos.
+        /// </summary>
+        public static string SIGNIN_EMPTYFIELDS_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("SIGNIN_EMPTYFIELDS_MESSAGEWINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Existen campos que exceden la longitud permitida. Verifica los datos.
+        /// </summary>
+        public static string SIGNIN_EXCESSLENGTH_MESSAGE {
+            get {
+                return ResourceManager.GetString("SIGNIN_EXCESSLENGTH_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Longitud excedida.
+        /// </summary>
+        public static string SIGNIN_EXCESSLENGTH_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("SIGNIN_EXCESSLENGTH_MESSAGEWINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Las contraseñas ingresadas no coinciden. Verifica los datos.
+        /// </summary>
+        public static string SIGNIN_INCORRECTPASSWORD_MESSAGE {
+            get {
+                return ResourceManager.GetString("SIGNIN_INCORRECTPASSWORD_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Contraseña incorrecta.
+        /// </summary>
+        public static string SIGNIN_INCORRECTPASSWORD_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("SIGNIN_INCORRECTPASSWORD_MESSAGEWINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a La contraseña debe tener entre 8 y 16 caracteres. La contraseña debe tener por lo menos un número. La contraseña debe tener por lo menos una letra mayúscula. La contraseña debe tener por lo menos una letra minúscula.
+        /// </summary>
+        public static string SIGNIN_INVALIDPASSWORD_MESSAGE {
+            get {
+                return ResourceManager.GetString("SIGNIN_INVALIDPASSWORD_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Contraseña inválida.
+        /// </summary>
+        public static string SIGNIN_INVALIDPASSWORD_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("SIGNIN_INVALIDPASSWORD_MESSAGEWINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Existen caracteres invalidos. Verifica los datos de nombre.
+        /// </summary>
+        public static string SIGNIN_INVALIDSTRINGS_MESSAGE {
+            get {
+                return ResourceManager.GetString("SIGNIN_INVALIDSTRINGS_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Campos inválidos en nombre.
+        /// </summary>
+        public static string SIGNIN_INVALIDSTRINGS_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("SIGNIN_INVALIDSTRINGS_MESSAGEWINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Existen caracteres invalidos. Verifica los datos del correo electrónico.
+        /// </summary>
+        public static string SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGE {
+            get {
+                return ResourceManager.GetString("SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Campos inválidos en correo electrónico.
+        /// </summary>
+        public static string SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGEWINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Existen caracteres invalidos. Verifica los datos de apellidos.
+        /// </summary>
+        public static string SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGE {
+            get {
+                return ResourceManager.GetString("SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Campos inválidos en apellidos.
+        /// </summary>
+        public static string SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGEWINDOW", resourceCulture);
             }
         }
         
@@ -493,11 +673,65 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a El correo ingresado ya se encuentra registrado. Por favor ingrese uno nuevo.
+        /// </summary>
+        public static string SIGNIN_REPEATEDEMAIL_MESSAGE {
+            get {
+                return ResourceManager.GetString("SIGNIN_REPEATEDEMAIL_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Correo registrado.
+        /// </summary>
+        public static string SIGNIN_REPEATEDEMAIL_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("SIGNIN_REPEATEDEMAIL_MESSAGEWINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El nombre de usuario ingresado ya se encuentra registrado. Por favor ingrese uno nuevo.
+        /// </summary>
+        public static string SIGNIN_REPEATEDUSERNAME_MESSAGE {
+            get {
+                return ResourceManager.GetString("SIGNIN_REPEATEDUSERNAME_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre de usuario registrado.
+        /// </summary>
+        public static string SIGNIN_REPEATEDUSERNAME_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("SIGNIN_REPEATEDUSERNAME_MESSAGEWINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Repetir contraseña:.
         /// </summary>
         public static string SIGNIN_REPEATPASSWORD_LABEL {
             get {
                 return ResourceManager.GetString("SIGNIN_REPEATPASSWORD_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No Funciona.
+        /// </summary>
+        public static string SIGNIN_SAVEERROR_MESSAGE {
+            get {
+                return ResourceManager.GetString("SIGNIN_SAVEERROR_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Upss.
+        /// </summary>
+        public static string SIGNIN_SAVEERROR_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("SIGNIN_SAVEERROR_MESSAGEWINDOW", resourceCulture);
             }
         }
         
@@ -547,11 +781,65 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a El correo electróncio se ha verificado correctamente.
+        /// </summary>
+        public static string VERIFYEMAIL_CONFIRMATION_MESSAGE {
+            get {
+                return ResourceManager.GetString("VERIFYEMAIL_CONFIRMATION_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirmación de correo.
+        /// </summary>
+        public static string VERIFYEMAIL_CONFIRMATION_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("VERIFYEMAIL_CONFIRMATION_MESSAGEWINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El código ingresado es incorrecto. Verifique la información.
+        /// </summary>
+        public static string VERIFYEMAIL_CONFIRMATIONERROR_MESSAGE {
+            get {
+                return ResourceManager.GetString("VERIFYEMAIL_CONFIRMATIONERROR_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error de corfirmación de correo.
+        /// </summary>
+        public static string VERIFYEMAIL_CONFIRMATIONERROR_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("VERIFYEMAIL_CONFIRMATIONERROR_MESSAGEWINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Se ha enviado un código para verificar su correo electrónico.
         /// </summary>
         public static string VERIFYEMAIL_INSTRUCTIONS_LABEL {
             get {
                 return ResourceManager.GetString("VERIFYEMAIL_INSTRUCTIONS_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El código ingresado es inválido. Verifique la información.
+        /// </summary>
+        public static string VERIFYEMAIL_INVALIDFIELD_MESSAGE {
+            get {
+                return ResourceManager.GetString("VERIFYEMAIL_INVALIDFIELD_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Campo inválido.
+        /// </summary>
+        public static string VERIFYEMAIL_INVALIDFIELD_MESSAGEWINDOW {
+            get {
+                return ResourceManager.GetString("VERIFYEMAIL_INVALIDFIELD_MESSAGEWINDOW", resourceCulture);
             }
         }
         

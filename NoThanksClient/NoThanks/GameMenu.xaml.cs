@@ -23,5 +23,20 @@ namespace NoThanks
         {
             InitializeComponent();
         }
+
+        private void LeaveClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void StartClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void QuickplayClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

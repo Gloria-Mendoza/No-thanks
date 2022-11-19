@@ -6,21 +6,22 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System;
+using MailKit;
 
 namespace Logic
 {
     public class SendCode
     {
 
-        public bool SendMail(string email, int code)
+        public bool SendMail(string email)
         {
             Boolean result = false;
-            /*String body = @"<style>
+            String body = @"<style>
                             h1{color:dodgerblue;}
                             </style>
-                            <h1>Your code is: {code}</h1>";*/
+                            <h1>Your code is: HTY025RG#789/4DX</h1>";
 
-            try
+            /*try
             {
                 MailMessage newEmail = new MailMessage();
                 newEmail.From = new MailAddress("nothanks364@outlook.com", "Holamundo3");
@@ -49,6 +50,37 @@ namespace Logic
             catch (SmtpException exception)
             {
                 Console.WriteLine(exception.Message);
+            }
+            return result;*/
+            try
+            {
+                using (MailMessage emailMessage = new MailMessage())
+                {
+                    emailMessage.To.Add(new MailAddress(email));
+                    emailMessage.Subject = "E-mail Confirmation";
+                    emailMessage.Body = body;
+                    emailMessage.IsBodyHtml = false;
+                    emailMessage.Priority = MailPriority.Normal;
+                    emailMessage.From = new MailAddress("nothanksteam5@gmail.com", "¡No Thanks!");
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;//25,465
+                        smtp.EnableSsl = true;
+                        smtp.UseDefaultCredentials = false;          
+                        smtp.Credentials = new System.Net.NetworkCredential("nothanksteam5@gmail.com", "Holamundo3");
+                        ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
+                        smtp.Send(emailMessage);
+
+                        result = true;
+                    }
+                    emailMessage.Dispose();
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.StackTrace);
             }
             return result;
         }
