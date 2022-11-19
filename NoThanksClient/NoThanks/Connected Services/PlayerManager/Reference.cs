@@ -23,7 +23,7 @@ namespace NoThanks.PlayerManager {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string[] CardsField;
+        private NoThanks.PlayerManager.CardType[] CardsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
@@ -47,6 +47,9 @@ namespace NoThanks.PlayerManager {
         private bool StatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TokensField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<int> TotalScoreField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -60,7 +63,7 @@ namespace NoThanks.PlayerManager {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string[] Cards {
+        public NoThanks.PlayerManager.CardType[] Cards {
             get {
                 return this.CardsField;
             }
@@ -164,6 +167,19 @@ namespace NoThanks.PlayerManager {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Tokens {
+            get {
+                return this.TokensField;
+            }
+            set {
+                if ((this.TokensField.Equals(value) != true)) {
+                    this.TokensField = value;
+                    this.RaisePropertyChanged("Tokens");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public System.Nullable<int> TotalScore {
             get {
                 return this.TotalScoreField;
@@ -187,6 +203,110 @@ namespace NoThanks.PlayerManager {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CardType", Namespace="http://schemas.datacontract.org/2004/07/Logic")]
+    public enum CardType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Three = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Four = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Five = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Six = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Seven = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Eight = 8,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Nine = 9,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Ten = 10,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Eleven = 11,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Twelve = 12,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Thirteen = 13,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Fourteen = 14,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Fifteen = 15,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Sixteen = 16,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Seventeen = 17,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Eightteen = 18,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Nineteen = 19,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Twenty = 20,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyOne = 21,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyTwo = 22,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyThree = 23,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyFour = 24,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyFive = 25,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentySix = 26,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentySeven = 27,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyEight = 28,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        TwentyNine = 29,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Thirty = 30,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ThirtyOne = 31,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ThirtyTwo = 32,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ThirtyThree = 33,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ThirtyFour = 34,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ThirtyFive = 35,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="RoomStatus", Namespace="http://schemas.datacontract.org/2004/07/Logic")]
     public enum RoomStatus : int {
         
@@ -198,110 +318,6 @@ namespace NoThanks.PlayerManager {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         Finished = 2,
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CardType", Namespace="http://schemas.datacontract.org/2004/07/Services")]
-    public enum CardType : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Three = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Four = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Five = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Six = 3,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Seven = 4,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Eight = 5,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Nine = 6,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Ten = 7,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Eleven = 8,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Twelve = 9,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Thirteen = 10,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Fourteen = 11,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Fifteen = 12,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Sixteen = 13,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Seventeen = 14,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Eightteen = 15,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Nineteen = 16,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Twenty = 17,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyOne = 18,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyTwo = 19,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyThree = 20,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyFour = 21,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyFive = 22,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentySix = 23,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentySeven = 24,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyEight = 25,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyNine = 26,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Thirty = 27,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ThirtyOne = 28,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ThirtyTwo = 29,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ThirtyThree = 30,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ThirtyFour = 31,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ThirtyFive = 32,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

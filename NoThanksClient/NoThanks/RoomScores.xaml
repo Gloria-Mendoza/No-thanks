@@ -5,22 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NoThanks"
         mc:Ignorable="d"
-        Title="RoomScores" Height="380" Width="280">
+        Title="RoomScores" Height="535" Width="385" ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/5053309.jpg" Stretch="UniformToFill"/>
+    </Window.Background>
     <Grid>
-        <ListBox x:Name="lxtScores" Margin="10,10,10,92" d:ItemsSource="{d:SampleData ItemCount=5}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Height="45" Width="228">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="37*"/>
-                            <ColumnDefinition Width="20*"/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="{Binding Nickname}" Grid.Column="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-                        <Label Content="{Binding TotalScore}" Grid.Column="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,10,0,10"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Image x:Name="TestImage" HorizontalAlignment="Left" Height="100" Margin="58,250,0,0" VerticalAlignment="Top" Width="100"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="271*"/>
+            <ColumnDefinition Width="114*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <ListBox x:Name="lxtScores" Margin="10,40,23,10" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListBox.OpacityMask>
+                    <SolidColorBrush Color="#FFFDFDFD" Opacity="0.8"/>
+                </ListBox.OpacityMask>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="45" Width="228">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="37*"/>
+                                <ColumnDefinition Width="20*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{Binding Nickname}" Grid.Column="0" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                            <Label Content="{Binding TotalScore}" Grid.Column="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,10,0,10"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Label x:Name="lbWinner" Content="Winner" Margin="10,48,0,0" VerticalAlignment="Top" Height="28" HorizontalAlignment="Left" Width="94" Background="{x:Null}" Foreground="White" FontSize="14" FontWeight="Bold" FontStyle="Italic"/>
+        </Grid>
+
     </Grid>
 </Window>

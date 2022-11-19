@@ -101,6 +101,9 @@
     <Compile Include="Room.xaml.cs">
       <DependentUpon>Room.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RoomScores.xaml.cs">
+      <DependentUpon>RoomScores.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
     </Compile>
@@ -164,6 +167,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RoomScores.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SignIn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,13 +215,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\PlayerManager\item.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\PlayerManager\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\PlayerManager\item2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\PlayerManager\item3.xsd">

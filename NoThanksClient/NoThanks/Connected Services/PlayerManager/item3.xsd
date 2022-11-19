@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Logic" />
-  <xs:import schemaLocation="http://localhost:8080/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Services" />
   <xs:element name="Login">
     <xs:complexType>
       <xs:sequence>
@@ -296,35 +295,35 @@
   <xs:element name="ShuffleDeck">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameDeck" nillable="true" type="q6:ArrayOfCardType" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q6:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DiscardFirstNine">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameDeck" nillable="true" type="q7:ArrayOfCardType" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q7:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateDeckCallBack">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameDeck" nillable="true" type="q8:ArrayOfCardType" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q8:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ShuffleDeckCallBack">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="shuffledDeck" nillable="true" type="q9:ArrayOfCardType" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="shuffledDeck" nillable="true" type="q9:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DiscardFirstNineCallback">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameDeck" nillable="true" type="q10:ArrayOfCardType" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q10:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
