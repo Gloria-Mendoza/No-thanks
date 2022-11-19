@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -11,19 +12,27 @@ namespace Services
     public interface IChatService
     {
         [OperationContract]
-        bool NewRoom(string idRoom);
-
-        [OperationContract]
-        bool CheckQuota(string idRoom);
+        bool NewRoom(string hostUsername, string idRoom);
 
         [OperationContract]
         string GenerateRoomCode();
 
         [OperationContract]
-        void Connect(string username,string idRoom);
+        bool CheckQuota(string idRoom);
 
         [OperationContract]
-        void Disconnect(string username, string idRoom);
+        List<Logic.Player> RecoverRoomPlayers(string idRoom);
+
+        [OperationContract]
+        void StartGame(string idRoom);
+
+        [OperationContract]
+        void Connect(string username,string idRoom, string message);
+
+        [OperationContract]
+        void Disconnect(string username, string idRoom, string message);
+        [OperationContract]
+        void ExpelPlayer(string username, string idRoom, string message);
 
         [OperationContract(IsOneWay = true)]
         void SendMessage(string message, string username, string idRoom);
@@ -39,6 +48,10 @@ namespace Services
         void MessageCallBack(string message);
 
         [OperationContract (IsOneWay = true)]
-        void WhisperCallBack(string sender, string message);   
+        void WhisperCallBack(string sender, string message);
+        [OperationContract(IsOneWay = true)]
+        void StartGameRoom(RoomStatus roomStatus, Player[] players);
+        [OperationContract(IsOneWay = true)]
+        void PlayerExpeled(string nickname, string message);
     }
 }

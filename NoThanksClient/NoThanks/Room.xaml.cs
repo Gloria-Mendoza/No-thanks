@@ -1,8 +1,11 @@
-﻿using NoThanks.PlayerManager;
+﻿using Domain;
+using NoThanks.PlayerManager;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace NoThanks
@@ -10,16 +13,20 @@ namespace NoThanks
     /// <summary>
     /// Lógica de interacción para Room.xaml
     /// </summary>
+    [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
     public partial class Room : Window, IChatServiceCallback
     {
+        #region Atributtes & Properties
         private bool isConected = false;
         private ChatServiceClient chatServiceClient;
         private bool isNewRoom;
+        private bool isHost = false;
         private string idRoom;
+        private PlayerManager.Player[] playerList;
 
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
-
         public string IdRoom { get { return idRoom; } set { idRoom = value; } }
+        #endregion
 
         public Room()
         {
@@ -27,46 +34,40 @@ namespace NoThanks
             txtCode.IsReadOnly = true;
         }
 
+        #region Public Functions
         public void CreateNewRoom(bool isNewRoom)
         {
             this.isNewRoom = isNewRoom;
+            if (isNewRoom)
+            {
+                btnStartGame.Visibility = Visibility.Visible;
+                gridLobby.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                btnStartGame.Visibility = Visibility.Collapsed;
+            }
+
             try
             {
                 Start();
             }
             catch (EndpointNotFoundException)
             {
-                //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationObjectFaultedException)
             {
-                //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (NullReferenceException)
             {
-                //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (FaultException<ServiceBehaviorAttribute> ex)
+            catch (FaultException)
             {
-                //TODO
-                Console.WriteLine(ex.StackTrace);
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        public void MessageCallBack(string message)
-        {
-            txtChatBox.Items.Add(message);
-            txtChatBox.ScrollIntoView(txtChatBox.Items[txtChatBox.Items.Count - 1]);
-        }
-
-        public void WhisperCallBack(string sender, string message)
-        {
-            txtChatBox.Items.Add(message);
-            txtChatBox.ScrollIntoView(txtChatBox.Items[txtChatBox.Items.Count - 1]);
         }
 
         public bool CheckQuota()
@@ -76,35 +77,49 @@ namespace NoThanks
             chatServiceClient.Close();
             return aviable;
         }
+        #endregion
 
-        private void Start()
+        #region Callbacks
+        public void MessageCallBack(string message)
         {
-            if (!isConected)
+            lxtChatBox.Items.Add(message);
+            lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
+        }
+
+        public void WhisperCallBack(string sender, string message)
+        {
+            lxtChatBox.Items.Add(message);
+            lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
+        }
+
+        public void StartGameRoom(RoomStatus roomStatus, PlayerManager.Player[] players)
+        {
+            if (roomStatus == RoomStatus.Started)
             {
-                chatServiceClient = new ChatServiceClient(new InstanceContext(this));
-                if (isNewRoom)
+                lxtPlayersBox.ItemsSource = players;
+                gridLobby.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        public void PlayerExpeled(string nickname, string message)
+        {
+            
+            if (Domain.Player.PlayerClient.Nickname.Equals(nickname))
+            {
+                MenuPrincipal go = new MenuPrincipal()
                 {
-                    idRoom = chatServiceClient.GenerateRoomCode();
-                    txtCode.Text = idRoom;
-                    chatServiceClient.NewRoom(idRoom);
-                }
-                txtCode.Text = idRoom;
-                chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom);
-                isConected = true;
+                    WindowState = this.WindowState,
+                    Left = this.Left
+                };
+                go.Show();
+                this.Close();
+                MessageBox.Show($"{nickname} \n{message}", Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-        }
 
-        private void End()
-        {
-            if (isConected)
-            {
-                chatServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom);
-                chatServiceClient.Close();
-                chatServiceClient = null;
-                isConected = false;
-            }
         }
+        #endregion
 
+        #region Listeners
         private void TxtMesageContainer_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -142,18 +157,15 @@ namespace NoThanks
             }
             catch (EndpointNotFoundException)
             {
-                //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationObjectFaultedException)
             {
-                //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (NullReferenceException)
             {
-                //TODO
-                MessageBox.Show("No se pudo conectar con el servidor", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -177,5 +189,78 @@ namespace NoThanks
         {
 
         }
+
+        private void StartGameClick(object sender, RoutedEventArgs e)
+        {
+            gridLobby.Visibility = Visibility.Collapsed;
+            try
+            {
+                playerList = chatServiceClient.RecoverRoomPlayers(IdRoom);
+                lxtPlayersBox.ItemsSource = playerList;
+                chatServiceClient.StartGame(IdRoom);
+            }
+            catch (EndpointNotFoundException)
+            {
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationObjectFaultedException)
+            {
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ExpelClick(object sender, MouseButtonEventArgs e)
+        {
+            Image expelImage = (Image)sender;
+            Grid parent = (Grid)expelImage.Parent;
+            PlayerManager.Player player = (PlayerManager.Player)parent.DataContext;
+            if (isHost)
+            {
+                ExpelPlayer go = new ExpelPlayer();
+                go.SendPlayer(player, chatServiceClient, IdRoom);
+                go.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.ROOM_CANTEXPEL_MESSAGE, Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+        #endregion
+
+        #region Private Functions
+        private void Start()
+        {
+            if (!isConected)
+            {
+                chatServiceClient = new ChatServiceClient(new InstanceContext(this));
+                if (isNewRoom)
+                {
+                    idRoom = chatServiceClient.GenerateRoomCode();
+                    txtCode.Text = idRoom;
+                    chatServiceClient.NewRoom(Domain.Player.PlayerClient.Nickname, idRoom);
+                    isHost = true;
+                }
+                txtCode.Text = idRoom;
+                chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_JOINMESSAGE_MESSAGE);
+                isConected = true;
+            }
+        }
+
+        private void End()
+        {
+            if (isConected)
+            {
+                chatServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_LEAVEMESSAGE_MESSAGE);
+                chatServiceClient.Close();
+                chatServiceClient = null;
+                isConected = false;
+            }
+        }
+        #endregion
+
     }
 }

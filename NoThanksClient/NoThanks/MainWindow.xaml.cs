@@ -29,20 +29,17 @@ namespace NoThanks
                 }
                 catch (EndpointNotFoundException)
                 {
-                    //TODO
-                    MessageBox.Show("No se pudo establecer conexión con el servidor", "Upss", MessageBoxButton.OK);
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                //TODO
-                MessageBox.Show("Debes ingresar tú usuario y contraseña");
+                MessageBox.Show(Properties.Resources.LOGIN_NOUSERORPASSWORD_MESSAGE, Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
         private void RegisterClick(object sender, RoutedEventArgs e)
         {
-            //TODO
             SignIn register = new SignIn();
             register.Show();
             this.Close();
@@ -52,7 +49,8 @@ namespace NoThanks
         {
             Domain.Player.PlayerClient = new Domain.Player()
             {
-                Nickname = $"Guest{new Random().Next()}"
+                Nickname = $"Guest{new Random().Next()}",
+                IsGuest = true
             };
             MenuPrincipal go = new MenuPrincipal()
             {
@@ -68,6 +66,7 @@ namespace NoThanks
         {
             PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
             var playerLogin = client.Login(username, Security.PasswordEncryptor.ComputeSHA512Hash(password));
+
             if (playerLogin.Status)
             {
                 Domain.Player.PlayerClient = new Domain.Player()
@@ -78,7 +77,9 @@ namespace NoThanks
                     LastName = playerLogin.LastName,
                     Email = playerLogin.Email,
                     TotalScore = playerLogin.TotalScore,
+                    IsGuest = false
                 };
+
                 MenuPrincipal go = new MenuPrincipal()
                 {
                     WindowState = this.WindowState,
@@ -89,8 +90,7 @@ namespace NoThanks
             }
             else
             {
-                //TODO
-                MessageBox.Show("No Funciona", "Upss", MessageBoxButton.OK);
+                MessageBox.Show(Properties.Resources.LOGIN_CANTLOGIN_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             client.Close();
             

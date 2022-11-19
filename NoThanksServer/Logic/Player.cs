@@ -15,6 +15,7 @@ namespace Logic
         private string nickname;
         private string password;
         private string email;
+        private List<string> cards;
         private Nullable<int> totalScore;
         private string name;
         private string lastName;
@@ -26,6 +27,7 @@ namespace Logic
         public OperationContext AOperationContext { get { return aOperationContext; } set { aOperationContext = value; } }
         #endregion
 
+        #region Properties
         [DataMember]
         public bool Status { get { return status; } set { status = value; } }
         [DataMember]
@@ -37,11 +39,14 @@ namespace Logic
         [DataMember]
         public string Email { get { return email; } set { email = value; } }
         [DataMember]
+        public List<string> Cards { get { return cards; } set { cards = value; } }
+        [DataMember]
         public Nullable<int> TotalScore { get { return totalScore; } set { totalScore = value; } }
         [DataMember]
         public string Name { get { return name; } set { name = value; } }
         [DataMember]
         public string LastName { get { return lastName; } set { lastName = value; } }
+        #endregion
 
     }
 }
