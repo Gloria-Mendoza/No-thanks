@@ -24,6 +24,10 @@
   <Metadata>
     <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="bab41257-3103-42ee-bae7-3fbb0047e479" SourceId="1" SourceUrl="http://localhost:8080/?xsd=xsd2" />
     <MetadataFile FileName="item.disco" MetadataType="Disco" ID="b6c1e66c-763d-4c30-8705-480729630311" SourceId="1" SourceUrl="http://localhost:8080/?disco" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="bab41257-3103-42ee-bae7-3fbb0047e479" SourceId="1" SourceUrl="http://localhost:8080/?xsd=xsd2" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="f948389c-25bc-464e-b11d-4270a322a6db" SourceId="1" SourceUrl="http://localhost:8080/?xsd=xsd3" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="0719af33-c2f5-4f7a-9029-dfa9f4ed942a" SourceId="1" SourceUrl="http://localhost:8080/?xsd=xsd0" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="be6dc3cc-0fa4-42c2-9b84-b4ef033b0fd9" SourceId="1" SourceUrl="http://localhost:8080/?xsd=xsd1" />
     <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="0719af33-c2f5-4f7a-9029-dfa9f4ed942a" SourceId="1" SourceUrl="http://localhost:8080/?xsd=xsd0" />
     <MetadataFile FileName="PlayerManager.wsdl" MetadataType="Wsdl" ID="d780689e-5721-49e8-8d10-cf5c294d880c" SourceId="1" SourceUrl="http://localhost:8080/?wsdl" />
     <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="be6dc3cc-0fa4-42c2-9b84-b4ef033b0fd9" SourceId="1" SourceUrl="http://localhost:8080/?xsd=xsd1" />

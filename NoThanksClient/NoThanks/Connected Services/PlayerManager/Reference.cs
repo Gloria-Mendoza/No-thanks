@@ -170,6 +170,163 @@ namespace NoThanks.PlayerManager {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Room", Namespace="http://schemas.datacontract.org/2004/07/Logic")]
+    [System.SerializableAttribute()]
+    public partial class Room : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int ActualPlayersCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MAX_PLAYERS1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int MIN_PLAYERS1Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NoThanks.PlayerManager.Player[] PlayersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int RoundField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int[] ScoresField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string WinnerField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int ActualPlayersCount {
+            get {
+                return this.ActualPlayersCountField;
+            }
+            set {
+                if ((this.ActualPlayersCountField.Equals(value) != true)) {
+                    this.ActualPlayersCountField = value;
+                    this.RaisePropertyChanged("ActualPlayersCount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.IdField, value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MAX_PLAYERS1 {
+            get {
+                return this.MAX_PLAYERS1Field;
+            }
+            set {
+                if ((this.MAX_PLAYERS1Field.Equals(value) != true)) {
+                    this.MAX_PLAYERS1Field = value;
+                    this.RaisePropertyChanged("MAX_PLAYERS1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int MIN_PLAYERS1 {
+            get {
+                return this.MIN_PLAYERS1Field;
+            }
+            set {
+                if ((this.MIN_PLAYERS1Field.Equals(value) != true)) {
+                    this.MIN_PLAYERS1Field = value;
+                    this.RaisePropertyChanged("MIN_PLAYERS1");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NoThanks.PlayerManager.Player[] Players {
+            get {
+                return this.PlayersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlayersField, value) != true)) {
+                    this.PlayersField = value;
+                    this.RaisePropertyChanged("Players");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Round {
+            get {
+                return this.RoundField;
+            }
+            set {
+                if ((this.RoundField.Equals(value) != true)) {
+                    this.RoundField = value;
+                    this.RaisePropertyChanged("Round");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] Scores {
+            get {
+                return this.ScoresField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ScoresField, value) != true)) {
+                    this.ScoresField = value;
+                    this.RaisePropertyChanged("Scores");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Winner {
+            get {
+                return this.WinnerField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.WinnerField, value) != true)) {
+                    this.WinnerField = value;
+                    this.RaisePropertyChanged("Winner");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PlayerManager.IPlayerManager")]
     public interface IPlayerManager {
@@ -185,6 +342,18 @@ namespace NoThanks.PlayerManager {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/Register", ReplyAction="http://tempuri.org/IPlayerManager/RegisterResponse")]
         System.Threading.Tasks.Task<bool> RegisterAsync(NoThanks.PlayerManager.Player player);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendNewEmail", ReplyAction="http://tempuri.org/IPlayerManager/SendNewEmailResponse")]
+        bool SendNewEmail(string toEmail, string affair, int validationCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendNewEmail", ReplyAction="http://tempuri.org/IPlayerManager/SendNewEmailResponse")]
+        System.Threading.Tasks.Task<bool> SendNewEmailAsync(string toEmail, string affair, int validationCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/UpdatePassword", ReplyAction="http://tempuri.org/IPlayerManager/UpdatePasswordResponse")]
+        bool UpdatePassword(string password, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/UpdatePassword", ReplyAction="http://tempuri.org/IPlayerManager/UpdatePasswordResponse")]
+        System.Threading.Tasks.Task<bool> UpdatePasswordAsync(string password, string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendCode", ReplyAction="http://tempuri.org/IPlayerManager/SendCodeResponse")]
         bool SendCode(string emailFrom);
@@ -248,8 +417,45 @@ namespace NoThanks.PlayerManager {
             return base.Channel.RegisterAsync(player);
         }
         
+<<<<<<< HEAD
         public bool SendCode(string emailFrom) {
             return base.Channel.SendCode(emailFrom);
+=======
+        public bool SendNewEmail(string toEmail, string affair, int validationCode) {
+            return base.Channel.SendNewEmail(toEmail, affair, validationCode);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SendNewEmailAsync(string toEmail, string affair, int validationCode) {
+            return base.Channel.SendNewEmailAsync(toEmail, affair, validationCode);
+        }
+        
+        public bool UpdatePassword(string password, string email) {
+            return base.Channel.UpdatePassword(password, email);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdatePasswordAsync(string password, string email) {
+            return base.Channel.UpdatePasswordAsync(password, email);
+        }
+        
+        public bool SendCode(string emailFrom, int code) {
+            return base.Channel.SendCode(emailFrom, code);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SendCodeAsync(string emailFrom, int code) {
+            return base.Channel.SendCodeAsync(emailFrom, code);
+        }
+        
+        public int GenerateCode() {
+            return base.Channel.GenerateCode();
+        }
+        
+        public System.Threading.Tasks.Task<int> GenerateCodeAsync() {
+            return base.Channel.GenerateCodeAsync();
+        }
+        
+        public int GetGenerateCode() {
+            return base.Channel.GetGenerateCode();
+>>>>>>> b57389cece915297b1caf184e33a6babc7c207b5
         }
         
         public System.Threading.Tasks.Task<bool> SendCodeAsync(string emailFrom) {
@@ -277,29 +483,47 @@ namespace NoThanks.PlayerManager {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PlayerManager.IChatService", CallbackContract=typeof(NoThanks.PlayerManager.IChatServiceCallback))]
     public interface IChatService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Connect", ReplyAction="http://tempuri.org/IChatService/ConnectResponse")]
-        void Connect(string username);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CreateRoom", ReplyAction="http://tempuri.org/IChatService/CreateRoomResponse")]
+        void CreateRoom(NoThanks.PlayerManager.Room room);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CreateRoom", ReplyAction="http://tempuri.org/IChatService/CreateRoomResponse")]
+        System.Threading.Tasks.Task CreateRoomAsync(NoThanks.PlayerManager.Room room);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CheckQuota", ReplyAction="http://tempuri.org/IChatService/CheckQuotaResponse")]
+        bool CheckQuota(string idRoom);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CheckQuota", ReplyAction="http://tempuri.org/IChatService/CheckQuotaResponse")]
+        System.Threading.Tasks.Task<bool> CheckQuotaAsync(string idRoom);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GenerateRoomCode", ReplyAction="http://tempuri.org/IChatService/GenerateRoomCodeResponse")]
+        string GenerateRoomCode();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GenerateRoomCode", ReplyAction="http://tempuri.org/IChatService/GenerateRoomCodeResponse")]
+        System.Threading.Tasks.Task<string> GenerateRoomCodeAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Connect", ReplyAction="http://tempuri.org/IChatService/ConnectResponse")]
-        System.Threading.Tasks.Task ConnectAsync(string username);
+        void Connect(string username, string idRoom);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Connect", ReplyAction="http://tempuri.org/IChatService/ConnectResponse")]
+        System.Threading.Tasks.Task ConnectAsync(string username, string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Disconnect", ReplyAction="http://tempuri.org/IChatService/DisconnectResponse")]
-        void Disconnect(string username);
+        void Disconnect(string username, string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Disconnect", ReplyAction="http://tempuri.org/IChatService/DisconnectResponse")]
-        System.Threading.Tasks.Task DisconnectAsync(string username);
+        System.Threading.Tasks.Task DisconnectAsync(string username, string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendMessage")]
-        void SendMessage(string message, string username);
+        void SendMessage(string message, string username, string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendMessage")]
-        System.Threading.Tasks.Task SendMessageAsync(string message, string username);
+        System.Threading.Tasks.Task SendMessageAsync(string message, string username, string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendWhisper")]
-        void SendWhisper(string sender, string receiver, string message);
+        void SendWhisper(string sender, string receiver, string message, string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendWhisper")]
-        System.Threading.Tasks.Task SendWhisperAsync(string sender, string receiver, string message);
+        System.Threading.Tasks.Task SendWhisperAsync(string sender, string receiver, string message, string idRoom);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -340,36 +564,60 @@ namespace NoThanks.PlayerManager {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void Connect(string username) {
-            base.Channel.Connect(username);
+        public void CreateRoom(NoThanks.PlayerManager.Room room) {
+            base.Channel.CreateRoom(room);
         }
         
-        public System.Threading.Tasks.Task ConnectAsync(string username) {
-            return base.Channel.ConnectAsync(username);
+        public System.Threading.Tasks.Task CreateRoomAsync(NoThanks.PlayerManager.Room room) {
+            return base.Channel.CreateRoomAsync(room);
         }
         
-        public void Disconnect(string username) {
-            base.Channel.Disconnect(username);
+        public bool CheckQuota(string idRoom) {
+            return base.Channel.CheckQuota(idRoom);
         }
         
-        public System.Threading.Tasks.Task DisconnectAsync(string username) {
-            return base.Channel.DisconnectAsync(username);
+        public System.Threading.Tasks.Task<bool> CheckQuotaAsync(string idRoom) {
+            return base.Channel.CheckQuotaAsync(idRoom);
         }
         
-        public void SendMessage(string message, string username) {
-            base.Channel.SendMessage(message, username);
+        public string GenerateRoomCode() {
+            return base.Channel.GenerateRoomCode();
         }
         
-        public System.Threading.Tasks.Task SendMessageAsync(string message, string username) {
-            return base.Channel.SendMessageAsync(message, username);
+        public System.Threading.Tasks.Task<string> GenerateRoomCodeAsync() {
+            return base.Channel.GenerateRoomCodeAsync();
         }
         
-        public void SendWhisper(string sender, string receiver, string message) {
-            base.Channel.SendWhisper(sender, receiver, message);
+        public void Connect(string username, string idRoom) {
+            base.Channel.Connect(username, idRoom);
         }
         
-        public System.Threading.Tasks.Task SendWhisperAsync(string sender, string receiver, string message) {
-            return base.Channel.SendWhisperAsync(sender, receiver, message);
+        public System.Threading.Tasks.Task ConnectAsync(string username, string idRoom) {
+            return base.Channel.ConnectAsync(username, idRoom);
+        }
+        
+        public void Disconnect(string username, string idRoom) {
+            base.Channel.Disconnect(username, idRoom);
+        }
+        
+        public System.Threading.Tasks.Task DisconnectAsync(string username, string idRoom) {
+            return base.Channel.DisconnectAsync(username, idRoom);
+        }
+        
+        public void SendMessage(string message, string username, string idRoom) {
+            base.Channel.SendMessage(message, username, idRoom);
+        }
+        
+        public System.Threading.Tasks.Task SendMessageAsync(string message, string username, string idRoom) {
+            return base.Channel.SendMessageAsync(message, username, idRoom);
+        }
+        
+        public void SendWhisper(string sender, string receiver, string message, string idRoom) {
+            base.Channel.SendWhisper(sender, receiver, message, idRoom);
+        }
+        
+        public System.Threading.Tasks.Task SendWhisperAsync(string sender, string receiver, string message, string idRoom) {
+            return base.Channel.SendWhisperAsync(sender, receiver, message, idRoom);
         }
     }
 }

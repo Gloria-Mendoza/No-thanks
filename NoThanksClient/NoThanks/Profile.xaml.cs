@@ -22,11 +22,26 @@ namespace NoThanks
         public Profile()
         {
             InitializeComponent();
+            ConfigureWindow();
+        }
+
+        private void ConfigureWindow()
+        {
+            LabelName.Content = Domain.Player.PlayerClient.Nickname;
+            LabelReal.Content = Domain.Player.PlayerClient.Name;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MenuPrincipal go = new MenuPrincipal();
+            go.WindowState = this.WindowState;
+            go.Show();
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Profile_Edit go = new Profile_Edit();
             go.WindowState = this.WindowState;
             go.Show();
             this.Close();

@@ -24,5 +24,38 @@ namespace NoThanks
         {
             InitializeComponent();
         }
+
+        private void JoinClick(object sender, RoutedEventArgs e)
+        {
+            Room go = new Room()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left,
+                IsNewRoom = false,
+                IdRoom = txtCode.Text
+            };
+            if (go.CheckQuota())
+            {
+                go.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("No se puede unir a la sala, está llena", "Upss", MessageBoxButton.OK);
+                txtCode.Text = string.Empty;
+            }
+        }
+
+        private void CancelClick(object sender, RoutedEventArgs e)
+        {
+            MenuPrincipal go = new MenuPrincipal()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
+            go.Show();
+            this.Close();
+        }
+        
     }
 }

@@ -118,22 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CHANGEPASSWORD_ACTUALPASSWORD_LABEL" xml:space="preserve">
-    <value>Contraseña Actual</value>
+    <value>Current password</value>
   </data>
   <data name="CHANGEPASSWORD_COMFIRMPASSWORD_LABEL" xml:space="preserve">
-    <value>Confirmar Nueva Contraseña</value>
+    <value>Confirm New Password</value>
   </data>
   <data name="CHANGEPASSWORD_NEWPASSWORD_LABEL" xml:space="preserve">
-    <value>Nueva Contraseña</value>
+    <value>New Password</value>
   </data>
   <data name="CHANGEPASSWORD_TITLE-WINDOW" xml:space="preserve">
-    <value>No Thanks: el Juego – Cambiar Contraseña</value>
+    <value>No Thanks: The Game – Change Password</value>
   </data>
   <data name="CHANGEPASSWORD_TOKEN_LABEL" xml:space="preserve">
     <value>Token</value>
   </data>
   <data name="CHAT_SEND_BUTTON" xml:space="preserve">
-    <value>Enviar</value>
+    <value>Send</value>
   </data>
   <data name="CHAT_TITLE_WINDOW" xml:space="preserve">
     <value>Chat</value>
@@ -142,257 +142,111 @@
     <value>AFK</value>
   </data>
   <data name="EXPEL_REASONCHEAT_CHECKBOX" xml:space="preserve">
-    <value>Trampas</value>
+    <value>Cheats</value>
   </data>
   <data name="EXPEL_REASONMESSAGE_CHECKBOX" xml:space="preserve">
-    <value>Recuerda mantener un comportamiento sano para no arruinar la experiencia de juego de los demás</value>
+    <value>Remember to maintain a healthy behavior so as not to ruin the gaming experience of others</value>
   </data>
   <data name="EXPEL_REASONTOXIC_CHECKBOK" xml:space="preserve">
-    <value>Comportamiento Toxico</value>
+    <value>Toxic behavior</value>
   </data>
   <data name="EXPEL_TITLE_LABEL" xml:space="preserve">
-    <value>Motivo de la Expulsión</value>
+    <value>Reason for Expulsion</value>
   </data>
   <data name="EXPEL_TITLE_WINDOW" xml:space="preserve">
-    <value>Expulsar Jugador</value>
-  </data>
-  <data name="GAMEMENU_BUTTON_LEAVE" xml:space="preserve">
-    <value>Salir</value>
-  </data>
-  <data name="GAMEMENU_BUTTON_QUICKPLAY" xml:space="preserve">
-    <value>Partida rápida</value>
-  </data>
-  <data name="GAMEMENU_BUTTON_START" xml:space="preserve">
-    <value>Iniciar partida</value>
-  </data>
-  <data name="GAMEMENU_TITLE_WINDOW" xml:space="preserve">
-    <value>Menú de partidas</value>
+    <value>Kick Player</value>
   </data>
   <data name="GENERAL_BACK_BUTTON" xml:space="preserve">
-    <value>Volver</value>
+    <value>Back</value>
   </data>
   <data name="GENERAL_CANCEL_BUTTON" xml:space="preserve">
-    <value>Cancelar</value>
+    <value>Cancel</value>
   </data>
   <data name="GENERAL_CONFIRM_BUTTON" xml:space="preserve">
-    <value>Confirmar</value>
+    <value>Confirm</value>
   </data>
   <data name="GENERAL_NEXT_BUTTON" xml:space="preserve">
-    <value>Siguiente</value>
+    <value>Next</value>
   </data>
   <data name="JOINGAME_GAMECODE_LABEL" xml:space="preserve">
-    <value>Código</value>
+    <value>Code</value>
   </data>
   <data name="JOINGAME_JOIN_BUTTON" xml:space="preserve">
-    <value>Unirse</value>
+    <value>Join</value>
   </data>
   <data name="JOINGAME_TITLE_WINDOW" xml:space="preserve">
-    <value>Unirse a Partida (con Código)</value>
+    <value>Join Match (with Code)</value>
   </data>
   <data name="LANGUAGE_ENGLISH_COLUMN" xml:space="preserve">
     <value>English</value>
   </data>
   <data name="LANGUAGE_SELECT_BUTTON" xml:space="preserve">
-    <value>Seleccionar</value>
+    <value>Select</value>
   </data>
   <data name="LANGUAGE_SPANISH_COLUMN" xml:space="preserve">
-    <value>Español</value>
+    <value>Spanish</value>
   </data>
   <data name="LANGUAGE_TITLE_TABLE" xml:space="preserve">
-    <value>Lenguaje</value>
+    <value>Language</value>
   </data>
   <data name="LOGIN_GUEST_LABEL" xml:space="preserve">
-    <value>Jugar como Invitado</value>
+    <value>Play as Guest</value>
   </data>
   <data name="LOGIN_LOGINTITLE_LABEL" xml:space="preserve">
-    <value>Inicio de Sesión</value>
+    <value>Log In</value>
   </data>
   <data name="LOGIN_LOGIN_BUTTON" xml:space="preserve">
-    <value>Iniciar Sesión</value>
+    <value>Log in</value>
   </data>
   <data name="LOGIN_PASSWORD_LABEL" xml:space="preserve">
-    <value>Contraseña</value>
+    <value>Password</value>
   </data>
   <data name="LOGIN_REGISTER_BUTTON" xml:space="preserve">
-    <value>Registrarse</value>
+    <value>Check in</value>
   </data>
   <data name="LOGIN_TITLE_WINDOW" xml:space="preserve">
-    <value>No Thanks: El Juego</value>
+    <value>No Thanks: The Game</value>
   </data>
   <data name="LOGIN_USERNAME_LABEL" xml:space="preserve">
-    <value>Nombre de Usuario</value>
+    <value>Username</value>
   </data>
   <data name="MAINMENU_TITLE-WINDOW" xml:space="preserve">
-    <value>No Thanks: Menu Principal</value>
+    <value>No Thanks: Main Menu</value>
   </data>
   <data name="PERSONALIZATION_BUTTON" xml:space="preserve">
-    <value>Personalizacion</value>
+    <value>Personalization</value>
   </data>
   <data name="PERSONALIZATION_TITLE-WINDOW" xml:space="preserve">
-    <value>No Thanks: Personalizacion</value>
+    <value>No Thanks: Personalization</value>
   </data>
   <data name="PLAY_BUTTON" xml:space="preserve">
-    <value>Jugar</value>
+    <value>Play</value>
   </data>
   <data name="PROFILE_TITLE-WINDOW" xml:space="preserve">
-    <value>No Thanks: Perfil</value>
+    <value>No Thanks: Profile</value>
   </data>
   <data name="RESULT_PLAYERNAME_LABEL" xml:space="preserve">
-    <value>Nombre del jugador</value>
+    <value>Player's name</value>
   </data>
   <data name="RESULT_SCOREUNIT_LABEL" xml:space="preserve">
-    <value>puntos</value>
+    <value>Points</value>
   </data>
   <data name="RESULT_TITLE_WINDOW" xml:space="preserve">
-    <value>Resultados</value>
+    <value>Results</value>
   </data>
   <data name="RESULT_WINNER_LABEL" xml:space="preserve">
-    <value>Ganador</value>
+    <value>Winner</value>
   </data>
   <data name="RESULT_YOU_LABEL" xml:space="preserve">
-    <value>Tú</value>
+    <value>You</value>
   </data>
   <data name="ROOM_STARTGAME_BUTTON" xml:space="preserve">
-    <value>Iniciar Partida</value>
+    <value>Start game</value>
   </data>
   <data name="ROOM_TITLE_WINDOW" xml:space="preserve">
-    <value>Sala</value>
+    <value>Room</value>
   </data>
   <data name="ROOM_WAITING_MESSAGE" xml:space="preserve">
-    <value>Esperando a que el anfitrión comience la partida…</value>
-  </data>
-<<<<<<< HEAD
-  <data name="SIGNIN_CONFIRMATION_MESSAGE" xml:space="preserve">
-    <value>Registro exitoso</value>
-  </data>
-  <data name="SIGNIN_CONFIRMATION_MESSAGEWINDOW" xml:space="preserve">
-    <value>Confirmación de registro</value>
-=======
-  <data name="ROOM_TAKE_BUTTON" xml:space="preserve">
-    <value>Tomar</value>
-  </data>
-  <data name="ROOM_PASS_BUTTON" xml:space="preserve">
-    <value>Pasar</value>
->>>>>>> b57389cece915297b1caf184e33a6babc7c207b5
-  </data>
-  <data name="SIGNIN_EMAIL_LABEL" xml:space="preserve">
-    <value>Correo electrónico:</value>
-  </data>
-  <data name="SIGNIN_EMPTYFIELDS_MESSAGE" xml:space="preserve">
-    <value>Existen campos vacíos. Verifica los datos</value>
-  </data>
-  <data name="SIGNIN_EMPTYFIELDS_MESSAGEWINDOW" xml:space="preserve">
-    <value>Campos vacíos</value>
-  </data>
-  <data name="SIGNIN_EXCESSLENGTH_MESSAGE" xml:space="preserve">
-    <value>Existen campos que exceden la longitud permitida. Verifica los datos</value>
-  </data>
-  <data name="SIGNIN_EXCESSLENGTH_MESSAGEWINDOW" xml:space="preserve">
-    <value>Longitud excedida</value>
-  </data>
-  <data name="SIGNIN_INCORRECTPASSWORD_MESSAGE" xml:space="preserve">
-    <value>Las contraseñas ingresadas no coinciden. Verifica los datos</value>
-  </data>
-  <data name="SIGNIN_INCORRECTPASSWORD_MESSAGEWINDOW" xml:space="preserve">
-    <value>Contraseña incorrecta</value>
-  </data>
-  <data name="SIGNIN_INVALIDPASSWORD_MESSAGE" xml:space="preserve">
-    <value>La contraseña debe tener entre 8 y 16 caracteres. La contraseña debe tener por lo menos un número. La contraseña debe tener por lo menos una letra mayúscula. La contraseña debe tener por lo menos una letra minúscula</value>
-  </data>
-  <data name="SIGNIN_INVALIDPASSWORD_MESSAGEWINDOW" xml:space="preserve">
-    <value>Contraseña inválida</value>
-  </data>
-  <data name="SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGE" xml:space="preserve">
-    <value>Existen caracteres invalidos. Verifica los datos del correo electrónico</value>
-  </data>
-  <data name="SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGEWINDOW" xml:space="preserve">
-    <value>Campos inválidos en correo electrónico</value>
-  </data>
-  <data name="SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGE" xml:space="preserve">
-    <value>Existen caracteres invalidos. Verifica los datos de apellidos</value>
-  </data>
-  <data name="SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGEWINDOW" xml:space="preserve">
-    <value>Campos inválidos en apellidos</value>
-  </data>
-  <data name="SIGNIN_INVALIDSTRINGS_MESSAGE" xml:space="preserve">
-    <value>Existen caracteres invalidos. Verifica los datos de nombre</value>
-  </data>
-  <data name="SIGNIN_INVALIDSTRINGS_MESSAGEWINDOW" xml:space="preserve">
-    <value>Campos inválidos en nombre</value>
-  </data>
-  <data name="SIGNIN_LASTNAME_LABEL" xml:space="preserve">
-    <value>Apellidos:</value>
-  </data>
-  <data name="SIGNIN_NAME_LABEL" xml:space="preserve">
-    <value>Nombre:</value>
-  </data>
-  <data name="SIGNIN_PASSWORD_LABEL" xml:space="preserve">
-    <value>Contraseña:</value>
-  </data>
-  <data name="SIGNIN_REPEATEDEMAIL_MESSAGE" xml:space="preserve">
-    <value>El correo ingresado ya se encuentra registrado. Por favor ingrese uno nuevo</value>
-  </data>
-  <data name="SIGNIN_REPEATEDEMAIL_MESSAGEWINDOW" xml:space="preserve">
-    <value>Correo registrado</value>
-  </data>
-  <data name="SIGNIN_REPEATEDUSERNAME_MESSAGE" xml:space="preserve">
-    <value>El nombre de usuario ingresado ya se encuentra registrado. Por favor ingrese uno nuevo</value>
-  </data>
-  <data name="SIGNIN_REPEATEDUSERNAME_MESSAGEWINDOW" xml:space="preserve">
-    <value>Nombre de usuario registrado</value>
-  </data>
-  <data name="SIGNIN_REPEATPASSWORD_LABEL" xml:space="preserve">
-    <value>Repetir contraseña:</value>
-  </data>
-  <data name="SIGNIN_SAVEERROR_MESSAGE" xml:space="preserve">
-    <value>No Funciona</value>
-  </data>
-  <data name="SIGNIN_SAVEERROR_MESSAGEWINDOW" xml:space="preserve">
-    <value>Upss</value>
-  </data>
-  <data name="SIGNIN_SIGNIN_BUTTON" xml:space="preserve">
-    <value>Registrarse</value>
-  </data>
-  <data name="SIGNIN_TITLESIGNIN_LABEL" xml:space="preserve">
-    <value>Registro</value>
-  </data>
-  <data name="SIGNIN_TITLE_WINDOW" xml:space="preserve">
-    <value>Registrarse</value>
-  </data>
-  <data name="SIGNIN_USERNAME_LABEL" xml:space="preserve">
-    <value>Nombre de usuario:</value>
-  </data>
-  <data name="VERIFYEMAIL_BUTTON" xml:space="preserve">
-    <value>Enviar código</value>
-  </data>
-  <data name="VERIFYEMAIL_CONFIRMATIONERROR_MESSAGE" xml:space="preserve">
-    <value>El código ingresado es incorrecto. Verifique la información</value>
-  </data>
-  <data name="VERIFYEMAIL_CONFIRMATIONERROR_MESSAGEWINDOW" xml:space="preserve">
-    <value>Error de corfirmación de correo</value>
-  </data>
-  <data name="VERIFYEMAIL_CONFIRMATION_MESSAGE" xml:space="preserve">
-    <value>El correo electróncio se ha verificado correctamente</value>
-  </data>
-  <data name="VERIFYEMAIL_CONFIRMATION_MESSAGEWINDOW" xml:space="preserve">
-    <value>Confirmación de correo</value>
-  </data>
-  <data name="VERIFYEMAIL_INSTRUCTIONS_LABEL" xml:space="preserve">
-    <value>Se ha enviado un código para verificar su correo electrónico</value>
-  </data>
-  <data name="VERIFYEMAIL_INVALIDFIELD_MESSAGE" xml:space="preserve">
-    <value>El código ingresado es inválido. Verifique la información</value>
-  </data>
-  <data name="VERIFYEMAIL_INVALIDFIELD_MESSAGEWINDOW" xml:space="preserve">
-    <value>Campo inválido</value>
-  </data>
-  <data name="VERIFYEMAIL_NUMBER_LABEL" xml:space="preserve">
-    <value>Número de verificación:</value>
-  </data>
-  <data name="VERIFYEMAIL_TITLE_LABEL" xml:space="preserve">
-    <value>Comprobación de correo electrónico</value>
-  </data>
-  <data name="VERIFYEMAIL_TITLE_WINDOW" xml:space="preserve">
-    <value>Verificación de correo electrónico</value>
+    <value>Waiting for the host to start the game...</value>
   </data>
 </root>
