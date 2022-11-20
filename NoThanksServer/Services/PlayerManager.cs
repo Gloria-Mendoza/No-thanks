@@ -363,9 +363,13 @@ namespace Services
         {
             try
             {
-                byte[] image = File.ReadAllBytes($"imageProfile\\{nameprofile}.jpg");
-                var callbackchannel = OperationContext.Current.GetCallbackChannel<IUdateProfileCallBack>();
-                callbackchannel.ImageCallBack(image);
+                if (File.Exists($"imageProfile\\{nameprofile}.jpg"))
+                {
+                    byte[] image = File.ReadAllBytes($"imageProfile\\{nameprofile}.jpg");
+                    var callbackchannel = OperationContext.Current.GetCallbackChannel<IUdateProfileCallBack>();
+                    callbackchannel.ImageCallBack(image);
+                }
+                
             }
             catch (Exception ex)
             {
