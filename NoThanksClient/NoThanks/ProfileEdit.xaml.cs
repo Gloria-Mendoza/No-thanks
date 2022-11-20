@@ -88,11 +88,11 @@ namespace NoThanks
                 MessageBox.Show("El campo debe ser rellenado", "Error");
                 return;
             }
-            try {
+            //try {
                 Player user = new Player();
                 user.Nickname = tbName.Text;
                 user.Photo = tbUrlPhoto.Text;
-
+                /*
                 string destiny = @"C:\Prueba\";
                 string correct = imagenProfile.Source.ToString().Replace("file:///", "");
                 File.Copy(correct, destiny + tbUrlPhoto.Text, true);
@@ -109,7 +109,7 @@ namespace NoThanks
             catch (Exception ex)
             {
                 MessageBox.Show("No fue posible guardar los cambios" + ex.Message, "Error");
-            }
+            }*/
             Profile go = new Profile()
             {
                 WindowState = this.WindowState,
