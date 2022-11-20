@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,12 +19,19 @@ namespace NoThanks
     /// <summary>
     /// Lógica de interacción para MenuPrincipal.xaml
     /// </summary>
-    public partial class MenuPrincipal : Window
+    public partial class MenuPrincipal : Window, PlayerManager.IUpdateProfileCallback
     {
         public MenuPrincipal()
         {
             InitializeComponent();
             ConfigureWindow();
+            updateImage();
+        }
+        private void updateImage()
+        {
+            var context = new InstanceContext(this);
+            PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
+            updateProfileClient.GetImage(Domain.Player.PlayerClient.Nickname);
         }
 
         private void ConfigureWindow()
@@ -52,7 +61,22 @@ namespace NoThanks
             this.Close();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Personalization go = new Personalization()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
+            go.Show();
+            this.Close();
+        }
+
+
+
+        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Profile go = new Profile()
             {
@@ -62,10 +86,20 @@ namespace NoThanks
             go.Show();
             this.Close();
         }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        public void ImageCallBack(byte[] imageBytes)
         {
-            Personalization go = new Personalization()
+            BitmapImage photo = new BitmapImage();
+            photo.BeginInit();
+            photo.StreamSource = new MemoryStream(imageBytes);
+            photo.EndInit();
+            photo.Freeze();
+            imagenProfile.Source = photo;
+
+        }
+
+        private void Image_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
+        {
+            Friends go = new Friends()
             {
                 WindowState = this.WindowState,
                 Left = this.Left

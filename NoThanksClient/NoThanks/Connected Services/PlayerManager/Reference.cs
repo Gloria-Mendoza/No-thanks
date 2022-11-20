@@ -654,6 +654,103 @@ namespace NoThanks.PlayerManager {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PlayerManager.IUpdateProfile", CallbackContract=typeof(NoThanks.PlayerManager.IUpdateProfileCallback))]
+    public interface IUpdateProfile {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/SaveImage", ReplyAction="http://tempuri.org/IUpdateProfile/SaveImageResponse")]
+        bool SaveImage(byte[] imageManager, string nameProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/SaveImage", ReplyAction="http://tempuri.org/IUpdateProfile/SaveImageResponse")]
+        System.Threading.Tasks.Task<bool> SaveImageAsync(byte[] imageManager, string nameProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUpdateProfile/GetImage")]
+        void GetImage(string nameProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUpdateProfile/GetImage")]
+        System.Threading.Tasks.Task GetImageAsync(string nameProfile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalPlayers", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalPlayersResponse")]
+        string[] GetGlobalPlayers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalPlayers", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalPlayersResponse")]
+        System.Threading.Tasks.Task<string[]> GetGlobalPlayersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalFriends", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalFriendsResponse")]
+        string[] GetGlobalFriends();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalFriends", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalFriendsResponse")]
+        System.Threading.Tasks.Task<string[]> GetGlobalFriendsAsync();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IUpdateProfileCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUpdateProfile/ImageCallBack")]
+        void ImageCallBack(byte[] image);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IUpdateProfileChannel : NoThanks.PlayerManager.IUpdateProfile, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UpdateProfileClient : System.ServiceModel.DuplexClientBase<NoThanks.PlayerManager.IUpdateProfile>, NoThanks.PlayerManager.IUpdateProfile {
+        
+        public UpdateProfileClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public UpdateProfileClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public UpdateProfileClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public UpdateProfileClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public UpdateProfileClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public bool SaveImage(byte[] imageManager, string nameProfile) {
+            return base.Channel.SaveImage(imageManager, nameProfile);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SaveImageAsync(byte[] imageManager, string nameProfile) {
+            return base.Channel.SaveImageAsync(imageManager, nameProfile);
+        }
+        
+        public void GetImage(string nameProfile) {
+            base.Channel.GetImage(nameProfile);
+        }
+        
+        public System.Threading.Tasks.Task GetImageAsync(string nameProfile) {
+            return base.Channel.GetImageAsync(nameProfile);
+        }
+        
+        public string[] GetGlobalPlayers() {
+            return base.Channel.GetGlobalPlayers();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetGlobalPlayersAsync() {
+            return base.Channel.GetGlobalPlayersAsync();
+        }
+        
+        public string[] GetGlobalFriends() {
+            return base.Channel.GetGlobalFriends();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetGlobalFriendsAsync() {
+            return base.Channel.GetGlobalFriendsAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PlayerManager.IDeckOfCards", CallbackContract=typeof(NoThanks.PlayerManager.IDeckOfCardsCallback))]
     public interface IDeckOfCards {
         

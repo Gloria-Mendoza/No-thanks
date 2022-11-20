@@ -82,6 +82,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Friends.xaml.cs">
+      <DependentUpon>Friends.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PlaySelection.xaml.cs">
       <DependentUpon>PlaySelection.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ExpelPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Friends.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,6 +305,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\LETTER_X_ICON.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="amigos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="persona.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pincel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="lapiz.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
