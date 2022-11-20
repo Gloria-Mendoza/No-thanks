@@ -13,13 +13,9 @@
     <Grid>
         <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" HorizontalAlignment="Right" Margin="0,397,10,10" Width="70" Click="Button_Click" FontFamily="Arial" FontWeight="Bold"/>
         <Label x:Name="LabelName" Content="Invitado" HorizontalAlignment="Left" Margin="155,24,0,0" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontFamily="Arial" Foreground="Red"/>
-        <Label x:Name ="LabelReal" Content="" HorizontalAlignment="Left" Margin="168,89,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFD8C22B" FontSize="24" FontFamily="Arial"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="173,134,0,0" VerticalAlignment="Top" Height="47" Width="47" Click="Button_Click_1">
-            <Button.Background>
-                <ImageBrush ImageSource="/Images/pincel.png"/>
-            </Button.Background>
-        </Button>
-        <Image HorizontalAlignment="Left" Height="147" Margin="10,34,0,0" VerticalAlignment="Top" Width="158" Source="/Images/persona.png"/>
+        <Label x:Name ="LabelReal" Content="" HorizontalAlignment="Left" Margin="168,89,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFD8C22B" FontSize="24" FontFamily="Arial" Width="187"/>
+        <Image x:Name="imagenProfile"   HorizontalAlignment="Left" Height="147" Margin="10,34,0,0" VerticalAlignment="Top" Width="158" Source="/Images/persona.png"/>
+        <Image HorizontalAlignment="Left" Height="75" Margin="100,109,0,0" VerticalAlignment="Top" Width="75" Source="/pincel.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
 
     </Grid>
 </Window>
