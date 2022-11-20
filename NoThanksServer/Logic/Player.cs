@@ -52,7 +52,7 @@ namespace Logic
         #endregion
 
         #region Methods
-        public override bool Equals(object obj)
+        /*public override bool Equals(object obj)
         {
             bool isEquals = false;
             if (obj == this)
@@ -82,7 +82,7 @@ namespace Logic
         public override string ToString()
         {
             return base.ToString();
-        }
+        }*/
         #endregion
     }
 }
