@@ -29,9 +29,13 @@ namespace NoThanks
         }
         private void updateImage()
         {
-            var context = new InstanceContext(this);
-            PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
-            updateProfileClient.GetImage(Domain.Player.PlayerClient.Nickname);
+            if (!Domain.Player.PlayerClient.IsGuest)
+            {
+                var context = new InstanceContext(this);
+                PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
+                updateProfileClient.GetImage(Domain.Player.PlayerClient.Nickname);
+            }
+
         }
 
         private void ConfigureWindow()
@@ -78,13 +82,17 @@ namespace NoThanks
 
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            Profile go = new Profile()
-            {
-                WindowState = this.WindowState,
-                Left = this.Left
-            };
-            go.Show();
-            this.Close();
+            if (!Domain.Player.PlayerClient.IsGuest) { 
+                Profile go = new Profile()
+                {
+                    WindowState = this.WindowState,
+                    Left = this.Left
+                };
+            
+                go.Show();
+                this.Close();
+            }
+
         }
         public void ImageCallBack(byte[] imageBytes)
         {
@@ -99,13 +107,15 @@ namespace NoThanks
 
         private void Image_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
         {
-            Friends go = new Friends()
-            {
-                WindowState = this.WindowState,
-                Left = this.Left
-            };
-            go.Show();
-            this.Close();
+                if (!Domain.Player.PlayerClient.IsGuest) { 
+                    Friends go = new Friends()
+                {
+                    WindowState = this.WindowState,
+                    Left = this.Left
+                };
+                go.Show();
+                this.Close();
+            }
         }
     }
 }
