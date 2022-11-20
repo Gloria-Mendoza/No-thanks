@@ -33,7 +33,7 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                Console.WriteLine(entityException.Message);
+                Console.WriteLine(entityException.StackTrace);
             }
             return player;
         }
