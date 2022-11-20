@@ -15,7 +15,8 @@ namespace Logic
         private string nickname;
         private string password;
         private string email;
-        private List<string> cards;
+        private List<CardType> cards;
+        private int tokens;
         private Nullable<int> totalScore;
         private string name;
         private string lastName;
@@ -39,7 +40,9 @@ namespace Logic
         [DataMember]
         public string Email { get { return email; } set { email = value; } }
         [DataMember]
-        public List<string> Cards { get { return cards; } set { cards = value; } }
+        public List<CardType> Cards { get { return cards; } set { cards = value; } }
+        [DataMember]
+        public int Tokens { get { return tokens; } set { tokens = value; } }
         [DataMember]
         public Nullable<int> TotalScore { get { return totalScore; } set { totalScore = value; } }
         [DataMember]
@@ -48,5 +51,38 @@ namespace Logic
         public string LastName { get { return lastName; } set { lastName = value; } }
         #endregion
 
+        #region Methods
+        public override bool Equals(object obj)
+        {
+            bool isEquals = false;
+            if (obj == this)
+            {
+                isEquals = true;
+            }
+            if (obj != null && obj is Player)
+            {
+                Player other = (Player)obj;
+                isEquals = this.IdPlayer == other.IdPlayer &&
+                    this.Nickname.Equals(other.Nickname) &&
+                    this.Password.Equals(other.Password) &&
+                    this.Email.Equals(other.Email) &&
+                    this.TotalScore.Equals(other.TotalScore) &&
+                    this.Name.Equals(other.Name) &&
+                    this.LastName.Equals(other.LastName) &&
+                    this.Status.Equals(other.Status);
+            }
+            return isEquals;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+        #endregion
     }
 }
