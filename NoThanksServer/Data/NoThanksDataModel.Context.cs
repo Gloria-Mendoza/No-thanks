@@ -27,7 +27,7 @@ namespace Data
     
         public virtual DbSet<Friend> Friends { get; set; }
         public virtual DbSet<Game> Games { get; set; }
-        public virtual DbSet<MatchsHistory> MatchsHistories { get; set; }
         public virtual DbSet<Player> Players { get; set; }
+        public virtual DbSet<MatchsHistory> MatchsHistories { get; set; }
     }
 }
