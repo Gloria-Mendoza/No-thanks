@@ -58,6 +58,35 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IUpdateProfile_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="NetTcpBinding_IDeckOfCards_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -214,6 +243,30 @@
   <wsdl:message name="IChatService_PlayerExpeled_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:PlayerExpeled" />
   </wsdl:message>
+  <wsdl:message name="IUpdateProfile_SaveImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveImage" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_SaveImage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_GetImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImage" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_GetGlobalPlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGlobalPlayers" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_GetGlobalPlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGlobalPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_GetGlobalFriends_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGlobalFriends" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_GetGlobalFriends_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGlobalFriendsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_ImageCallBack_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ImageCallBack" />
+  </wsdl:message>
   <wsdl:message name="IDeckOfCards_CreateDeck_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateDeck" />
   </wsdl:message>
@@ -320,6 +373,26 @@
     </wsdl:operation>
     <wsdl:operation name="PlayerExpeled">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/PlayerExpeled" message="tns:IChatService_PlayerExpeled_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IUpdateProfile">
+    <wsdl:operation name="SaveImage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUpdateProfile/SaveImage" message="tns:IUpdateProfile_SaveImage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUpdateProfile/SaveImageResponse" message="tns:IUpdateProfile_SaveImage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUpdateProfile/GetImage" message="tns:IUpdateProfile_GetImage_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalPlayers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalPlayers" message="tns:IUpdateProfile_GetGlobalPlayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalPlayersResponse" message="tns:IUpdateProfile_GetGlobalPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalFriends">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalFriends" message="tns:IUpdateProfile_GetGlobalFriends_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalFriendsResponse" message="tns:IUpdateProfile_GetGlobalFriends_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImageCallBack">
+      <wsdl:output wsaw:Action="http://tempuri.org/IUpdateProfile/ImageCallBack" message="tns:IUpdateProfile_ImageCallBack_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IDeckOfCards">
@@ -539,6 +612,49 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IUpdateProfile" type="tns:IUpdateProfile">
+    <wsp:PolicyReference URI="#NetTcpBinding_IUpdateProfile_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="SaveImage">
+      <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/SaveImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImage">
+      <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/GetImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalPlayers">
+      <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/GetGlobalPlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalFriends">
+      <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/GetGlobalFriends" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImageCallBack">
+      <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/ImageCallBack" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_IDeckOfCards" type="tns:IDeckOfCards">
     <wsp:PolicyReference URI="#NetTcpBinding_IDeckOfCards_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
@@ -590,6 +706,15 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IChatService" binding="tns:NetTcpBinding_IChatService">
+      <soap12:address location="net.tcp://localhost:8081/Services" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IUpdateProfile" binding="tns:NetTcpBinding_IUpdateProfile">
       <soap12:address location="net.tcp://localhost:8081/Services" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>

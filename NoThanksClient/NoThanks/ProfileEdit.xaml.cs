@@ -19,13 +19,14 @@ using Image = System.Drawing.Image;
 using System.IO;
 using Path = System.IO.Path;
 using System.Reflection;
+using System.ServiceModel;
 
 namespace NoThanks
 {
     /// <summary>
     /// Lógica de interacción para Profile_Edit.xaml
     /// </summary>
-    public partial class Profile_Edit : Window
+    public partial class Profile_Edit : Window, PlayerManager.IUpdateProfileCallback
     {
      
 
@@ -36,7 +37,8 @@ namespace NoThanks
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            Player user = new Player();
+            user.Nickname = tbName.Text;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -55,8 +57,17 @@ namespace NoThanks
                     photo.UriSource = new Uri(Imagen.FileName);
                     photo.EndInit();
                     photo.Freeze();
-
+                    using (var Stream = new MemoryStream())
+                    {
+                        var bitmap = new JpegBitmapEncoder();
+                        bitmap.Frames.Add(BitmapFrame.Create(photo));
+                        bitmap.Save(Stream);
+                        var context = new InstanceContext(this);
+                        PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
+                        updateProfileClient.SaveImage(Stream.ToArray(), Domain.Player.PlayerClient.Nickname);
+                    }
                     imagenProfile.Source = photo;
+                    tbUrlPhoto.Text = "foto_" + tbName.Text + ".jpg";
                 }
                 catch(Exception ex)
                 {
@@ -69,40 +80,44 @@ namespace NoThanks
 
         }
 
-      //  public static void SaveProfilePicture(string username, Image imageProfile)
-      //    {
-      //      var profilePicturePath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "../../ProfilePictures/" + username + ".jpg";
-        //    using (var fileStream = new FileStream(profilePicturePath, FileMode.Create))
-          //  {
-            //    var jpegBitmapEncoder = new JpegBitmapEncoder();
-             //   jpegBitmapEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)imageProfile.Source));
-             //   jpegBitmapEncoder.Save(fileStream);
-           // }
-       // }
-
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if(txtName.Text == "")
+            if(tbName.Text == "")
             {
                 MessageBox.Show("El campo debe ser rellenado", "Error");
                 return;
             }
-            try { 
+            try {
                 Player user = new Player();
-                user.Name = txtName.Text;
-                
-                string destiny = @"C:\Streams";
+                user.Nickname = tbName.Text;
+                user.Photo = tbUrlPhoto.Text;
+
+                string destiny = @"C:\Prueba\";
                 string correct = imagenProfile.Source.ToString().Replace("file:///", "");
-                File.Copy(correct, destiny, true);
-                // int id = Player.PlayerClient.Nickname ;
+                File.Copy(correct, destiny + tbUrlPhoto.Text, true);
+                int id = Domain.Player.PlayerClient.IdPlayer;
                 MessageBox.Show("Se guardo correctamente", "Exito");
 
-            }
-            catch
-            {
+                if (id > 0)
+                {
+                    MessageBox.Show("Se ha guardado correctamente los cambios", "Guardar");
+
+                }
 
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No fue posible guardar los cambios" + ex.Message, "Error");
+            }
+            Profile go = new Profile()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
+            go.Show();
+            this.Close();
+
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -114,6 +129,10 @@ namespace NoThanks
             };
             go.Show();
             this.Close();
+        }
+        public void ImageCallBack(byte[] image)
+        {
+            throw new NotImplementedException();
         }
     }
 }

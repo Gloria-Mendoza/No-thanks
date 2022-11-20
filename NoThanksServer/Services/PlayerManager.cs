@@ -2,7 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity.Core;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.ServiceModel;
@@ -321,4 +325,55 @@ namespace Services
             callback.ShuffleDeckCallBack(newDeck.ToArray());
         }
     }
+    public partial class PlayerManager : IUpdateProfile
+    {
+        public List<String> GetGlobalPlayers()
+        {
+            List<String> result = new List<String>();
+            ListPlayers list = new ListPlayers();
+            result = list.ListAllPlayer();
+            return result;
+        }
+
+        public List<String> GetGlobalFriends()
+        {
+            List<String> result = new List<String>();
+            ListFriends list = new ListFriends();
+            result = list.ListAllFriend();
+            return result;
+        }
+
+        public bool SaveImage(byte[] imageManager, string nameprofile)
+        {
+            try
+            {
+
+                var image = Image.FromStream(new MemoryStream(imageManager));
+                image.Save($"imageProfile\\{nameprofile}.jpg", ImageFormat.Jpeg);
+                return true;
+            }
+            catch (ExternalException e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        public void GetImage(string nameprofile)
+        {
+            try
+            {
+                byte[] image = File.ReadAllBytes($"imageProfile\\{nameprofile}.jpg");
+                var callbackchannel = OperationContext.Current.GetCallbackChannel<IUdateProfileCallBack>();
+                callbackchannel.ImageCallBack(image);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+    }
+
+
 }
