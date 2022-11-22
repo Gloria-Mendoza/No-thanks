@@ -277,14 +277,14 @@
   <wsdl:message name="IDeckOfCards_DiscardFirstNine_InputMessage">
     <wsdl:part name="parameters" element="tns:DiscardFirstNine" />
   </wsdl:message>
-  <wsdl:message name="IDeckOfCards_CreateDeckCallBack_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:CreateDeckCallBack" />
+  <wsdl:message name="IDeckOfCards_TakeCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:TakeCard" />
   </wsdl:message>
-  <wsdl:message name="IDeckOfCards_ShuffleDeckCallBack_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ShuffleDeckCallBack" />
+  <wsdl:message name="IDeckOfCards_UpdateDeck_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeck" />
   </wsdl:message>
-  <wsdl:message name="IDeckOfCards_DiscardFirstNineCallback_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:DiscardFirstNineCallback" />
+  <wsdl:message name="IDeckOfCards_TakeCardCallBack_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:TakeCardCallBack" />
   </wsdl:message>
   <wsdl:portType name="IPlayerManager">
     <wsdl:operation name="Login">
@@ -406,14 +406,14 @@
     <wsdl:operation name="DiscardFirstNine">
       <wsdl:input wsaw:Action="http://tempuri.org/IDeckOfCards/DiscardFirstNine" message="tns:IDeckOfCards_DiscardFirstNine_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="CreateDeckCallBack">
-      <wsdl:output wsaw:Action="http://tempuri.org/IDeckOfCards/CreateDeckCallBack" message="tns:IDeckOfCards_CreateDeckCallBack_OutputCallbackMessage" />
+    <wsdl:operation name="TakeCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeckOfCards/TakeCard" message="tns:IDeckOfCards_TakeCard_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ShuffleDeckCallBack">
-      <wsdl:output wsaw:Action="http://tempuri.org/IDeckOfCards/ShuffleDeckCallBack" message="tns:IDeckOfCards_ShuffleDeckCallBack_OutputCallbackMessage" />
+    <wsdl:operation name="UpdateDeck">
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeckOfCards/UpdateDeck" message="tns:IDeckOfCards_UpdateDeck_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="DiscardFirstNineCallback">
-      <wsdl:output wsaw:Action="http://tempuri.org/IDeckOfCards/DiscardFirstNineCallback" message="tns:IDeckOfCards_DiscardFirstNineCallback_OutputCallbackMessage" />
+    <wsdl:operation name="TakeCardCallBack">
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeckOfCards/TakeCardCallBack" message="tns:IDeckOfCards_TakeCardCallBack_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPlayerManager" type="tns:IPlayerManager">
@@ -677,20 +677,20 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="CreateDeckCallBack">
-      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/CreateDeckCallBack" style="document" />
+    <wsdl:operation name="TakeCard">
+      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/TakeCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeck">
+      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/UpdateDeck" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ShuffleDeckCallBack">
-      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/ShuffleDeckCallBack" style="document" />
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DiscardFirstNineCallback">
-      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/DiscardFirstNineCallback" style="document" />
+    <wsdl:operation name="TakeCardCallBack">
+      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/TakeCardCallBack" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

@@ -82,8 +82,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Friends.xaml.cs">
-      <DependentUpon>Friends.xaml</DependentUpon>
+    <Compile Include="FriendProfile.xaml.cs">
+      <DependentUpon>FriendProfile.xaml</DependentUpon>
     </Compile>
     <Compile Include="PlaySelection.xaml.cs">
       <DependentUpon>PlaySelection.xaml</DependentUpon>

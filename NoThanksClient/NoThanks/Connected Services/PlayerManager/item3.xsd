@@ -360,21 +360,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="CreateDeckCallBack">
+  <xs:element name="TakeCard">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q10:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ShuffleDeckCallBack">
+  <xs:element name="UpdateDeck">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="shuffledDeck" nillable="true" type="q11:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DiscardFirstNineCallback">
+  <xs:element name="TakeCardCallBack">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q12:ArrayOfCardType" />
