@@ -15,18 +15,23 @@ namespace Services
     {
         [OperationContract]
         Logic.Player Login(String nickname, String password);
+
         [OperationContract]
         bool Register(Player player);
+
         [OperationContract]
         bool SendCode(string emailFrom, int code);
         [OperationContract]
         int GenerateCode();
         [OperationContract]
         int GetGenerateCode();
+
         [OperationContract]
-        bool SendNewEmail(String toEmail, String affair, int validationCode);
+        bool SendValidationEmail(String toEmail, String affair, int validationCode);
+
         [OperationContract]
         bool UpdatePassword(string password, string email);
+
         [OperationContract]
         bool ExitsEmail(string text);
         [OperationContract]

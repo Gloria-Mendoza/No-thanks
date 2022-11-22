@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain;
+using NoThanks.PlayerManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,62 @@ namespace NoThanks
     /// </summary>
     public partial class ExpelPlayer : Window
     {
+        private PlayerManager.Player player;
+        private ChatServiceClient chatServiceClient1;
+        private string idRoom1;
+
         public ExpelPlayer()
         {
             InitializeComponent();
         }
+
+        #region Listeners
+        private void ConfirmClick(object sender, RoutedEventArgs e)
+        {
+            Expel();
+            DialogResult = true;
+            this.Close();
+        }
+
+        private void CancelClick(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            this.Close();
+        }
+        #endregion
+
+        #region Private Funcitons
+        private void Expel()
+        {
+            string expelReason = $"{DateTime.Now} \n{txtReason.Content}: ";
+
+            if (chAfk.IsChecked == true)
+            {
+                expelReason += $"\n{chAfk.Content} ";
+            }
+
+            if (chCheats.IsChecked == true)
+            {
+                expelReason += $"\n{chCheats.Content} ";
+            }
+
+            if (chToxic.IsChecked == true)
+            {
+                expelReason += $"\n{chToxic.Content} ";
+            }
+            expelReason += $"\n{txtMessage.Text} ";
+
+            chatServiceClient1.ExpelPlayer(player.Nickname, idRoom1, expelReason);
+        }
+        #endregion
+
+        #region Public Functions
+        public void SendPlayer(PlayerManager.Player playerToExpel, PlayerManager.ChatServiceClient chatServiceClient, string idRoom)
+        {
+            player = playerToExpel;
+            chatServiceClient1 = chatServiceClient;
+            idRoom1 = idRoom;
+        }
+        #endregion
     }
 }

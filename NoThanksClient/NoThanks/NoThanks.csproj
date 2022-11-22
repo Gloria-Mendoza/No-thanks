@@ -82,6 +82,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Friends.xaml.cs">
+      <DependentUpon>Friends.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PlaySelection.xaml.cs">
       <DependentUpon>PlaySelection.xaml</DependentUpon>
     </Compile>
@@ -93,9 +96,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
-    <Compile Include="GameMenu.xaml.cs">
-      <DependentUpon>GameMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.es-MX.Designer.cs">
       <DependentUpon>Resources.es-MX.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -103,6 +103,9 @@
     </Compile>
     <Compile Include="Room.xaml.cs">
       <DependentUpon>Room.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RoomScores.xaml.cs">
+      <DependentUpon>RoomScores.xaml</DependentUpon>
     </Compile>
     <Compile Include="SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
@@ -118,7 +121,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GameMenu.xaml">
+    <Page Include="Friends.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -171,6 +174,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RoomScores.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="SignIn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,9 +223,6 @@
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Connected Services\PlayerManager\item1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\PlayerManager\item2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\PlayerManager\item3.xsd">
@@ -283,9 +287,6 @@
     <Resource Include="Images\pincel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="pincel.png" />
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\PlayerManager\" />
   </ItemGroup>
   <ItemGroup>
@@ -304,7 +305,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Music\noThanksMusic.wav" />
+    <Resource Include="Images\LETTER_X_ICON.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="amigos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="persona.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pincel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="lapiz.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
