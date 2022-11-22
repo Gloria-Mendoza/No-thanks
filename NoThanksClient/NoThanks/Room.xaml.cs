@@ -1,4 +1,4 @@
-﻿using Domain;
+using Domain;
 using NoThanks.PlayerManager;
 using System;
 using System.Collections.Generic;
@@ -14,15 +14,17 @@ namespace NoThanks
     /// Lógica de interacción para Room.xaml
     /// </summary>
     [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
-    public partial class Room : Window, IChatServiceCallback
+    public partial class Room : Window, IChatServiceCallback, IDeckOfCardsCallback
     {
         #region Atributtes & Properties
         private bool isConected = false;
         private ChatServiceClient chatServiceClient;
+        private DeckOfCardsClient deckServiceClient;
         private bool isNewRoom;
         private bool isHost = false;
         private string idRoom;
         private PlayerManager.Player[] playerList;
+        private CardType[] gameDeck;
 
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
         public string IdRoom { get { return idRoom; } set { idRoom = value; } }
@@ -51,6 +53,7 @@ namespace NoThanks
             try
             {
                 Start();
+
             }
             catch (EndpointNotFoundException)
             {
@@ -116,6 +119,20 @@ namespace NoThanks
                 MessageBox.Show($"{nickname} \n{message}", Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
+        }
+        public void CreateDeckCallBack(CardType[] gameDeck)
+        {
+            this.gameDeck = gameDeck;
+        }
+
+        public void ShuffleDeckCallBack(CardType[] shuffledDeck)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DiscardFirstNineCallback(CardType[] gameDeck)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 

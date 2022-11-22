@@ -33,8 +33,15 @@ namespace Services
         bool UpdatePassword(string password, string email);
 
         [OperationContract]
-        bool ExitsEmail(string text);
+        bool ExitsEmail(string text); // ==> ESTÁ MAL ESCRITO!!! :V
         [OperationContract]
-        bool ExitsNickname(string text);
+        bool ExitsNickname(string text); // ==> ESTÁ MAL ESCRITO!!! :V
+    }
+
+    [DataContract]
+    public partial class MatchMember
+    {
+        [DataMember]
+        public Player player;
     }
 }

@@ -19,6 +19,7 @@ namespace Services
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
     public partial class PlayerManager : IPlayerManager
     {
+        private static List<MatchMember> players = new List<MatchMember>();
         int number = 0;
         public Logic.Player Login(String nickname, String password)
         {
@@ -35,6 +36,11 @@ namespace Services
             {
                 Console.WriteLine(entityException.StackTrace);
             }
+            MatchMember member = new MatchMember()
+            {
+                player = player,
+            };
+            players.Add(member);
             return player;
         }
         
@@ -101,14 +107,14 @@ namespace Services
             return status;
         }
 
-        public bool ExitsEmail(string text)
+        public bool ExitsEmail(string text) // ==> EST� MAL ESCRITO!!! :V
         {
             var status = false;
             Validation validation = new Validation();
             return status = validation.ExistEmail(text);
         }
 
-        public bool ExitsNickname(string text)
+        public bool ExitsNickname(string text) // ==> EST� MAL ESCRITO!!! :V
         {
             var status = false;
             Validation validation = new Validation();
@@ -128,6 +134,29 @@ namespace Services
         public int GetGenerateCode()
         {
             return number;
+        }
+
+        public bool SendNewEmail(string toEmail, string affair, int validationCode)
+        {
+            var client = new SendEmail();
+            var status = client.SendNewEmail(toEmail, affair, validationCode);
+            return status;
+        }
+
+        public bool UpdatePassword(string password, string email)
+        {
+            var status = false;
+            try
+            {
+                var client = new Authentication();
+                status = client.UpdatePlayerPassword(password, email);
+            }
+            catch (EntityException entityException)
+            {
+                //TODO
+                Console.WriteLine(entityException.Message);
+            }
+            return status;
         }
     }
 
@@ -215,7 +244,7 @@ namespace Services
                 globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Add(player);
                 globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).ActualPlayersCount++;
             }
-            catch(NullReferenceException e)
+            catch (NullReferenceException e)
             {
                 Console.WriteLine(e);
             }
@@ -238,7 +267,7 @@ namespace Services
             {
                 globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Remove(player);
                 globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).ActualPlayersCount--;
-                if(globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Count() == 0)
+                if (globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Count() == 0)
                 {
                     globalRooms.Remove(globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)));
                 }
@@ -288,41 +317,52 @@ namespace Services
         }
 
     }
-    
+
     public partial class PlayerManager : IDeckOfCards
     {
+        List<CardType> deck;
         public void CreateDeck()
         {
-            var deck = new List<CardType>();
-            for (int i = 0; i < Enum.GetValues(typeof(CardType)).Length; i++)
+            if (deck == null)
             {
-                deck.Add((CardType)i);
+                var deck = new List<CardType>();
+                for (int i = 0; i < Enum.GetValues(typeof(CardType)).Length; i++)
+                {
+                    deck.Add((CardType)i);
+                }
+                this.deck = deck;
             }
             var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
-            callback.CreateDeckCallBack(deck.ToArray());
+            callback.UpdateDeck(deck.ToArray());
         }
 
-        public void DiscardFirstNine(CardType[] gameDeck)
+        public void DiscardFirstNine()
         {
-            var newDeck = new List<CardType>(gameDeck);
-            newDeck.RemoveRange(0, 9);
+            deck.RemoveRange(0, 9);
             var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
-            callback.DiscardFirstNineCallback(newDeck.ToArray());
+            callback.UpdateDeck(deck.ToArray());
         }
 
-        public void ShuffleDeck(CardType[] gameDeck)
+        public void ShuffleDeck()
         {
-            var newDeck = new List<CardType>(gameDeck);
             var random = new Random();
-            for (int i = 0; i < newDeck.Count; i++)
+            for (int i = 0; i < deck.Count; i++)
             {
-                var temp = newDeck[i];
-                var randomIndex = random.Next(0, newDeck.Count);
-                newDeck[i] = newDeck[randomIndex];
-                newDeck[randomIndex] = temp;
+                var temp = deck[i];
+                var randomIndex = random.Next(0, deck.Count);
+                deck[i] = deck[randomIndex];
+                deck[randomIndex] = temp;
             }
             var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
-            callback.ShuffleDeckCallBack(newDeck.ToArray());
+            callback.UpdateDeck(deck.ToArray());
+        }
+
+        public void TakeCard()
+        {
+            var card = deck[0];
+            deck.RemoveAt(0);
+            var callback = OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>();
+            callback.TakeCardCallBack(card);
         }
     }
     public partial class PlayerManager : IUpdateProfile
