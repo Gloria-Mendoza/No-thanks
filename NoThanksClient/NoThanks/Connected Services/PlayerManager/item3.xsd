@@ -236,36 +236,30 @@
   </xs:element>
   <xs:element name="ShuffleDeck">
     <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DiscardFirstNine">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TakeCard">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDeck">
+    <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameDeck" nillable="true" type="q3:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DiscardFirstNine">
+  <xs:element name="TakeCardCallBack">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameDeck" nillable="true" type="q4:ArrayOfCardType" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="CreateDeckCallBack">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameDeck" nillable="true" type="q5:ArrayOfCardType" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ShuffleDeckCallBack">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="shuffledDeck" nillable="true" type="q6:ArrayOfCardType" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DiscardFirstNineCallback">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="gameDeck" nillable="true" type="q7:ArrayOfCardType" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="card" type="q4:CardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -185,19 +185,14 @@ namespace NoThanks
 
         }
 
-        public void CreateDeckCallBack(CardType[] gameDeck)
+        public void UpdateDeck(CardType[] deck)
         {
-            deckServiceClient.DiscardFirstNine(gameDeck);
+            gameDeck = deck;
         }
 
-        public void ShuffleDeckCallBack(CardType[] shuffledDeck)
+        public void TakeCardCallBack(CardType card)
         {
-            this.gameDeck = shuffledDeck;
-        }
 
-        public void DiscardFirstNineCallback(CardType[] gameDeck)
-        {
-            deckServiceClient.ShuffleDeck(gameDeck);
         }
     }
 }

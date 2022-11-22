@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,25 +20,27 @@ namespace Services
     {
         [OperationContract(IsOneWay = true)]
         void CreateDeck();
-
         [OperationContract(IsOneWay = true)]
-        void ShuffleDeck(CardType[] gameDeck);
-
+        void ShuffleDeck();
         [OperationContract(IsOneWay = true)]
-        void DiscardFirstNine(CardType[] gameDeck);
+        void DiscardFirstNine();
+        [OperationContract(IsOneWay = true)]
+        void TakeCard();
     }
 
     [ServiceContract]
     public interface IDeckOfCardsCallBack
     {
         [OperationContract(IsOneWay = true)]
-        void CreateDeckCallBack(CardType[] gameDeck);
-
+        void UpdateDeck(CardType[] gameDeck);
         [OperationContract(IsOneWay = true)]
-        void ShuffleDeckCallBack(CardType[] shuffledDeck);
-
-        [OperationContract(IsOneWay = true)]
-        void DiscardFirstNineCallback(CardType[] gameDeck);
+        void TakeCardCallBack(CardType card);
+    }
+    
+    public partial class MatchMember
+    {
+        [IgnoreDataMember]
+        public IDeckOfCardsCallBack DeckOfCardsCallBack { get; set; }
     }
 }
 
