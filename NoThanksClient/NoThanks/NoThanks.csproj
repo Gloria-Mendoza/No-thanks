@@ -222,6 +222,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\PlayerManager\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\PlayerManager\item1.xsd">
       <SubType>Designer</SubType>
     </None>
