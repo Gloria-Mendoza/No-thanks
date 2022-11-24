@@ -15,9 +15,9 @@ namespace Services
     public interface IDeckOfCards
     {
         [OperationContract(IsOneWay = true)]
-        void CreateDeck();
+        void CreateDeck(String roomId);
         [OperationContract(IsOneWay = true)]
-        void TakeCard();
+        void TakeCard(String roomId);
     }
 
     [ServiceContract]

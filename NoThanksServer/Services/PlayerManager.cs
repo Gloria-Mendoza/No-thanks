@@ -38,7 +38,7 @@ namespace Services
             };
             return player;
         }
-        
+
         public bool SendValidationEmail(string toEmail, string affair, int validationCode)
         {
             var client = new EmailSender();
@@ -143,7 +143,7 @@ namespace Services
             return roomId.ToString();
         }
 
-        public bool NewRoom(string hostUsername,string idRoom)
+        public bool NewRoom(string hostUsername, string idRoom)
         {
             var newRoom = new Logic.Room()
             {
@@ -160,9 +160,9 @@ namespace Services
             return true;
         }
 
-        public Room GetRoom(OperationContext operationContext)
+        public Room GetRoom(String roomId)
         {
-            var room = globalRooms.FirstOrDefault(r => r.Players.Any(p => p.AOperationContext == operationContext));
+            var room = globalRooms.FirstOrDefault(r => r.Id == roomId);
             return room;
         }
 
@@ -184,7 +184,7 @@ namespace Services
                 {
                     if (!player.Nickname.Equals(room.HostUsername))
                     {
-                        player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().StartGameRoom(RoomStatus.Started,players);
+                        player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().StartGameRoom(RoomStatus.Started, players);
                     }
                 }
             }
@@ -199,7 +199,7 @@ namespace Services
                 {
                     status = true;
                 }
-                if(room.MatchStatus == RoomStatus.Started)
+                if (room.MatchStatus == RoomStatus.Started)
                 {
                     status = false;
                 }
@@ -300,12 +300,12 @@ namespace Services
     public partial class PlayerManager : IDeckOfCards
     {
         List<CardType> deck;
-        public void CreateDeck()
+        public void CreateDeck(String roomId)
         {
             if (deck == null)
             {
                 var deck = new List<CardType>();
-                for (int i = 0; i < Enum.GetValues(typeof(CardType)).Length; i++)
+                for (int i = 3; i < Enum.GetValues(typeof(CardType)).Length; i++)
                 {
                     deck.Add((CardType)i);
                 }
@@ -314,13 +314,15 @@ namespace Services
                 DiscardFirstNine();
             }
             //Esto le manda y actualiza el mazo a todos los jugadores de la sala
-            var room = GetRoom(OperationContext.Current);
+            var room = GetRoom(roomId);
             if (room != null)
             {
+                room.Players[0].Cards = new List<CardType>();
                 foreach (var player in room.Players)
                 {
-                    player.AOperationContext.GetCallbackChannel<IDeckOfCardsCallBack>().UpdateDeck(deck.ToArray());
+                    // player.AOperationContext.GetCallbackChannel<IDeckOfCardsCallBack>().UpdateDeck(deck.ToArray());
                 }
+                OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>().UpdateDeck(deck.ToArray());
             }
         }
 
@@ -341,22 +343,25 @@ namespace Services
             }
         }
 
-        public void TakeCard()
+        public void TakeCard(String roomId)
         {
             var card = deck[0];
             deck.RemoveAt(0);
-            var room = GetRoom(OperationContext.Current);
+            var room = GetRoom(roomId);
             if (room != null)
             {
+                OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>().UpdatePlayerDeck(room.Players[0].Cards.ToArray()); //<- dará primer jugador
+                OperationContext.Current.GetCallbackChannel<IDeckOfCardsCallBack>().UpdateDeck(deck.ToArray());
                 foreach (var player in room.Players)
                 {
-                    var callback = player.AOperationContext.GetCallbackChannel<IDeckOfCardsCallBack>();
+                    //var callback = player.AOperationContext.GetCallbackChannel<IDeckOfCardsCallBack>();
                     if (player.AOperationContext == OperationContext.Current) //Si el contexto = contextoJugador que pidió la carta entonces le manda la carta
                     {
                         player.Cards.Add(card); //Agrega la carta al jugador
-                        callback.UpdatePlayerDeck(player.Cards.ToArray()); //Actualiza el mazo del jugador
+                                                // callback.UpdatePlayerDeck(player.Cards.ToArray()); //Actualiza el mazo del jugador
                     }
-                    callback.UpdateDeck(deck.ToArray()); //Actualiza el mazo de todos los jugadores
+                    // callback.UpdateDeck(deck.ToArray()); //Actualiza el mazo de todos los jugadores
+
                 }
             }
         }
@@ -405,7 +410,7 @@ namespace Services
                     var callbackchannel = OperationContext.Current.GetCallbackChannel<IUdateProfileCallBack>();
                     callbackchannel.ImageCallBack(image);
                 }
-                
+
             }
             catch (Exception ex)
             {

@@ -771,16 +771,16 @@ namespace NoThanks.PlayerManager {
     public interface IDeckOfCards {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/CreateDeck")]
-        void CreateDeck();
+        void CreateDeck(string roomId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/CreateDeck")]
-        System.Threading.Tasks.Task CreateDeckAsync();
+        System.Threading.Tasks.Task CreateDeckAsync(string roomId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/TakeCard")]
-        void TakeCard();
+        void TakeCard(string roomId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/TakeCard")]
-        System.Threading.Tasks.Task TakeCardAsync();
+        System.Threading.Tasks.Task TakeCardAsync(string roomId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -821,20 +821,20 @@ namespace NoThanks.PlayerManager {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void CreateDeck() {
-            base.Channel.CreateDeck();
+        public void CreateDeck(string roomId) {
+            base.Channel.CreateDeck(roomId);
         }
         
-        public System.Threading.Tasks.Task CreateDeckAsync() {
-            return base.Channel.CreateDeckAsync();
+        public System.Threading.Tasks.Task CreateDeckAsync(string roomId) {
+            return base.Channel.CreateDeckAsync(roomId);
         }
         
-        public void TakeCard() {
-            base.Channel.TakeCard();
+        public void TakeCard(string roomId) {
+            base.Channel.TakeCard(roomId);
         }
         
-        public System.Threading.Tasks.Task TakeCardAsync() {
-            return base.Channel.TakeCardAsync();
+        public System.Threading.Tasks.Task TakeCardAsync(string roomId) {
+            return base.Channel.TakeCardAsync(roomId);
         }
     }
 }

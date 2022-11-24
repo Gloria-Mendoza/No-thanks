@@ -30,7 +30,7 @@
                         <ColumnDefinition Width="12*"/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Margin="60,8,40,8" Source="/Images/3_2.png" Stretch="Fill"/>
-                    <Image x:Name="TopCard" Grid.Column="1" Margin="40,8,40,8" Source="/Images/11773.jpg" Stretch="Fill"/>
+                    <Image x:Name="TopCard" Grid.Column="1" Margin="40,8,40,8" Source="/Images/3.png" Stretch="Fill"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>

@@ -122,8 +122,9 @@ namespace NoThanks
         }
         public void UpdateDeck(CardType[] gameDeck)
         {
+            MessageBox.Show($"/Images/{gameDeck[0]}.png");
             this.gameDeck = gameDeck;
-            TopCard.Source = new BitmapImage(new Uri($"Images/{gameDeck[gameDeck.Length - 1]}.png", UriKind.Relative));
+            TopCard.Source = new BitmapImage(new Uri($"/Images/{gameDeck[0].ToString()}.png", UriKind.Relative));
         }
         #endregion
 
@@ -190,7 +191,7 @@ namespace NoThanks
 
         private void TakeClick(object sender, RoutedEventArgs e)
         {
-            deckServiceClient.TakeCard();
+            deckServiceClient.TakeCard(idRoom);
         }
 
         private void PassClick(object sender, RoutedEventArgs e)
@@ -204,10 +205,11 @@ namespace NoThanks
             gridLobby.Visibility = Visibility.Collapsed;
             try
             {
+                
                 playerList = chatServiceClient.RecoverRoomPlayers(IdRoom);
                 lxtPlayersBox.ItemsSource = playerList;
                 chatServiceClient.StartGame(IdRoom);
-                deckServiceClient.CreateDeck();
+                deckServiceClient.CreateDeck(IdRoom);
             }
             catch (EndpointNotFoundException)
             {
