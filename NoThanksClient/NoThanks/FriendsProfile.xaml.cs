@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.ServiceModel;
@@ -12,22 +11,20 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Shapes;
-using System.Drawing;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace NoThanks
 {
     /// <summary>
-    /// Lógica de interacción para Profile.xaml
+    /// Interaction logic for FriendsProfile.xaml
     /// </summary>
-    public partial class Profile : Window, PlayerManager.IUpdateProfileCallback
+    public partial class FriendsProfile : Window
     {
-        public Profile()
+        public FriendsProfile()
         {
             InitializeComponent();
-            ConfigureWindow();
-            updateImage();
         }
         private void updateImage()
         {
@@ -56,7 +53,7 @@ namespace NoThanks
             photo.StreamSource = new MemoryStream(imageBytes);
             photo.EndInit();
             photo.Freeze();
-            imagenProfile.Source = photo;
+            imageProfile.Source = photo;
 
         }
 

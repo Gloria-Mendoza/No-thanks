@@ -271,20 +271,14 @@
   <wsdl:message name="IDeckOfCards_CreateDeck_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateDeck" />
   </wsdl:message>
-  <wsdl:message name="IDeckOfCards_ShuffleDeck_InputMessage">
-    <wsdl:part name="parameters" element="tns:ShuffleDeck" />
-  </wsdl:message>
-  <wsdl:message name="IDeckOfCards_DiscardFirstNine_InputMessage">
-    <wsdl:part name="parameters" element="tns:DiscardFirstNine" />
-  </wsdl:message>
   <wsdl:message name="IDeckOfCards_TakeCard_InputMessage">
     <wsdl:part name="parameters" element="tns:TakeCard" />
   </wsdl:message>
   <wsdl:message name="IDeckOfCards_UpdateDeck_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateDeck" />
   </wsdl:message>
-  <wsdl:message name="IDeckOfCards_TakeCardCallBack_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:TakeCardCallBack" />
+  <wsdl:message name="IDeckOfCards_UpdatePlayerDeck_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePlayerDeck" />
   </wsdl:message>
   <wsdl:portType name="IPlayerManager">
     <wsdl:operation name="Login">
@@ -400,20 +394,14 @@
     <wsdl:operation name="CreateDeck">
       <wsdl:input wsaw:Action="http://tempuri.org/IDeckOfCards/CreateDeck" message="tns:IDeckOfCards_CreateDeck_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ShuffleDeck">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDeckOfCards/ShuffleDeck" message="tns:IDeckOfCards_ShuffleDeck_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="DiscardFirstNine">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDeckOfCards/DiscardFirstNine" message="tns:IDeckOfCards_DiscardFirstNine_InputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="TakeCard">
       <wsdl:input wsaw:Action="http://tempuri.org/IDeckOfCards/TakeCard" message="tns:IDeckOfCards_TakeCard_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateDeck">
       <wsdl:output wsaw:Action="http://tempuri.org/IDeckOfCards/UpdateDeck" message="tns:IDeckOfCards_UpdateDeck_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="TakeCardCallBack">
-      <wsdl:output wsaw:Action="http://tempuri.org/IDeckOfCards/TakeCardCallBack" message="tns:IDeckOfCards_TakeCardCallBack_OutputCallbackMessage" />
+    <wsdl:operation name="UpdatePlayerDeck">
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeckOfCards/UpdatePlayerDeck" message="tns:IDeckOfCards_UpdatePlayerDeck_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPlayerManager" type="tns:IPlayerManager">
@@ -665,18 +653,6 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="ShuffleDeck">
-      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/ShuffleDeck" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="DiscardFirstNine">
-      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/DiscardFirstNine" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
     <wsdl:operation name="TakeCard">
       <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/TakeCard" style="document" />
       <wsdl:input>
@@ -689,8 +665,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="TakeCardCallBack">
-      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/TakeCardCallBack" style="document" />
+    <wsdl:operation name="UpdatePlayerDeck">
+      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/UpdatePlayerDeck" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

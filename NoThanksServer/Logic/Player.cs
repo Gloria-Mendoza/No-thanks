@@ -11,6 +11,8 @@ namespace Logic
     [DataContract]
     public class Player
     {
+
+
         private int idPlayer;
         private string nickname;
         private string password;
@@ -24,7 +26,6 @@ namespace Logic
 
         #region ChatCallbacks
         private OperationContext aOperationContext;
-
         public OperationContext AOperationContext { get { return aOperationContext; } set { aOperationContext = value; } }
         #endregion
 

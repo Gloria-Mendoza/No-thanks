@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static NoThanks.PlayerManager.Player;
 
 namespace NoThanks
 {
@@ -31,57 +32,57 @@ namespace NoThanks
         public void GenerateScores(List<PlayerManager.Player> players)
         {
             /* For Debug, delete later
-            List<PlayerManager.CardType> test = new List<PlayerManager.CardType>
+            List<CardType> test = new List<CardType>
             {
-                PlayerManager.CardType.Three,
+                CardType.Three,
 
-                PlayerManager.CardType.Four,
+                CardType.Four,
 
-                PlayerManager.CardType.Five,
+                CardType.Five,
 
-                PlayerManager.CardType.Six,
+                CardType.Six,
 
-                PlayerManager.CardType.Nine,
+                CardType.Nine,
 
-                PlayerManager.CardType.Sixteen,
+                CardType.Sixteen,
 
-                PlayerManager.CardType.Seventeen,
+                CardType.Seventeen,
 
-                PlayerManager.CardType.Eightteen,
+                CardType.Eightteen,
 
-                PlayerManager.CardType.TwentyOne,
+                CardType.TwentyOne,
 
-                PlayerManager.CardType.TwentyTwo,
+                CardType.TwentyTwo,
 
-                PlayerManager.CardType.TwentyThree,
+                CardType.TwentyThree,
 
-                PlayerManager.CardType.ThirtyFive,
+                CardType.ThirtyFive,
 
-                PlayerManager.CardType.TwentyFour,
+                CardType.TwentyFour,
 
-                PlayerManager.CardType.Thirty,
+                CardType.Thirty,
 
-                PlayerManager.CardType.TwentyFive
+                CardType.TwentyFive
             };
 
 
-            List<PlayerManager.CardType> test1 = new List<PlayerManager.CardType>
+            List<CardType> test1 = new List<CardType>
             {
-                PlayerManager.CardType.Three,
+                CardType.Three,
 
-                PlayerManager.CardType.Four,
+                CardType.Four,
 
-                PlayerManager.CardType.Five,
+                CardType.Five,
 
-                PlayerManager.CardType.Six,
+                CardType.Six,
 
-                PlayerManager.CardType.Nine,
+                CardType.Nine,
 
-                PlayerManager.CardType.Sixteen,
+                CardType.Sixteen,
 
-                PlayerManager.CardType.Thirty,
+                CardType.Thirty,
 
-                PlayerManager.CardType.TwentyFive
+                CardType.TwentyFive
             };
 
             players.Add(new PlayerManager.Player
@@ -125,13 +126,13 @@ namespace NoThanks
 
         public PlayerManager.Player DiscardConsecutiveNumbers(PlayerManager.Player player)
         {
-            List<PlayerManager.CardType> cards = new List<PlayerManager.CardType>();
+            List<CardType> cards = new List<CardType>();
 
-            List<PlayerManager.CardType> cards1 = new List<PlayerManager.CardType>();
+            List<CardType> cards1 = new List<CardType>();
 
-            List<PlayerManager.CardType> cards2 = new List<PlayerManager.CardType>();
+            List<CardType> cards2 = new List<CardType>();
 
-            PlayerManager.CardType[] cardsArray = player.Cards;
+            CardType[] cardsArray = player.Cards;
             Array.Sort(cardsArray);
 
             try
@@ -177,7 +178,7 @@ namespace NoThanks
 
             }
 
-            List<PlayerManager.CardType> cardsAux = player.Cards.ToList();
+            List<CardType> cardsAux = player.Cards.ToList();
 
             for (int i = 0; i < cards1.Count; i++)
             {

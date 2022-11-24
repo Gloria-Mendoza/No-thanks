@@ -343,41 +343,29 @@
   </xs:element>
   <xs:element name="CreateDeck">
     <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ShuffleDeck">
-    <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q8:ArrayOfCardType" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="DiscardFirstNine">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q9:ArrayOfCardType" />
+        <xs:element minOccurs="0" name="roomId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="TakeCard">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q10:ArrayOfCardType" />
+        <xs:element minOccurs="0" name="roomId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateDeck">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="shuffledDeck" nillable="true" type="q11:ArrayOfCardType" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q8:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="TakeCardCallBack">
+  <xs:element name="UpdatePlayerDeck">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q12:ArrayOfCardType" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="playerDeck" nillable="true" type="q9:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
