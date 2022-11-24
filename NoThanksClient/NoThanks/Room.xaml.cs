@@ -122,9 +122,9 @@ namespace NoThanks
         }
         public void UpdateDeck(CardType[] gameDeck)
         {
-            MessageBox.Show($"/Images/{gameDeck[0]}.png");
+            int i = (int) gameDeck[0];
             this.gameDeck = gameDeck;
-            TopCard.Source = new BitmapImage(new Uri($"/Images/{gameDeck[0].ToString()}.png", UriKind.Relative));
+            TopCard.Source = new BitmapImage(new Uri($"/Images/{i}.png", UriKind.Relative));
         }
         #endregion
 
