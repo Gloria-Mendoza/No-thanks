@@ -82,8 +82,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="FriendProfile.xaml.cs">
-      <DependentUpon>FriendProfile.xaml</DependentUpon>
+    <Compile Include="FriendsProfile.xaml.cs">
+      <DependentUpon>FriendsProfile.xaml</DependentUpon>
     </Compile>
     <Compile Include="PlaySelection.xaml.cs">
       <DependentUpon>PlaySelection.xaml</DependentUpon>
@@ -122,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Friends.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FriendsProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -321,6 +325,44 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="lapiz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\10.png" />
+    <Resource Include="Images\11.png" />
+    <Resource Include="Images\12.png" />
+    <Resource Include="Images\13.png" />
+    <Resource Include="Images\14.png" />
+    <Resource Include="Images\15.png" />
+    <Resource Include="Images\16.png" />
+    <Resource Include="Images\17.png" />
+    <Resource Include="Images\18.png" />
+    <Resource Include="Images\19.png" />
+    <Resource Include="Images\20.png" />
+    <Resource Include="Images\21.png" />
+    <Resource Include="Images\22.png" />
+    <Resource Include="Images\23.png" />
+    <Resource Include="Images\24.png" />
+    <Resource Include="Images\25.png" />
+    <Resource Include="Images\26.png" />
+    <Resource Include="Images\27.png" />
+    <Resource Include="Images\28.png" />
+    <Resource Include="Images\29.png" />
+    <Resource Include="Images\3.png" />
+    <Resource Include="Images\30.png" />
+    <Resource Include="Images\31.png" />
+    <Resource Include="Images\32.png" />
+    <Resource Include="Images\33.png" />
+    <Resource Include="Images\34.png" />
+    <Resource Include="Images\35.png" />
+    <Resource Include="Images\4.png" />
+    <Resource Include="Images\5.png" />
+    <Resource Include="Images\6.png" />
+    <Resource Include="Images\7.png" />
+    <Resource Include="Images\8.png" />
+    <Resource Include="Images\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\3_2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

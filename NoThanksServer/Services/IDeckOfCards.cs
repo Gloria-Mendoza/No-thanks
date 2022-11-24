@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using static Logic.Player;
 using Logic;
 
 namespace Services
@@ -16,10 +17,6 @@ namespace Services
         [OperationContract(IsOneWay = true)]
         void CreateDeck();
         [OperationContract(IsOneWay = true)]
-        void ShuffleDeck();
-        [OperationContract(IsOneWay = true)]
-        void DiscardFirstNine();
-        [OperationContract(IsOneWay = true)]
         void TakeCard();
     }
 
@@ -29,13 +26,15 @@ namespace Services
         [OperationContract(IsOneWay = true)]
         void UpdateDeck(CardType[] gameDeck);
         [OperationContract(IsOneWay = true)]
-        void TakeCardCallBack(CardType card);
+        void UpdatePlayerDeck(CardType[] playerDeck);
     }
     
     public partial class MatchMember
     {
         [IgnoreDataMember]
         public IDeckOfCardsCallBack DeckOfCardsCallBack { get; set; }
+        [DataMember]
+        public List<CardType> deck;
     }
 }
 

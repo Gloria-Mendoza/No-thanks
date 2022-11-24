@@ -7,12 +7,12 @@ using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using static NoThanks.PlayerManager.Player;
 
 namespace NoThanks
 {
-    /// <summary>
-    /// Lógica de interacción para Room.xaml
-    /// </summary>
+
     [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
     public partial class Room : Window, IChatServiceCallback, IDeckOfCardsCallback
     {
@@ -24,7 +24,7 @@ namespace NoThanks
         private bool isHost = false;
         private string idRoom;
         private PlayerManager.Player[] playerList;
-        private CardType[] gameDeck;
+        private PlayerManager.Player.CardType[] gameDeck;
 
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
         public string IdRoom { get { return idRoom; } set { idRoom = value; } }
@@ -120,19 +120,10 @@ namespace NoThanks
             }
 
         }
-        public void CreateDeckCallBack(CardType[] gameDeck)
+        public void UpdateDeck(CardType[] gameDeck)
         {
             this.gameDeck = gameDeck;
-        }
-
-        public void ShuffleDeckCallBack(CardType[] shuffledDeck)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DiscardFirstNineCallback(CardType[] gameDeck)
-        {
-            throw new NotImplementedException();
+            TopCard.Source = new BitmapImage(new Uri($"Images/{gameDeck[gameDeck.Length - 1]}.png", UriKind.Relative));
         }
         #endregion
 
@@ -199,7 +190,7 @@ namespace NoThanks
 
         private void TakeClick(object sender, RoutedEventArgs e)
         {
-
+            deckServiceClient.TakeCard();
         }
 
         private void PassClick(object sender, RoutedEventArgs e)
@@ -209,12 +200,14 @@ namespace NoThanks
 
         private void StartGameClick(object sender, RoutedEventArgs e)
         {
+            deckServiceClient = new DeckOfCardsClient(new InstanceContext(this));
             gridLobby.Visibility = Visibility.Collapsed;
             try
             {
                 playerList = chatServiceClient.RecoverRoomPlayers(IdRoom);
                 lxtPlayersBox.ItemsSource = playerList;
                 chatServiceClient.StartGame(IdRoom);
+                deckServiceClient.CreateDeck();
             }
             catch (EndpointNotFoundException)
             {
@@ -276,6 +269,12 @@ namespace NoThanks
                 chatServiceClient = null;
                 isConected = false;
             }
+        }
+
+        public void UpdatePlayerDeck(CardType[] playerDeck)
+        {
+            var player = playerList.Where(x => x.Nickname == Domain.Player.PlayerClient.Nickname).FirstOrDefault();
+            player.Cards = playerDeck;
         }
         #endregion
 

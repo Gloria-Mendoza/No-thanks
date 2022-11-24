@@ -11,6 +11,21 @@ namespace Logic
     [DataContract]
     public class Player
     {
+        public enum CardType
+        {
+            Three = 3, Four, Five,
+            Six, Seven, Eight,
+            Nine, Ten, Eleven,
+            Twelve, Thirteen, Fourteen,
+            Fifteen, Sixteen, Seventeen,
+            Eightteen, Nineteen, Twenty,
+            TwentyOne, TwentyTwo, TwentyThree,
+            TwentyFour, TwentyFive, TwentySix,
+            TwentySeven, TwentyEight, TwentyNine,
+            Thirty, ThirtyOne, ThirtyTwo,
+            ThirtyThree, ThirtyFour, ThirtyFive
+        }
+
         private int idPlayer;
         private string nickname;
         private string password;

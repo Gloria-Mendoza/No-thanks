@@ -23,7 +23,7 @@ namespace NoThanks.PlayerManager {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NoThanks.PlayerManager.CardType[] CardsField;
+        private NoThanks.PlayerManager.Player.CardType[] CardsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
@@ -63,7 +63,7 @@ namespace NoThanks.PlayerManager {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public NoThanks.PlayerManager.CardType[] Cards {
+        public NoThanks.PlayerManager.Player.CardType[] Cards {
             get {
                 return this.CardsField;
             }
@@ -200,110 +200,110 @@ namespace NoThanks.PlayerManager {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CardType", Namespace="http://schemas.datacontract.org/2004/07/Logic")]
-    public enum CardType : int {
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Three = 3,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Four = 4,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Five = 5,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Six = 6,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Seven = 7,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Eight = 8,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Nine = 9,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Ten = 10,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Eleven = 11,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Twelve = 12,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Thirteen = 13,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Fourteen = 14,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Fifteen = 15,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Sixteen = 16,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Seventeen = 17,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Eightteen = 18,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Nineteen = 19,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Twenty = 20,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyOne = 21,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyTwo = 22,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyThree = 23,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyFour = 24,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyFive = 25,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentySix = 26,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentySeven = 27,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyEight = 28,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        TwentyNine = 29,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Thirty = 30,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ThirtyOne = 31,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ThirtyTwo = 32,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ThirtyThree = 33,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ThirtyFour = 34,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        ThirtyFive = 35,
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+        [System.Runtime.Serialization.DataContractAttribute(Name="Player.CardType", Namespace="http://schemas.datacontract.org/2004/07/Logic")]
+        public enum CardType : int {
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Three = 3,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Four = 4,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Five = 5,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Six = 6,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Seven = 7,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Eight = 8,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Nine = 9,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Ten = 10,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Eleven = 11,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Twelve = 12,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Thirteen = 13,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Fourteen = 14,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Fifteen = 15,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Sixteen = 16,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Seventeen = 17,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Eightteen = 18,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Nineteen = 19,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Twenty = 20,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            TwentyOne = 21,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            TwentyTwo = 22,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            TwentyThree = 23,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            TwentyFour = 24,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            TwentyFive = 25,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            TwentySix = 26,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            TwentySeven = 27,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            TwentyEight = 28,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            TwentyNine = 29,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            Thirty = 30,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            ThirtyOne = 31,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            ThirtyTwo = 32,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            ThirtyThree = 33,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            ThirtyFour = 34,
+            
+            [System.Runtime.Serialization.EnumMemberAttribute()]
+            ThirtyFive = 35,
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -776,18 +776,6 @@ namespace NoThanks.PlayerManager {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/CreateDeck")]
         System.Threading.Tasks.Task CreateDeckAsync();
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/ShuffleDeck")]
-        void ShuffleDeck();
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/ShuffleDeck")]
-        System.Threading.Tasks.Task ShuffleDeckAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/DiscardFirstNine")]
-        void DiscardFirstNine();
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/DiscardFirstNine")]
-        System.Threading.Tasks.Task DiscardFirstNineAsync();
-        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/TakeCard")]
         void TakeCard();
         
@@ -799,10 +787,10 @@ namespace NoThanks.PlayerManager {
     public interface IDeckOfCardsCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/UpdateDeck")]
-        void UpdateDeck(NoThanks.PlayerManager.CardType[] gameDeck);
+        void UpdateDeck(NoThanks.PlayerManager.Player.CardType[] gameDeck);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/TakeCardCallBack")]
-        void TakeCardCallBack(NoThanks.PlayerManager.CardType card);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/UpdatePlayerDeck")]
+        void UpdatePlayerDeck(NoThanks.PlayerManager.Player.CardType[] playerDeck);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -839,22 +827,6 @@ namespace NoThanks.PlayerManager {
         
         public System.Threading.Tasks.Task CreateDeckAsync() {
             return base.Channel.CreateDeckAsync();
-        }
-        
-        public void ShuffleDeck() {
-            base.Channel.ShuffleDeck();
-        }
-        
-        public System.Threading.Tasks.Task ShuffleDeckAsync() {
-            return base.Channel.ShuffleDeckAsync();
-        }
-        
-        public void DiscardFirstNine() {
-            base.Channel.DiscardFirstNine();
-        }
-        
-        public System.Threading.Tasks.Task DiscardFirstNineAsync() {
-            return base.Channel.DiscardFirstNineAsync();
         }
         
         public void TakeCard() {
