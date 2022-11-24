@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication.cs" />
+    <Compile Include="CardType.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="ListPlayers.cs" />
     <Compile Include="Player.cs" />

@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using static NoThanks.PlayerManager.Player;
+
 
 namespace NoThanks
 {
@@ -24,7 +24,7 @@ namespace NoThanks
         private bool isHost = false;
         private string idRoom;
         private PlayerManager.Player[] playerList;
-        private PlayerManager.Player.CardType[] gameDeck;
+        private PlayerManager.CardType[] gameDeck;
 
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
         public string IdRoom { get { return idRoom; } set { idRoom = value; } }
@@ -120,7 +120,7 @@ namespace NoThanks
             }
 
         }
-        public void UpdateDeck(CardType[] gameDeck)
+        public void UpdateDeck(PlayerManager.CardType[] gameDeck)
         {
             int i = (int) gameDeck[0];
             this.gameDeck = gameDeck;

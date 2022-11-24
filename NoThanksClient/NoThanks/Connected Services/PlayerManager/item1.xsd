@@ -3,7 +3,7 @@
   <xs:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="Player">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Cards" nillable="true" type="tns:ArrayOfPlayer.CardType" />
+      <xs:element minOccurs="0" name="Cards" nillable="true" type="tns:ArrayOfCardType" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdPlayer" type="xs:int" />
       <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
@@ -16,13 +16,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Player" nillable="true" type="tns:Player" />
-  <xs:complexType name="ArrayOfPlayer.CardType">
+  <xs:complexType name="ArrayOfCardType">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Player.CardType" type="tns:Player.CardType" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CardType" type="tns:CardType" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfPlayer.CardType" nillable="true" type="tns:ArrayOfPlayer.CardType" />
-  <xs:simpleType name="Player.CardType">
+  <xs:element name="ArrayOfCardType" nillable="true" type="tns:ArrayOfCardType" />
+  <xs:simpleType name="CardType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Three">
         <xs:annotation>
@@ -257,7 +257,7 @@
       </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:element name="Player.CardType" nillable="true" type="tns:Player.CardType" />
+  <xs:element name="CardType" nillable="true" type="tns:CardType" />
   <xs:complexType name="ArrayOfPlayer">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Player" nillable="true" type="tns:Player" />

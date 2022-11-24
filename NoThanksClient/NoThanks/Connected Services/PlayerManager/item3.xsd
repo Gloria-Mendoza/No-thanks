@@ -358,14 +358,14 @@
   <xs:element name="UpdateDeck">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q8:ArrayOfPlayer.CardType" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q8:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdatePlayerDeck">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="playerDeck" nillable="true" type="q9:ArrayOfPlayer.CardType" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="playerDeck" nillable="true" type="q9:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
