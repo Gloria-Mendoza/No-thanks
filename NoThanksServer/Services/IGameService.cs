@@ -43,6 +43,8 @@ namespace Services
         void CreateDeck(String roomId);
         [OperationContract(IsOneWay = true)]
         void TakeCard(String roomId);
+        [OperationContract(IsOneWay = true)]
+        void SkipPlayersTurn(string idRoom, string username);
     }
 
     [ServiceContract]
@@ -56,8 +58,8 @@ namespace Services
         void StartGameRoom(RoomStatus roomStatus, Player[] players);
         [OperationContract(IsOneWay = true)]
         void PlayerExpeled(string nickname, string message);
-        /*[OperationContract(IsOneWay = true)]
-        void SkipPlayersTurn(int round);*/
+        [OperationContract(IsOneWay = true)]
+        void SkipPlayersTurnCallback(int round);
         [OperationContract(IsOneWay = true)]
         void UpdateDeck(CardType[] gameDeck);
         [OperationContract(IsOneWay = true)]

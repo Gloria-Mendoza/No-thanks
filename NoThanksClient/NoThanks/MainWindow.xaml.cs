@@ -101,11 +101,5 @@ namespace NoThanks
             client.Close();
             
         }
-
-        private void MusicClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }

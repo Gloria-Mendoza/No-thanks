@@ -102,14 +102,14 @@ namespace Services
             return status;
         }
 
-        public bool ExitsEmail(string text) // ==> EST� MAL ESCRITO!!! :V
+        public bool ExitsEmail(string text)
         {
             var status = false;
             Validation validation = new Validation();
             return status = validation.ExistEmail(text);
         }
 
-        public bool ExitsNickname(string text) // ==> EST� MAL ESCRITO!!! :V
+        public bool ExitsNickname(string text) 
         {
             var status = false;
             Validation validation = new Validation();
@@ -345,8 +345,6 @@ namespace Services
             var room = GetRoom(roomId);
             if (room != null)
             {
-                //OperationContext.Current.GetCallbackChannel<IGameServiceCallback>().UpdatePlayerDeck(room.Players[0].Cards.ToArray()); //<- dará primer jugador
-                //OperationContext.Current.GetCallbackChannel<IGameServiceCallback>().UpdateDeck(deck.ToArray());
                 foreach (var player in room.Players)
                 {
                     var callback = player.AOperationContext.GetCallbackChannel<IGameServiceCallback>();
@@ -358,6 +356,17 @@ namespace Services
                     callback.UpdateDeck(deck.ToArray()); //Actualiza el mazo de todos los jugadores
 
                 }
+            }
+        }
+        public void SkipPlayersTurn(string idRoom, string username)
+        {
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            var player = room.Players.FirstOrDefault(i => i.Nickname.Equals(username));
+            player.Tokens--;
+            room.Round++;
+            foreach (var aPlayer in room.Players)
+            {
+                player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().SkipPlayersTurnCallback(room.Round);
             }
         }
     }

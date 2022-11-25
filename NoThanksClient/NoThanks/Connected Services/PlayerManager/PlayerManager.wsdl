@@ -209,6 +209,9 @@
   <wsdl:message name="IGameService_TakeCard_InputMessage">
     <wsdl:part name="parameters" element="tns:TakeCard" />
   </wsdl:message>
+  <wsdl:message name="IGameService_SkipPlayersTurn_InputMessage">
+    <wsdl:part name="parameters" element="tns:SkipPlayersTurn" />
+  </wsdl:message>
   <wsdl:message name="IGameService_MessageCallBack_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MessageCallBack" />
   </wsdl:message>
@@ -220,6 +223,9 @@
   </wsdl:message>
   <wsdl:message name="IGameService_PlayerExpeled_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:PlayerExpeled" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_SkipPlayersTurnCallback_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SkipPlayersTurnCallback" />
   </wsdl:message>
   <wsdl:message name="IGameService_UpdateDeck_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateDeck" />
@@ -334,6 +340,9 @@
     <wsdl:operation name="TakeCard">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/TakeCard" message="tns:IGameService_TakeCard_InputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SkipPlayersTurn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/SkipPlayersTurn" message="tns:IGameService_SkipPlayersTurn_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="MessageCallBack">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/MessageCallBack" message="tns:IGameService_MessageCallBack_OutputCallbackMessage" />
     </wsdl:operation>
@@ -345,6 +354,9 @@
     </wsdl:operation>
     <wsdl:operation name="PlayerExpeled">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/PlayerExpeled" message="tns:IGameService_PlayerExpeled_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SkipPlayersTurnCallback">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/SkipPlayersTurnCallback" message="tns:IGameService_SkipPlayersTurnCallback_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateDeck">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/UpdateDeck" message="tns:IGameService_UpdateDeck_OutputCallbackMessage" />
@@ -557,6 +569,12 @@
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
+    <wsdl:operation name="SkipPlayersTurn">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/SkipPlayersTurn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="MessageCallBack">
       <soap12:operation soapAction="http://tempuri.org/IGameService/MessageCallBack" style="document" />
       <wsdl:output>
@@ -577,6 +595,12 @@
     </wsdl:operation>
     <wsdl:operation name="PlayerExpeled">
       <soap12:operation soapAction="http://tempuri.org/IGameService/PlayerExpeled" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SkipPlayersTurnCallback">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/SkipPlayersTurnCallback" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

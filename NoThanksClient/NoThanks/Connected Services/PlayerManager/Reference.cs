@@ -554,6 +554,12 @@ namespace NoThanks.PlayerManager {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/TakeCard")]
         System.Threading.Tasks.Task TakeCardAsync(string roomId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SkipPlayersTurn")]
+        void SkipPlayersTurn(string idRoom, string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SkipPlayersTurn")]
+        System.Threading.Tasks.Task SkipPlayersTurnAsync(string idRoom, string username);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -570,6 +576,9 @@ namespace NoThanks.PlayerManager {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/PlayerExpeled")]
         void PlayerExpeled(string nickname, string message);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SkipPlayersTurnCallback")]
+        void SkipPlayersTurnCallback(int round);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/UpdateDeck")]
         void UpdateDeck(NoThanks.PlayerManager.CardType[] gameDeck);
@@ -700,6 +709,14 @@ namespace NoThanks.PlayerManager {
         
         public System.Threading.Tasks.Task TakeCardAsync(string roomId) {
             return base.Channel.TakeCardAsync(roomId);
+        }
+        
+        public void SkipPlayersTurn(string idRoom, string username) {
+            base.Channel.SkipPlayersTurn(idRoom, username);
+        }
+        
+        public System.Threading.Tasks.Task SkipPlayersTurnAsync(string idRoom, string username) {
+            return base.Channel.SkipPlayersTurnAsync(idRoom, username);
         }
     }
     

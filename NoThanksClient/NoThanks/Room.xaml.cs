@@ -200,11 +200,13 @@ namespace NoThanks
 
         private void PassClick(object sender, RoutedEventArgs e)
         {
+            gameServiceClient.SkipPlayersTurn(idRoom, Domain.Player.PlayerClient.Nickname);
             globaltokens += 1;
             playerList.First().Tokens--;
-           lbtokens.Content = globaltokens;
+            lbtokens.Content = globaltokens;
             btnPass.IsEnabled = false;
             btnTake.IsEnabled = false;
+            
         }
 
         private void StartGameClick(object sender, RoutedEventArgs e)
@@ -284,6 +286,11 @@ namespace NoThanks
         {
             var player = playerList.Where(x => x.Nickname == Domain.Player.PlayerClient.Nickname).FirstOrDefault();
             player.Cards = playerDeck;
+        }
+        public void SkipPlayersTurnCallback(int round)
+        {
+            
+            throw new NotImplementedException();
         }
         #endregion
 
