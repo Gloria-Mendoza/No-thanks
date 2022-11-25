@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -47,6 +48,18 @@ namespace Logic
         public bool HasSpace()
         {
             return actualPlayersCount < MAX_PLAYERS;
+        }
+
+        public void NextRound()
+        {
+            if(Round <= actualPlayersCount)
+            {
+                Round += 1;
+            }
+            else
+            {
+                Round = 0;
+            }
         }
     }
 }

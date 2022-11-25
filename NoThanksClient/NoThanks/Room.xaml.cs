@@ -120,11 +120,26 @@ namespace NoThanks
             }
 
         }
+
         public void UpdateDeck(PlayerManager.CardType[] gameDeck)
         {
             int i = (int) gameDeck[0];
             this.gameDeck = gameDeck;
             TopCard.Source = new BitmapImage(new Uri($"/Images/{i}.png", UriKind.Relative));
+        }
+
+        public void UpdatePlayerDeck(CardType[] playerDeck)
+        {
+            var player = playerList.Where(x => x.Nickname == Domain.Player.PlayerClient.Nickname).FirstOrDefault();
+            player.Cards = playerDeck;
+        }
+        public void SkipPlayersTurnCallback(int round)
+        {
+
+            if (playerList.ElementAt(round).Equals(Domain.Player.PlayerClient.Nickname))
+            {
+                lbtokens.Content = "SkipedTurn";
+            }
         }
         #endregion
 
@@ -280,17 +295,6 @@ namespace NoThanks
                 gameServiceClient = null;
                 isConected = false;
             }
-        }
-
-        public void UpdatePlayerDeck(CardType[] playerDeck)
-        {
-            var player = playerList.Where(x => x.Nickname == Domain.Player.PlayerClient.Nickname).FirstOrDefault();
-            player.Cards = playerDeck;
-        }
-        public void SkipPlayersTurnCallback(int round)
-        {
-            
-            throw new NotImplementedException();
         }
         #endregion
 

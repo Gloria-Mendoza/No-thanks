@@ -363,7 +363,7 @@ namespace Services
             var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
             var player = room.Players.FirstOrDefault(i => i.Nickname.Equals(username));
             player.Tokens--;
-            room.Round++;
+            room.NextRound();
             foreach (var aPlayer in room.Players)
             {
                 player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().SkipPlayersTurnCallback(room.Round);
