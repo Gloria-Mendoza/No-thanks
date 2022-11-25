@@ -25,6 +25,7 @@ namespace NoThanks
         private string idRoom;
         private PlayerManager.Player[] playerList;
         private PlayerManager.CardType[] gameDeck;
+        private int globaltokens = 0;
 
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
         public string IdRoom { get { return idRoom; } set { idRoom = value; } }
@@ -192,11 +193,19 @@ namespace NoThanks
         private void TakeClick(object sender, RoutedEventArgs e)
         {
             deckServiceClient.TakeCard(idRoom);
+            globaltokens = 0;
+            lbtokens.Content = globaltokens;
+            btnTake.IsEnabled = false;
+            btnPass.IsEnabled = false;
         }
 
         private void PassClick(object sender, RoutedEventArgs e)
         {
-
+            globaltokens += 1;
+            playerList.First().Tokens--;
+            lbtokens.Content = globaltokens;
+            btnPass.IsEnabled = false;
+            btnTake.IsEnabled = false;
         }
 
         private void StartGameClick(object sender, RoutedEventArgs e)

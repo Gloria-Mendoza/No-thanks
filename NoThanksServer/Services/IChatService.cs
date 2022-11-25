@@ -53,5 +53,7 @@ namespace Services
         void StartGameRoom(RoomStatus roomStatus, Player[] players);
         [OperationContract(IsOneWay = true)]
         void PlayerExpeled(string nickname, string message);
+        /*[OperationContract(IsOneWay = true)]
+        void SkipPlayersTurn(int round);*/
     }
 }

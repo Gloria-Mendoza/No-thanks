@@ -31,6 +31,7 @@
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Margin="60,8,40,8" Source="/Images/3_2.png" Stretch="Fill"/>
                     <Image x:Name="TopCard" Grid.Column="1" Margin="40,8,40,8" Source="/Images/3.png" Stretch="Fill"/>
+                    <Label x:Name="lbtokens" Grid.Column="2" Margin="10,45,10,45" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="tokesToTake" Foreground="White" FontSize="24"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -38,8 +39,8 @@
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="{x:Static p:Resources.ROOM_TAKE_BUTTON}" Margin="39,0,0,0" VerticalAlignment="Center" Click="TakeClick" Grid.Column="1" Height="30" HorizontalAlignment="Left" Width="60"/>
-                    <Button Content="{x:Static p:Resources.ROOM_PASS_BUTTON}" Margin="132,0,0,0" Click="PassClick" Height="30" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Width="60"/>
+                    <Button x:Name="btnTake" Content="{x:Static p:Resources.ROOM_TAKE_BUTTON}" Margin="39,0,0,0" VerticalAlignment="Center" Click="TakeClick" Grid.Column="1" Height="30" HorizontalAlignment="Left" Width="60"/>
+                    <Button x:Name="btnPass" Content="{x:Static p:Resources.ROOM_PASS_BUTTON}" Margin="132,0,0,0" Click="PassClick" Height="30" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Width="60"/>
                 </Grid>
 
                 <Grid Grid.Row="2">

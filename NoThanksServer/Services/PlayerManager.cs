@@ -212,6 +212,7 @@ namespace Services
             Player player = new Player()
             {
                 Nickname = username,
+                Tokens = 11,
                 AOperationContext = OperationContext.Current
             };
             try
@@ -294,6 +295,19 @@ namespace Services
                 .Players.FirstOrDefault(i => i.Nickname.Equals(receiver));
             player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().WhisperCallBack(sender, message);
         }
+
+        /*public void SkipTurn (string idRoom, string username)
+        {
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            var player = room.Players.FirstOrDefault(i => i.Nickname.Equals(username));
+            player.Tokens--;
+            room.Round++;
+            foreach(var aPlayer in room.Players)
+            {
+                player.AOperationContext.GetCallbackChannel<IChatServiceCallback>().SkipPlayersTurn(room.Round);
+            }
+
+        }*/
 
     }
 
