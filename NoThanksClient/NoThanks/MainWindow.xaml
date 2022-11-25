@@ -19,6 +19,6 @@
         <Button Content="{x:Static p:Resources.LOGIN_LOGIN_BUTTON}" HorizontalAlignment="Center" Margin="0,334,0,0" VerticalAlignment="Top" Height="38" Width="142" FontSize="18" Click="LoginClick"/>
         <Button Content="{x:Static p:Resources.LOGIN_REGISTER_BUTTON}" HorizontalAlignment="Center" Margin="0,399,0,0" VerticalAlignment="Top" Height="29" Width="88" Click="RegisterClick"/>
         <Label Content="{x:Static p:Resources.LOGIN_GUEST_LABEL}" HorizontalAlignment="Center" Margin="0,450,0,0" VerticalAlignment="Top" Height="32" Width="122" Foreground="#FFFF8000" Background="{x:Null}" BorderBrush="{x:Null}" MouseLeftButtonDown="GuestClick"/>
-        <Button x:Name="MusicButton" Content="♫" HorizontalAlignment="Left" Margin="29,23,0,0" VerticalAlignment="Top" Click="MusicClick"/>
+        <!---<Button x:Name="MusicButton" Content="♫" HorizontalAlignment="Left" Margin="29,23,0,0" VerticalAlignment="Top" Click="MusicClick"/>-->
     </Grid>
 </Window>

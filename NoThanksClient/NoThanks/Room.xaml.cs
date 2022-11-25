@@ -14,12 +14,11 @@ namespace NoThanks
 {
 
     [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
-    public partial class Room : Window, IChatServiceCallback, IDeckOfCardsCallback
+    public partial class Room : Window, IGameServiceCallback
     {
         #region Atributtes & Properties
         private bool isConected = false;
-        private ChatServiceClient chatServiceClient;
-        private DeckOfCardsClient deckServiceClient;
+        private GameServiceClient gameServiceClient;
         private bool isNewRoom;
         private bool isHost = false;
         private string idRoom;
@@ -76,9 +75,9 @@ namespace NoThanks
 
         public bool CheckQuota()
         {
-            chatServiceClient = new ChatServiceClient(new InstanceContext(this));
-            var aviable = chatServiceClient.CheckQuota(IdRoom);
-            chatServiceClient.Close();
+            gameServiceClient = new GameServiceClient(new InstanceContext(this));
+            var aviable = gameServiceClient.CheckQuota(IdRoom);
+            gameServiceClient.Close();
             return aviable;
         }
         #endregion
@@ -134,7 +133,7 @@ namespace NoThanks
         {
             if (e.Key == Key.Enter)
             {
-                if (chatServiceClient != null)
+                if (gameServiceClient != null)
                 {
                     if (txtMesageContainer.Text.StartsWith("/whisper"))
                     {
@@ -146,12 +145,12 @@ namespace NoThanks
                             {
                                 message += args[i] + " ";
                             }
-                            chatServiceClient.SendWhisper(Domain.Player.PlayerClient.Nickname, args[1], message, idRoom);
+                            gameServiceClient.SendWhisper(Domain.Player.PlayerClient.Nickname, args[1], message, idRoom);
                         }
                     }
                     else
                     {
-                        chatServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname, idRoom);
+                        gameServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname, idRoom);
                     }
                 }
                 txtMesageContainer.Text = string.Empty;
@@ -192,7 +191,7 @@ namespace NoThanks
 
         private void TakeClick(object sender, RoutedEventArgs e)
         {
-            deckServiceClient.TakeCard(idRoom);
+            gameServiceClient.TakeCard(idRoom);
             globaltokens = 0;
             lbtokens.Content = globaltokens;
             btnTake.IsEnabled = false;
@@ -203,22 +202,21 @@ namespace NoThanks
         {
             globaltokens += 1;
             playerList.First().Tokens--;
-            lbtokens.Content = globaltokens;
+           lbtokens.Content = globaltokens;
             btnPass.IsEnabled = false;
             btnTake.IsEnabled = false;
         }
 
         private void StartGameClick(object sender, RoutedEventArgs e)
         {
-            deckServiceClient = new DeckOfCardsClient(new InstanceContext(this));
             gridLobby.Visibility = Visibility.Collapsed;
             try
             {
                 
-                playerList = chatServiceClient.RecoverRoomPlayers(IdRoom);
+                playerList = gameServiceClient.RecoverRoomPlayers(IdRoom);
                 lxtPlayersBox.ItemsSource = playerList;
-                chatServiceClient.StartGame(IdRoom);
-                deckServiceClient.CreateDeck(IdRoom);
+                gameServiceClient.StartGame(IdRoom);
+                gameServiceClient.CreateDeck(IdRoom);
             }
             catch (EndpointNotFoundException)
             {
@@ -242,7 +240,7 @@ namespace NoThanks
             if (isHost)
             {
                 ExpelPlayer go = new ExpelPlayer();
-                go.SendPlayer(player, chatServiceClient, IdRoom);
+                go.SendPlayer(player, gameServiceClient, IdRoom);
                 go.ShowDialog();
             }
             else
@@ -257,16 +255,16 @@ namespace NoThanks
         {
             if (!isConected)
             {
-                chatServiceClient = new ChatServiceClient(new InstanceContext(this));
+                gameServiceClient = new GameServiceClient(new InstanceContext(this));
                 if (isNewRoom)
                 {
-                    idRoom = chatServiceClient.GenerateRoomCode();
+                    idRoom = gameServiceClient.GenerateRoomCode();
                     txtCode.Text = idRoom;
-                    chatServiceClient.NewRoom(Domain.Player.PlayerClient.Nickname, idRoom);
+                    gameServiceClient.NewRoom(Domain.Player.PlayerClient.Nickname, idRoom);
                     isHost = true;
                 }
                 txtCode.Text = idRoom;
-                chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_JOINMESSAGE_MESSAGE);
+                gameServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_JOINMESSAGE_MESSAGE);
                 isConected = true;
             }
         }
@@ -275,9 +273,9 @@ namespace NoThanks
         {
             if (isConected)
             {
-                chatServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_LEAVEMESSAGE_MESSAGE);
-                chatServiceClient.Close();
-                chatServiceClient = null;
+                gameServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_LEAVEMESSAGE_MESSAGE);
+                gameServiceClient.Close();
+                gameServiceClient = null;
                 isConected = false;
             }
         }
