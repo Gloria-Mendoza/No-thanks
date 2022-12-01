@@ -4,6 +4,7 @@
   <xs:complexType name="Player">
     <xs:sequence>
       <xs:element minOccurs="0" name="Cards" nillable="true" type="tns:ArrayOfCardType" />
+      <xs:element minOccurs="0" name="CardsString" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdPlayer" type="xs:int" />
       <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />

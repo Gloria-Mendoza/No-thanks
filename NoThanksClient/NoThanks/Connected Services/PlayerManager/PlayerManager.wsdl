@@ -227,6 +227,9 @@
   <wsdl:message name="IGameService_SkipPlayersTurnCallback_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:SkipPlayersTurnCallback" />
   </wsdl:message>
+  <wsdl:message name="IGameService_NextTurn_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NextTurn" />
+  </wsdl:message>
   <wsdl:message name="IGameService_UpdateDeck_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateDeck" />
   </wsdl:message>
@@ -357,6 +360,9 @@
     </wsdl:operation>
     <wsdl:operation name="SkipPlayersTurnCallback">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/SkipPlayersTurnCallback" message="tns:IGameService_SkipPlayersTurnCallback_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NextTurn">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/NextTurn" message="tns:IGameService_NextTurn_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateDeck">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/UpdateDeck" message="tns:IGameService_UpdateDeck_OutputCallbackMessage" />
@@ -601,6 +607,12 @@
     </wsdl:operation>
     <wsdl:operation name="SkipPlayersTurnCallback">
       <soap12:operation soapAction="http://tempuri.org/IGameService/SkipPlayersTurnCallback" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NextTurn">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/NextTurn" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

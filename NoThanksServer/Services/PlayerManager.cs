@@ -213,7 +213,9 @@ namespace Services
             Player player = new Player()
             {
                 Nickname = username,
-                AOperationContext = OperationContext.Current
+                AOperationContext = OperationContext.Current,
+                Cards = new List<CardType>(),
+                Tokens = 11
             };
             try
             {
@@ -308,16 +310,14 @@ namespace Services
                 ShuffleDeck();
                 DiscardFirstNine();
             }
-            //Esto le manda y actualiza el mazo a todos los jugadores de la sala
             var room = GetRoom(roomId);
             if (room != null)
             {
-                room.Players[0].Cards = new List<CardType>();
+                room.RoomTokens = 0;
                 foreach (var player in room.Players)
                 {
-                    player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().UpdateDeck(deck.ToArray());
+                    player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().UpdateDeck(deck.ToArray(),room.RoomTokens);
                 }
-                OperationContext.Current.GetCallbackChannel<IGameServiceCallback>().UpdateDeck(deck.ToArray());
             }
         }
 
@@ -338,35 +338,45 @@ namespace Services
             }
         }
 
-        public void TakeCard(String roomId)
+        public void TakeCard(string idRoom, string username)
         {
-            var card = deck[0];
-            deck.RemoveAt(0);
-            var room = GetRoom(roomId);
-            if (room != null)
+            if (deck.Count > 0)
             {
-                foreach (var player in room.Players)
+                var card = deck[0];
+                deck.RemoveAt(0);
+                var room = GetRoom(idRoom);
+                if (room != null)
                 {
-                    var callback = player.AOperationContext.GetCallbackChannel<IGameServiceCallback>();
-                    if (player.AOperationContext == OperationContext.Current) //Si el contexto = contextoJugador que pidió la carta entonces le manda la carta
+                    room.NextRound();
+                    foreach (var player in room.Players)
                     {
-                        player.Cards.Add(card); //Agrega la carta al jugador
-                        callback.UpdatePlayerDeck(player.Cards.ToArray()); //Actualiza el mazo del jugador
-                    }
-                    callback.UpdateDeck(deck.ToArray()); //Actualiza el mazo de todos los jugadores
+                        var callback = player.AOperationContext.GetCallbackChannel<IGameServiceCallback>();
+                        if (player.Nickname.Equals(username))
+                        {
+                            player.Cards.Add(card);
+                            player.CardsString += $"{(int)card},";
+                            player.Tokens += room.RoomTokens;
+                            room.RoomTokens = 0;
+                        }
 
+                        callback.UpdateDeck(deck.ToArray(),room.RoomTokens); //Actualiza el mazo de todos los jugadores
+                        callback.NextTurn(room.Round, room.Players.ToArray());
+                    }
                 }
             }
+            
         }
         public void SkipPlayersTurn(string idRoom, string username)
         {
             var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
             var player = room.Players.FirstOrDefault(i => i.Nickname.Equals(username));
             player.Tokens--;
+            room.RoomTokens++;
             room.NextRound();
-            foreach (var aPlayer in room.Players)
+            foreach (var anotherPlayer in room.Players)
             {
-                player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().SkipPlayersTurnCallback(room.Round);
+                anotherPlayer.AOperationContext.GetCallbackChannel<IGameServiceCallback>().SkipPlayersTurnCallback(room.Round, room.RoomTokens);
+                anotherPlayer.AOperationContext.GetCallbackChannel<IGameServiceCallback>().NextTurn(room.Round, room.Players.ToArray());
             }
         }
     }
