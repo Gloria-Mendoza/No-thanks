@@ -136,7 +136,7 @@ namespace Services
     public partial class PlayerManager : IGameService
     {
         private List<Logic.Room> globalRooms = new List<Room>();
-        List<CardType> deck;
+        //List<CardType> deck;
 
         public string GenerateRoomCode()
         {
@@ -155,7 +155,8 @@ namespace Services
                 Players = new List<Player>(),
                 Round = 0,
                 Scores = new List<int>(),
-                Winner = ""
+                Winner = "",
+                RoomTokens = 0
             };
             globalRooms.Add(newRoom);
             return true;
@@ -299,52 +300,56 @@ namespace Services
         }
         public void CreateDeck(String roomId)
         {
-            if (deck == null)
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(roomId));
+            if (room.Deck == null)
             {
                 var deck = new List<CardType>();
                 for (int i = 3; i < Enum.GetValues(typeof(CardType)).Length; i++)
                 {
                     deck.Add((CardType)i);
                 }
-                this.deck = deck;
-                ShuffleDeck();
-                DiscardFirstNine();
+                room.Deck = deck;
+                ShuffleDeck(roomId);
+                DiscardFirstNine(roomId);
             }
-            var room = GetRoom(roomId);
+            //var room = GetRoom(roomId);
             if (room != null)
             {
                 room.RoomTokens = 0;
                 foreach (var player in room.Players)
                 {
-                    player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().UpdateDeck(deck.ToArray(),room.RoomTokens);
+                    player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().UpdateDeck(room.Deck.ToArray(),room.RoomTokens);
                 }
             }
         }
 
-        public void DiscardFirstNine()
+        public void DiscardFirstNine(string idRoom)
         {
-            deck.RemoveRange(0, 9);
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            room.Deck.RemoveRange(0, 9);
         }
 
-        public void ShuffleDeck()
+        public void ShuffleDeck(string idRoom)
         {
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
             var random = new Random();
-            for (int i = 0; i < deck.Count; i++)
+            for (int i = 0; i < room.Deck.Count; i++)
             {
-                var temp = deck[i];
-                var randomIndex = random.Next(0, deck.Count);
-                deck[i] = deck[randomIndex];
-                deck[randomIndex] = temp;
+                var temp = room.Deck[i];
+                var randomIndex = random.Next(0, room.Deck.Count);
+                room.Deck[i] = room.Deck[randomIndex];
+                room.Deck[randomIndex] = temp;
             }
         }
 
         public void TakeCard(string idRoom, string username)
         {
-            if (deck.Count > 0)
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            if (room.Deck.Count > 0)
             {
-                var card = deck[0];
-                deck.RemoveAt(0);
-                var room = GetRoom(idRoom);
+                var card = room.Deck[0];
+                room.Deck.RemoveAt(0);
+                //var room = GetRoom(idRoom);
                 if (room != null)
                 {
                     room.NextRound();
@@ -359,7 +364,7 @@ namespace Services
                             room.RoomTokens = 0;
                         }
 
-                        callback.UpdateDeck(deck.ToArray(),room.RoomTokens); //Actualiza el mazo de todos los jugadores
+                        callback.UpdateDeck(room.Deck.ToArray(),room.RoomTokens); //Actualiza el mazo de todos los jugadores
                         callback.NextTurn(room.Round, room.Players.ToArray());
                     }
                 }

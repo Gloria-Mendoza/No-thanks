@@ -44,6 +44,8 @@ namespace Logic
         [DataMember]
         public int RoomTokens { get { return roomTokens; } set { roomTokens = value; } }
         [DataMember]
+        public List<CardType> Deck { get { return deck; } set { deck = value; } }
+        [DataMember]
         public List<int> Scores { get { return scores; } set { scores = value; } }
         [DataMember]
         public List<Player> Players { get { return players; } set { players = value; } }
