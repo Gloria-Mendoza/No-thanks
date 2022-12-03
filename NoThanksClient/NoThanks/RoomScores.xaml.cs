@@ -126,25 +126,25 @@ namespace NoThanks
 
         public PlayerManager.Player DiscardConsecutiveNumbers(PlayerManager.Player player)
         {
-            List<CardType> cards = new List<CardType>();
+            List<CardType> cardsFromPlayer = new List<CardType>();
 
-            List<CardType> cards1 = new List<CardType>();
+            List<CardType> cardsToRemove = new List<CardType>();
 
-            List<CardType> cards2 = new List<CardType>();
+            List<CardType> cardsToPreserve = new List<CardType>();
 
-            CardType[] cardsArray = player.Cards;
-            Array.Sort(cardsArray);
+            CardType[] cardsOrdered = player.Cards;
+            Array.Sort(cardsOrdered);
 
             try
             {
-                for (int i = 0; i < cardsArray.Length + 1; i++)
+                for (int i = 0; i < cardsOrdered.Length + 1; i++)
                 {
                     if ((player.Cards.ElementAt(i) - player.Cards.ElementAt(i + 1) == 1) ||
                         (player.Cards.ElementAt(i) - player.Cards.ElementAt(i + 1) == -1) ||
                         (player.Cards.ElementAt(i) - player.Cards.ElementAt(i - 1) == -1) ||
                         (player.Cards.ElementAt(i) - player.Cards.ElementAt(i - 1) == 1))
                     {
-                        cards.Add(player.Cards[i]);
+                        cardsFromPlayer.Add(player.Cards[i]);
                     }
                 }
             }
@@ -152,24 +152,24 @@ namespace NoThanks
             {
 
             }
-            cardsArray = cards.ToArray();
+            cardsOrdered = cardsFromPlayer.ToArray();
 
-            cards2.Add(cardsArray.First());
-            cards1.Add(cards.Last());
+            cardsToPreserve.Add(cardsOrdered.First());
+            cardsToRemove.Add(cardsFromPlayer.Last());
 
             try
             {
-                for (int i = 1; i < cardsArray.Length + 1; i++)
+                for (int i = 1; i < cardsOrdered.Length + 1; i++)
                 {
-                    if ((cards.ElementAt(i) - cards.ElementAt(i + 1) == 1) ||
-                        (cards.ElementAt(i) - cards.ElementAt(i - 1) == -1) ||
-                        (cards.ElementAt(i) - cards.ElementAt(i - 1) == 1))
+                    if ((cardsFromPlayer.ElementAt(i) - cardsFromPlayer.ElementAt(i + 1) == 1) ||
+                        (cardsFromPlayer.ElementAt(i) - cardsFromPlayer.ElementAt(i - 1) == -1) ||
+                        (cardsFromPlayer.ElementAt(i) - cardsFromPlayer.ElementAt(i - 1) == 1))
                     {
-                        cards1.Add(cards.ElementAt(i));
+                        cardsToRemove.Add(cardsFromPlayer.ElementAt(i));
                     }
                     else
                     {
-                        cards2.Add(cards.ElementAt(i));
+                        cardsToPreserve.Add(cardsFromPlayer.ElementAt(i));
                     }
                 }
             }
@@ -178,14 +178,14 @@ namespace NoThanks
 
             }
 
-            List<CardType> cardsAux = player.Cards.ToList();
+            List<CardType> cardsToPlayer = player.Cards.ToList();
 
-            for (int i = 0; i < cards1.Count; i++)
+            for (int i = 0; i < cardsToRemove.Count; i++)
             {
-                cardsAux.Remove(cards1[i]);
+                cardsToPlayer.Remove(cardsToRemove[i]);
             }
 
-            player.Cards = cardsAux.ToArray();
+            player.Cards = cardsToPlayer.ToArray();
 
             return player;
         }

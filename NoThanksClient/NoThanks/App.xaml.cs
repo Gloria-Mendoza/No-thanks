@@ -21,8 +21,8 @@ namespace NoThanks
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(langCode);   
             base.OnStartup(e);
 
-            SoundPlayer musicPlayer = new SoundPlayer("noThanksMusic.wav");
-            musicPlayer.PlayLooping();
+            //SoundPlayer musicPlayer = new SoundPlayer("noThanksMusic.wav");
+            //musicPlayer.PlayLooping();
         }
         
         

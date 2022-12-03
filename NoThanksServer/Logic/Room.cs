@@ -19,6 +19,8 @@ namespace Logic
         private const int MAX_PLAYERS = 7;
         private const int MIN_PLAYERS = 3;
         private int actualPlayersCount = 0;
+        private int roomTokens;
+        List<CardType> deck;
         private List<int> scores;
         private List<Player> players;
 
@@ -40,6 +42,10 @@ namespace Logic
         [DataMember]
         public int ActualPlayersCount { get { return actualPlayersCount; } set { actualPlayersCount = value; } }
         [DataMember]
+        public int RoomTokens { get { return roomTokens; } set { roomTokens = value; } }
+        [DataMember]
+        public List<CardType> Deck { get { return deck; } set { deck = value; } }
+        [DataMember]
         public List<int> Scores { get { return scores; } set { scores = value; } }
         [DataMember]
         public List<Player> Players { get { return players; } set { players = value; } }
@@ -52,7 +58,7 @@ namespace Logic
 
         public void NextRound()
         {
-            if(Round <= actualPlayersCount)
+            if(Round < actualPlayersCount-1)
             {
                 Round += 1;
             }

@@ -121,24 +121,40 @@ namespace NoThanks
 
         }
 
-        public void UpdateDeck(PlayerManager.CardType[] gameDeck)
+        public void UpdateDeck(PlayerManager.CardType[] gameDeck, int roomTokens)
         {
-            int i = (int) gameDeck[0];
-            this.gameDeck = gameDeck;
-            TopCard.Source = new BitmapImage(new Uri($"/Images/{i}.png", UriKind.Relative));
+            globaltokens = roomTokens;            
+            if(gameDeck.Count() > 0)
+            {
+                int i = (int)gameDeck[0];
+                this.gameDeck = gameDeck;
+                TopCard.Source = new BitmapImage(new Uri($"/Images/{i}.png", UriKind.Relative));
+            }
+            
         }
 
         public void UpdatePlayerDeck(CardType[] playerDeck)
         {
-            var player = playerList.Where(x => x.Nickname == Domain.Player.PlayerClient.Nickname).FirstOrDefault();
-            player.Cards = playerDeck;
+            //var player = playerList.Where(x => x.Nickname == Domain.Player.PlayerClient.Nickname).FirstOrDefault();
+            //player.Cards = playerDeck;
         }
-        public void SkipPlayersTurnCallback(int round)
+        public void SkipPlayersTurnCallback(int round, int roomTokens)
         {
+            globaltokens = roomTokens;
+        }
 
-            if (playerList.ElementAt(round).Equals(Domain.Player.PlayerClient.Nickname))
+        public void NextTurn(int round, PlayerManager.Player[] roomPlayers)
+        {
+            lbtokens.Content = $"Round: {round} \nTokens: {globaltokens}";
+            playerList = roomPlayers;
+            lxtPlayersBox.ItemsSource = playerList;
+            if (round < playerList.Count())
             {
-                lbtokens.Content = "SkipedTurn";
+                if (Domain.Player.PlayerClient.Nickname.Equals(playerList.ElementAt(round).Nickname))
+                {
+                    btnTake.IsEnabled = true;
+                    btnPass.IsEnabled = true;
+                }
             }
         }
         #endregion
@@ -206,22 +222,16 @@ namespace NoThanks
 
         private void TakeClick(object sender, RoutedEventArgs e)
         {
-            gameServiceClient.TakeCard(idRoom);
-            globaltokens = 0;
-            lbtokens.Content = globaltokens;
             btnTake.IsEnabled = false;
             btnPass.IsEnabled = false;
+            gameServiceClient.TakeCard(idRoom,Domain.Player.PlayerClient.Nickname);
         }
 
         private void PassClick(object sender, RoutedEventArgs e)
         {
-            gameServiceClient.SkipPlayersTurn(idRoom, Domain.Player.PlayerClient.Nickname);
-            globaltokens += 1;
-            playerList.First().Tokens--;
-            lbtokens.Content = globaltokens;
-            btnPass.IsEnabled = false;
             btnTake.IsEnabled = false;
-            
+            btnPass.IsEnabled = false;
+            gameServiceClient.SkipPlayersTurn(idRoom, Domain.Player.PlayerClient.Nickname);
         }
 
         private void StartGameClick(object sender, RoutedEventArgs e)

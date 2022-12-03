@@ -21,6 +21,7 @@ namespace Logic
         private string password;
         private string email;
         private List<CardType> cards;
+        private string cardsString;
         private int tokens;
         private Nullable<int> totalScore;
         private string name;
@@ -45,6 +46,8 @@ namespace Logic
         public string Email { get { return email; } set { email = value; } }
         [DataMember]
         public List<CardType> Cards { get { return cards; } set { cards = value; } }
+        [DataMember]
+        public string CardsString { get { return cardsString; } set { cardsString = value; } }
         [DataMember]
         public int Tokens { get { return tokens; } set { tokens = value; } }
         [DataMember]

@@ -40,9 +40,9 @@ namespace Services
         [OperationContract(IsOneWay = true)]
         void SendWhisper(string sender, string receiver, string message, string idRoom);
         [OperationContract(IsOneWay = true)]
-        void CreateDeck(String roomId);
+        void CreateDeck(string roomId);
         [OperationContract(IsOneWay = true)]
-        void TakeCard(String roomId);
+        void TakeCard(string roomId, string username);
         [OperationContract(IsOneWay = true)]
         void SkipPlayersTurn(string idRoom, string username);
     }
@@ -59,9 +59,11 @@ namespace Services
         [OperationContract(IsOneWay = true)]
         void PlayerExpeled(string nickname, string message);
         [OperationContract(IsOneWay = true)]
-        void SkipPlayersTurnCallback(int round);
+        void SkipPlayersTurnCallback(int round, int roomTokens);
         [OperationContract(IsOneWay = true)]
-        void UpdateDeck(CardType[] gameDeck);
+        void NextTurn(int round, Player[] roomPlayers);
+        [OperationContract(IsOneWay = true)]
+        void UpdateDeck(CardType[] gameDeck, int roomTokens);
         [OperationContract(IsOneWay = true)]
         void UpdatePlayerDeck(CardType[] playerDeck);
     }
