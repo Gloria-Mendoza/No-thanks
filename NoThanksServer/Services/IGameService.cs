@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    [ServiceContract(CallbackContract = typeof(IChatServiceCallback))]
-    public interface IChatService
+    [ServiceContract(CallbackContract = typeof(IGameServiceCallback))]
+    public interface IGameService
     {
         [OperationContract]
         bool NewRoom(string hostUsername, string idRoom);
@@ -39,19 +39,30 @@ namespace Services
 
         [OperationContract(IsOneWay = true)]
         void SendWhisper(string sender, string receiver, string message, string idRoom);
+        [OperationContract(IsOneWay = true)]
+        void CreateDeck(String roomId);
+        [OperationContract(IsOneWay = true)]
+        void TakeCard(String roomId);
+        [OperationContract(IsOneWay = true)]
+        void SkipPlayersTurn(string idRoom, string username);
     }
 
     [ServiceContract]
-    public interface IChatServiceCallback
+    public interface IGameServiceCallback
     {
         [OperationContract(IsOneWay = true)]
         void MessageCallBack(string message);
-
         [OperationContract (IsOneWay = true)]
         void WhisperCallBack(string sender, string message);
         [OperationContract(IsOneWay = true)]
         void StartGameRoom(RoomStatus roomStatus, Player[] players);
         [OperationContract(IsOneWay = true)]
         void PlayerExpeled(string nickname, string message);
+        [OperationContract(IsOneWay = true)]
+        void SkipPlayersTurnCallback(int round);
+        [OperationContract(IsOneWay = true)]
+        void UpdateDeck(CardType[] gameDeck);
+        [OperationContract(IsOneWay = true)]
+        void UpdatePlayerDeck(CardType[] playerDeck);
     }
 }

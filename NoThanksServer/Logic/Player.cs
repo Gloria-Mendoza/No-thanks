@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
+    //OperationContext en esta clase para devolver un objeto Player completo utilizamos el OperationContext sin
+    //serializar, y poder convertir los datos del EntitiyFramework a una clase serializable que pueda ocupar
+    //el servicio en conjunto con los demás OperationContext 
     [DataContract]
     public class Player
     {
