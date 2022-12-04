@@ -610,11 +610,38 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Deben ser 3 jugadores como minimo para poder empezar la partida.
+        /// </summary>
+        public static string ROOM_CANTSTART_MESSAGE {
+            get {
+                return ResourceManager.GetString("ROOM_CANTSTART_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Pasar.
         /// </summary>
         public static string ROOM_PASS_BUTTON {
             get {
                 return ResourceManager.GetString("ROOM_PASS_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Round.
+        /// </summary>
+        public static string ROOM_ROUND_LABEL {
+            get {
+                return ResourceManager.GetString("ROOM_ROUND_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¡Juego Iniciado!.
+        /// </summary>
+        public static string ROOM_STARTEDGAME_MESSAGE {
+            get {
+                return ResourceManager.GetString("ROOM_STARTEDGAME_MESSAGE", resourceCulture);
             }
         }
         
@@ -642,6 +669,15 @@ namespace NoThanks.Properties {
         public static string ROOM_TITLE_WINDOW {
             get {
                 return ResourceManager.GetString("ROOM_TITLE_WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tokens.
+        /// </summary>
+        public static string ROOM_TOKENS_LABEL {
+            get {
+                return ResourceManager.GetString("ROOM_TOKENS_LABEL", resourceCulture);
             }
         }
         

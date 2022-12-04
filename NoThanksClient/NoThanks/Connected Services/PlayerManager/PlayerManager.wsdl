@@ -29,7 +29,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IChatService_policy">
+  <wsp:Policy wsu:Id="NetTcpBinding_IGameService_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
@@ -59,35 +59,6 @@
     </wsp:ExactlyOne>
   </wsp:Policy>
   <wsp:Policy wsu:Id="NetTcpBinding_IUpdateProfile_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
-        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <wsp:Policy>
-            <sp:TransportToken>
-              <wsp:Policy>
-                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
-                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
-                </msf:WindowsTransportSecurity>
-              </wsp:Policy>
-            </sp:TransportToken>
-            <sp:AlgorithmSuite>
-              <wsp:Policy>
-                <sp:Basic256 />
-              </wsp:Policy>
-            </sp:AlgorithmSuite>
-            <sp:Layout>
-              <wsp:Policy>
-                <sp:Strict />
-              </wsp:Policy>
-            </sp:Layout>
-          </wsp:Policy>
-        </sp:TransportBinding>
-        <wsaw:UsingAddressing />
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="NetTcpBinding_IDeckOfCards_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
@@ -178,71 +149,86 @@
   <wsdl:message name="IPlayerManager_ExitsNickname_OutputMessage">
     <wsdl:part name="parameters" element="tns:ExitsNicknameResponse" />
   </wsdl:message>
-  <wsdl:message name="IChatService_NewRoom_InputMessage">
+  <wsdl:message name="IGameService_NewRoom_InputMessage">
     <wsdl:part name="parameters" element="tns:NewRoom" />
   </wsdl:message>
-  <wsdl:message name="IChatService_NewRoom_OutputMessage">
+  <wsdl:message name="IGameService_NewRoom_OutputMessage">
     <wsdl:part name="parameters" element="tns:NewRoomResponse" />
   </wsdl:message>
-  <wsdl:message name="IChatService_GenerateRoomCode_InputMessage">
+  <wsdl:message name="IGameService_GenerateRoomCode_InputMessage">
     <wsdl:part name="parameters" element="tns:GenerateRoomCode" />
   </wsdl:message>
-  <wsdl:message name="IChatService_GenerateRoomCode_OutputMessage">
+  <wsdl:message name="IGameService_GenerateRoomCode_OutputMessage">
     <wsdl:part name="parameters" element="tns:GenerateRoomCodeResponse" />
   </wsdl:message>
-  <wsdl:message name="IChatService_CheckQuota_InputMessage">
+  <wsdl:message name="IGameService_CheckQuota_InputMessage">
     <wsdl:part name="parameters" element="tns:CheckQuota" />
   </wsdl:message>
-  <wsdl:message name="IChatService_CheckQuota_OutputMessage">
+  <wsdl:message name="IGameService_CheckQuota_OutputMessage">
     <wsdl:part name="parameters" element="tns:CheckQuotaResponse" />
   </wsdl:message>
-  <wsdl:message name="IChatService_RecoverRoomPlayers_InputMessage">
+  <wsdl:message name="IGameService_RecoverRoomPlayers_InputMessage">
     <wsdl:part name="parameters" element="tns:RecoverRoomPlayers" />
   </wsdl:message>
-  <wsdl:message name="IChatService_RecoverRoomPlayers_OutputMessage">
+  <wsdl:message name="IGameService_RecoverRoomPlayers_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecoverRoomPlayersResponse" />
   </wsdl:message>
-  <wsdl:message name="IChatService_StartGame_InputMessage">
+  <wsdl:message name="IGameService_StartGame_InputMessage">
     <wsdl:part name="parameters" element="tns:StartGame" />
   </wsdl:message>
-  <wsdl:message name="IChatService_StartGame_OutputMessage">
-    <wsdl:part name="parameters" element="tns:StartGameResponse" />
-  </wsdl:message>
-  <wsdl:message name="IChatService_Connect_InputMessage">
+  <wsdl:message name="IGameService_Connect_InputMessage">
     <wsdl:part name="parameters" element="tns:Connect" />
   </wsdl:message>
-  <wsdl:message name="IChatService_Connect_OutputMessage">
+  <wsdl:message name="IGameService_Connect_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConnectResponse" />
   </wsdl:message>
-  <wsdl:message name="IChatService_Disconnect_InputMessage">
+  <wsdl:message name="IGameService_Disconnect_InputMessage">
     <wsdl:part name="parameters" element="tns:Disconnect" />
   </wsdl:message>
-  <wsdl:message name="IChatService_Disconnect_OutputMessage">
+  <wsdl:message name="IGameService_Disconnect_OutputMessage">
     <wsdl:part name="parameters" element="tns:DisconnectResponse" />
   </wsdl:message>
-  <wsdl:message name="IChatService_ExpelPlayer_InputMessage">
+  <wsdl:message name="IGameService_ExpelPlayer_InputMessage">
     <wsdl:part name="parameters" element="tns:ExpelPlayer" />
   </wsdl:message>
-  <wsdl:message name="IChatService_ExpelPlayer_OutputMessage">
+  <wsdl:message name="IGameService_ExpelPlayer_OutputMessage">
     <wsdl:part name="parameters" element="tns:ExpelPlayerResponse" />
   </wsdl:message>
-  <wsdl:message name="IChatService_SendMessage_InputMessage">
+  <wsdl:message name="IGameService_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
   </wsdl:message>
-  <wsdl:message name="IChatService_SendWhisper_InputMessage">
+  <wsdl:message name="IGameService_SendWhisper_InputMessage">
     <wsdl:part name="parameters" element="tns:SendWhisper" />
   </wsdl:message>
-  <wsdl:message name="IChatService_MessageCallBack_OutputCallbackMessage">
+  <wsdl:message name="IGameService_CreateDeck_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDeck" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_TakeCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:TakeCard" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_SkipPlayersTurn_InputMessage">
+    <wsdl:part name="parameters" element="tns:SkipPlayersTurn" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_MessageCallBack_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MessageCallBack" />
   </wsdl:message>
-  <wsdl:message name="IChatService_WhisperCallBack_OutputCallbackMessage">
+  <wsdl:message name="IGameService_WhisperCallBack_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:WhisperCallBack" />
   </wsdl:message>
-  <wsdl:message name="IChatService_StartGameRoom_OutputCallbackMessage">
+  <wsdl:message name="IGameService_StartGameRoom_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:StartGameRoom" />
   </wsdl:message>
-  <wsdl:message name="IChatService_PlayerExpeled_OutputCallbackMessage">
+  <wsdl:message name="IGameService_PlayerExpeled_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:PlayerExpeled" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_SkipPlayersTurnCallback_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SkipPlayersTurnCallback" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_NextTurn_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NextTurn" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_UpdateDeck_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeck" />
   </wsdl:message>
   <wsdl:message name="IUpdateProfile_SaveImage_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveImage" />
@@ -279,18 +265,6 @@
   </wsdl:message>
   <wsdl:message name="IUpdateProfile_ImageCallBack_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ImageCallBack" />
-  </wsdl:message>
-  <wsdl:message name="IDeckOfCards_CreateDeck_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateDeck" />
-  </wsdl:message>
-  <wsdl:message name="IDeckOfCards_TakeCard_InputMessage">
-    <wsdl:part name="parameters" element="tns:TakeCard" />
-  </wsdl:message>
-  <wsdl:message name="IDeckOfCards_UpdateDeck_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UpdateDeck" />
-  </wsdl:message>
-  <wsdl:message name="IDeckOfCards_UpdatePlayerDeck_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UpdatePlayerDeck" />
   </wsdl:message>
   <wsdl:portType name="IPlayerManager">
     <wsdl:operation name="Login">
@@ -330,56 +304,73 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/ExitsNicknameResponse" message="tns:IPlayerManager_ExitsNickname_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:portType name="IChatService">
+  <wsdl:portType name="IGameService">
     <wsdl:operation name="NewRoom">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/NewRoom" message="tns:IChatService_NewRoom_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/NewRoomResponse" message="tns:IChatService_NewRoom_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/NewRoom" message="tns:IGameService_NewRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/NewRoomResponse" message="tns:IGameService_NewRoom_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GenerateRoomCode">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GenerateRoomCode" message="tns:IChatService_GenerateRoomCode_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GenerateRoomCodeResponse" message="tns:IChatService_GenerateRoomCode_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/GenerateRoomCode" message="tns:IGameService_GenerateRoomCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/GenerateRoomCodeResponse" message="tns:IGameService_GenerateRoomCode_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CheckQuota">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/CheckQuota" message="tns:IChatService_CheckQuota_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/CheckQuotaResponse" message="tns:IChatService_CheckQuota_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/CheckQuota" message="tns:IGameService_CheckQuota_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/CheckQuotaResponse" message="tns:IGameService_CheckQuota_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RecoverRoomPlayers">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/RecoverRoomPlayers" message="tns:IChatService_RecoverRoomPlayers_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/RecoverRoomPlayersResponse" message="tns:IChatService_RecoverRoomPlayers_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/RecoverRoomPlayers" message="tns:IGameService_RecoverRoomPlayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/RecoverRoomPlayersResponse" message="tns:IGameService_RecoverRoomPlayers_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="StartGame">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/StartGame" message="tns:IChatService_StartGame_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/StartGameResponse" message="tns:IChatService_StartGame_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/StartGame" message="tns:IGameService_StartGame_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Connect">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Connect" message="tns:IChatService_Connect_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/ConnectResponse" message="tns:IChatService_Connect_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/Connect" message="tns:IGameService_Connect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/ConnectResponse" message="tns:IGameService_Connect_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Disconnect">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Disconnect" message="tns:IChatService_Disconnect_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/DisconnectResponse" message="tns:IChatService_Disconnect_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/Disconnect" message="tns:IGameService_Disconnect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/DisconnectResponse" message="tns:IGameService_Disconnect_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ExpelPlayer">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/ExpelPlayer" message="tns:IChatService_ExpelPlayer_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/ExpelPlayerResponse" message="tns:IChatService_ExpelPlayer_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/ExpelPlayer" message="tns:IGameService_ExpelPlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/ExpelPlayerResponse" message="tns:IGameService_ExpelPlayer_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendMessage">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendMessage" message="tns:IChatService_SendMessage_InputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/SendMessage" message="tns:IGameService_SendMessage_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendWhisper">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendWhisper" message="tns:IChatService_SendWhisper_InputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/SendWhisper" message="tns:IGameService_SendWhisper_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDeck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/CreateDeck" message="tns:IGameService_CreateDeck_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TakeCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/TakeCard" message="tns:IGameService_TakeCard_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SkipPlayersTurn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/SkipPlayersTurn" message="tns:IGameService_SkipPlayersTurn_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="MessageCallBack">
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/MessageCallBack" message="tns:IChatService_MessageCallBack_OutputCallbackMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/MessageCallBack" message="tns:IGameService_MessageCallBack_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="WhisperCallBack">
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/WhisperCallBack" message="tns:IChatService_WhisperCallBack_OutputCallbackMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/WhisperCallBack" message="tns:IGameService_WhisperCallBack_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="StartGameRoom">
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/StartGameRoom" message="tns:IChatService_StartGameRoom_OutputCallbackMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/StartGameRoom" message="tns:IGameService_StartGameRoom_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="PlayerExpeled">
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/PlayerExpeled" message="tns:IChatService_PlayerExpeled_OutputCallbackMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/PlayerExpeled" message="tns:IGameService_PlayerExpeled_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SkipPlayersTurnCallback">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/SkipPlayersTurnCallback" message="tns:IGameService_SkipPlayersTurnCallback_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NextTurn">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/NextTurn" message="tns:IGameService_NextTurn_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeck">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/UpdateDeck" message="tns:IGameService_UpdateDeck_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUpdateProfile">
@@ -408,20 +399,6 @@
     </wsdl:operation>
     <wsdl:operation name="ImageCallBack">
       <wsdl:output wsaw:Action="http://tempuri.org/IUpdateProfile/ImageCallBack" message="tns:IUpdateProfile_ImageCallBack_OutputCallbackMessage" />
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:portType name="IDeckOfCards">
-    <wsdl:operation name="CreateDeck">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDeckOfCards/CreateDeck" message="tns:IDeckOfCards_CreateDeck_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="TakeCard">
-      <wsdl:input wsaw:Action="http://tempuri.org/IDeckOfCards/TakeCard" message="tns:IDeckOfCards_TakeCard_InputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdateDeck">
-      <wsdl:output wsaw:Action="http://tempuri.org/IDeckOfCards/UpdateDeck" message="tns:IDeckOfCards_UpdateDeck_OutputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdatePlayerDeck">
-      <wsdl:output wsaw:Action="http://tempuri.org/IDeckOfCards/UpdatePlayerDeck" message="tns:IDeckOfCards_UpdatePlayerDeck_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPlayerManager" type="tns:IPlayerManager">
@@ -509,11 +486,11 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="NetTcpBinding_IChatService" type="tns:IChatService">
-    <wsp:PolicyReference URI="#NetTcpBinding_IChatService_policy" />
+  <wsdl:binding name="NetTcpBinding_IGameService" type="tns:IGameService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IGameService_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="NewRoom">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/NewRoom" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/NewRoom" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -522,7 +499,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GenerateRoomCode">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/GenerateRoomCode" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/GenerateRoomCode" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -531,7 +508,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="CheckQuota">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/CheckQuota" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/CheckQuota" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -540,7 +517,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RecoverRoomPlayers">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/RecoverRoomPlayers" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/RecoverRoomPlayers" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -549,16 +526,13 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="StartGame">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/StartGame" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/StartGame" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Connect">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/Connect" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/Connect" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -567,7 +541,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Disconnect">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/Disconnect" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/Disconnect" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -576,7 +550,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ExpelPlayer">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/ExpelPlayer" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/ExpelPlayer" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -585,37 +559,73 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="SendMessage">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/SendMessage" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/SendMessage" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="SendWhisper">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/SendWhisper" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/SendWhisper" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDeck">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/CreateDeck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="TakeCard">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/TakeCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SkipPlayersTurn">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/SkipPlayersTurn" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
     <wsdl:operation name="MessageCallBack">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/MessageCallBack" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/MessageCallBack" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="WhisperCallBack">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/WhisperCallBack" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/WhisperCallBack" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="StartGameRoom">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/StartGameRoom" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/StartGameRoom" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="PlayerExpeled">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/PlayerExpeled" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IGameService/PlayerExpeled" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SkipPlayersTurnCallback">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/SkipPlayersTurnCallback" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NextTurn">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/NextTurn" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeck">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/UpdateDeck" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
@@ -682,34 +692,6 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="NetTcpBinding_IDeckOfCards" type="tns:IDeckOfCards">
-    <wsp:PolicyReference URI="#NetTcpBinding_IDeckOfCards_policy" />
-    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="CreateDeck">
-      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/CreateDeck" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="TakeCard">
-      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/TakeCard" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-    </wsdl:operation>
-    <wsdl:operation name="UpdateDeck">
-      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/UpdateDeck" style="document" />
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdatePlayerDeck">
-      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/UpdatePlayerDeck" style="document" />
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
   <wsdl:service name="PlayerManager">
     <wsdl:port name="NetTcpBinding_IPlayerManager" binding="tns:NetTcpBinding_IPlayerManager">
       <soap12:address location="net.tcp://localhost:8081/Services" />
@@ -720,7 +702,7 @@
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
-    <wsdl:port name="NetTcpBinding_IChatService" binding="tns:NetTcpBinding_IChatService">
+    <wsdl:port name="NetTcpBinding_IGameService" binding="tns:NetTcpBinding_IGameService">
       <soap12:address location="net.tcp://localhost:8081/Services" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>
@@ -730,15 +712,6 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IUpdateProfile" binding="tns:NetTcpBinding_IUpdateProfile">
-      <soap12:address location="net.tcp://localhost:8081/Services" />
-      <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>
-        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Dns>localhost</Dns>
-        </Identity>
-      </wsa10:EndpointReference>
-    </wsdl:port>
-    <wsdl:port name="NetTcpBinding_IDeckOfCards" binding="tns:NetTcpBinding_IDeckOfCards">
       <soap12:address location="net.tcp://localhost:8081/Services" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>
