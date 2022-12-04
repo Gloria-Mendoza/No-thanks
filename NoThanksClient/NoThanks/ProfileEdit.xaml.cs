@@ -67,6 +67,8 @@ namespace NoThanks
                 var context = new InstanceContext(this);
                 PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
 
+                Domain.Player.PlayerClient.Photo = imageResource;
+
                 updateProfileClient.SaveImage(imageResource, Domain.Player.PlayerClient.IdPlayer);
 
                 if (!String.IsNullOrWhiteSpace(tbName.Text))
