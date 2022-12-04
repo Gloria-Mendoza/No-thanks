@@ -387,14 +387,22 @@ namespace Services
         {
             var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
             var player = room.Players.FirstOrDefault(i => i.Nickname.Equals(username));
-            player.Tokens--;
-            room.RoomTokens++;
-            room.NextRound();
-            foreach (var anotherPlayer in room.Players)
+            if(player.Tokens > 0)
             {
-                anotherPlayer.AOperationContext.GetCallbackChannel<IGameServiceCallback>().SkipPlayersTurnCallback(room.Round, room.RoomTokens);
-                anotherPlayer.AOperationContext.GetCallbackChannel<IGameServiceCallback>().NextTurn(room.Round, room.Players.ToArray());
+                player.Tokens--;
+                room.RoomTokens++;
+                room.NextRound();
+                foreach (var anotherPlayer in room.Players)
+                {
+                    anotherPlayer.AOperationContext.GetCallbackChannel<IGameServiceCallback>().SkipPlayersTurnCallback(room.Round, room.RoomTokens);
+                    anotherPlayer.AOperationContext.GetCallbackChannel<IGameServiceCallback>().NextTurn(room.Round, room.Players.ToArray());
+                }
             }
+            else
+            {
+                TakeCard(idRoom, username);
+            }
+            
         }
     }
     public partial class PlayerManager : IUpdateProfile
