@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Drawing;
 using System.Windows.Media.Imaging;
+using System.Windows.Interop;
 
 namespace NoThanks
 {
@@ -27,7 +28,8 @@ namespace NoThanks
         {
             InitializeComponent();
             ConfigureWindow();
-            updateImage();
+            //updateImage();
+            ImagenInit();
         }
         private void updateImage()
         {
@@ -39,6 +41,7 @@ namespace NoThanks
         {
             LabelName.Content = Domain.Player.PlayerClient.Nickname;
             LabelReal.Content = Domain.Player.PlayerClient.Name;
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -74,6 +77,23 @@ namespace NoThanks
             go.WindowState = this.WindowState;
             go.Show();
             this.Close();
+        }
+        private void ImagenInit()
+        {
+
+
+
+            Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
+
+
+            BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
+                bmp.GetHbitmap(),
+                IntPtr.Zero,
+                Int32Rect.Empty,
+                BitmapSizeOptions.FromEmptyOptions()
+                );
+            imagenProfile.Source = bmpImage;
+
         }
     }
 }

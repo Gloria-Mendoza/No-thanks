@@ -381,16 +381,16 @@
     <Resource Include="Images\world.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\hamster.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\acosador.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\nina.png" />
+    <None Include="Resources\gato.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\gato.jpg" />
+    <None Include="Resources\hamster.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nina.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

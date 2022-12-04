@@ -433,20 +433,21 @@ namespace Services
 
         public bool SaveImage(String imageManager, int idProfile)
         {
+
             var status = false;
             try
             {
-
-
-                return true;
-                
+                var client = new Authentication();
+                status = client.SaveImage(imageManager, idProfile);
             }
-            catch (ExternalException e)
+            catch (EntityException entityException)
             {
-                Console.WriteLine(e.Message);
-                return false;
+                //TODO
+                Console.WriteLine(entityException.Message);
             }
+            return status;
         }
+    
 
         public void GetImage(int idProfile)
         {
