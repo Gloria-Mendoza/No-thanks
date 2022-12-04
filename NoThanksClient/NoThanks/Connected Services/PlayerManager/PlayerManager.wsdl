@@ -176,9 +176,6 @@
   <wsdl:message name="IGameService_StartGame_InputMessage">
     <wsdl:part name="parameters" element="tns:StartGame" />
   </wsdl:message>
-  <wsdl:message name="IGameService_StartGame_OutputMessage">
-    <wsdl:part name="parameters" element="tns:StartGameResponse" />
-  </wsdl:message>
   <wsdl:message name="IGameService_Connect_InputMessage">
     <wsdl:part name="parameters" element="tns:Connect" />
   </wsdl:message>
@@ -232,9 +229,6 @@
   </wsdl:message>
   <wsdl:message name="IGameService_UpdateDeck_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateDeck" />
-  </wsdl:message>
-  <wsdl:message name="IGameService_UpdatePlayerDeck_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UpdatePlayerDeck" />
   </wsdl:message>
   <wsdl:message name="IUpdateProfile_SaveImage_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveImage" />
@@ -317,7 +311,6 @@
     </wsdl:operation>
     <wsdl:operation name="StartGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/StartGame" message="tns:IGameService_StartGame_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/StartGameResponse" message="tns:IGameService_StartGame_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Connect">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/Connect" message="tns:IGameService_Connect_InputMessage" />
@@ -366,9 +359,6 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateDeck">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/UpdateDeck" message="tns:IGameService_UpdateDeck_OutputCallbackMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="UpdatePlayerDeck">
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/UpdatePlayerDeck" message="tns:IGameService_UpdatePlayerDeck_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUpdateProfile">
@@ -520,9 +510,6 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Connect">
       <soap12:operation soapAction="http://tempuri.org/IGameService/Connect" style="document" />
@@ -619,12 +606,6 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateDeck">
       <soap12:operation soapAction="http://tempuri.org/IGameService/UpdateDeck" style="document" />
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UpdatePlayerDeck">
-      <soap12:operation soapAction="http://tempuri.org/IGameService/UpdatePlayerDeck" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

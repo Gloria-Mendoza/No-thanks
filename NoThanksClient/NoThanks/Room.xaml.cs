@@ -17,15 +17,16 @@ namespace NoThanks
     public partial class Room : Window, IGameServiceCallback
     {
         #region Atributtes & Properties
-        private bool isConected = false;
         private GameServiceClient gameServiceClient;
-        private bool isNewRoom;
-        private bool isHost = false;
-        private string idRoom;
         private PlayerManager.Player[] playerList;
         private PlayerManager.CardType[] gameDeck;
+        private bool isNewRoom;
+        private string idRoom;
+        private bool isConected = false;
+        private bool isHost = false;
         private int globaltokens = 0;
-
+        private int actualRound = 0;
+        
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
         public string IdRoom { get { return idRoom; } set { idRoom = value; } }
         #endregion
@@ -99,8 +100,19 @@ namespace NoThanks
         {
             if (roomStatus == RoomStatus.Started)
             {
-                lxtPlayersBox.ItemsSource = players;
+                playerList = players;
+                lxtPlayersBox.ItemsSource = playerList;
                 gridLobby.Visibility = Visibility.Collapsed;
+                if (Domain.Player.PlayerClient.Nickname.Equals(playerList.ElementAt(actualRound).Nickname))
+                {
+                    btnTake.IsEnabled = true;
+                    btnPass.IsEnabled = true;
+                }
+                else
+                {
+                    btnTake.IsEnabled = false;
+                    btnPass.IsEnabled = false;
+                }
             }
         }
 
@@ -133,11 +145,6 @@ namespace NoThanks
             
         }
 
-        public void UpdatePlayerDeck(CardType[] playerDeck)
-        {
-            //var player = playerList.Where(x => x.Nickname == Domain.Player.PlayerClient.Nickname).FirstOrDefault();
-            //player.Cards = playerDeck;
-        }
         public void SkipPlayersTurnCallback(int round, int roomTokens)
         {
             globaltokens = roomTokens;
@@ -148,6 +155,7 @@ namespace NoThanks
             lbtokens.Content = $"Round: {round} \nTokens: {globaltokens}";
             playerList = roomPlayers;
             lxtPlayersBox.ItemsSource = playerList;
+            actualRound = round;
             if (round < playerList.Count())
             {
                 if (Domain.Player.PlayerClient.Nickname.Equals(playerList.ElementAt(round).Nickname))
@@ -236,14 +244,15 @@ namespace NoThanks
 
         private void StartGameClick(object sender, RoutedEventArgs e)
         {
-            gridLobby.Visibility = Visibility.Collapsed;
             try
             {
-                
-                playerList = gameServiceClient.RecoverRoomPlayers(IdRoom);
-                lxtPlayersBox.ItemsSource = playerList;
-                gameServiceClient.StartGame(IdRoom);
+                string[] messages = new string[2];
+                messages[0] = Properties.Resources.ROOM_STARTEDGAME_MESSAGE;
+                messages[1] = Properties.Resources.ROOM_CANTSTART_MESSAGE;
+
+                gameServiceClient.StartGame(IdRoom, messages);
                 gameServiceClient.CreateDeck(IdRoom);
+
             }
             catch (EndpointNotFoundException)
             {

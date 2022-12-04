@@ -174,20 +174,29 @@ namespace Services
             return roomPlayersList;
         }
 
-        public void StartGame(string idRoom)
+        public void StartGame(string idRoom, string[] message)
         {
             var room = globalRooms.Find(r => r.Id.Equals(idRoom));
             if (room != null)
             {
-                globalRooms.Find(r => r.Id.Equals(idRoom)).Round++;
-                globalRooms.Find(r => r.Id.Equals(idRoom)).MatchStatus = RoomStatus.Started;
                 Player[] players = room.Players.ToArray();
-                foreach (var player in room.Players)
+                if (room.HadMinPlayersToStart())
                 {
-                    if (!player.Nickname.Equals(room.HostUsername))
+                    room.Round++;
+                    room.MatchStatus = RoomStatus.Started;
+                    foreach (var player in room.Players)
                     {
-                        player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().StartGameRoom(RoomStatus.Started, players);
+                        player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().StartGameRoom(RoomStatus.Started,players);
                     }
+                    SendMessage(message[0], null, idRoom);
+                }
+                else
+                {
+                    foreach (var player in room.Players)
+                    {
+                        player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().StartGameRoom(RoomStatus.Waitting, players);
+                    }
+                    SendMessage(message[1], null, idRoom);
                 }
             }
         }
@@ -220,12 +229,13 @@ namespace Services
             };
             try
             {
-                if (globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Count() > 0)
+                var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+                if (room.Players.Count() > 0)
                 {
                     SendMessage($": {player.Nickname} {message}!", player.Nickname, idRoom);
                 }
-                globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Add(player);
-                globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).ActualPlayersCount++;
+                room.Players.Add(player);
+                room.ActualPlayersCount++;
             }
             catch (NullReferenceException e)
             {
@@ -236,6 +246,7 @@ namespace Services
         public void Disconnect(string username, string idRoom, string message)
         {
             Logic.Player player = null;
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
             try
             {
                 player = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom))
@@ -248,11 +259,11 @@ namespace Services
 
             if (player != null)
             {
-                globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Remove(player);
-                globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).ActualPlayersCount--;
-                if (globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.Count() == 0)
+                room.Players.Remove(player);
+                room.ActualPlayersCount--;
+                if (room.Players.Count() == 0)
                 {
-                    globalRooms.Remove(globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)));
+                    globalRooms.Remove(room);
                 }
                 else
                 {
@@ -279,10 +290,11 @@ namespace Services
 
         public void SendMessage(string message, string username, string idRoom)
         {
-            foreach (var player in globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players)
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            foreach (var player in room.Players)
             {
                 string answer = DateTime.Now.ToShortTimeString();
-                var anotherPlayer = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players.FirstOrDefault(i => i.Nickname.Equals(username));
+                var anotherPlayer = room.Players.FirstOrDefault(i => i.Nickname.Equals(username));
                 if (anotherPlayer != null)
                 {
                     answer += $": {anotherPlayer.Nickname} ";
@@ -355,7 +367,7 @@ namespace Services
                     room.NextRound();
                     foreach (var player in room.Players)
                     {
-                        var callback = player.AOperationContext.GetCallbackChannel<IGameServiceCallback>();
+                        //var callback = player.AOperationContext.GetCallbackChannel<IGameServiceCallback>();
                         if (player.Nickname.Equals(username))
                         {
                             player.Cards.Add(card);
@@ -364,8 +376,8 @@ namespace Services
                             room.RoomTokens = 0;
                         }
 
-                        callback.UpdateDeck(room.Deck.ToArray(),room.RoomTokens); //Actualiza el mazo de todos los jugadores
-                        callback.NextTurn(room.Round, room.Players.ToArray());
+                        player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().UpdateDeck(room.Deck.ToArray(),room.RoomTokens); //Actualiza el mazo de todos los jugadores
+                        player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().NextTurn(room.Round, room.Players.ToArray());
                     }
                 }
             }

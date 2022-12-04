@@ -67,5 +67,10 @@ namespace Logic
                 Round = 0;
             }
         }
+
+        public bool HadMinPlayersToStart()
+        {
+            return actualPlayersCount >= MIN_PLAYERS;
+        }
     }
 }
