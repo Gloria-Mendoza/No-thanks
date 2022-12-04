@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Drawing;
 using System.Windows.Media.Imaging;
+using System.Windows.Interop;
 
 namespace NoThanks
 {
@@ -27,18 +28,20 @@ namespace NoThanks
         {
             InitializeComponent();
             ConfigureWindow();
-            updateImage();
+            //updateImage();
+            ImagenInit();
         }
         private void updateImage()
         {
             var context = new InstanceContext(this);
             PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
-            updateProfileClient.GetImage(Domain.Player.PlayerClient.Nickname);
+            updateProfileClient.GetImage(Domain.Player.PlayerClient.IdPlayer);
         }
         private void ConfigureWindow()
         {
             LabelName.Content = Domain.Player.PlayerClient.Nickname;
             LabelReal.Content = Domain.Player.PlayerClient.Name;
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -66,6 +69,30 @@ namespace NoThanks
             go.WindowState = this.WindowState;
             go.Show();
             this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ChangePassword go = new ChangePassword();
+            go.WindowState = this.WindowState;
+            go.Show();
+            this.Close();
+        }
+        private void ImagenInit()
+        {
+            if (!Domain.Player.PlayerClient.IsGuest)
+            {
+                Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
+
+                BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
+                    bmp.GetHbitmap(),
+                    IntPtr.Zero,
+                    Int32Rect.Empty,
+                    BitmapSizeOptions.FromEmptyOptions()
+                    );
+
+                imagenProfile.Source = bmpImage;
+            }
         }
     }
 }

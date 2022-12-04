@@ -78,6 +78,9 @@
       <DependentUpon>NoThanksDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Request.cs">
+      <DependentUpon>NoThanksDataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="NoThanksDataModel.edmx">

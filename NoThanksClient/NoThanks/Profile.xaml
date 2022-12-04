@@ -15,7 +15,8 @@
         <Label x:Name="LabelName" Content="Invitado" HorizontalAlignment="Left" Margin="155,24,0,0" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontFamily="Arial" Foreground="Red"/>
         <Label x:Name ="LabelReal" Content="" HorizontalAlignment="Left" Margin="168,89,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFD8C22B" FontSize="24" FontFamily="Arial" Width="187"/>
         <Image x:Name="imagenProfile"   HorizontalAlignment="Left" Height="147" Margin="10,34,0,0" VerticalAlignment="Top" Width="158" Source="/Images/persona.png"/>
-        <Image HorizontalAlignment="Left" Height="75" Margin="100,109,0,0" VerticalAlignment="Top" Width="75" Source="/pincel.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
+        <Image HorizontalAlignment="Left" Height="75" Margin="100,109,0,0" VerticalAlignment="Top" Width="75" Source="/Images/lapiz.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
+        <Button Content="Cambiar Contraseña" HorizontalAlignment="Left" Margin="635,39,0,0" VerticalAlignment="Top" Height="35" Width="155" FontFamily="Arial" FontWeight="Bold" FontSize="14" Click="Button_Click_1"/>
 
     </Grid>
 </Window>

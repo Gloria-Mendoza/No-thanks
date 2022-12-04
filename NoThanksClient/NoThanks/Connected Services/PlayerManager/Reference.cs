@@ -757,16 +757,16 @@ namespace NoThanks.PlayerManager {
     public interface IUpdateProfile {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/SaveImage", ReplyAction="http://tempuri.org/IUpdateProfile/SaveImageResponse")]
-        bool SaveImage(byte[] imageManager, string nameProfile);
+        bool SaveImage(string imageManager, int idProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/SaveImage", ReplyAction="http://tempuri.org/IUpdateProfile/SaveImageResponse")]
-        System.Threading.Tasks.Task<bool> SaveImageAsync(byte[] imageManager, string nameProfile);
+        System.Threading.Tasks.Task<bool> SaveImageAsync(string imageManager, int idProfile);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUpdateProfile/GetImage")]
-        void GetImage(string nameProfile);
+        void GetImage(int idProfile);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUpdateProfile/GetImage")]
-        System.Threading.Tasks.Task GetImageAsync(string nameProfile);
+        System.Threading.Tasks.Task GetImageAsync(int idProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalPlayers", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalPlayersResponse")]
         string[] GetGlobalPlayers();
@@ -775,10 +775,22 @@ namespace NoThanks.PlayerManager {
         System.Threading.Tasks.Task<string[]> GetGlobalPlayersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalFriends", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalFriendsResponse")]
-        string[] GetGlobalFriends();
+        string[] GetGlobalFriends(int idPlayer);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalFriends", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalFriendsResponse")]
-        System.Threading.Tasks.Task<string[]> GetGlobalFriendsAsync();
+        System.Threading.Tasks.Task<string[]> GetGlobalFriendsAsync(int idPlayer);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalRequest", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalRequestResponse")]
+        string[] GetGlobalRequest();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalRequest", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalRequestResponse")]
+        System.Threading.Tasks.Task<string[]> GetGlobalRequestAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/UpdateNewNickname", ReplyAction="http://tempuri.org/IUpdateProfile/UpdateNewNicknameResponse")]
+        bool UpdateNewNickname(string nickname, string newnickname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/UpdateNewNickname", ReplyAction="http://tempuri.org/IUpdateProfile/UpdateNewNicknameResponse")]
+        System.Threading.Tasks.Task<bool> UpdateNewNicknameAsync(string nickname, string newnickname);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -816,20 +828,20 @@ namespace NoThanks.PlayerManager {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public bool SaveImage(byte[] imageManager, string nameProfile) {
-            return base.Channel.SaveImage(imageManager, nameProfile);
+        public bool SaveImage(string imageManager, int idProfile) {
+            return base.Channel.SaveImage(imageManager, idProfile);
         }
         
-        public System.Threading.Tasks.Task<bool> SaveImageAsync(byte[] imageManager, string nameProfile) {
-            return base.Channel.SaveImageAsync(imageManager, nameProfile);
+        public System.Threading.Tasks.Task<bool> SaveImageAsync(string imageManager, int idProfile) {
+            return base.Channel.SaveImageAsync(imageManager, idProfile);
         }
         
-        public void GetImage(string nameProfile) {
-            base.Channel.GetImage(nameProfile);
+        public void GetImage(int idProfile) {
+            base.Channel.GetImage(idProfile);
         }
         
-        public System.Threading.Tasks.Task GetImageAsync(string nameProfile) {
-            return base.Channel.GetImageAsync(nameProfile);
+        public System.Threading.Tasks.Task GetImageAsync(int idProfile) {
+            return base.Channel.GetImageAsync(idProfile);
         }
         
         public string[] GetGlobalPlayers() {
@@ -840,12 +852,28 @@ namespace NoThanks.PlayerManager {
             return base.Channel.GetGlobalPlayersAsync();
         }
         
-        public string[] GetGlobalFriends() {
-            return base.Channel.GetGlobalFriends();
+        public string[] GetGlobalFriends(int idPlayer) {
+            return base.Channel.GetGlobalFriends(idPlayer);
         }
         
-        public System.Threading.Tasks.Task<string[]> GetGlobalFriendsAsync() {
-            return base.Channel.GetGlobalFriendsAsync();
+        public System.Threading.Tasks.Task<string[]> GetGlobalFriendsAsync(int idPlayer) {
+            return base.Channel.GetGlobalFriendsAsync(idPlayer);
+        }
+        
+        public string[] GetGlobalRequest() {
+            return base.Channel.GetGlobalRequest();
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetGlobalRequestAsync() {
+            return base.Channel.GetGlobalRequestAsync();
+        }
+        
+        public bool UpdateNewNickname(string nickname, string newnickname) {
+            return base.Channel.UpdateNewNickname(nickname, newnickname);
+        }
+        
+        public System.Threading.Tasks.Task<bool> UpdateNewNicknameAsync(string nickname, string newnickname) {
+            return base.Channel.UpdateNewNicknameAsync(nickname, newnickname);
         }
     }
 }

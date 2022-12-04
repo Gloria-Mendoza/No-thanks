@@ -12,13 +12,13 @@
 
     <Grid>
         <Label Content="Lista de amigos:" Margin="41,36,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FF1CA910" FontFamily="Arial" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Width="199"/>
-        <ListBox x:Name="ltbAllUser" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="425,59,0,0" FontFamily="Arial" Background="{x:Null}" Foreground="#FF2DFDC9" HorizontalAlignment="Left" Width="275" Height="270" VerticalAlignment="Top"/>
+        <ListBox x:Name="ltbAllUser" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="425,59,0,0" FontFamily="Arial" Background="{x:Null}" Foreground="#FF2DFDC9" HorizontalAlignment="Left" Width="275" Height="270" VerticalAlignment="Top" MouseLeftButtonUp="ltbAllUser_MouseLeftButtonUp"/>
         <Label Content="Buscar Amigo:" Margin="275,9,388,0" Foreground="#FFFF1C1C" FontFamily="Arial" FontSize="18" FontWeight="Bold" Height="31" VerticalAlignment="Top"/>
         <TextBox x:Name="txtConsult" Margin="415,14,0,0" TextWrapping="Wrap" Text="" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="285" />
-        <Label Content="Amigos conectados:" HorizontalAlignment="Left" Margin="40,0,0,150" VerticalAlignment="Bottom" RenderTransformOrigin="0.129,0.772" Height="45" Width="235" FontSize="22" FontFamily="Arial" FontWeight="Bold" Foreground="#FF19B331"/>
-        <ListBox x:Name="lbtAllFriends" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="45,0,0,245" Foreground="#FFB804FF" Background="{x:Null}" Height="110" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="225"/>
-        <Button Content="Volver" Margin="0,0,63,25" VerticalAlignment="Bottom" Height="30"  HorizontalAlignment="Right" Width="67"/>
-        <Button Content="Buscar" HorizontalAlignment="Right" Margin="0,14,25,390" Width="55" />
+        <Label Content="Mejores amigos:" HorizontalAlignment="Left" Margin="40,0,0,150" VerticalAlignment="Bottom" RenderTransformOrigin="0.129,0.772" Height="45" Width="235" FontSize="22" FontFamily="Arial" FontWeight="Bold" Foreground="#FF19B331"/>
+        <Button Content="Volver" Margin="670,0,63,25" Click="Button_Click_2" Height="30" VerticalAlignment="Bottom"/>
+        <Button Content="Buscar" HorizontalAlignment="Right" Margin="0,0,30,395" Width="55" Click="Button_Click_3" Height="30" VerticalAlignment="Bottom" />
+        <ListBox x:Name="ltbAllFriends" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="35,79,510,201"/>
 
     </Grid>
 </Window>
