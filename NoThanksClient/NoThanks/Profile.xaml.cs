@@ -80,21 +80,18 @@ namespace NoThanks
         }
         private void ImagenInit()
         {
+            if (!Domain.Player.PlayerClient.IsGuest)
+            {
+                Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
 
+                BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
+                    bmp.GetHbitmap(),
+                    IntPtr.Zero,
+                    Int32Rect.Empty,
+                    BitmapSizeOptions.FromEmptyOptions()
+                    );
 
-            try { 
-            Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
-
-
-            BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
-                bmp.GetHbitmap(),
-                IntPtr.Zero,
-                Int32Rect.Empty,
-                BitmapSizeOptions.FromEmptyOptions()
-                );
-            imagenProfile.Source = bmpImage;
-            }catch (Exception ex) {
-                Console.WriteLine(ex.Message);
+                imagenProfile.Source = bmpImage;
             }
         }
     }

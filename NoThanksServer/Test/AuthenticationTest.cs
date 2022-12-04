@@ -62,7 +62,7 @@ namespace Test
         [TestMethod]
         public void Login()
         {
-            string nickname = "Prueba";
+            string nickname = "Panther";
             string password = "3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2";
 
             Authentication authentication = new Authentication();
@@ -70,13 +70,18 @@ namespace Test
             var expectedResult = new Player()
             {
                 IdPlayer = 1,
-                Nickname = "Prueba",
-                Email = "",
+                Nickname = "Panther",
+                Email = "nothanks364@outlook.com",
                 Name = "",
                 LastName = "",
                 TotalScore = 0,
                 Status = true,
                 Password = "",
+                Tokens = 0,
+                ProfileImage = "gato",
+                Cards = null,
+                CardsString = null,
+                AOperationContext = null 
             };
             var result = authentication.Login(nickname, password);
 
@@ -86,7 +91,7 @@ namespace Test
         [TestMethod]
         public void UpdatePlayerPassword()
         {
-            string password = "3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2";
+            string password = "3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2"; //"d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db";
             string email = "nothanks364@outlook.com";
 
             Authentication authentication = new Authentication();

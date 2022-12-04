@@ -10,30 +10,24 @@ namespace Logic
 {
     public class GameManager
     {
-        public bool AddFinishedGame(Logic.Room game)
+        public bool AddFinishedGame(Logic.Room logicRoom)
         {
             var status = false;
             using (var context = new NoThanksEntities())
             {
                 context.Games.Add(new Game()
                 {
-                    result = game.Scores.Max()
+                    result = logicRoom.Scores.Min()
                 });
-                foreach (var player in game.Players)
+                context.SaveChanges();
+                foreach (var logicPlayer in logicRoom.Players)
                 {
-                    int idPlayer = player.IdPlayer;
                     context.MatchsHistories.Add(new MatchsHistory()
                     {
                         idGame = context.Games.Max(g => g.idGame),
-                        idPlayer = idPlayer,
-                        Game = context.Games.Last(),
-                        Player = new Data.Player()
-                        {
-                            idPlayer = idPlayer,
-                            totalScore = player.TotalScore
-                        },
-                        point = player.TotalScore,
-                        result = player.TotalScore == game.Scores.Max() ? "Victory" : "Defeat"
+                        idPlayer = logicPlayer.IdPlayer,
+                        point = logicPlayer.TotalScore,
+                        result = (logicPlayer.TotalScore == logicRoom.Scores.Min()) ? "Victory" : "Defeat"
                     });
                     status = context.SaveChanges() > 0;
                 }

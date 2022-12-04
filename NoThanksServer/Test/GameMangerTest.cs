@@ -65,16 +65,20 @@ namespace Test
         {
             GameManager gameManager = new GameManager();
 
+            List<int> scores = new List<int>();
+            List<Player> players = new List<Player>();
+
+            scores.Add(30);
+            players.Add(new Player()
+            {
+                IdPlayer = 1,
+                TotalScore = 30
+            });
+
             var finishedRoom = new Room()
             {
-                Players = new List<Player>
-                {
-
-                },
-                Scores = new List<int>
-                {
-
-                },
+                Players = players,
+                Scores = scores,
             };
 
             var result = gameManager.AddFinishedGame(finishedRoom);
