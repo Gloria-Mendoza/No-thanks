@@ -4,16 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2aadbe6c0d3348b2ac54003dd6811f22" Name="Diagram1">
-        <EntityTypeShape EntityType="NoThanksDataModel.Friend" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="NoThanksDataModel.Game" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NoThanksDataModel.Player" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <AssociationConnector Association="NoThanksDataModel.FK__Friends__idPlaye__29572725" ManuallyRouted="false" />
-        <AssociationConnector Association="NoThanksDataModel.FK__Friends__idPlaye__2A4B4B5E" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="NoThanksDataModel.MatchsHistory" Width="1.5" PointX="3" PointY="7" />
+      <Diagram DiagramId="2aadbe6c0d3348b2ac54003dd6811f22" Name="Diagram1" ZoomLevel="80">
+        <EntityTypeShape EntityType="NoThanksDataModel.Friend" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="NoThanksDataModel.Game" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NoThanksDataModel.MatchsHistory" Width="1.5" PointX="6" PointY="4.375" />
+        <EntityTypeShape EntityType="NoThanksDataModel.Player" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="NoThanksDataModel.Request" Width="1.5" PointX="3" PointY="9" />
+        <AssociationConnector Association="NoThanksDataModel.FK__Friends__idPlaye__29572725" />
+        <AssociationConnector Association="NoThanksDataModel.FK__Friends__idPlaye__2A4B4B5E" />
         <AssociationConnector Association="NoThanksDataModel.FK__MatchsHis__idGam__2D27B809" />
         <AssociationConnector Association="NoThanksDataModel.FK__MatchsHis__idPla__2E1BDC42" />
-        </Diagram>
+        <AssociationConnector Association="NoThanksDataModel.FK__Request__receive__778AC167" />
+        <AssociationConnector Association="NoThanksDataModel.FK__Request__senders__76969D2E" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

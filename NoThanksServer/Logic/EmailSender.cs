@@ -20,7 +20,7 @@ namespace Logic
             {
                 MailMessage mailMessage = new MailMessage()
                 {
-                    From = new MailAddress(FROM_EMAIL, DISPLAY_NAME),
+                    From = new MailAddress(Properties.Settings.Default.Email, DISPLAY_NAME),
                     Subject = affair,
                     Body = $"{BODY} {validationCode}",
                     BodyEncoding = Encoding.UTF8,
@@ -28,7 +28,7 @@ namespace Logic
                 };
                 mailMessage.To.Add(toEmail);
 
-                client.Credentials = new NetworkCredential(FROM_EMAIL, "Holamundo3");
+                client.Credentials = new NetworkCredential(Properties.Settings.Default.Email, Properties.Settings.Default.EmailPassword);
                 client.EnableSsl = true;
                 client.Send(mailMessage);
             }

@@ -20,13 +20,11 @@ namespace Services
         bool Register(Player player);
 
         [OperationContract]
-        bool SendCode(string emailFrom);
-
+        bool SendCode(string emailFrom, int code);
         [OperationContract]
-        List<String> GetRecord();
-
+        int GenerateCode();
         [OperationContract]
-        List<int?> GetScore();
+        int GetGenerateCode();
 
         [OperationContract]
         bool SendValidationEmail(String toEmail, String affair, int validationCode);

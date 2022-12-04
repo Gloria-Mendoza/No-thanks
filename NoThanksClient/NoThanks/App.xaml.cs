@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Threading;
+using System.Media;
 
 namespace NoThanks
 {
@@ -19,6 +20,11 @@ namespace NoThanks
             var langCode = NoThanks.Properties.Settings.Default.LanguageCode;
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(langCode);   
             base.OnStartup(e);
+
+            //SoundPlayer musicPlayer = new SoundPlayer("noThanksMusic.wav");
+            //musicPlayer.PlayLooping();
         }
+        
+        
     }
 }

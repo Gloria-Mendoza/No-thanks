@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.ServiceModel;
@@ -10,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -25,7 +27,7 @@ namespace NoThanks
         {
             InitializeComponent();
             ConfigureWindow();
-            updateImage();
+            ImagenInit();
         }
         private void updateImage()
         {
@@ -36,6 +38,32 @@ namespace NoThanks
                 updateProfileClient.GetImage(Domain.Player.PlayerClient.Nickname);
             }
 
+        private void ImagenInit()
+        {
+            if (!Domain.Player.PlayerClient.IsGuest)
+            {
+                Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
+
+                BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
+                    bmp.GetHbitmap(),
+                    IntPtr.Zero,
+                    Int32Rect.Empty,
+                    BitmapSizeOptions.FromEmptyOptions()
+                    );
+
+                imagenProfile.Source = bmpImage;
+            }
+        }
+
+        private void updateImage()
+        {
+            if (!Domain.Player.PlayerClient.IsGuest)
+            {
+                var context = new InstanceContext(this);
+                PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
+                updateProfileClient.GetImage(Domain.Player.PlayerClient.IdPlayer);
+            }
+
         }
 
         private void ConfigureWindow()
@@ -43,16 +71,6 @@ namespace NoThanks
             LabelName.Content = Domain.Player.PlayerClient.Nickname;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            PlaySelection go = new PlaySelection()
-            {
-                WindowState = this.WindowState,
-                Left = this.Left
-            };
-            go.Show();
-            this.Close();
-        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -64,20 +82,6 @@ namespace NoThanks
             go.Show();
             this.Close();
         }
-
-
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            Personalization go = new Personalization()
-            {
-                WindowState = this.WindowState,
-                Left = this.Left
-            };
-            go.Show();
-            this.Close();
-        }
-
 
 
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -118,18 +122,26 @@ namespace NoThanks
             }
         }
 
-        private void Image_Trophy(object sender, MouseButtonEventArgs e)
+        private void Image_MouseLeftButtonUp_2(object sender, MouseButtonEventArgs e)
         {
-            if (!Domain.Player.PlayerClient.IsGuest)
+            Personalization go = new Personalization()
             {
-                ConsultRecord record = new ConsultRecord()
-                {
-                    WindowState = this.WindowState,
-                    Left = this.Left
-                };
-                record.Show();
-                this.Close();
-            }
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
+            go.Show();
+            this.Close();
+        }
+
+        private void Image_MouseLeftButtonUp_3(object sender, MouseButtonEventArgs e)
+        {
+            PlaySelection go = new PlaySelection()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
+            go.Show();
+            this.Close();
         }
     }
 }

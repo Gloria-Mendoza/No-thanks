@@ -59,6 +59,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -82,8 +83,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ConsultRecord.xaml.cs">
-      <DependentUpon>ConsultRecord.xaml</DependentUpon>
+    <Compile Include="Friends.xaml.cs">
+      <DependentUpon>Friends.xaml</DependentUpon>
     </Compile>
     <Compile Include="FriendsProfile.xaml.cs">
       <DependentUpon>FriendsProfile.xaml</DependentUpon>
@@ -103,6 +104,11 @@
       <DependentUpon>Resources.es-MX.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\ResourcesImage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesImage.resx</DependentUpon>
     </Compile>
     <Compile Include="Room.xaml.cs">
       <DependentUpon>Room.xaml</DependentUpon>
@@ -129,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Friends.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FriendsProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,16 +243,20 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ResourcesImage.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesImage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Connected Services\PlayerManager\item.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\PlayerManager\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\item2.xsd">
+    <None Include="Connected Services\PlayerManager\item3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\item3.xsd">
+    <None Include="Connected Services\PlayerManager\item4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\PlayerManager\item4.xsd">
@@ -325,13 +339,69 @@
     <Resource Include="Images\LETTER_X_ICON.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="amigos.png" />
+    <Resource Include="Images\amigos.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="persona.png" />
+    <Resource Include="Images\lapiz.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="pincel.png" />
+    <Resource Include="Images\10.png" />
+    <Resource Include="Images\11.png" />
+    <Resource Include="Images\12.png" />
+    <Resource Include="Images\13.png" />
+    <Resource Include="Images\14.png" />
+    <Resource Include="Images\15.png" />
+    <Resource Include="Images\16.png" />
+    <Resource Include="Images\17.png" />
+    <Resource Include="Images\18.png" />
+    <Resource Include="Images\19.png" />
+    <Resource Include="Images\20.png" />
+    <Resource Include="Images\21.png" />
+    <Resource Include="Images\22.png" />
+    <Resource Include="Images\23.png" />
+    <Resource Include="Images\24.png" />
+    <Resource Include="Images\25.png" />
+    <Resource Include="Images\26.png" />
+    <Resource Include="Images\27.png" />
+    <Resource Include="Images\28.png" />
+    <Resource Include="Images\29.png" />
+    <Resource Include="Images\3.png" />
+    <Resource Include="Images\30.png" />
+    <Resource Include="Images\31.png" />
+    <Resource Include="Images\32.png" />
+    <Resource Include="Images\33.png" />
+    <Resource Include="Images\34.png" />
+    <Resource Include="Images\35.png" />
+    <Resource Include="Images\4.png" />
+    <Resource Include="Images\5.png" />
+    <Resource Include="Images\6.png" />
+    <Resource Include="Images\7.png" />
+    <Resource Include="Images\8.png" />
+    <Resource Include="Images\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\3_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\addFriend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\unfriend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\world.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acosador.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gato.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hamster.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nina.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="lapiz.png" />

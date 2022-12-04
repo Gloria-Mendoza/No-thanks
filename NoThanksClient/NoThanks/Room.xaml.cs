@@ -14,18 +14,19 @@ namespace NoThanks
 {
 
     [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
-    public partial class Room : Window, IChatServiceCallback, IDeckOfCardsCallback
+    public partial class Room : Window, IGameServiceCallback
     {
         #region Atributtes & Properties
-        private bool isConected = false;
-        private ChatServiceClient chatServiceClient;
-        private DeckOfCardsClient deckServiceClient;
-        private bool isNewRoom;
-        private bool isHost = false;
-        private string idRoom;
+        private GameServiceClient gameServiceClient;
         private PlayerManager.Player[] playerList;
         private PlayerManager.CardType[] gameDeck;
-
+        private bool isNewRoom;
+        private string idRoom;
+        private bool isConected = false;
+        private bool isHost = false;
+        private int globaltokens = 0;
+        private int actualRound = 0;
+        
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
         public string IdRoom { get { return idRoom; } set { idRoom = value; } }
         #endregion
@@ -75,9 +76,9 @@ namespace NoThanks
 
         public bool CheckQuota()
         {
-            chatServiceClient = new ChatServiceClient(new InstanceContext(this));
-            var aviable = chatServiceClient.CheckQuota(IdRoom);
-            chatServiceClient.Close();
+            gameServiceClient = new GameServiceClient(new InstanceContext(this));
+            var aviable = gameServiceClient.CheckQuota(IdRoom);
+            gameServiceClient.Close();
             return aviable;
         }
         #endregion
@@ -99,8 +100,19 @@ namespace NoThanks
         {
             if (roomStatus == RoomStatus.Started)
             {
-                lxtPlayersBox.ItemsSource = players;
+                playerList = players;
+                lxtPlayersBox.ItemsSource = playerList;
                 gridLobby.Visibility = Visibility.Collapsed;
+                if (Domain.Player.PlayerClient.Nickname.Equals(playerList.ElementAt(actualRound).Nickname))
+                {
+                    btnTake.IsEnabled = true;
+                    btnPass.IsEnabled = true;
+                }
+                else
+                {
+                    btnTake.IsEnabled = false;
+                    btnPass.IsEnabled = false;
+                }
             }
         }
 
@@ -120,11 +132,38 @@ namespace NoThanks
             }
 
         }
-        public void UpdateDeck(PlayerManager.CardType[] gameDeck)
+
+        public void UpdateDeck(PlayerManager.CardType[] gameDeck, int roomTokens)
         {
-            int i = (int) gameDeck[0];
-            this.gameDeck = gameDeck;
-            TopCard.Source = new BitmapImage(new Uri($"/Images/{i}.png", UriKind.Relative));
+            globaltokens = roomTokens;            
+            if(gameDeck.Count() > 0)
+            {
+                int i = (int)gameDeck[0];
+                this.gameDeck = gameDeck;
+                TopCard.Source = new BitmapImage(new Uri($"/Images/{i}.png", UriKind.Relative));
+            }
+            
+        }
+
+        public void SkipPlayersTurnCallback(int round, int roomTokens)
+        {
+            globaltokens = roomTokens;
+        }
+
+        public void NextTurn(int round, PlayerManager.Player[] roomPlayers)
+        {
+            lbtokens.Content = $"Round: {round} \nTokens: {globaltokens}";
+            playerList = roomPlayers;
+            lxtPlayersBox.ItemsSource = playerList;
+            actualRound = round;
+            if (round < playerList.Count())
+            {
+                if (Domain.Player.PlayerClient.Nickname.Equals(playerList.ElementAt(round).Nickname))
+                {
+                    btnTake.IsEnabled = true;
+                    btnPass.IsEnabled = true;
+                }
+            }
         }
         #endregion
 
@@ -133,7 +172,7 @@ namespace NoThanks
         {
             if (e.Key == Key.Enter)
             {
-                if (chatServiceClient != null)
+                if (gameServiceClient != null)
                 {
                     if (txtMesageContainer.Text.StartsWith("/whisper"))
                     {
@@ -145,12 +184,12 @@ namespace NoThanks
                             {
                                 message += args[i] + " ";
                             }
-                            chatServiceClient.SendWhisper(Domain.Player.PlayerClient.Nickname, args[1], message, idRoom);
+                            gameServiceClient.SendWhisper(Domain.Player.PlayerClient.Nickname, args[1], message, idRoom);
                         }
                     }
                     else
                     {
-                        chatServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname, idRoom);
+                        gameServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname, idRoom);
                     }
                 }
                 txtMesageContainer.Text = string.Empty;
@@ -191,25 +230,29 @@ namespace NoThanks
 
         private void TakeClick(object sender, RoutedEventArgs e)
         {
-            deckServiceClient.TakeCard(idRoom);
+            btnTake.IsEnabled = false;
+            btnPass.IsEnabled = false;
+            gameServiceClient.TakeCard(idRoom,Domain.Player.PlayerClient.Nickname);
         }
 
         private void PassClick(object sender, RoutedEventArgs e)
         {
-
+            btnTake.IsEnabled = false;
+            btnPass.IsEnabled = false;
+            gameServiceClient.SkipPlayersTurn(idRoom, Domain.Player.PlayerClient.Nickname);
         }
 
         private void StartGameClick(object sender, RoutedEventArgs e)
         {
-            deckServiceClient = new DeckOfCardsClient(new InstanceContext(this));
-            gridLobby.Visibility = Visibility.Collapsed;
             try
             {
-                
-                playerList = chatServiceClient.RecoverRoomPlayers(IdRoom);
-                lxtPlayersBox.ItemsSource = playerList;
-                chatServiceClient.StartGame(IdRoom);
-                deckServiceClient.CreateDeck(IdRoom);
+                string[] messages = new string[2];
+                messages[0] = Properties.Resources.ROOM_STARTEDGAME_MESSAGE;
+                messages[1] = Properties.Resources.ROOM_CANTSTART_MESSAGE;
+
+                gameServiceClient.StartGame(IdRoom, messages);
+                gameServiceClient.CreateDeck(IdRoom);
+
             }
             catch (EndpointNotFoundException)
             {
@@ -233,7 +276,7 @@ namespace NoThanks
             if (isHost)
             {
                 ExpelPlayer go = new ExpelPlayer();
-                go.SendPlayer(player, chatServiceClient, IdRoom);
+                go.SendPlayer(player, gameServiceClient, IdRoom);
                 go.ShowDialog();
             }
             else
@@ -248,16 +291,16 @@ namespace NoThanks
         {
             if (!isConected)
             {
-                chatServiceClient = new ChatServiceClient(new InstanceContext(this));
+                gameServiceClient = new GameServiceClient(new InstanceContext(this));
                 if (isNewRoom)
                 {
-                    idRoom = chatServiceClient.GenerateRoomCode();
+                    idRoom = gameServiceClient.GenerateRoomCode();
                     txtCode.Text = idRoom;
-                    chatServiceClient.NewRoom(Domain.Player.PlayerClient.Nickname, idRoom);
+                    gameServiceClient.NewRoom(Domain.Player.PlayerClient.Nickname, idRoom);
                     isHost = true;
                 }
                 txtCode.Text = idRoom;
-                chatServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_JOINMESSAGE_MESSAGE);
+                gameServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_JOINMESSAGE_MESSAGE);
                 isConected = true;
             }
         }
@@ -266,17 +309,11 @@ namespace NoThanks
         {
             if (isConected)
             {
-                chatServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_LEAVEMESSAGE_MESSAGE);
-                chatServiceClient.Close();
-                chatServiceClient = null;
+                gameServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_LEAVEMESSAGE_MESSAGE);
+                gameServiceClient.Close();
+                gameServiceClient = null;
                 isConected = false;
             }
-        }
-
-        public void UpdatePlayerDeck(CardType[] playerDeck)
-        {
-            var player = playerList.Where(x => x.Nickname == Domain.Player.PlayerClient.Nickname).FirstOrDefault();
-            player.Cards = playerDeck;
         }
         #endregion
 
