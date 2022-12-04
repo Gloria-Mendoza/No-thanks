@@ -82,7 +82,7 @@ namespace NoThanks
         {
 
 
-
+            try { 
             Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
 
 
@@ -93,7 +93,9 @@ namespace NoThanks
                 BitmapSizeOptions.FromEmptyOptions()
                 );
             imagenProfile.Source = bmpImage;
-
+            }catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

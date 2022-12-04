@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.ServiceModel;
@@ -10,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -25,7 +27,8 @@ namespace NoThanks
         {
             InitializeComponent();
             ConfigureWindow();
-            updateImage();
+            //updateImage();
+            ImagenInit();
         }
         private void updateImage()
         {
@@ -114,6 +117,29 @@ namespace NoThanks
             };
             go.Show();
             this.Close();
+        }
+        private void ImagenInit()
+        {
+
+
+            try { 
+            Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
+
+               
+            BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
+                bmp.GetHbitmap(),
+                IntPtr.Zero,
+                Int32Rect.Empty,
+                BitmapSizeOptions.FromEmptyOptions()
+
+                );
+            imagenProfile.Source = bmpImage;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
     }
 }

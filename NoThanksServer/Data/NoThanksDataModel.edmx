@@ -41,7 +41,7 @@
           <Property Name="totalScore" Type="int" />
           <Property Name="name" Type="nvarchar" MaxLength="1" />
           <Property Name="lastName" Type="nvarchar" MaxLength="1" />
-          <Property Name="photo" Type="nchar" MaxLength="50" />
+          <Property Name="photo" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -193,7 +193,7 @@
           <NavigationProperty Name="MatchsHistories" Relationship="NoThanksDataModel.FK__MatchsHis__idPla__2E1BDC42" FromRole="Player" ToRole="MatchsHistory" />
           <NavigationProperty Name="Requests" Relationship="NoThanksDataModel.FK__Request__receive__778AC167" FromRole="Player" ToRole="Request" />
           <NavigationProperty Name="Requests1" Relationship="NoThanksDataModel.FK__Request__senders__76969D2E" FromRole="Player" ToRole="Request" />
-          <Property Name="photo" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Friends__idPlaye__29572725">
           <End Role="Players" Type="Self.Player" Multiplicity="0..1" />
