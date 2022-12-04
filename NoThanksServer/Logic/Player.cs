@@ -62,7 +62,7 @@ namespace Logic
         #endregion
 
         #region Methods
-        /*public override bool Equals(object obj)
+        public override bool Equals(object obj)
         {
             bool isEquals = false;
             if (obj == this)
@@ -74,7 +74,6 @@ namespace Logic
                 Player other = (Player)obj;
                 isEquals = this.IdPlayer == other.IdPlayer &&
                     this.Nickname.Equals(other.Nickname) &&
-                    this.Password.Equals(other.Password) &&
                     this.Email.Equals(other.Email) &&
                     this.TotalScore.Equals(other.TotalScore) &&
                     this.Name.Equals(other.Name) &&
@@ -84,15 +83,21 @@ namespace Logic
             return isEquals;
         }
 
+        /*public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }*/
+
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            int hash = 3;
+            return hash;
         }
 
         public override string ToString()
         {
-            return base.ToString();
-        }*/
+            return $"Id-{idPlayer}Nick-{nickname}Pass-{password}email-{email}cards-{cards}cardsstring-{cardsString}tokens-{tokens}total-{totalScore}Nombre-{name}apellido-{lastName}imagen-{profileImage}status-{status}";
+        }
         #endregion
     }
 }

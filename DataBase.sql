@@ -30,10 +30,10 @@ IF OBJECT_ID(N'[dbo].[FK__MatchsHis__idPla__5DCAEF64]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[MatchsHistory] DROP CONSTRAINT [FK__MatchsHis__idPla__5DCAEF64];
 GO
 IF OBJECT_ID(N'[dbo].[FK__Request__receive__778AC167]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Request] DROP CONSTRAINT [FK__Request__receive__778AC167];
+    ALTER TABLE [dbo].[Requests] DROP CONSTRAINT [FK__Request__receive__778AC167];
 GO
 IF OBJECT_ID(N'[dbo].[FK__Request__senders__76969D2E]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Request] DROP CONSTRAINT [FK__Request__senders__76969D2E];
+    ALTER TABLE [dbo].[Requests] DROP CONSTRAINT [FK__Request__senders__76969D2E];
 GO
 
 -- --------------------------------------------------
@@ -52,8 +52,8 @@ GO
 IF OBJECT_ID(N'[dbo].[Players]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Players];
 GO
-IF OBJECT_ID(N'[dbo].[Request]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Request];
+IF OBJECT_ID(N'[dbo].[Requests]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Requests];
 GO
 
 -- --------------------------------------------------
@@ -63,47 +63,47 @@ GO
 -- Creating table 'Friends'
 CREATE TABLE [dbo].[Friends] (
     [idFriend] int IDENTITY(1,1) NOT NULL,
-    [idPlayer1] int  NULL,
-    [idPlayer2] int  NULL
+    [idPlayer1] int  DEFAULT 0,
+    [idPlayer2] int  DEFAULT 0
 );
 GO
 
 -- Creating table 'Games'
 CREATE TABLE [dbo].[Games] (
     [idGame] int IDENTITY(1,1) NOT NULL,
-    [result] int  NULL
+    [result] int DEFAULT 0 
 );
 GO
 
 -- Creating table 'Players'
 CREATE TABLE [dbo].[Players] (
     [idPlayer] int IDENTITY(1,1) NOT NULL,
-    [nickname] nvarchar(45)  NULL,
-    [password] nvarchar(128)  NULL,
-    [email] nvarchar(100)  NULL,
-    [totalScore] int  NULL,
-    [name] nvarchar(1)  NULL,
-    [lastName] nvarchar(1)  NULL,
-    [photo] nvarchar(50)  NULL
+    [nickname] nvarchar(45)  DEFAULT "",
+    [password] nvarchar(128)  DEFAULT "",
+    [email] nvarchar(100)  DEFAULT "",
+    [totalScore] int  DEFAULT 0,
+    [name] nvarchar(1)  DEFAULT "",
+    [lastName] nvarchar(1)  DEFAULT "",
+    [photo] nvarchar(50)  DEFAULT ""
 );
 GO
 
 -- Creating table 'MatchsHistory'
 CREATE TABLE [dbo].[MatchsHistory] (
-    [idMatch] int  NOT NULL,
-    [point] int  NULL,
-    [result] varchar(8)  NULL,
-    [idGame] int  NULL,
-    [idPlayer] int  NULL
+    [idMatch] int  IDENTITY(1,1) NOT NULL,
+    [point] int  DEFAULT 0,
+    [result] varchar(8)  DEFAULT "",
+    [idGame] int  DEFAULT 0,
+    [idPlayer] int  DEFAULT 0
 );
 GO
 
 -- Creating table 'Requests'
 CREATE TABLE [dbo].[Requests] (
     [idRequest] int IDENTITY(1,1) NOT NULL,
-    [senders] int  NULL,
-    [receives] int  NULL,
-    [states] int  NULL
+    [senders] int  DEFAULT 0,
+    [receives] int DEFAULT 0 ,
+    [states] int  DEFAULT 0
 );
 GO
 
