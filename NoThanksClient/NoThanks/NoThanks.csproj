@@ -59,6 +59,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -82,6 +83,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Friends.xaml.cs">
+      <DependentUpon>Friends.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FriendsProfile.xaml.cs">
       <DependentUpon>FriendsProfile.xaml</DependentUpon>
     </Compile>
@@ -100,6 +104,11 @@
       <DependentUpon>Resources.es-MX.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\ResourcesImage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesImage.resx</DependentUpon>
     </Compile>
     <Compile Include="Room.xaml.cs">
       <DependentUpon>Room.xaml</DependentUpon>
@@ -226,6 +235,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ResourcesImage.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesImage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Connected Services\PlayerManager\item.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -315,16 +328,10 @@
     <Resource Include="Images\LETTER_X_ICON.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="amigos.png" />
+    <Resource Include="Images\amigos.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="persona.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="pincel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="lapiz.png" />
+    <Resource Include="Images\lapiz.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\10.png" />
@@ -363,6 +370,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\3_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\addFriend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\unfriend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\world.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hamster.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acosador.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nina.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gato.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

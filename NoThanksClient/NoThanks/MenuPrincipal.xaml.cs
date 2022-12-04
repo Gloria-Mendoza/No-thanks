@@ -33,7 +33,7 @@ namespace NoThanks
             {
                 var context = new InstanceContext(this);
                 PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
-                updateProfileClient.GetImage(Domain.Player.PlayerClient.Nickname);
+                updateProfileClient.GetImage(Domain.Player.PlayerClient.IdPlayer);
             }
 
         }
@@ -43,16 +43,6 @@ namespace NoThanks
             LabelName.Content = Domain.Player.PlayerClient.Nickname;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            PlaySelection go = new PlaySelection()
-            {
-                WindowState = this.WindowState,
-                Left = this.Left
-            };
-            go.Show();
-            this.Close();
-        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -64,20 +54,6 @@ namespace NoThanks
             go.Show();
             this.Close();
         }
-
-
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            Personalization go = new Personalization()
-            {
-                WindowState = this.WindowState,
-                Left = this.Left
-            };
-            go.Show();
-            this.Close();
-        }
-
 
 
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -116,6 +92,28 @@ namespace NoThanks
                 go.Show();
                 this.Close();
             }
+        }
+
+        private void Image_MouseLeftButtonUp_2(object sender, MouseButtonEventArgs e)
+        {
+            Personalization go = new Personalization()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
+            go.Show();
+            this.Close();
+        }
+
+        private void Image_MouseLeftButtonUp_3(object sender, MouseButtonEventArgs e)
+        {
+            PlaySelection go = new PlaySelection()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
+            go.Show();
+            this.Close();
         }
     }
 }

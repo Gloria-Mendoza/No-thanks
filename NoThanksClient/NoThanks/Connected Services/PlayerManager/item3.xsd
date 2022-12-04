@@ -291,8 +291,8 @@
   <xs:element name="SaveImage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="imageManager" nillable="true" type="xs:base64Binary" />
-        <xs:element minOccurs="0" name="nameProfile" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="imageManager" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idProfile" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -306,7 +306,7 @@
   <xs:element name="GetImage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="nameProfile" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="idProfile" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -324,13 +324,42 @@
   </xs:element>
   <xs:element name="GetGlobalFriends">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idPlayer" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetGlobalFriendsResponse">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetGlobalFriendsResult" nillable="true" type="q7:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGlobalRequest">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGlobalRequestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetGlobalRequestResult" nillable="true" type="q8:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateNewNickname">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="nickname" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="newnickname" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateNewNicknameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateNewNicknameResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -358,14 +387,14 @@
   <xs:element name="UpdateDeck">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q8:ArrayOfCardType" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q9:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdatePlayerDeck">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="playerDeck" nillable="true" type="q9:ArrayOfCardType" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="playerDeck" nillable="true" type="q10:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

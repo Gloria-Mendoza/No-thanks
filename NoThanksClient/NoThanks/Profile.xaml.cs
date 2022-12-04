@@ -33,7 +33,7 @@ namespace NoThanks
         {
             var context = new InstanceContext(this);
             PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
-            updateProfileClient.GetImage(Domain.Player.PlayerClient.Nickname);
+            updateProfileClient.GetImage(Domain.Player.PlayerClient.IdPlayer);
         }
         private void ConfigureWindow()
         {
@@ -63,6 +63,14 @@ namespace NoThanks
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Profile_Edit go = new Profile_Edit();
+            go.WindowState = this.WindowState;
+            go.Show();
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ChangePassword go = new ChangePassword();
             go.WindowState = this.WindowState;
             go.Show();
             this.Close();

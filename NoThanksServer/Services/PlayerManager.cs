@@ -376,22 +376,31 @@ namespace Services
             return result;
         }
 
-        public List<String> GetGlobalFriends()
+        public List<String> GetGlobalFriends(int idPlayer)
         {
             List<String> result = new List<String>();
             ListFriends list = new ListFriends();
-            result = list.ListAllFriend();
+            result = list.ListAllFriend(idPlayer);
             return result;
         }
 
-        public bool SaveImage(byte[] imageManager, string nameprofile)
+        public List<String> GetGlobalRequest()
         {
+            List<String> result = new List<String>();
+            ListFriends list = new ListFriends();
+            //result = list.ListAllFriend();
+            return result;
+        }
+
+        public bool SaveImage(String imageManager, int idProfile)
+        {
+            var status = false;
             try
             {
 
-                var image = Image.FromStream(new MemoryStream(imageManager));
-                image.Save($"imageProfile\\{nameprofile}.jpg", ImageFormat.Jpeg);
+
                 return true;
+                
             }
             catch (ExternalException e)
             {
@@ -400,13 +409,13 @@ namespace Services
             }
         }
 
-        public void GetImage(string nameprofile)
+        public void GetImage(int idProfile)
         {
             try
             {
-                if (File.Exists($"imageProfile\\{nameprofile}.jpg"))
+                if (File.Exists($"imageProfile\\{idProfile}.jpg"))
                 {
-                    byte[] image = File.ReadAllBytes($"imageProfile\\{nameprofile}.jpg");
+                    byte[] image = File.ReadAllBytes($"imageProfile\\{idProfile}.jpg");
                     var callbackchannel = OperationContext.Current.GetCallbackChannel<IUdateProfileCallBack>();
                     callbackchannel.ImageCallBack(image);
                 }
@@ -416,6 +425,22 @@ namespace Services
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public bool UpdateNewNickname(string nickname, string newnickname)
+        {
+            var status = false;
+            try
+            {
+                var client = new Authentication();
+                status = client.UpdateNewNickname(nickname, newnickname);
+            }
+            catch (EntityException entityException)
+            {
+                //TODO
+                Console.WriteLine(entityException.Message);
+            }
+            return status;
         }
 
     }

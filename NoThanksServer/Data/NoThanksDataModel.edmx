@@ -39,10 +39,20 @@
           <Property Name="password" Type="nvarchar" MaxLength="128" />
           <Property Name="email" Type="nvarchar" MaxLength="100" />
           <Property Name="totalScore" Type="int" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="lastName" Type="varchar" MaxLength="75" />
+          <Property Name="name" Type="nvarchar" MaxLength="1" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="1" />
+          <Property Name="photo" Type="nchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__Friends__idPlaye__29572725">
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="idRequest" />
+          </Key>
+          <Property Name="idRequest" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="senders" Type="int" />
+          <Property Name="receives" Type="int" />
+          <Property Name="states" Type="int" />
+        </EntityType>
+        <Association Name="FK__Friends__idPlaye__59063A47">
           <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
           <End Role="Friends" Type="Self.Friends" Multiplicity="*" />
           <ReferentialConstraint>
@@ -54,7 +64,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Friends__idPlaye__2A4B4B5E">
+        <Association Name="FK__Friends__idPlaye__59FA5E80">
           <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
           <End Role="Friends" Type="Self.Friends" Multiplicity="*" />
           <ReferentialConstraint>
@@ -66,7 +76,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MatchsHis__idGam__2D27B809">
+        <Association Name="FK__MatchsHis__idGam__5CD6CB2B">
           <End Role="Games" Type="Self.Games" Multiplicity="0..1" />
           <End Role="MatchsHistory" Type="Self.MatchsHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -78,7 +88,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MatchsHis__idPla__2E1BDC42">
+        <Association Name="FK__MatchsHis__idPla__5DCAEF64">
           <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
           <End Role="MatchsHistory" Type="Self.MatchsHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -90,26 +100,59 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Request__receive__778AC167">
+          <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="idPlayer" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="receives" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__senders__76969D2E">
+          <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="idPlayer" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="senders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="NoThanksDataModelStoreContainer">
           <EntitySet Name="Friends" EntityType="Self.Friends" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MatchsHistory" EntityType="Self.MatchsHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Friends__idPlaye__29572725" Association="Self.FK__Friends__idPlaye__29572725">
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Friends__idPlaye__59063A47" Association="Self.FK__Friends__idPlaye__59063A47">
             <End Role="Players" EntitySet="Players" />
             <End Role="Friends" EntitySet="Friends" />
           </AssociationSet>
-          <AssociationSet Name="FK__Friends__idPlaye__2A4B4B5E" Association="Self.FK__Friends__idPlaye__2A4B4B5E">
+          <AssociationSet Name="FK__Friends__idPlaye__59FA5E80" Association="Self.FK__Friends__idPlaye__59FA5E80">
             <End Role="Players" EntitySet="Players" />
             <End Role="Friends" EntitySet="Friends" />
           </AssociationSet>
-          <AssociationSet Name="FK__MatchsHis__idGam__2D27B809" Association="Self.FK__MatchsHis__idGam__2D27B809">
+          <AssociationSet Name="FK__MatchsHis__idGam__5CD6CB2B" Association="Self.FK__MatchsHis__idGam__5CD6CB2B">
             <End Role="Games" EntitySet="Games" />
             <End Role="MatchsHistory" EntitySet="MatchsHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK__MatchsHis__idPla__2E1BDC42" Association="Self.FK__MatchsHis__idPla__2E1BDC42">
+          <AssociationSet Name="FK__MatchsHis__idPla__5DCAEF64" Association="Self.FK__MatchsHis__idPla__5DCAEF64">
             <End Role="Players" EntitySet="Players" />
             <End Role="MatchsHistory" EntitySet="MatchsHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__receive__778AC167" Association="Self.FK__Request__receive__778AC167">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__senders__76969D2E" Association="Self.FK__Request__senders__76969D2E">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="Request" EntitySet="Request" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -143,11 +186,14 @@
           <Property Name="password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="totalScore" Type="Int32" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="lastName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Friends" Relationship="Self.FK__Friends__idPlaye__29572725" FromRole="Players" ToRole="Friends" />
           <NavigationProperty Name="Friends1" Relationship="Self.FK__Friends__idPlaye__2A4B4B5E" FromRole="Players" ToRole="Friends" />
           <NavigationProperty Name="MatchsHistories" Relationship="NoThanksDataModel.FK__MatchsHis__idPla__2E1BDC42" FromRole="Player" ToRole="MatchsHistory" />
+          <NavigationProperty Name="Requests" Relationship="NoThanksDataModel.FK__Request__receive__778AC167" FromRole="Player" ToRole="Request" />
+          <NavigationProperty Name="Requests1" Relationship="NoThanksDataModel.FK__Request__senders__76969D2E" FromRole="Player" ToRole="Request" />
+          <Property Name="photo" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK__Friends__idPlaye__29572725">
           <End Role="Players" Type="Self.Player" Multiplicity="0..1" />
@@ -194,6 +240,15 @@
             <End Role="Player" EntitySet="Players" />
             <End Role="MatchsHistory" EntitySet="MatchsHistories" />
           </AssociationSet>
+          <EntitySet Name="Requests" EntityType="NoThanksDataModel.Request" />
+          <AssociationSet Name="FK__Request__receive__778AC167" Association="NoThanksDataModel.FK__Request__receive__778AC167">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__senders__76969D2E" Association="NoThanksDataModel.FK__Request__senders__76969D2E">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="MatchsHistory">
           <Key>
@@ -231,6 +286,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="idRequest" />
+          </Key>
+          <Property Name="idRequest" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="senders" Type="Int32" />
+          <Property Name="receives" Type="Int32" />
+          <Property Name="states" Type="Int32" />
+          <NavigationProperty Name="Player" Relationship="NoThanksDataModel.FK__Request__receive__778AC167" FromRole="Request" ToRole="Player" />
+          <NavigationProperty Name="Player1" Relationship="NoThanksDataModel.FK__Request__senders__76969D2E" FromRole="Request" ToRole="Player" />
+        </EntityType>
+        <Association Name="FK__Request__receive__778AC167">
+          <End Type="NoThanksDataModel.Player" Role="Player" Multiplicity="0..1" />
+          <End Type="NoThanksDataModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="idPlayer" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="receives" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__senders__76969D2E">
+          <End Type="NoThanksDataModel.Player" Role="Player" Multiplicity="0..1" />
+          <End Type="NoThanksDataModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="idPlayer" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="senders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -257,6 +347,7 @@
           <EntitySetMapping Name="Players">
             <EntityTypeMapping TypeName="NoThanksDataModel.Player">
               <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="photo" ColumnName="photo" />
                 <ScalarProperty Name="idPlayer" ColumnName="idPlayer" />
                 <ScalarProperty Name="nickname" ColumnName="nickname" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -275,6 +366,16 @@
                 <ScalarProperty Name="result" ColumnName="result" />
                 <ScalarProperty Name="point" ColumnName="point" />
                 <ScalarProperty Name="idMatch" ColumnName="idMatch" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="NoThanksDataModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="states" ColumnName="states" />
+                <ScalarProperty Name="receives" ColumnName="receives" />
+                <ScalarProperty Name="senders" ColumnName="senders" />
+                <ScalarProperty Name="idRequest" ColumnName="idRequest" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

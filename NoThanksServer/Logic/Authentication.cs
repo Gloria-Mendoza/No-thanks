@@ -45,6 +45,17 @@ namespace Logic
             }
             return status;
         }
+        public bool UpdateNewNickname(string nickname, string newnickname)
+        {
+            var status = false;
+            using(var context = new NoThanksEntities())
+            {
+                var nickNameUpdate = context.Players.FirstOrDefault(n => n.nickname.Equals(newnickname));
+                nickNameUpdate.nickname = nickname;
+                status = context.SaveChanges() > 0;
 
+            }
+            return status;
+        }
     }
 }

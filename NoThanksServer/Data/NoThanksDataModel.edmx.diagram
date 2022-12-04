@@ -13,6 +13,9 @@
         <EntityTypeShape EntityType="NoThanksDataModel.MatchsHistory" Width="1.5" PointX="3" PointY="7" />
         <AssociationConnector Association="NoThanksDataModel.FK__MatchsHis__idGam__2D27B809" />
         <AssociationConnector Association="NoThanksDataModel.FK__MatchsHis__idPla__2E1BDC42" />
+        <EntityTypeShape EntityType="NoThanksDataModel.Request" Width="1.5" PointX="3" PointY="1.125" />
+        <AssociationConnector Association="NoThanksDataModel.FK__Request__receive__778AC167" />
+        <AssociationConnector Association="NoThanksDataModel.FK__Request__senders__76969D2E" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

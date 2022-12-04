@@ -31,18 +31,24 @@ namespace Logic
     }
     public class ListFriends
     {
-        public List<String> ListAllFriend()
+        public List<String> ListAllFriend(int idPlayer)
         {
             List<String> logicFriend = new List<String>();
             using (var context = new NoThanksEntities())
             {
-                var accounts = (from Friends in context.Players
-                                select Friends);
+                var accounts = (from players in context.Players
+                                               join friend in context.Friends on players.idPlayer equals friend.idPlayer1
+                                               where friend.idPlayer1 == idPlayer
+                                               select new
+                                               {
+                                                   nick = players.nickname,
+                                                   id = players.idPlayer
+                                               });
                 if (accounts.Any())
                 {
                     foreach (var account in accounts)
                     {
-                        logicFriend.Add(account.nickname);
+                        logicFriend.Add(account.nick);
 
                     }
 
@@ -51,4 +57,32 @@ namespace Logic
             return logicFriend;
         }
     }
+    public class ListRequest { 
+    public List<String> ListAllRequest(int idPlayer)
+    {
+        List<String> logicFriend = new List<String>();
+        using (var context = new NoThanksEntities())
+        {
+                var accounts = (from friends in context.Friends
+                                join player in context.Players on friends.idPlayer2 equals player.idPlayer
+                                where friends.idPlayer1 == idPlayer
+                            select new
+                            {
+                                nick = player.nickname,
+                                id = player.idPlayer
+                            });
+            if (accounts.Any())
+            {
+                foreach (var account in accounts)
+                {
+                    logicFriend.Add(account.nick);
+
+                }
+
+            }
+        }
+        return logicFriend;
+        }
+    }
 }
+
