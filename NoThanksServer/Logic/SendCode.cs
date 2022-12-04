@@ -6,7 +6,6 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System;
-using MailKit;
 
 namespace Logic
 {
@@ -21,68 +20,53 @@ namespace Logic
                             </style>
                             <h1>Your code is: HTY025RG#789/4DX</h1>";
 
-            /*try
-            {
-                MailMessage newEmail = new MailMessage();
-                newEmail.From = new MailAddress("nothanks364@outlook.com", "Holamundo3");
-                newEmail.To.Add(email);
-                newEmail.Subject = "Email verification";
-                newEmail.SubjectEncoding = System.Text.Encoding.UTF8;
-                newEmail.Body = "Your code is:" + code;
-                newEmail.BodyEncoding = System.Text.Encoding.UTF8;
-                newEmail.IsBodyHtml = true;
-                newEmail.Priority = MailPriority.Normal;
-                SmtpClient smtp = new SmtpClient("smtp.office365.com", 587);
-                smtp.Credentials = new System.Net.NetworkCredential("nothanks364@outlook.com", "Holamundo3");
-                ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
-                smtp.EnableSsl = true;
-                try
-                {
-                    smtp.Send(newEmail);
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception.StackTrace);
-                }
 
+            MailMessage newEmail = new MailMessage();
+            newEmail.From = new MailAddress("nothanks364@outlook.com", "No Thanks Game");
+            newEmail.To.Add(email);
+            newEmail.Subject = "Email verification";
+            newEmail.IsBodyHtml = true;
+            newEmail.Body = body;
+
+            var smtp = new SmtpClient();
+            try
+            {
+                smtp.Send(newEmail);
                 result = true;
             }
             catch (SmtpException exception)
             {
-                Console.WriteLine(exception.Message);
+                Console.WriteLine(exception.StackTrace);
             }
-            return result;*/
-            try
+
+            return result;
+        }
+            //"nothanksteam5@gmail.com", "Holamundo3"
+            //"smtp.gmail.com", 587
+            /*try
             {
-                using (MailMessage emailMessage = new MailMessage())
-                {
-                    emailMessage.To.Add(new MailAddress(email));
-                    emailMessage.Subject = "E-mail Confirmation";
-                    emailMessage.Body = body;
-                    emailMessage.IsBodyHtml = false;
-                    emailMessage.Priority = MailPriority.Normal;
-                    emailMessage.From = new MailAddress("nothanksteam5@gmail.com", "¡No Thanks!");
+                SmtpMail mail = new SmtpMail("TryIt");
+                mail.From = "nothanksteam5@gmail.com";
+                mail.To = email;
+                mail.Subject = "E-mail Confirmation";
+                mail.TextBody = body;
 
-                    using (SmtpClient smtp = new SmtpClient())
-                    {
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.Port = 587;//25,465
-                        smtp.EnableSsl = true;
-                        smtp.UseDefaultCredentials = false;          
-                        smtp.Credentials = new System.Net.NetworkCredential("nothanksteam5@gmail.com", "Holamundo3");
-                        ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
-                        smtp.Send(emailMessage);
+                SmtpServer smtpServer = new SmtpServer("aspmx.l.google.com");
+                smtpServer.User = "nothanksteam5@gmail.com";
+                smtpServer.Password = "Holamundo3";
+                smtpServer.Port = 25;
+                smtpServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
 
-                        result = true;
-                    }
-                    emailMessage.Dispose();
-                }
+                SmtpClient smtpClient= new SmtpClient();
+                smtpClient.SendMail(smtpServer, mail);
+
+                result = true;
+
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception.StackTrace);
             }
-            return result;
-        }
+            return result;*/
     }
 }

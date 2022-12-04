@@ -19,24 +19,7 @@ namespace NoThanks
             btnConfirm.IsEnabled = false;
         }
 
-        private void ConfirmClick(object sender, RoutedEventArgs e)
-        {
-            if (Convert.ToInt32(txtToken.Text).Equals(validationCode))
-            {
-                UpdateNewPassword(Security.PasswordEncryptor.ComputeSHA512Hash(pfNewPassword.Password), Domain.Player.PlayerClient.Email);
-            }
-            else
-            {
-                //TODO
-                MessageBox.Show("Token Incorrecto", "Upss", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-        }
-
-        private void CancelClick(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
+        #region Listeners
         private void NextClick(object sender, RoutedEventArgs e)
         {
             if (!String.IsNullOrWhiteSpace(pfActualPassword.Password) && !String.IsNullOrWhiteSpace(pfConfirmPassword.Password) && !String.IsNullOrWhiteSpace(pfNewPassword.Password))
@@ -45,10 +28,27 @@ namespace NoThanks
             }
             else
             {
-                //TODO
-                MessageBox.Show("No puedes dejar campos vacios", "Upss", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show(Properties.Resources.GENERAL_WHITESPACES_MESSAGE, Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+        private void ConfirmClick(object sender, RoutedEventArgs e)
+        {
+            if (Convert.ToInt32(txtToken.Text).Equals(validationCode))
+            {
+                UpdateNewPassword(Security.PasswordEncryptor.ComputeSHA512Hash(pfNewPassword.Password), Domain.Player.PlayerClient.Email);
+            }
+            else
+            {
+                MessageBox.Show(Properties.Resources.CHANGEPASSWORD_INCORRECTTOKEN_MESSAGE, Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void CancelClick(object sender, RoutedEventArgs e)
+        {
+            client.Close();
+            Close();
+        }
+        #endregion
 
         public bool SendVerification()
         {
@@ -60,10 +60,9 @@ namespace NoThanks
 
             if (ValidatePassword())
             {
-                if (client.SendNewEmail(Domain.Player.PlayerClient.Email, affair, validationCode))
+                if (client.SendValidationEmail(Domain.Player.PlayerClient.Email, affair, validationCode))
                 {
-                    //TODO
-                    MessageBox.Show("Código de validación enviado con exito");
+                    MessageBox.Show(Properties.Resources.CHANGEPASSWORD_VALIDATIONSEND_MESSAGE, Properties.Resources.GENERAL_SUCCSESSFUL_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
                     txtToken.Visibility = Visibility.Visible;
                     lbToken.Visibility = Visibility.Visible;
 
@@ -77,8 +76,7 @@ namespace NoThanks
             }
             else
             {
-                //TODO
-                MessageBox.Show("No se pudo enviar el codigo", "Upss", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(Properties.Resources.GENERAL_CANTSEND_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return result;
@@ -88,8 +86,7 @@ namespace NoThanks
         {
             if (client.UpdatePassword(password, email))
             {
-                //TODO
-                MessageBox.Show("La contraseña ha sido cambiada con exito", "Yay", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Properties.Resources.CHANGEPASSWORD_SUCCESSFUL_MESSAGE, Properties.Resources.GENERAL_SUCCSESSFUL_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
         }

@@ -82,6 +82,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ConsultRecord.xaml.cs">
+      <DependentUpon>ConsultRecord.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FriendsProfile.xaml.cs">
+      <DependentUpon>FriendsProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PlaySelection.xaml.cs">
+      <DependentUpon>PlaySelection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProfileEdit.xaml.cs">
       <DependentUpon>ProfileEdit.xaml</DependentUpon>
     </Compile>
@@ -90,9 +99,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.en-US.resx</DependentUpon>
     </Compile>
-    <Compile Include="GameMenu.xaml.cs">
-      <DependentUpon>GameMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.es-MX.Designer.cs">
       <DependentUpon>Resources.es-MX.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -100,6 +106,9 @@
     </Compile>
     <Compile Include="Room.xaml.cs">
       <DependentUpon>Room.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RoomScores.xaml.cs">
+      <DependentUpon>RoomScores.xaml</DependentUpon>
     </Compile>
     <Compile Include="SignIn.xaml.cs">
       <DependentUpon>SignIn.xaml</DependentUpon>
@@ -111,11 +120,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ConsultRecord.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ExpelPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GameMenu.xaml">
+    <Page Include="Friends.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FriendsProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -152,6 +169,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PlaySelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ProfileEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -163,6 +184,10 @@
     <Page Include="Room.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RoomScores.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SignIn.xaml">
       <SubType>Designer</SubType>
@@ -220,6 +245,9 @@
     <None Include="Connected Services\PlayerManager\item3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\PlayerManager\item4.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\PlayerManager\NoThanks.PlayerManager.Player.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -260,6 +288,22 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\11773.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{a2d0710f-c678-4c40-a16a-5c79f042b48c}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Security\Security.csproj">
+      <Project>{a055f5b4-7ee9-44cb-b639-6af9f51db68f}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pincel.png" />
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\PlayerManager\" />
   </ItemGroup>
   <ItemGroup>
@@ -278,23 +322,60 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\11773.jpg" />
+    <Resource Include="Images\LETTER_X_ICON.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
-      <Project>{a2d0710f-c678-4c40-a16a-5c79f042b48c}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Security\Security.csproj">
-      <Project>{a055f5b4-7ee9-44cb-b639-6af9f51db68f}</Project>
-      <Name>Security</Name>
-    </ProjectReference>
+    <Resource Include="amigos.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\pincel.png" />
+    <Resource Include="persona.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="pincel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="lapiz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\10.png" />
+    <Resource Include="Images\11.png" />
+    <Resource Include="Images\12.png" />
+    <Resource Include="Images\13.png" />
+    <Resource Include="Images\14.png" />
+    <Resource Include="Images\15.png" />
+    <Resource Include="Images\16.png" />
+    <Resource Include="Images\17.png" />
+    <Resource Include="Images\18.png" />
+    <Resource Include="Images\19.png" />
+    <Resource Include="Images\20.png" />
+    <Resource Include="Images\21.png" />
+    <Resource Include="Images\22.png" />
+    <Resource Include="Images\23.png" />
+    <Resource Include="Images\24.png" />
+    <Resource Include="Images\25.png" />
+    <Resource Include="Images\26.png" />
+    <Resource Include="Images\27.png" />
+    <Resource Include="Images\28.png" />
+    <Resource Include="Images\29.png" />
+    <Resource Include="Images\3.png" />
+    <Resource Include="Images\30.png" />
+    <Resource Include="Images\31.png" />
+    <Resource Include="Images\32.png" />
+    <Resource Include="Images\33.png" />
+    <Resource Include="Images\34.png" />
+    <Resource Include="Images\35.png" />
+    <Resource Include="Images\4.png" />
+    <Resource Include="Images\5.png" />
+    <Resource Include="Images\6.png" />
+    <Resource Include="Images\7.png" />
+    <Resource Include="Images\8.png" />
+    <Resource Include="Images\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\3_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\trofeo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

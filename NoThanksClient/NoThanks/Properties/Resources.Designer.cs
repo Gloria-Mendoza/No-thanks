@@ -79,6 +79,15 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Token Incorrecto.
+        /// </summary>
+        public static string CHANGEPASSWORD_INCORRECTTOKEN_MESSAGE {
+            get {
+                return ResourceManager.GetString("CHANGEPASSWORD_INCORRECTTOKEN_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Nueva Contraseña.
         /// </summary>
         public static string CHANGEPASSWORD_NEWPASSWORD_LABEL {
@@ -88,11 +97,20 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a La contraseña ha sido cambiada con exito.
+        /// </summary>
+        public static string CHANGEPASSWORD_SUCCESSFUL_MESSAGE {
+            get {
+                return ResourceManager.GetString("CHANGEPASSWORD_SUCCESSFUL_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a No Thanks: el Juego – Cambiar Contraseña.
         /// </summary>
         public static string CHANGEPASSWORD_TITLE_WINDOW {
             get {
-                return ResourceManager.GetString("CHANGEPASSWORD_TITLE-WINDOW", resourceCulture);
+                return ResourceManager.GetString("CHANGEPASSWORD_TITLE_WINDOW", resourceCulture);
             }
         }
         
@@ -102,6 +120,33 @@ namespace NoThanks.Properties {
         public static string CHANGEPASSWORD_TOKEN_LABEL {
             get {
                 return ResourceManager.GetString("CHANGEPASSWORD_TOKEN_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Código de validación enviado con exito.
+        /// </summary>
+        public static string CHANGEPASSWORD_VALIDATIONSEND_MESSAGE {
+            get {
+                return ResourceManager.GetString("CHANGEPASSWORD_VALIDATIONSEND_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a se ha conectado.
+        /// </summary>
+        public static string CHAT_JOINMESSAGE_MESSAGE {
+            get {
+                return ResourceManager.GetString("CHAT_JOINMESSAGE_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a se ha desconectado.
+        /// </summary>
+        public static string CHAT_LEAVEMESSAGE_MESSAGE {
+            get {
+                return ResourceManager.GetString("CHAT_LEAVEMESSAGE_MESSAGE", resourceCulture);
             }
         }
         
@@ -120,6 +165,42 @@ namespace NoThanks.Properties {
         public static string CHAT_TITLE_WINDOW {
             get {
                 return ResourceManager.GetString("CHAT_TITLE_WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Puntaje.
+        /// </summary>
+        public static string CONSULTRECORD_SCORE_COLUMN {
+            get {
+                return ResourceManager.GetString("CONSULTRECORD_SCORE_COLUMN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Nombre de usuario.
+        /// </summary>
+        public static string CONSULTRECORD_TITLE_COLUMN {
+            get {
+                return ResourceManager.GetString("CONSULTRECORD_TITLE_COLUMN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Mejores puntajes.
+        /// </summary>
+        public static string CONSULTRECORD_TITLE_LABEL {
+            get {
+                return ResourceManager.GetString("CONSULTRECORD_TITLE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Records.
+        /// </summary>
+        public static string CONSULTRECORD_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("CONSULTRECORD_TITLE_WINDOW", resourceCulture);
             }
         }
         
@@ -178,42 +259,6 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Salir.
-        /// </summary>
-        public static string GAMEMENU_BUTTON_LEAVE {
-            get {
-                return ResourceManager.GetString("GAMEMENU_BUTTON_LEAVE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Partida rápida.
-        /// </summary>
-        public static string GAMEMENU_BUTTON_QUICKPLAY {
-            get {
-                return ResourceManager.GetString("GAMEMENU_BUTTON_QUICKPLAY", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Iniciar partida.
-        /// </summary>
-        public static string GAMEMENU_BUTTON_START {
-            get {
-                return ResourceManager.GetString("GAMEMENU_BUTTON_START", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Menú de partidas.
-        /// </summary>
-        public static string GAMEMENU_TITLE_WINDOW {
-            get {
-                return ResourceManager.GetString("GAMEMENU_TITLE_WINDOW", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a Volver.
         /// </summary>
         public static string GENERAL_BACK_BUTTON {
@@ -232,6 +277,15 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No se pudo enviar el mensaje.
+        /// </summary>
+        public static string GENERAL_CANTSEND_MESSAGE {
+            get {
+                return ResourceManager.GetString("GENERAL_CANTSEND_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Confirmar.
         /// </summary>
         public static string GENERAL_CONFIRM_BUTTON {
@@ -241,11 +295,65 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Error.
+        /// </summary>
+        public static string GENERAL_ERROR_TITLE {
+            get {
+                return ResourceManager.GetString("GENERAL_ERROR_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Siguiente.
         /// </summary>
         public static string GENERAL_NEXT_BUTTON {
             get {
                 return ResourceManager.GetString("GENERAL_NEXT_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No se pudo conectar con el servidor.
+        /// </summary>
+        public static string GENERAL_NOCONNECTION_MESSAGE {
+            get {
+                return ResourceManager.GetString("GENERAL_NOCONNECTION_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Éxito.
+        /// </summary>
+        public static string GENERAL_SUCCSESSFUL_TITLE {
+            get {
+                return ResourceManager.GetString("GENERAL_SUCCSESSFUL_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Advertencia.
+        /// </summary>
+        public static string GENERAL_WARNING_TITLE {
+            get {
+                return ResourceManager.GetString("GENERAL_WARNING_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No puedes dejar campos vacios.
+        /// </summary>
+        public static string GENERAL_WHITESPACES_MESSAGE {
+            get {
+                return ResourceManager.GetString("GENERAL_WHITESPACES_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No se puede unir a la sala, está llena o la partida ha iniciado.
+        /// </summary>
+        public static string JOINGAME_CANTJOIN_MESSAGE {
+            get {
+                return ResourceManager.GetString("JOINGAME_CANTJOIN_MESSAGE", resourceCulture);
             }
         }
         
@@ -313,6 +421,15 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No se pudo iniciar sesión, intentelo mas tarde.
+        /// </summary>
+        public static string LOGIN_CANTLOGIN_MESSAGE {
+            get {
+                return ResourceManager.GetString("LOGIN_CANTLOGIN_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Jugar como Invitado.
         /// </summary>
         public static string LOGIN_GUEST_LABEL {
@@ -336,6 +453,15 @@ namespace NoThanks.Properties {
         public static string LOGIN_LOGINTITLE_LABEL {
             get {
                 return ResourceManager.GetString("LOGIN_LOGINTITLE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Debes ingresar tu usuario y contraseña.
+        /// </summary>
+        public static string LOGIN_NOUSERORPASSWORD_MESSAGE {
+            get {
+                return ResourceManager.GetString("LOGIN_NOUSERORPASSWORD_MESSAGE", resourceCulture);
             }
         }
         
@@ -412,6 +538,51 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Encontrar Partida.
+        /// </summary>
+        public static string PLAYSELECTION_FINDMATCH_BUTTON {
+            get {
+                return ResourceManager.GetString("PLAYSELECTION_FINDMATCH_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Unirse con Codigo.
+        /// </summary>
+        public static string PLAYSELECTION_JOIN_BUTTON {
+            get {
+                return ResourceManager.GetString("PLAYSELECTION_JOIN_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Crear Sala.
+        /// </summary>
+        public static string PLAYSELECTION_NEWROOM_BUTTON {
+            get {
+                return ResourceManager.GetString("PLAYSELECTION_NEWROOM_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Unirse a partida o Crear una nueva Sala.
+        /// </summary>
+        public static string PLAYSELECTION_TITLE_LABEL {
+            get {
+                return ResourceManager.GetString("PLAYSELECTION_TITLE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Unirse o Crear Sala.
+        /// </summary>
+        public static string PLAYSELECTION_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("PLAYSELECTION_TITLE_WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a No Thanks: Perfil.
         /// </summary>
         public static string PROFILE_TITLE_WINDOW {
@@ -462,6 +633,15 @@ namespace NoThanks.Properties {
         public static string RESULT_YOU_LABEL {
             get {
                 return ResourceManager.GetString("RESULT_YOU_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Solo el anfitrión de la partida puede expulsar a un jugador.
+        /// </summary>
+        public static string ROOM_CANTEXPEL_MESSAGE {
+            get {
+                return ResourceManager.GetString("ROOM_CANTEXPEL_MESSAGE", resourceCulture);
             }
         }
         
@@ -849,15 +1029,6 @@ namespace NoThanks.Properties {
         public static string VERIFYEMAIL_INVALIDFIELD_MESSAGE {
             get {
                 return ResourceManager.GetString("VERIFYEMAIL_INVALIDFIELD_MESSAGE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a Campo inválido.
-        /// </summary>
-        public static string VERIFYEMAIL_INVALIDFIELD_MESSAGEWINDOW {
-            get {
-                return ResourceManager.GetString("VERIFYEMAIL_INVALIDFIELD_MESSAGEWINDOW", resourceCulture);
             }
         }
         

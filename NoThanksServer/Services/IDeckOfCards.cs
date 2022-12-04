@@ -1,43 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using static Logic.Player;
+using Logic;
 
 namespace Services
 {
-    public enum CardType
-    {
-        Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eightteen,
-        Nineteen, Twenty, TwentyOne, TwentyTwo, TwentyThree, TwentyFour, TwentyFive, TwentySix, TwentySeven, TwentyEight, TwentyNine,
-        Thirty, ThirtyOne, ThirtyTwo, ThirtyThree, ThirtyFour, ThirtyFive
-    }
-
+    
     [ServiceContract(CallbackContract = typeof(IDeckOfCardsCallBack))]
     public interface IDeckOfCards
     {
         [OperationContract(IsOneWay = true)]
-        void CreateDeck();
-
+        void CreateDeck(String roomId);
         [OperationContract(IsOneWay = true)]
-        void ShuffleDeck(CardType[] gameDeck);
-
-        [OperationContract(IsOneWay = true)]
-        void DiscardFirstNine(CardType[] gameDeck);
+        void TakeCard(String roomId);
     }
 
     [ServiceContract]
     public interface IDeckOfCardsCallBack
     {
         [OperationContract(IsOneWay = true)]
-        void CreateDeckCallBack(CardType[] gameDeck);
-
+        void UpdateDeck(CardType[] gameDeck);
         [OperationContract(IsOneWay = true)]
-        void ShuffleDeckCallBack(CardType[] shuffledDeck);
-
-        [OperationContract(IsOneWay = true)]
-        void DiscardFirstNineCallback(CardType[] gameDeck);
+        void UpdatePlayerDeck(CardType[] playerDeck);
+    }
+    
+    public partial class MatchMember
+    {
+        [IgnoreDataMember]
+        public IDeckOfCardsCallBack DeckOfCardsCallBack { get; set; }
+        [DataMember]
+        public List<CardType> deck;
     }
 }
 

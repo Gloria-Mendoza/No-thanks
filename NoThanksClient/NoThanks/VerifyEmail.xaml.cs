@@ -49,6 +49,8 @@ namespace NoThanks
                     MessageBox.Show($"{Properties.Resources.VERIFYEMAIL_CONFIRMATION_MESSAGE}", $"{Properties.Resources.VERIFYEMAIL_CONFIRMATION_MESSAGEWINDOW}", MessageBoxButton.OK);
                     result = true;
                     this.Close();
+                    MainWindow main = new MainWindow();
+                    main.Show();
                 }
                 else
                 {

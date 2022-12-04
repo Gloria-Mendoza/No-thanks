@@ -126,7 +126,7 @@
   <data name="CHANGEPASSWORD_NEWPASSWORD_LABEL" xml:space="preserve">
     <value>New Password</value>
   </data>
-  <data name="CHANGEPASSWORD_TITLE-WINDOW" xml:space="preserve">
+  <data name="CHANGEPASSWORD_TITLE_WINDOW" xml:space="preserve">
     <value>No Thanks: The Game – Change Password</value>
   </data>
   <data name="CHANGEPASSWORD_TOKEN_LABEL" xml:space="preserve">
@@ -248,5 +248,197 @@
   </data>
   <data name="ROOM_WAITING_MESSAGE" xml:space="preserve">
     <value>Waiting for the host to start the game...</value>
+  </data>
+  <data name="PLAYSELECTION_JOIN_BUTTON" xml:space="preserve">
+    <value>Join With Code</value>
+  </data>
+  <data name="PLAYSELECTION_FINDMATCH_BUTTON" xml:space="preserve">
+    <value>Find Match</value>
+  </data>
+  <data name="PLAYSELECTION_TITLE_WINDOW" xml:space="preserve">
+    <value>Join or Create Room</value>
+  </data>
+  <data name="PLAYSELECTION_NEWROOM_BUTTON" xml:space="preserve">
+    <value>New Room</value>
+  </data>
+  <data name="PLAYSELECTION_TITLE_LABEL" xml:space="preserve">
+    <value>Join game or create a new group</value>
+  </data>
+  <data name="ROOM_PASS_BUTTON" xml:space="preserve">
+    <value>Pass</value>
+  </data>
+  <data name="ROOM_TAKE_BUTTON" xml:space="preserve">
+    <value>Take</value>
+  </data>
+  <data name="CHAT_JOINMESSAGE_MESSAGE" xml:space="preserve">
+    <value>joined the game</value>
+  </data>
+  <data name="CHAT_LEAVEMESSAGE_MESSAGE" xml:space="preserve">
+    <value>left the game</value>
+  </data>
+  <data name="GENERAL_NOCONNECTION_MESSAGE" xml:space="preserve">
+    <value>Could not connect to the server</value>
+  </data>
+  <data name="JOINGAME_CANTJOIN_MESSAGE" xml:space="preserve">
+    <value>Cannot join room, room is full, or game has started</value>
+  </data>
+  <data name="GENERAL_WHITESPACES_MESSAGE" xml:space="preserve">
+    <value>You can not leave empty fields</value>
+  </data>
+  <data name="CHANGEPASSWORD_INCORRECTTOKEN_MESSAGE" xml:space="preserve">
+    <value>Incorrect Token</value>
+  </data>
+  <data name="CHANGEPASSWORD_VALIDATIONSEND_MESSAGE" xml:space="preserve">
+    <value>Validation code sent successfully</value>
+  </data>
+  <data name="GENERAL_CANTSEND_MESSAGE" xml:space="preserve">
+    <value>Could not send message</value>
+  </data>
+  <data name="CHANGEPASSWORD_SUCCESSFUL_MESSAGE" xml:space="preserve">
+    <value>The password has been changed successfully</value>
+  </data>
+  <data name="GENERAL_SUCCSESSFUL_TITLE" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="GENERAL_ERROR_TITLE" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="GENERAL_WARNING_TITLE" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="LOGIN_NOUSERORPASSWORD_MESSAGE" xml:space="preserve">
+    <value>You must enter your username and password</value>
+  </data>
+  <data name="LOGIN_CANTLOGIN_MESSAGE" xml:space="preserve">
+    <value>Failed to log in, please try again later</value>
+  </data>
+  <data name="ROOM_CANTEXPEL_MESSAGE" xml:space="preserve">
+    <value>Only the host of the game can kick a player</value>
+  </data>
+  <data name="SIGNIN_CONFIRMATION_MESSAGE" xml:space="preserve">
+    <value>Successful registration</value>
+  </data>
+  <data name="SIGNIN_CONFIRMATION_MESSAGEWINDOW" xml:space="preserve">
+    <value>Confirmation of registration</value>
+  </data>
+  <data name="SIGNIN_EMAIL_LABEL" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="SIGNIN_EMPTYFIELDS_MESSAGE" xml:space="preserve">
+    <value>There are empty fields. Check the data</value>
+  </data>
+  <data name="SIGNIN_EMPTYFIELDS_MESSAGEWINDOW" xml:space="preserve">
+    <value>Empty fields</value>
+  </data>
+  <data name="SIGNIN_EXCESSLENGTH_MESSAGE" xml:space="preserve">
+    <value>There are fields that exceed the allowed length. Check the data</value>
+  </data>
+  <data name="SIGNIN_EXCESSLENGTH_MESSAGEWINDOW" xml:space="preserve">
+    <value>Length exceeded</value>
+  </data>
+  <data name="SIGNIN_INCORRECTPASSWORD_MESSAGE" xml:space="preserve">
+    <value>The passwords entered do not match. Check the data</value>
+  </data>
+  <data name="SIGNIN_INCORRECTPASSWORD_MESSAGEWINDOW" xml:space="preserve">
+    <value>Incorrect password</value>
+  </data>
+  <data name="SIGNIN_INVALIDPASSWORD_MESSAGE" xml:space="preserve">
+    <value>The password must be between 8 and 16 characters.
+The password must have at least one number.
+The password must have at least one capital letter.
+Password must have at least one lowercase letter</value>
+  </data>
+  <data name="SIGNIN_INVALIDPASSWORD_MESSAGEWINDOW" xml:space="preserve">
+    <value>Invalid password</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGE" xml:space="preserve">
+    <value>There are invalid characters. Check the email details</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGEWINDOW" xml:space="preserve">
+    <value>Invalid fields in email</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGE" xml:space="preserve">
+    <value>There are invalid characters. Check the last name data</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGEWINDOW" xml:space="preserve">
+    <value>Invalid fields in last name</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGS_MESSAGE" xml:space="preserve">
+    <value>There are invalid characters. Check the name data</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGS_MESSAGEWINDOW" xml:space="preserve">
+    <value>Invalid fields in name</value>
+  </data>
+  <data name="SIGNIN_LASTNAME_LABEL" xml:space="preserve">
+    <value>Last Name:</value>
+  </data>
+  <data name="SIGNIN_NAME_LABEL" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="SIGNIN_PASSWORD_LABEL" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="SIGNIN_REPEATEDEMAIL_MESSAGE" xml:space="preserve">
+    <value>The email entered is already registered. Please enter a new one</value>
+  </data>
+  <data name="SIGNIN_REPEATEDEMAIL_MESSAGEWINDOW" xml:space="preserve">
+    <value>Registered mail</value>
+  </data>
+  <data name="SIGNIN_REPEATEDUSERNAME_MESSAGE" xml:space="preserve">
+    <value>The username entered is already registered. Please enter a new one</value>
+  </data>
+  <data name="SIGNIN_REPEATEDUSERNAME_MESSAGEWINDOW" xml:space="preserve">
+    <value>Registered username</value>
+  </data>
+  <data name="SIGNIN_REPEATPASSWORD_LABEL" xml:space="preserve">
+    <value>Repeat password:</value>
+  </data>
+  <data name="SIGNIN_SAVEERROR_MESSAGE" xml:space="preserve">
+    <value>It does not work</value>
+  </data>
+  <data name="SIGNIN_SAVEERROR_MESSAGEWINDOW" xml:space="preserve">
+    <value>Upss</value>
+  </data>
+  <data name="SIGNIN_SIGNIN_BUTTON" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="SIGNIN_TITLESIGNIN_LABEL" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="SIGNIN_TITLE_WINDOW" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="SIGNIN_USERNAME_LABEL" xml:space="preserve">
+    <value>Username:</value>
+  </data>
+  <data name="VERIFYEMAIL_BUTTON" xml:space="preserve">
+    <value>Send code</value>
+  </data>
+  <data name="VERIFYEMAIL_CONFIRMATIONERROR_MESSAGE" xml:space="preserve">
+    <value>The entered code is incorrect. Check information</value>
+  </data>
+  <data name="VERIFYEMAIL_CONFIRMATIONERROR_MESSAGEWINDOW" xml:space="preserve">
+    <value>Mail confirmation error</value>
+  </data>
+  <data name="VERIFYEMAIL_CONFIRMATION_MESSAGE" xml:space="preserve">
+    <value>Email has been verified successfully</value>
+  </data>
+  <data name="VERIFYEMAIL_CONFIRMATION_MESSAGEWINDOW" xml:space="preserve">
+    <value>E-mail confirmation</value>
+  </data>
+  <data name="VERIFYEMAIL_INSTRUCTIONS_LABEL" xml:space="preserve">
+    <value>A code has been sent to verify your email</value>
+  </data>
+  <data name="VERIFYEMAIL_INVALIDFIELD_MESSAGE" xml:space="preserve">
+    <value>The code entered is invalid. Check information</value>
+  </data>
+  <data name="VERIFYEMAIL_NUMBER_LABEL" xml:space="preserve">
+    <value>Verification number:</value>
+  </data>
+  <data name="VERIFYEMAIL_TITLE_LABEL" xml:space="preserve">
+    <value>Email check</value>
+  </data>
+  <data name="VERIFYEMAIL_TITLE_WINDOW" xml:space="preserve">
+    <value>Email verification</value>
   </data>
 </root>

@@ -15,17 +15,35 @@ namespace Services
     {
         [OperationContract]
         Logic.Player Login(String nickname, String password);
+
         [OperationContract]
         bool Register(Player player);
+
         [OperationContract]
         bool SendCode(string emailFrom);
+
         [OperationContract]
-        bool SendNewEmail(String toEmail, String affair, int validationCode);
+        List<String> GetRecord();
+
+        [OperationContract]
+        List<int?> GetScore();
+
+        [OperationContract]
+        bool SendValidationEmail(String toEmail, String affair, int validationCode);
+
         [OperationContract]
         bool UpdatePassword(string password, string email);
+
         [OperationContract]
-        bool ExitsEmail(string text);
+        bool ExitsEmail(string text); // ==> ESTÁ MAL ESCRITO!!! :V
         [OperationContract]
-        bool ExitsNickname(string text);
+        bool ExitsNickname(string text); // ==> ESTÁ MAL ESCRITO!!! :V
+    }
+
+    [DataContract]
+    public partial class MatchMember
+    {
+        [DataMember]
+        public Player player;
     }
 }

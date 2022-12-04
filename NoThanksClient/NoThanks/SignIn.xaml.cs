@@ -63,7 +63,7 @@ namespace NoThanks
 
             if (!ExistsInvalidFields()) //&& !exitsEmail && !exitsNickname)
             {
-                string passwordHashed = ComputeSHA512Hash(password);
+                string passwordHashed = Security.PasswordEncryptor.ComputeSHA512Hash(password);
                 Player player = new Player()
                 {
                     Name = name,
@@ -72,19 +72,18 @@ namespace NoThanks
                     Email = email,
                     Password = passwordHashed
                 };
-                client.SendCode(email);
-                VerifyEmail verifyEmail = new VerifyEmail();
-                verifyEmail.ShowDialog();
-                var result = verifyEmail.GetVerifyEmail();
+                var result = client.SendCode(email);
+
                 if (result)
                 {
+                    VerifyEmail verifyEmail = new VerifyEmail();
+                    verifyEmail.ShowDialog();
+                    var resultCode = verifyEmail.GetVerifyEmail();
                     var aux = client.Register(player);
-                    if (aux)
+                    if (aux && resultCode)
                     {
                         //TODO
                         MessageBox.Show($"{Properties.Resources.SIGNIN_CONFIRMATION_MESSAGE}", $"{Properties.Resources.SIGNIN_CONFIRMATION_MESSAGEWINDOW}", MessageBoxButton.OK);
-                        MainWindow mainWindow = new MainWindow();
-                        mainWindow.Show();
                         this.Close();
                     }
                     else
@@ -216,17 +215,6 @@ namespace NoThanks
                 //TODO
                 Console.WriteLine(exception.Message);
             }
-        }
-
-        private string ComputeSHA512Hash(string input)
-        {
-            var encryptedPassword = "";
-            using (SHA512 sHA512Hash = SHA512.Create())
-            {
-                byte[] hash = sHA512Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-                encryptedPassword = BitConverter.ToString(hash).Replace("-", string.Empty).ToLowerInvariant();
-            }
-            return encryptedPassword;
         }
 
     }

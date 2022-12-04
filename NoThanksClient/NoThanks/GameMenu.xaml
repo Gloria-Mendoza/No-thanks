@@ -4,16 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NoThanks"
-        xmlns:p = "clr-namespace:NoThanks.Properties"
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.GAMEMENU_TITLE_WINDOW}" Height="450" Width="800">
-    <Window.Background>
-        <ImageBrush ImageSource="Images/5053309.jpg"/>
-    </Window.Background>
+        Title="GameMenu" Height="450" Width="800">
     <Grid>
-        <Button Content="{x:Static p:Resources.GAMEMENU_BUTTON_LEAVE}" HorizontalAlignment="Left" Margin="368,338,0,0" VerticalAlignment="Top" Width="75" Click="LeaveClick"/>
-        <Button Content="{x:Static p:Resources.GAMEMENU_BUTTON_QUICKPLAY}" HorizontalAlignment="Left" Margin="480,151,0,0" VerticalAlignment="Top" Width="200" Height="47" Click="QuickplayClick"/>
-        <Button Content="{x:Static p:Resources.GAMEMENU_BUTTON_START}" HorizontalAlignment="Left" Margin="132,151,0,0" VerticalAlignment="Top" Width="200" Height="49" Click="StartClick"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/5053309.jpg"/>
+        </Grid.Background>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="368,338,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="480,151,0,0" VerticalAlignment="Top" Width="200" Height="47"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="148,151,0,0" VerticalAlignment="Top" Width="200" Height="49"/>
 
     </Grid>
 </Window>

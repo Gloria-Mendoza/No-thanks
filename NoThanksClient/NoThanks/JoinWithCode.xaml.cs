@@ -36,19 +36,21 @@ namespace NoThanks
             };
             if (go.CheckQuota())
             {
+                go.CreateNewRoom(false);
                 go.Show();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("No se puede unir a la sala, está llena", "Upss", MessageBoxButton.OK);
+                go.Close();
+                MessageBox.Show(Properties.Resources.JOINGAME_CANTJOIN_MESSAGE, Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
                 txtCode.Text = string.Empty;
             }
         }
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal go = new MenuPrincipal()
+            PlaySelection go = new PlaySelection()
             {
                 WindowState = this.WindowState,
                 Left = this.Left

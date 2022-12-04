@@ -58,12 +58,71 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IUpdateProfile_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDeckOfCards_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Logic" />
       <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8080/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IPlayerManager_Login_InputMessage">
@@ -78,41 +137,35 @@
   <wsdl:message name="IPlayerManager_Register_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterResponse" />
   </wsdl:message>
-  <wsdl:message name="IPlayerManager_SendNewEmail_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendNewEmail" />
+  <wsdl:message name="IPlayerManager_SendCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendCode" />
   </wsdl:message>
-  <wsdl:message name="IPlayerManager_SendNewEmail_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendNewEmailResponse" />
+  <wsdl:message name="IPlayerManager_SendCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_GetRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecord" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_GetRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_GetScore_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetScore" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_GetScore_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetScoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_SendValidationEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendValidationEmail" />
+  </wsdl:message>
+  <wsdl:message name="IPlayerManager_SendValidationEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendValidationEmailResponse" />
   </wsdl:message>
   <wsdl:message name="IPlayerManager_UpdatePassword_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdatePassword" />
   </wsdl:message>
   <wsdl:message name="IPlayerManager_UpdatePassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdatePasswordResponse" />
-  </wsdl:message>
-  <wsdl:message name="IChatService_CreateRoom_InputMessage">
-    <wsdl:part name="parameters" element="tns:CreateRoom" />
-  </wsdl:message>
-  <wsdl:message name="IChatService_CreateRoom_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CreateRoomResponse" />
-  </wsdl:message>
-  <wsdl:message name="IChatService_CheckQuota_InputMessage">
-    <wsdl:part name="parameters" element="tns:CheckQuota" />
-  </wsdl:message>
-  <wsdl:message name="IChatService_CheckQuota_OutputMessage">
-    <wsdl:part name="parameters" element="tns:CheckQuotaResponse" />
-  </wsdl:message>
-  <wsdl:message name="IChatService_GenerateRoomCode_InputMessage">
-    <wsdl:part name="parameters" element="tns:GenerateRoomCode" />
-  </wsdl:message>
-  <wsdl:message name="IChatService_GenerateRoomCode_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GenerateRoomCodeResponse" />
-  </wsdl:message>
-  <wsdl:message name="IPlayerManager_SendCode_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendCode" />
-  </wsdl:message>
-  <wsdl:message name="IPlayerManager_SendCode_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendCodeResponse" />
   </wsdl:message>
   <wsdl:message name="IPlayerManager_ExitsEmail_InputMessage">
     <wsdl:part name="parameters" element="tns:ExitsEmail" />
@@ -126,6 +179,36 @@
   <wsdl:message name="IPlayerManager_ExitsNickname_OutputMessage">
     <wsdl:part name="parameters" element="tns:ExitsNicknameResponse" />
   </wsdl:message>
+  <wsdl:message name="IChatService_NewRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:NewRoom" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_NewRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NewRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GenerateRoomCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateRoomCode" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GenerateRoomCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateRoomCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_CheckQuota_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckQuota" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_CheckQuota_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckQuotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_RecoverRoomPlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecoverRoomPlayers" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_RecoverRoomPlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecoverRoomPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_StartGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartGame" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_StartGame_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartGameResponse" />
+  </wsdl:message>
   <wsdl:message name="IChatService_Connect_InputMessage">
     <wsdl:part name="parameters" element="tns:Connect" />
   </wsdl:message>
@@ -137,6 +220,12 @@
   </wsdl:message>
   <wsdl:message name="IChatService_Disconnect_OutputMessage">
     <wsdl:part name="parameters" element="tns:DisconnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_ExpelPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExpelPlayer" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_ExpelPlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExpelPlayerResponse" />
   </wsdl:message>
   <wsdl:message name="IChatService_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
@@ -150,6 +239,48 @@
   <wsdl:message name="IChatService_WhisperCallBack_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:WhisperCallBack" />
   </wsdl:message>
+  <wsdl:message name="IChatService_StartGameRoom_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:StartGameRoom" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_PlayerExpeled_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:PlayerExpeled" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_SaveImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveImage" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_SaveImage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveImageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_GetImage_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImage" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_GetGlobalPlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGlobalPlayers" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_GetGlobalPlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGlobalPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_GetGlobalFriends_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGlobalFriends" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_GetGlobalFriends_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGlobalFriendsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUpdateProfile_ImageCallBack_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ImageCallBack" />
+  </wsdl:message>
+  <wsdl:message name="IDeckOfCards_CreateDeck_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDeck" />
+  </wsdl:message>
+  <wsdl:message name="IDeckOfCards_TakeCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:TakeCard" />
+  </wsdl:message>
+  <wsdl:message name="IDeckOfCards_UpdateDeck_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDeck" />
+  </wsdl:message>
+  <wsdl:message name="IDeckOfCards_UpdatePlayerDeck_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePlayerDeck" />
+  </wsdl:message>
   <wsdl:portType name="IPlayerManager">
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/Login" message="tns:IPlayerManager_Login_InputMessage" />
@@ -159,17 +290,25 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/Register" message="tns:IPlayerManager_Register_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/RegisterResponse" message="tns:IPlayerManager_Register_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SendNewEmail">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/SendNewEmail" message="tns:IPlayerManager_SendNewEmail_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/SendNewEmailResponse" message="tns:IPlayerManager_SendNewEmail_OutputMessage" />
+    <wsdl:operation name="SendCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/SendCode" message="tns:IPlayerManager_SendCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/SendCodeResponse" message="tns:IPlayerManager_SendCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/GetRecord" message="tns:IPlayerManager_GetRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/GetRecordResponse" message="tns:IPlayerManager_GetRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetScore">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/GetScore" message="tns:IPlayerManager_GetScore_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/GetScoreResponse" message="tns:IPlayerManager_GetScore_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendValidationEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/SendValidationEmail" message="tns:IPlayerManager_SendValidationEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/SendValidationEmailResponse" message="tns:IPlayerManager_SendValidationEmail_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdatePassword">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/UpdatePassword" message="tns:IPlayerManager_UpdatePassword_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/UpdatePasswordResponse" message="tns:IPlayerManager_UpdatePassword_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="SendCode">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/SendCode" message="tns:IPlayerManager_SendCode_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPlayerManager/SendCodeResponse" message="tns:IPlayerManager_SendCode_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ExitsEmail">
       <wsdl:input wsaw:Action="http://tempuri.org/IPlayerManager/ExitsEmail" message="tns:IPlayerManager_ExitsEmail_InputMessage" />
@@ -181,17 +320,25 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IChatService">
-    <wsdl:operation name="CreateRoom">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/CreateRoom" message="tns:IChatService_CreateRoom_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/CreateRoomResponse" message="tns:IChatService_CreateRoom_OutputMessage" />
+    <wsdl:operation name="NewRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/NewRoom" message="tns:IChatService_NewRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/NewRoomResponse" message="tns:IChatService_NewRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateRoomCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GenerateRoomCode" message="tns:IChatService_GenerateRoomCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GenerateRoomCodeResponse" message="tns:IChatService_GenerateRoomCode_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CheckQuota">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/CheckQuota" message="tns:IChatService_CheckQuota_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/CheckQuotaResponse" message="tns:IChatService_CheckQuota_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GenerateRoomCode">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GenerateRoomCode" message="tns:IChatService_GenerateRoomCode_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GenerateRoomCodeResponse" message="tns:IChatService_GenerateRoomCode_OutputMessage" />
+    <wsdl:operation name="RecoverRoomPlayers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/RecoverRoomPlayers" message="tns:IChatService_RecoverRoomPlayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/RecoverRoomPlayersResponse" message="tns:IChatService_RecoverRoomPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/StartGame" message="tns:IChatService_StartGame_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/StartGameResponse" message="tns:IChatService_StartGame_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Connect">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Connect" message="tns:IChatService_Connect_InputMessage" />
@@ -200,6 +347,10 @@
     <wsdl:operation name="Disconnect">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/Disconnect" message="tns:IChatService_Disconnect_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/DisconnectResponse" message="tns:IChatService_Disconnect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExpelPlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/ExpelPlayer" message="tns:IChatService_ExpelPlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/ExpelPlayerResponse" message="tns:IChatService_ExpelPlayer_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendMessage" message="tns:IChatService_SendMessage_InputMessage" />
@@ -212,6 +363,46 @@
     </wsdl:operation>
     <wsdl:operation name="WhisperCallBack">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/WhisperCallBack" message="tns:IChatService_WhisperCallBack_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartGameRoom">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/StartGameRoom" message="tns:IChatService_StartGameRoom_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PlayerExpeled">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/PlayerExpeled" message="tns:IChatService_PlayerExpeled_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IUpdateProfile">
+    <wsdl:operation name="SaveImage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUpdateProfile/SaveImage" message="tns:IUpdateProfile_SaveImage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUpdateProfile/SaveImageResponse" message="tns:IUpdateProfile_SaveImage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUpdateProfile/GetImage" message="tns:IUpdateProfile_GetImage_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalPlayers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalPlayers" message="tns:IUpdateProfile_GetGlobalPlayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalPlayersResponse" message="tns:IUpdateProfile_GetGlobalPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalFriends">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalFriends" message="tns:IUpdateProfile_GetGlobalFriends_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalFriendsResponse" message="tns:IUpdateProfile_GetGlobalFriends_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImageCallBack">
+      <wsdl:output wsaw:Action="http://tempuri.org/IUpdateProfile/ImageCallBack" message="tns:IUpdateProfile_ImageCallBack_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IDeckOfCards">
+    <wsdl:operation name="CreateDeck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeckOfCards/CreateDeck" message="tns:IDeckOfCards_CreateDeck_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TakeCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeckOfCards/TakeCard" message="tns:IDeckOfCards_TakeCard_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeck">
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeckOfCards/UpdateDeck" message="tns:IDeckOfCards_UpdateDeck_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlayerDeck">
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeckOfCards/UpdatePlayerDeck" message="tns:IDeckOfCards_UpdatePlayerDeck_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPlayerManager" type="tns:IPlayerManager">
@@ -235,8 +426,35 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SendNewEmail">
-      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/SendNewEmail" style="document" />
+    <wsdl:operation name="SendCode">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/SendCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecord">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/GetRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetScore">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/GetScore" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendValidationEmail">
+      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/SendValidationEmail" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -246,15 +464,6 @@
     </wsdl:operation>
     <wsdl:operation name="UpdatePassword">
       <soap12:operation soapAction="http://tempuri.org/IPlayerManager/UpdatePassword" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SendCode">
-      <soap12:operation soapAction="http://tempuri.org/IPlayerManager/SendCode" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -284,8 +493,17 @@
   <wsdl:binding name="NetTcpBinding_IChatService" type="tns:IChatService">
     <wsp:PolicyReference URI="#NetTcpBinding_IChatService_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
-    <wsdl:operation name="CreateRoom">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/CreateRoom" style="document" />
+    <wsdl:operation name="NewRoom">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/NewRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateRoomCode">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/GenerateRoomCode" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -302,8 +520,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GenerateRoomCode">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/GenerateRoomCode" style="document" />
+    <wsdl:operation name="RecoverRoomPlayers">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/RecoverRoomPlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartGame">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/StartGame" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -322,6 +549,15 @@
     </wsdl:operation>
     <wsdl:operation name="Disconnect">
       <soap12:operation soapAction="http://tempuri.org/IChatService/Disconnect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExpelPlayer">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/ExpelPlayer" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -353,6 +589,89 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="StartGameRoom">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/StartGameRoom" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PlayerExpeled">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/PlayerExpeled" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IUpdateProfile" type="tns:IUpdateProfile">
+    <wsp:PolicyReference URI="#NetTcpBinding_IUpdateProfile_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="SaveImage">
+      <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/SaveImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImage">
+      <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/GetImage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalPlayers">
+      <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/GetGlobalPlayers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGlobalFriends">
+      <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/GetGlobalFriends" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImageCallBack">
+      <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/ImageCallBack" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IDeckOfCards" type="tns:IDeckOfCards">
+    <wsp:PolicyReference URI="#NetTcpBinding_IDeckOfCards_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="CreateDeck">
+      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/CreateDeck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="TakeCard">
+      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/TakeCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeck">
+      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/UpdateDeck" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlayerDeck">
+      <soap12:operation soapAction="http://tempuri.org/IDeckOfCards/UpdatePlayerDeck" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="PlayerManager">
     <wsdl:port name="NetTcpBinding_IPlayerManager" binding="tns:NetTcpBinding_IPlayerManager">
@@ -365,6 +684,24 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IChatService" binding="tns:NetTcpBinding_IChatService">
+      <soap12:address location="net.tcp://localhost:8081/Services" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IUpdateProfile" binding="tns:NetTcpBinding_IUpdateProfile">
+      <soap12:address location="net.tcp://localhost:8081/Services" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IDeckOfCards" binding="tns:NetTcpBinding_IDeckOfCards">
       <soap12:address location="net.tcp://localhost:8081/Services" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/Services</wsa10:Address>

@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
+using System.Media;
 using System.Security.Cryptography;
 using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
 
 
 namespace NoThanks
@@ -17,23 +22,30 @@ namespace NoThanks
             InitializeComponent();
         }
         
+
         private void LoginClick(object sender, RoutedEventArgs e)
         {
-            try
-            {           
-                LoginAction();
-            }
-            catch (EndpointNotFoundException)
+            var username = txtUsername.Text;
+            var password = pfPassword.Password;
+            if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
             {
-                //TODO
-                MessageBox.Show("No se pudo establecer conexión con el servidor", "Upss", MessageBoxButton.OK);
+                try
+                {
+                    LoginAction(username, password);
+                }
+                catch (EndpointNotFoundException)
+                {
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-
+            else
+            {
+                MessageBox.Show(Properties.Resources.LOGIN_NOUSERORPASSWORD_MESSAGE, Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void RegisterClick(object sender, RoutedEventArgs e)
         {
-            //TODO
             SignIn register = new SignIn();
             register.Show();
             this.Close();
@@ -43,7 +55,8 @@ namespace NoThanks
         {
             Domain.Player.PlayerClient = new Domain.Player()
             {
-                Nickname = $"Guest{new Random().Next()}"
+                Nickname = $"Guest{new Random().Next()}",
+                IsGuest = true
             };
             MenuPrincipal go = new MenuPrincipal()
             {
@@ -55,46 +68,45 @@ namespace NoThanks
             this.Close();
         }
 
-        private void LoginAction()
+        private void LoginAction(string username, string password)
         {
-            var username = txtUsername.Text;
-            var password = pfPassword.Password;
+            PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
+            var playerLogin = client.Login(username, Security.PasswordEncryptor.ComputeSHA512Hash(password));
 
-            if (!String.IsNullOrWhiteSpace(username) && !String.IsNullOrWhiteSpace(password))
+            if (playerLogin.Status)
             {
-                PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
-                var playerLogin = client.Login(username, Security.PasswordEncryptor.ComputeSHA512Hash(password));
-                if (playerLogin.Status)
+                Domain.Player.PlayerClient = new Domain.Player()
                 {
-                    Domain.Player.PlayerClient = new Domain.Player()
-                    {
-                        IdPlayer = playerLogin.IdPlayer,
-                        Nickname = playerLogin.Nickname,
-                        Name = playerLogin.Name,
-                        LastName = playerLogin.LastName,
-                        Email = playerLogin.Email,
-                        TotalScore = playerLogin.TotalScore,
-                    };
-                    MenuPrincipal go = new MenuPrincipal()
-                    {
-                        WindowState = this.WindowState,
-                        Left = this.Left
-                    };
-                    go.Show();
-                    this.Close();
-                }
-                else
+                    IdPlayer = playerLogin.IdPlayer,
+                    Nickname = playerLogin.Nickname,
+                    Name = playerLogin.Name,
+                    LastName = playerLogin.LastName,
+                    Email = playerLogin.Email,
+                    TotalScore = playerLogin.TotalScore,
+                    IsGuest = false
+                };
+
+                MenuPrincipal go = new MenuPrincipal()
                 {
-                    //TODO
-                    MessageBox.Show("No Funciona", "Upss", MessageBoxButton.OK);
-                }
-                client.Close();
+                    WindowState = this.WindowState,
+                    Left = this.Left
+                };
+                go.Show();
+                this.Close();
             }
             else
             {
-                //TODO
-                MessageBox.Show("Debes ingresar tú usuario y contraseña");
+                MessageBox.Show(Properties.Resources.LOGIN_CANTLOGIN_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            client.Close();
+            
         }
+
+        private void MusicClick(object sender, RoutedEventArgs e)
+        {
+            SoundPlayer musicPlayer = new SoundPlayer("noThanksMusic.wav");
+            musicPlayer.PlaySync();
+        }
+
     }
 }
