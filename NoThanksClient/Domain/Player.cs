@@ -34,7 +34,6 @@ namespace Domain
         public string Name { get { return name; } set { name = value; } }
         public string LastName { get { return lastName; } set { lastName = value; } }
         public string Photo { get { return photo; } set { photo = value; } }
-
         public bool IsGuest { get { return isGuest; } set { isGuest = value; } }
     }
 }

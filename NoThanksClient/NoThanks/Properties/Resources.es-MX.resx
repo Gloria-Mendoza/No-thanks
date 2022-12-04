@@ -315,4 +315,16 @@
   <data name="ROOM_CANTEXPEL_MESSAGE" xml:space="preserve">
     <value>Solo el anfitrión de la partida puede expulsar a un jugador</value>
   </data>
+  <data name="ROOM_ROUND_LABEL" xml:space="preserve">
+    <value>Ronda</value>
+  </data>
+  <data name="ROOM_TOKENS_LABEL" xml:space="preserve">
+    <value>Fichas</value>
+  </data>
+  <data name="ROOM_CANTSTART_MESSAGE" xml:space="preserve">
+    <value>Deben ser 3 jugadores como minimo para poder empezar la partida</value>
+  </data>
+  <data name="ROOM_STARTEDGAME_MESSAGE" xml:space="preserve">
+    <value>¡Juego Iniciado!</value>
+  </data>
 </root>

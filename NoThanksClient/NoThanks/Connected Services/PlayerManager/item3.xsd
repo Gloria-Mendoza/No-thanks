@@ -188,12 +188,8 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="message" nillable="true" type="q4:ArrayOfstring" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="StartGameResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="Connect">
@@ -298,8 +294,8 @@
   <xs:element name="StartGameRoom">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="roomStatus" type="q4:RoomStatus" />
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="players" nillable="true" type="q5:ArrayOfPlayer" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="roomStatus" type="q5:RoomStatus" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="players" nillable="true" type="q6:ArrayOfPlayer" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -323,22 +319,15 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="round" type="xs:int" />
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="roomPlayers" nillable="true" type="q6:ArrayOfPlayer" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="roomPlayers" nillable="true" type="q7:ArrayOfPlayer" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateDeck">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q7:ArrayOfCardType" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q8:ArrayOfCardType" />
         <xs:element minOccurs="0" name="roomTokens" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="UpdatePlayerDeck">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="playerDeck" nillable="true" type="q8:ArrayOfCardType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

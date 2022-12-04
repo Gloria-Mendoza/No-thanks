@@ -26,9 +26,10 @@ namespace Logic
         private Nullable<int> totalScore;
         private string name;
         private string lastName;
+        private string profileImage;
         private bool status;
 
-        #region ChatCallbacks
+        #region Non-Serializable
         private OperationContext aOperationContext;
         public OperationContext AOperationContext { get { return aOperationContext; } set { aOperationContext = value; } }
         #endregion
@@ -56,6 +57,8 @@ namespace Logic
         public string Name { get { return name; } set { name = value; } }
         [DataMember]
         public string LastName { get { return lastName; } set { lastName = value; } }
+        [DataMember]
+        public string ProfileImage { get { return profileImage; } set { profileImage = value; } }
         #endregion
 
         #region Methods

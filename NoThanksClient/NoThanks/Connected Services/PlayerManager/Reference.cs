@@ -47,6 +47,9 @@ namespace NoThanks.PlayerManager {
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ProfileImageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool StatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -165,6 +168,19 @@ namespace NoThanks.PlayerManager {
                 if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
                     this.PasswordField = value;
                     this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string ProfileImage {
+            get {
+                return this.ProfileImageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ProfileImageField, value) != true)) {
+                    this.ProfileImageField = value;
+                    this.RaisePropertyChanged("ProfileImage");
                 }
             }
         }
@@ -523,11 +539,11 @@ namespace NoThanks.PlayerManager {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/RecoverRoomPlayers", ReplyAction="http://tempuri.org/IGameService/RecoverRoomPlayersResponse")]
         System.Threading.Tasks.Task<NoThanks.PlayerManager.Player[]> RecoverRoomPlayersAsync(string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/StartGame", ReplyAction="http://tempuri.org/IGameService/StartGameResponse")]
-        void StartGame(string idRoom);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/StartGame")]
+        void StartGame(string idRoom, string[] message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/StartGame", ReplyAction="http://tempuri.org/IGameService/StartGameResponse")]
-        System.Threading.Tasks.Task StartGameAsync(string idRoom);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/StartGame")]
+        System.Threading.Tasks.Task StartGameAsync(string idRoom, string[] message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Connect", ReplyAction="http://tempuri.org/IGameService/ConnectResponse")]
         void Connect(string username, string idRoom, string message);
@@ -601,9 +617,6 @@ namespace NoThanks.PlayerManager {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/UpdateDeck")]
         void UpdateDeck(NoThanks.PlayerManager.CardType[] gameDeck, int roomTokens);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/UpdatePlayerDeck")]
-        void UpdatePlayerDeck(NoThanks.PlayerManager.CardType[] playerDeck);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -666,12 +679,12 @@ namespace NoThanks.PlayerManager {
             return base.Channel.RecoverRoomPlayersAsync(idRoom);
         }
         
-        public void StartGame(string idRoom) {
-            base.Channel.StartGame(idRoom);
+        public void StartGame(string idRoom, string[] message) {
+            base.Channel.StartGame(idRoom, message);
         }
         
-        public System.Threading.Tasks.Task StartGameAsync(string idRoom) {
-            return base.Channel.StartGameAsync(idRoom);
+        public System.Threading.Tasks.Task StartGameAsync(string idRoom, string[] message) {
+            return base.Channel.StartGameAsync(idRoom, message);
         }
         
         public void Connect(string username, string idRoom, string message) {
