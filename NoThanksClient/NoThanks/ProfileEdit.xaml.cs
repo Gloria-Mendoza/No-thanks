@@ -1,30 +1,12 @@
-﻿using Domain;
-using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Image = System.Drawing.Image;
 using System.IO;
-using Path = System.IO.Path;
-using System.Reflection;
 using System.ServiceModel;
-using NoThanks.PlayerManager;
-using System.Runtime.Remoting.Contexts;
 using System.Windows.Interop;
-using System.Collections;
-using System.Resources;
 
 namespace NoThanks
 {
@@ -33,15 +15,13 @@ namespace NoThanks
     /// </summary>
     public partial class Profile_Edit : Window, PlayerManager.IUpdateProfileCallback
     {
-        private BitmapImage photo = new BitmapImage();
-
         String imageResource = "";
 
         public Profile_Edit()
         {
             InitializeComponent();
             ReadResource();
-           
+            ImagenInit();
         }
 
         private void ReadResource()
@@ -64,41 +44,11 @@ namespace NoThanks
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            OpenFileDialog Imagen = new OpenFileDialog();
-            Imagen.Title = "Visor de imagenes";
-            Imagen.Filter = "Archivos de Imagen (*.jpg)|*.jpg";
-            Imagen.FilterIndex = 1;
-            Imagen.Multiselect = false;
-
-            if (Imagen.ShowDialog() == true)
-            {
-                try
-                {
-                    
-                    photo.BeginInit();
-                    photo.UriSource = new Uri(Imagen.FileName);
-                    photo.EndInit();
-                    photo.Freeze();
-                    imagenProfile.Source = photo;
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show("Error al cargar la imagen:" + ex.Message , "Error");
-                }
-            }
-            
-            
-
-
+            //Botón Abrir
         }
-        private void ImagenInit(string nameImage)
+        private void ImagenInit()
         {
-
-
-
-            Bitmap bmp = (Bitmap)Properties.Resources.ResourceManager.GetObject(nameImage);
-
+            Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
 
             BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
                 bmp.GetHbitmap(),
@@ -106,44 +56,41 @@ namespace NoThanks
                 Int32Rect.Empty,
                 BitmapSizeOptions.FromEmptyOptions()
                 );
-            imagenProfile.Source = bmpImage;
 
+            imagenProfile.Source = bmpImage;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)//Botón Guardar
         {
-            try { 
-            if(tbName.Text == "")
+            try
             {
-                MessageBox.Show("El campo debe ser rellenado", "Error");
-                return;
-            }
-
-
-
-
                 var context = new InstanceContext(this);
                 PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
+
                 updateProfileClient.SaveImage(imageResource, Domain.Player.PlayerClient.IdPlayer);
-                updateProfileClient.UpdateNewNickname(tbName.Text, Domain.Player.PlayerClient.Nickname);
-                Domain.Player.PlayerClient.Nickname = tbName.Text;
-            
+
+                if (!String.IsNullOrWhiteSpace(tbName.Text))
+                {
+                    updateProfileClient.UpdateNewNickname(tbName.Text, Domain.Player.PlayerClient.Nickname);
+                    Domain.Player.PlayerClient.Nickname = tbName.Text;
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar la imagen: " + ex.Message, "Error");
             }
-                Profile go = new Profile()
-                {
+
+            Profile go = new Profile()
+            {
                 WindowState = this.WindowState,
                 Left = this.Left
-                };
+            };
             go.Show();
             this.Close();
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_Click_2(object sender, RoutedEventArgs e)//Cancelar?
         {
             Profile go = new Profile()
             {
@@ -162,7 +109,6 @@ namespace NoThanks
         {
             if (lxtImageSelector.SelectedItem != null)
             {
-                //Console.WriteLine(listafea.SelectedItem);
 
                 Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(lxtImageSelector.SelectedItem.ToString());
 
