@@ -11,17 +11,13 @@ namespace Services
     public interface IUpdateProfile
     {
         [OperationContract]
-        bool SaveImage(string imageManager, int idProfile);
+        bool SaveImage(byte[] imageManager, string nameProfile);
         [OperationContract(IsOneWay = true)]
-        void GetImage(int idProfile);
+        void GetImage(string nameProfile);
         [OperationContract]
         List<String> GetGlobalPlayers();
         [OperationContract]
-        List<String> GetGlobalFriends(int idPlayer);
-        [OperationContract]
-        List<String> GetGlobalRequest();
-        [OperationContract]
-        bool UpdateNewNickname(string nickname, string newnickname);
+        List<String> GetGlobalFriends();
     }
 
     [ServiceContract]

@@ -26,9 +26,6 @@ namespace NoThanks.PlayerManager {
         private NoThanks.PlayerManager.CardType[] CardsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CardsStringField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -45,9 +42,6 @@ namespace NoThanks.PlayerManager {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ProfileImageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool StatusField;
@@ -77,19 +71,6 @@ namespace NoThanks.PlayerManager {
                 if ((object.ReferenceEquals(this.CardsField, value) != true)) {
                     this.CardsField = value;
                     this.RaisePropertyChanged("Cards");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CardsString {
-            get {
-                return this.CardsStringField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CardsStringField, value) != true)) {
-                    this.CardsStringField = value;
-                    this.RaisePropertyChanged("CardsString");
                 }
             }
         }
@@ -168,19 +149,6 @@ namespace NoThanks.PlayerManager {
                 if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
                     this.PasswordField = value;
                     this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ProfileImage {
-            get {
-                return this.ProfileImageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ProfileImageField, value) != true)) {
-                    this.ProfileImageField = value;
-                    this.RaisePropertyChanged("ProfileImage");
                 }
             }
         }
@@ -369,22 +337,22 @@ namespace NoThanks.PlayerManager {
         System.Threading.Tasks.Task<bool> RegisterAsync(NoThanks.PlayerManager.Player player);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendCode", ReplyAction="http://tempuri.org/IPlayerManager/SendCodeResponse")]
-        bool SendCode(string emailFrom, int code);
+        bool SendCode(string emailFrom);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendCode", ReplyAction="http://tempuri.org/IPlayerManager/SendCodeResponse")]
-        System.Threading.Tasks.Task<bool> SendCodeAsync(string emailFrom, int code);
+        System.Threading.Tasks.Task<bool> SendCodeAsync(string emailFrom);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GenerateCodeResponse")]
-        int GenerateCode();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetRecord", ReplyAction="http://tempuri.org/IPlayerManager/GetRecordResponse")]
+        string[] GetRecord();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GenerateCodeResponse")]
-        System.Threading.Tasks.Task<int> GenerateCodeAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetRecord", ReplyAction="http://tempuri.org/IPlayerManager/GetRecordResponse")]
+        System.Threading.Tasks.Task<string[]> GetRecordAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetGenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GetGenerateCodeResponse")]
-        int GetGenerateCode();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetScore", ReplyAction="http://tempuri.org/IPlayerManager/GetScoreResponse")]
+        System.Nullable<int>[] GetScore();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetGenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GetGenerateCodeResponse")]
-        System.Threading.Tasks.Task<int> GetGenerateCodeAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GetScore", ReplyAction="http://tempuri.org/IPlayerManager/GetScoreResponse")]
+        System.Threading.Tasks.Task<System.Nullable<int>[]> GetScoreAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendValidationEmail", ReplyAction="http://tempuri.org/IPlayerManager/SendValidationEmailResponse")]
         bool SendValidationEmail(string toEmail, string affair, int validationCode);
@@ -454,28 +422,28 @@ namespace NoThanks.PlayerManager {
             return base.Channel.RegisterAsync(player);
         }
         
-        public bool SendCode(string emailFrom, int code) {
-            return base.Channel.SendCode(emailFrom, code);
+        public bool SendCode(string emailFrom) {
+            return base.Channel.SendCode(emailFrom);
         }
         
-        public System.Threading.Tasks.Task<bool> SendCodeAsync(string emailFrom, int code) {
-            return base.Channel.SendCodeAsync(emailFrom, code);
+        public System.Threading.Tasks.Task<bool> SendCodeAsync(string emailFrom) {
+            return base.Channel.SendCodeAsync(emailFrom);
         }
         
-        public int GenerateCode() {
-            return base.Channel.GenerateCode();
+        public string[] GetRecord() {
+            return base.Channel.GetRecord();
         }
         
-        public System.Threading.Tasks.Task<int> GenerateCodeAsync() {
-            return base.Channel.GenerateCodeAsync();
+        public System.Threading.Tasks.Task<string[]> GetRecordAsync() {
+            return base.Channel.GetRecordAsync();
         }
         
-        public int GetGenerateCode() {
-            return base.Channel.GetGenerateCode();
+        public System.Nullable<int>[] GetScore() {
+            return base.Channel.GetScore();
         }
         
-        public System.Threading.Tasks.Task<int> GetGenerateCodeAsync() {
-            return base.Channel.GetGenerateCodeAsync();
+        public System.Threading.Tasks.Task<System.Nullable<int>[]> GetScoreAsync() {
+            return base.Channel.GetScoreAsync();
         }
         
         public bool SendValidationEmail(string toEmail, string affair, int validationCode) {
@@ -512,138 +480,111 @@ namespace NoThanks.PlayerManager {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PlayerManager.IGameService", CallbackContract=typeof(NoThanks.PlayerManager.IGameServiceCallback))]
-    public interface IGameService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PlayerManager.IChatService", CallbackContract=typeof(NoThanks.PlayerManager.IChatServiceCallback))]
+    public interface IChatService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/NewRoom", ReplyAction="http://tempuri.org/IGameService/NewRoomResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/NewRoom", ReplyAction="http://tempuri.org/IChatService/NewRoomResponse")]
         bool NewRoom(string hostUsername, string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/NewRoom", ReplyAction="http://tempuri.org/IGameService/NewRoomResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/NewRoom", ReplyAction="http://tempuri.org/IChatService/NewRoomResponse")]
         System.Threading.Tasks.Task<bool> NewRoomAsync(string hostUsername, string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/GenerateRoomCode", ReplyAction="http://tempuri.org/IGameService/GenerateRoomCodeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GenerateRoomCode", ReplyAction="http://tempuri.org/IChatService/GenerateRoomCodeResponse")]
         string GenerateRoomCode();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/GenerateRoomCode", ReplyAction="http://tempuri.org/IGameService/GenerateRoomCodeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GenerateRoomCode", ReplyAction="http://tempuri.org/IChatService/GenerateRoomCodeResponse")]
         System.Threading.Tasks.Task<string> GenerateRoomCodeAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/CheckQuota", ReplyAction="http://tempuri.org/IGameService/CheckQuotaResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CheckQuota", ReplyAction="http://tempuri.org/IChatService/CheckQuotaResponse")]
         bool CheckQuota(string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/CheckQuota", ReplyAction="http://tempuri.org/IGameService/CheckQuotaResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/CheckQuota", ReplyAction="http://tempuri.org/IChatService/CheckQuotaResponse")]
         System.Threading.Tasks.Task<bool> CheckQuotaAsync(string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/RecoverRoomPlayers", ReplyAction="http://tempuri.org/IGameService/RecoverRoomPlayersResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/RecoverRoomPlayers", ReplyAction="http://tempuri.org/IChatService/RecoverRoomPlayersResponse")]
         NoThanks.PlayerManager.Player[] RecoverRoomPlayers(string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/RecoverRoomPlayers", ReplyAction="http://tempuri.org/IGameService/RecoverRoomPlayersResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/RecoverRoomPlayers", ReplyAction="http://tempuri.org/IChatService/RecoverRoomPlayersResponse")]
         System.Threading.Tasks.Task<NoThanks.PlayerManager.Player[]> RecoverRoomPlayersAsync(string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/StartGame")]
-        void StartGame(string idRoom, string[] message);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/StartGame", ReplyAction="http://tempuri.org/IChatService/StartGameResponse")]
+        void StartGame(string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/StartGame")]
-        System.Threading.Tasks.Task StartGameAsync(string idRoom, string[] message);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/StartGame", ReplyAction="http://tempuri.org/IChatService/StartGameResponse")]
+        System.Threading.Tasks.Task StartGameAsync(string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Connect", ReplyAction="http://tempuri.org/IGameService/ConnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Connect", ReplyAction="http://tempuri.org/IChatService/ConnectResponse")]
         void Connect(string username, string idRoom, string message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Connect", ReplyAction="http://tempuri.org/IGameService/ConnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Connect", ReplyAction="http://tempuri.org/IChatService/ConnectResponse")]
         System.Threading.Tasks.Task ConnectAsync(string username, string idRoom, string message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Disconnect", ReplyAction="http://tempuri.org/IGameService/DisconnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Disconnect", ReplyAction="http://tempuri.org/IChatService/DisconnectResponse")]
         void Disconnect(string username, string idRoom, string message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Disconnect", ReplyAction="http://tempuri.org/IGameService/DisconnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/Disconnect", ReplyAction="http://tempuri.org/IChatService/DisconnectResponse")]
         System.Threading.Tasks.Task DisconnectAsync(string username, string idRoom, string message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/ExpelPlayer", ReplyAction="http://tempuri.org/IGameService/ExpelPlayerResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/ExpelPlayer", ReplyAction="http://tempuri.org/IChatService/ExpelPlayerResponse")]
         void ExpelPlayer(string username, string idRoom, string message);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/ExpelPlayer", ReplyAction="http://tempuri.org/IGameService/ExpelPlayerResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/ExpelPlayer", ReplyAction="http://tempuri.org/IChatService/ExpelPlayerResponse")]
         System.Threading.Tasks.Task ExpelPlayerAsync(string username, string idRoom, string message);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SendMessage")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendMessage")]
         void SendMessage(string message, string username, string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SendMessage")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendMessage")]
         System.Threading.Tasks.Task SendMessageAsync(string message, string username, string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SendWhisper")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendWhisper")]
         void SendWhisper(string sender, string receiver, string message, string idRoom);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SendWhisper")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/SendWhisper")]
         System.Threading.Tasks.Task SendWhisperAsync(string sender, string receiver, string message, string idRoom);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/CreateDeck")]
-        void CreateDeck(string roomId);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/CreateDeck")]
-        System.Threading.Tasks.Task CreateDeckAsync(string roomId);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/TakeCard")]
-        void TakeCard(string roomId, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/TakeCard")]
-        System.Threading.Tasks.Task TakeCardAsync(string roomId, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SkipPlayersTurn")]
-        void SkipPlayersTurn(string idRoom, string username);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SkipPlayersTurn")]
-        System.Threading.Tasks.Task SkipPlayersTurnAsync(string idRoom, string username);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IGameServiceCallback {
+    public interface IChatServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/MessageCallBack")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/MessageCallBack")]
         void MessageCallBack(string message);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/WhisperCallBack")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/WhisperCallBack")]
         void WhisperCallBack(string sender, string message);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/StartGameRoom")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/StartGameRoom")]
         void StartGameRoom(NoThanks.PlayerManager.RoomStatus roomStatus, NoThanks.PlayerManager.Player[] players);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/PlayerExpeled")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/PlayerExpeled")]
         void PlayerExpeled(string nickname, string message);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SkipPlayersTurnCallback")]
-        void SkipPlayersTurnCallback(int round, int roomTokens);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/NextTurn")]
-        void NextTurn(int round, NoThanks.PlayerManager.Player[] roomPlayers);
-        
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/UpdateDeck")]
-        void UpdateDeck(NoThanks.PlayerManager.CardType[] gameDeck, int roomTokens);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IGameServiceChannel : NoThanks.PlayerManager.IGameService, System.ServiceModel.IClientChannel {
+    public interface IChatServiceChannel : NoThanks.PlayerManager.IChatService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GameServiceClient : System.ServiceModel.DuplexClientBase<NoThanks.PlayerManager.IGameService>, NoThanks.PlayerManager.IGameService {
+    public partial class ChatServiceClient : System.ServiceModel.DuplexClientBase<NoThanks.PlayerManager.IChatService>, NoThanks.PlayerManager.IChatService {
         
-        public GameServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
         }
         
-        public GameServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
                 base(callbackInstance, endpointConfigurationName) {
         }
         
-        public GameServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
                 base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public GameServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public GameServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public ChatServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, binding, remoteAddress) {
         }
         
@@ -679,12 +620,12 @@ namespace NoThanks.PlayerManager {
             return base.Channel.RecoverRoomPlayersAsync(idRoom);
         }
         
-        public void StartGame(string idRoom, string[] message) {
-            base.Channel.StartGame(idRoom, message);
+        public void StartGame(string idRoom) {
+            base.Channel.StartGame(idRoom);
         }
         
-        public System.Threading.Tasks.Task StartGameAsync(string idRoom, string[] message) {
-            return base.Channel.StartGameAsync(idRoom, message);
+        public System.Threading.Tasks.Task StartGameAsync(string idRoom) {
+            return base.Channel.StartGameAsync(idRoom);
         }
         
         public void Connect(string username, string idRoom, string message) {
@@ -726,30 +667,6 @@ namespace NoThanks.PlayerManager {
         public System.Threading.Tasks.Task SendWhisperAsync(string sender, string receiver, string message, string idRoom) {
             return base.Channel.SendWhisperAsync(sender, receiver, message, idRoom);
         }
-        
-        public void CreateDeck(string roomId) {
-            base.Channel.CreateDeck(roomId);
-        }
-        
-        public System.Threading.Tasks.Task CreateDeckAsync(string roomId) {
-            return base.Channel.CreateDeckAsync(roomId);
-        }
-        
-        public void TakeCard(string roomId, string username) {
-            base.Channel.TakeCard(roomId, username);
-        }
-        
-        public System.Threading.Tasks.Task TakeCardAsync(string roomId, string username) {
-            return base.Channel.TakeCardAsync(roomId, username);
-        }
-        
-        public void SkipPlayersTurn(string idRoom, string username) {
-            base.Channel.SkipPlayersTurn(idRoom, username);
-        }
-        
-        public System.Threading.Tasks.Task SkipPlayersTurnAsync(string idRoom, string username) {
-            return base.Channel.SkipPlayersTurnAsync(idRoom, username);
-        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -757,16 +674,16 @@ namespace NoThanks.PlayerManager {
     public interface IUpdateProfile {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/SaveImage", ReplyAction="http://tempuri.org/IUpdateProfile/SaveImageResponse")]
-        bool SaveImage(string imageManager, int idProfile);
+        bool SaveImage(byte[] imageManager, string nameProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/SaveImage", ReplyAction="http://tempuri.org/IUpdateProfile/SaveImageResponse")]
-        System.Threading.Tasks.Task<bool> SaveImageAsync(string imageManager, int idProfile);
+        System.Threading.Tasks.Task<bool> SaveImageAsync(byte[] imageManager, string nameProfile);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUpdateProfile/GetImage")]
-        void GetImage(int idProfile);
+        void GetImage(string nameProfile);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUpdateProfile/GetImage")]
-        System.Threading.Tasks.Task GetImageAsync(int idProfile);
+        System.Threading.Tasks.Task GetImageAsync(string nameProfile);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalPlayers", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalPlayersResponse")]
         string[] GetGlobalPlayers();
@@ -775,22 +692,10 @@ namespace NoThanks.PlayerManager {
         System.Threading.Tasks.Task<string[]> GetGlobalPlayersAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalFriends", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalFriendsResponse")]
-        string[] GetGlobalFriends(int idPlayer);
+        string[] GetGlobalFriends();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalFriends", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalFriendsResponse")]
-        System.Threading.Tasks.Task<string[]> GetGlobalFriendsAsync(int idPlayer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalRequest", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalRequestResponse")]
-        string[] GetGlobalRequest();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalRequest", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalRequestResponse")]
-        System.Threading.Tasks.Task<string[]> GetGlobalRequestAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/UpdateNewNickname", ReplyAction="http://tempuri.org/IUpdateProfile/UpdateNewNicknameResponse")]
-        bool UpdateNewNickname(string nickname, string newnickname);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/UpdateNewNickname", ReplyAction="http://tempuri.org/IUpdateProfile/UpdateNewNicknameResponse")]
-        System.Threading.Tasks.Task<bool> UpdateNewNicknameAsync(string nickname, string newnickname);
+        System.Threading.Tasks.Task<string[]> GetGlobalFriendsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -828,20 +733,20 @@ namespace NoThanks.PlayerManager {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public bool SaveImage(string imageManager, int idProfile) {
-            return base.Channel.SaveImage(imageManager, idProfile);
+        public bool SaveImage(byte[] imageManager, string nameProfile) {
+            return base.Channel.SaveImage(imageManager, nameProfile);
         }
         
-        public System.Threading.Tasks.Task<bool> SaveImageAsync(string imageManager, int idProfile) {
-            return base.Channel.SaveImageAsync(imageManager, idProfile);
+        public System.Threading.Tasks.Task<bool> SaveImageAsync(byte[] imageManager, string nameProfile) {
+            return base.Channel.SaveImageAsync(imageManager, nameProfile);
         }
         
-        public void GetImage(int idProfile) {
-            base.Channel.GetImage(idProfile);
+        public void GetImage(string nameProfile) {
+            base.Channel.GetImage(nameProfile);
         }
         
-        public System.Threading.Tasks.Task GetImageAsync(int idProfile) {
-            return base.Channel.GetImageAsync(idProfile);
+        public System.Threading.Tasks.Task GetImageAsync(string nameProfile) {
+            return base.Channel.GetImageAsync(nameProfile);
         }
         
         public string[] GetGlobalPlayers() {
@@ -852,28 +757,84 @@ namespace NoThanks.PlayerManager {
             return base.Channel.GetGlobalPlayersAsync();
         }
         
-        public string[] GetGlobalFriends(int idPlayer) {
-            return base.Channel.GetGlobalFriends(idPlayer);
+        public string[] GetGlobalFriends() {
+            return base.Channel.GetGlobalFriends();
         }
         
-        public System.Threading.Tasks.Task<string[]> GetGlobalFriendsAsync(int idPlayer) {
-            return base.Channel.GetGlobalFriendsAsync(idPlayer);
+        public System.Threading.Tasks.Task<string[]> GetGlobalFriendsAsync() {
+            return base.Channel.GetGlobalFriendsAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PlayerManager.IDeckOfCards", CallbackContract=typeof(NoThanks.PlayerManager.IDeckOfCardsCallback))]
+    public interface IDeckOfCards {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/CreateDeck")]
+        void CreateDeck(string roomId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/CreateDeck")]
+        System.Threading.Tasks.Task CreateDeckAsync(string roomId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/TakeCard")]
+        void TakeCard(string roomId);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/TakeCard")]
+        System.Threading.Tasks.Task TakeCardAsync(string roomId);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IDeckOfCardsCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/UpdateDeck")]
+        void UpdateDeck(NoThanks.PlayerManager.CardType[] gameDeck);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IDeckOfCards/UpdatePlayerDeck")]
+        void UpdatePlayerDeck(NoThanks.PlayerManager.CardType[] playerDeck);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IDeckOfCardsChannel : NoThanks.PlayerManager.IDeckOfCards, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class DeckOfCardsClient : System.ServiceModel.DuplexClientBase<NoThanks.PlayerManager.IDeckOfCards>, NoThanks.PlayerManager.IDeckOfCards {
+        
+        public DeckOfCardsClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public string[] GetGlobalRequest() {
-            return base.Channel.GetGlobalRequest();
+        public DeckOfCardsClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public System.Threading.Tasks.Task<string[]> GetGlobalRequestAsync() {
-            return base.Channel.GetGlobalRequestAsync();
+        public DeckOfCardsClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public bool UpdateNewNickname(string nickname, string newnickname) {
-            return base.Channel.UpdateNewNickname(nickname, newnickname);
+        public DeckOfCardsClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateNewNicknameAsync(string nickname, string newnickname) {
-            return base.Channel.UpdateNewNicknameAsync(nickname, newnickname);
+        public DeckOfCardsClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public void CreateDeck(string roomId) {
+            base.Channel.CreateDeck(roomId);
+        }
+        
+        public System.Threading.Tasks.Task CreateDeckAsync(string roomId) {
+            return base.Channel.CreateDeckAsync(roomId);
+        }
+        
+        public void TakeCard(string roomId) {
+            base.Channel.TakeCard(roomId);
+        }
+        
+        public System.Threading.Tasks.Task TakeCardAsync(string roomId) {
+            return base.Channel.TakeCardAsync(roomId);
         }
     }
 }

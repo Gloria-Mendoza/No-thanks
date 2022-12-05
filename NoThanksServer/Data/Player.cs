@@ -20,8 +20,6 @@ namespace Data
             this.Friends = new ObservableCollection<Friend>();
             this.Friends1 = new ObservableCollection<Friend>();
             this.MatchsHistories = new ObservableCollection<MatchsHistory>();
-            this.Requests = new ObservableCollection<Request>();
-            this.Requests1 = new ObservableCollection<Request>();
         }
     
         public int idPlayer { get; set; }
@@ -31,7 +29,6 @@ namespace Data
         public Nullable<int> totalScore { get; set; }
         public string name { get; set; }
         public string lastName { get; set; }
-        public string photo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<Friend> Friends { get; set; }
@@ -39,9 +36,5 @@ namespace Data
         public virtual ObservableCollection<Friend> Friends1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ObservableCollection<MatchsHistory> MatchsHistories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Request> Requests { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ObservableCollection<Request> Requests1 { get; set; }
     }
 }

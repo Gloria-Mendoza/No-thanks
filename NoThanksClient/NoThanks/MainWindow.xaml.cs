@@ -83,7 +83,6 @@ namespace NoThanks
                     LastName = playerLogin.LastName,
                     Email = playerLogin.Email,
                     TotalScore = playerLogin.TotalScore,
-                    Photo = playerLogin.ProfileImage,
                     IsGuest = false
                 };
 
@@ -101,6 +100,12 @@ namespace NoThanks
             }
             client.Close();
             
+        }
+
+        private void MusicClick(object sender, RoutedEventArgs e)
+        {
+            SoundPlayer musicPlayer = new SoundPlayer("noThanksMusic.wav");
+            musicPlayer.PlaySync();
         }
 
     }

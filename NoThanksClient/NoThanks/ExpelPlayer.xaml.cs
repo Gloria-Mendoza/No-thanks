@@ -22,7 +22,7 @@ namespace NoThanks
     public partial class ExpelPlayer : Window
     {
         private PlayerManager.Player player;
-        private GameServiceClient gameServiceClient1;
+        private ChatServiceClient chatServiceClient1;
         private string idRoom1;
 
         public ExpelPlayer()
@@ -66,15 +66,15 @@ namespace NoThanks
             }
             expelReason += $"\n{txtMessage.Text} ";
 
-            gameServiceClient1.ExpelPlayer(player.Nickname, idRoom1, expelReason);
+            chatServiceClient1.ExpelPlayer(player.Nickname, idRoom1, expelReason);
         }
         #endregion
 
         #region Public Functions
-        public void SendPlayer(PlayerManager.Player playerToExpel, PlayerManager.GameServiceClient gameServiceClient, string idRoom)
+        public void SendPlayer(PlayerManager.Player playerToExpel, PlayerManager.ChatServiceClient chatServiceClient, string idRoom)
         {
             player = playerToExpel;
-            gameServiceClient1 = gameServiceClient;
+            chatServiceClient1 = chatServiceClient;
             idRoom1 = idRoom;
         }
         #endregion

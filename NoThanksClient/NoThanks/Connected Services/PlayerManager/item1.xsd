@@ -4,14 +4,12 @@
   <xs:complexType name="Player">
     <xs:sequence>
       <xs:element minOccurs="0" name="Cards" nillable="true" type="tns:ArrayOfCardType" />
-      <xs:element minOccurs="0" name="CardsString" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdPlayer" type="xs:int" />
       <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Nickname" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ProfileImage" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Status" type="xs:boolean" />
       <xs:element minOccurs="0" name="Tokens" type="xs:int" />
       <xs:element minOccurs="0" name="TotalScore" nillable="true" type="xs:int" />

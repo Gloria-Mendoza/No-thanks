@@ -20,20 +20,17 @@ namespace NoThanks
     /// <summary>
     /// Interaction logic for FriendsProfile.xaml
     /// </summary>
-    public partial class FriendsProfile : Window, PlayerManager.IUpdateProfileCallback
+    public partial class FriendsProfile : Window
     {
         public FriendsProfile()
         {
             InitializeComponent();
-            updateImage();
-            ConfigureWindow();
-
         }
         private void updateImage()
         {
             var context = new InstanceContext(this);
             PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
-            updateProfileClient.GetImage(Domain.Player.PlayerClient.IdPlayer);
+            updateProfileClient.GetImage(Domain.Player.PlayerClient.Nickname);
         }
         private void ConfigureWindow()
         {
