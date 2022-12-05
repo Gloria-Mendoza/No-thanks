@@ -315,4 +315,16 @@
   <data name="ROOM_CANTEXPEL_MESSAGE" xml:space="preserve">
     <value>Only the host of the game can kick a player</value>
   </data>
+  <data name="ROOM_ROUND_LABEL" xml:space="preserve">
+    <value>Round</value>
+  </data>
+  <data name="ROOM_TOKENS_LABEL" xml:space="preserve">
+    <value>Tokens</value>
+  </data>
+  <data name="ROOM_CANTSTART_MESSAGE" xml:space="preserve">
+    <value>There must be at least 3 players to start the game</value>
+  </data>
+  <data name="ROOM_STARTEDGAME_MESSAGE" xml:space="preserve">
+    <value>Game Started!</value>
+  </data>
 </root>

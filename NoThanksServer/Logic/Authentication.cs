@@ -29,6 +29,7 @@ namespace Logic
                     player.LastName = accounts.First().lastName;
                     player.TotalScore = accounts.First().totalScore;
                     player.Status = true;
+                    player.ProfileImage = accounts.First().photo;
                 }
             }
             return player;
@@ -45,6 +46,29 @@ namespace Logic
             }
             return status;
         }
+        public bool UpdateNewNickname(string nickname, string newnickname)
+        {
+            var status = false;
+            using(var context = new NoThanksEntities())
+            {
+                var nickNameUpdate = context.Players.FirstOrDefault(n => n.nickname.Equals(newnickname));
+                nickNameUpdate.nickname = nickname;
+                status = context.SaveChanges() > 0;
 
+            }
+            return status;
+        }
+        public bool SaveImage(string imageManager, int idProfile)
+        {
+            var status = false;
+            using (var context = new NoThanksEntities())
+            {
+                var imageUpdate = context.Players.First(c => c.idPlayer.Equals(idProfile));
+                imageUpdate.photo = imageManager;
+                status = context.SaveChanges() > 0;
+
+            }
+            return status;
+        }
     }
 }

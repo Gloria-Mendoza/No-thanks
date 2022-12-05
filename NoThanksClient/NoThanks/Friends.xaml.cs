@@ -28,7 +28,33 @@ namespace NoThanks
             cargeallFriend();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+
+        public void cargealluser()
+        {
+            var context = new InstanceContext(this);
+            PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
+            strings = updateProfileClient.GetGlobalPlayers().ToList();
+            ltbAllUser.ItemsSource = strings;
+        }
+
+        public void cargeallFriend()
+        {
+            var context = new InstanceContext(this);
+            PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
+            updateProfileClient.GetGlobalFriends(Domain.Player.PlayerClient.IdPlayer).ToList();
+            ltbAllFriends.ItemsSource = strings;
+
+        }
+
+        public void ImageCallBack(byte[] image)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             MenuPrincipal go = new MenuPrincipal()
             {
@@ -39,7 +65,7 @@ namespace NoThanks
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrEmpty(txtConsult.Text))
             {
@@ -55,36 +81,16 @@ namespace NoThanks
             }
         }
 
-        public void cargealluser()
+        private void ltbAllUser_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            var context = new InstanceContext(this);
-            PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
-            strings = updateProfileClient.GetGlobalPlayers().ToList();
-            ltbAllUser.ItemsSource = strings;
-        }
-
-        public void cargeallFriend()
-        {
-            var context = new InstanceContext(this);
-            PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
-            //updateProfileClient.GetGlobalFriends().ToList();
-
-        }
-
-        public void ImageCallBack(byte[] image)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ltbAllUser_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            MenuPrincipal go = new MenuPrincipal()
-            {
+            FriendsProfile go = new FriendsProfile()
+            { 
+                
                 WindowState = this.WindowState,
                 Left = this.Left
             };
             go.Show();
-            this.Close();
         }
+
     }
 }

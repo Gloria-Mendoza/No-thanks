@@ -23,8 +23,8 @@ namespace Services
         [OperationContract]
         List<Logic.Player> RecoverRoomPlayers(string idRoom);
 
-        [OperationContract]
-        void StartGame(string idRoom);
+        [OperationContract(IsOneWay = true)]
+        void StartGame(string idRoom, string[] message);
 
         [OperationContract]
         void Connect(string username,string idRoom, string message);
@@ -64,7 +64,5 @@ namespace Services
         void NextTurn(int round, Player[] roomPlayers);
         [OperationContract(IsOneWay = true)]
         void UpdateDeck(CardType[] gameDeck, int roomTokens);
-        [OperationContract(IsOneWay = true)]
-        void UpdatePlayerDeck(CardType[] playerDeck);
     }
 }
