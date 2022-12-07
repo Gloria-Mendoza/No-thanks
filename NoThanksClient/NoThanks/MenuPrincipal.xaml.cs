@@ -140,28 +140,5 @@ namespace NoThanks
             go.Show();
             this.Close();
         }
-        private void ImagenInit()
-        {
-
-
-            try { 
-            Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
-
-               
-            BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
-                bmp.GetHbitmap(),
-                IntPtr.Zero,
-                Int32Rect.Empty,
-                BitmapSizeOptions.FromEmptyOptions()
-
-                );
-            imagenProfile.Source = bmpImage;
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-        }
     }
 }
