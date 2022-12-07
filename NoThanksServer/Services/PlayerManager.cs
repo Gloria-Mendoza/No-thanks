@@ -182,7 +182,6 @@ namespace Services
                 Player[] players = room.Players.ToArray();
                 if (room.HadMinPlayersToStart())
                 {
-                    room.Round++;
                     room.MatchStatus = RoomStatus.Started;
                     foreach (var player in room.Players)
                     {
@@ -215,6 +214,7 @@ namespace Services
             {
                 p.TotalScore = players.First(ap => ap.Nickname.Equals(p.Nickname)).TotalScore;
             });
+
             room.Scores = scores;
             GameManager gameManager = new GameManager();
             gameManager.AddFinishedGame(room);
