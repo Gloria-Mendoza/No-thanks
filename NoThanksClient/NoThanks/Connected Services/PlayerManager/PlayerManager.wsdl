@@ -209,6 +209,9 @@
   <wsdl:message name="IGameService_SkipPlayersTurn_InputMessage">
     <wsdl:part name="parameters" element="tns:SkipPlayersTurn" />
   </wsdl:message>
+  <wsdl:message name="IGameService_FinishGame_InputMessage">
+    <wsdl:part name="parameters" element="tns:FinishGame" />
+  </wsdl:message>
   <wsdl:message name="IGameService_MessageCallBack_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MessageCallBack" />
   </wsdl:message>
@@ -353,6 +356,9 @@
     </wsdl:operation>
     <wsdl:operation name="SkipPlayersTurn">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/SkipPlayersTurn" message="tns:IGameService_SkipPlayersTurn_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FinishGame">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/FinishGame" message="tns:IGameService_FinishGame_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="MessageCallBack">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/MessageCallBack" message="tns:IGameService_MessageCallBack_OutputCallbackMessage" />
@@ -590,6 +596,12 @@
     </wsdl:operation>
     <wsdl:operation name="SkipPlayersTurn">
       <soap12:operation soapAction="http://tempuri.org/IGameService/SkipPlayersTurn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="FinishGame">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/FinishGame" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

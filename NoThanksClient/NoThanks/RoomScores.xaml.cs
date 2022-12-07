@@ -21,14 +21,24 @@ namespace NoThanks
     public partial class RoomScores : Window
     {
         private List<PlayerManager.Player> playersList = new List<PlayerManager.Player>();
+        bool isHost = false;
+        GameServiceClient gameServiceClient;
+        string idRoom;
 
         public RoomScores()
         {
             InitializeComponent();
         }
-
+        
+        public void ChargeWindow(GameServiceClient gameServiceClient, bool isHost, string idRoom)
+        {
+            this.gameServiceClient = gameServiceClient;
+            this.isHost = isHost;
+            this.idRoom = idRoom;
+        }
         public void GenerateScores(List<PlayerManager.Player> players)
         {
+
             players.ForEach(p => {
                 CardsScore(p);
             });
@@ -39,6 +49,10 @@ namespace NoThanks
 
             lbWinner.Content = Properties.Resources.RESULT_WINNER_LABEL;
 
+            if (isHost)
+            {
+                gameServiceClient.FinishGame(this.idRoom, playersList.ToArray());
+            }
         }
 
         public void CardsScore(PlayerManager.Player player)

@@ -200,6 +200,26 @@ namespace Services
                 }
             }
         }
+
+        public void FinishGame(string idRoom, Player[] players)
+        {
+            List<int> scores = new List<int>();
+
+            players.ToList().ForEach(p =>
+            {
+                scores.Add((int)p.TotalScore);
+            });
+
+            var room = globalRooms.Find(r => r.Id.Equals(idRoom));
+            room.Players.ForEach(p =>
+            {
+                p.TotalScore = players.First(ap => ap.Nickname.Equals(p.Nickname)).TotalScore;
+            });
+            room.Scores = scores;
+            GameManager gameManager = new GameManager();
+            gameManager.AddFinishedGame(room);
+        }
+
         public bool CheckQuota(string idRoom)
         {
             var status = false;
@@ -389,9 +409,6 @@ namespace Services
                     room.MatchStatus = RoomStatus.Finished;
                     player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().EndGame(RoomStatus.Finished);
                 }
-                
-                GameManager gameManager = new GameManager();
-                gameManager.AddFinishedGame(room);
             }
             
         }

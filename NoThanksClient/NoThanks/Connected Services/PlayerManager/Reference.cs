@@ -592,6 +592,12 @@ namespace NoThanks.PlayerManager {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SkipPlayersTurn")]
         System.Threading.Tasks.Task SkipPlayersTurnAsync(string idRoom, string username);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/FinishGame")]
+        void FinishGame(string idRoom, NoThanks.PlayerManager.Player[] players);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/FinishGame")]
+        System.Threading.Tasks.Task FinishGameAsync(string idRoom, NoThanks.PlayerManager.Player[] players);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -752,6 +758,14 @@ namespace NoThanks.PlayerManager {
         
         public System.Threading.Tasks.Task SkipPlayersTurnAsync(string idRoom, string username) {
             return base.Channel.SkipPlayersTurnAsync(idRoom, username);
+        }
+        
+        public void FinishGame(string idRoom, NoThanks.PlayerManager.Player[] players) {
+            base.Channel.FinishGame(idRoom, players);
+        }
+        
+        public System.Threading.Tasks.Task FinishGameAsync(string idRoom, NoThanks.PlayerManager.Player[] players) {
+            return base.Channel.FinishGameAsync(idRoom, players);
         }
     }
     

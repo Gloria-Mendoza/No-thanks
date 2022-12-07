@@ -175,17 +175,17 @@ namespace NoThanks
                     WindowState = this.WindowState,
                     Left = this.Left
                 };
+                go.ChargeWindow(this.gameServiceClient, this.isHost, this.idRoom);
                 go.GenerateScores(playerList.ToList());
-                if ((bool)go.ShowDialog())
+                go.ShowDialog();
+
+                MenuPrincipal goBack = new MenuPrincipal()
                 {
-                    MenuPrincipal goBack = new MenuPrincipal()
-                    {
-                        WindowState = this.WindowState,
-                        Left = this.Left
-                    };
-                    goBack.Show();
-                    this.Close();
-                }
+                    WindowState = this.WindowState,
+                    Left = this.Left
+                };
+                goBack.Show();
+                this.Close();
             }
         }
         #endregion
