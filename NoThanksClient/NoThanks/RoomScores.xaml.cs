@@ -21,9 +21,9 @@ namespace NoThanks
     public partial class RoomScores : Window
     {
         private List<PlayerManager.Player> playersList = new List<PlayerManager.Player>();
-        bool isHost = false;
-        GameServiceClient gameServiceClient;
-        string idRoom;
+        private bool isHost = false;
+        private GameServiceClient gameServiceClient;
+        private string idRoom;
 
         public RoomScores()
         {

@@ -34,7 +34,7 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                Console.WriteLine(entityException.StackTrace);
+                Console.WriteLine(entityException.Message);
             };
             return player;
         }
@@ -81,7 +81,7 @@ namespace Services
             catch (EntityException entityException)
             {
                 //TODO
-                Console.WriteLine(entityException.StackTrace);
+                Console.WriteLine(entityException.Message);
             }
             return status;
         }
@@ -94,10 +94,10 @@ namespace Services
                 SendCode email = new SendCode();
                 email.SendMail(emailFrom, code);
             }
-            catch (EntityException entityException)
+            catch (Exception e)
             {
                 //TODO
-                Console.WriteLine(entityException.StackTrace);
+                Console.WriteLine(e.Message);
             }
             return status;
         }
@@ -109,7 +109,7 @@ namespace Services
             return status = validation.ExistEmail(text);
         }
 
-        public bool ExitsNickname(string text) 
+        public bool ExitsNickname(string text)
         {
             var status = false;
             Validation validation = new Validation();
@@ -184,7 +184,7 @@ namespace Services
                     room.MatchStatus = RoomStatus.Started;
                     foreach (var player in room.Players)
                     {
-                        player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().StartGameRoom(RoomStatus.Started,players);
+                        player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().StartGameRoom(RoomStatus.Started, players);
                     }
                     SendMessage(message[0], null, idRoom);
                 }
@@ -209,12 +209,14 @@ namespace Services
             });
 
             var room = globalRooms.Find(r => r.Id.Equals(idRoom));
+
             room.Players.ForEach(p =>
             {
                 p.TotalScore = players.First(ap => ap.Nickname.Equals(p.Nickname)).TotalScore;
             });
 
             room.Scores = scores;
+
             GameManager gameManager = new GameManager();
             gameManager.AddFinishedGame(room);
         }
@@ -329,6 +331,7 @@ namespace Services
                 .Players.FirstOrDefault(i => i.Nickname.Equals(receiver));
             player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().WhisperCallBack(sender, message);
         }
+
         public void CreateDeck(String roomId)
         {
             var room = globalRooms.FirstOrDefault(r => r.Id.Equals(roomId));
@@ -349,11 +352,10 @@ namespace Services
                 room.RoomTokens = 0;
                 foreach (var player in room.Players)
                 {
-                    player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().UpdateDeck(room.Deck.ToArray(),room.RoomTokens);
+                    player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().UpdateDeck(room.Deck.ToArray(), room.RoomTokens);
                 }
             }
         }
-
         public void DiscardFirstNine(string idRoom)
         {
             var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
@@ -380,20 +382,20 @@ namespace Services
             {
                 var card = room.Deck[0];
                 room.Deck.RemoveAt(0);
-                    room.NextRound();
-                    foreach (var player in room.Players)
+                room.NextRound();
+                foreach (var player in room.Players)
+                {
+                    var callback = player.AOperationContext.GetCallbackChannel<IGameServiceCallback>();
+                    if (player.Nickname.Equals(username))
                     {
-                        var callback = player.AOperationContext.GetCallbackChannel<IGameServiceCallback>();
-                        if (player.Nickname.Equals(username))
-                        {
-                            player.Cards.Add(card);
-                            player.CardsString += $"{(int)card},";
-                            player.Tokens += room.RoomTokens;
-                            room.RoomTokens = 0;
-                        }
-                        callback.UpdateDeck(room.Deck.ToArray(),room.RoomTokens); //Actualiza el mazo de todos los jugadores
-                        callback.NextTurn(room.Round, room.Players.ToArray());
+                        player.Cards.Add(card);
+                        player.CardsString += $"{(int)card},";
+                        player.Tokens += room.RoomTokens;
+                        room.RoomTokens = 0;
                     }
+                    callback.UpdateDeck(room.Deck.ToArray(), room.RoomTokens); //Actualiza el mazo de todos los jugadores
+                    callback.NextTurn(room.Round, room.Players.ToArray());
+                }
             }
             else
             {
@@ -404,13 +406,14 @@ namespace Services
                     player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().EndGame(RoomStatus.Finished);
                 }
             }
-            
+
         }
+
         public void SkipPlayersTurn(string idRoom, string username)
         {
             var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
             var player = room.Players.FirstOrDefault(i => i.Nickname.Equals(username));
-            if(player.Tokens > 0)
+            if (player.Tokens > 0)
             {
                 player.Tokens--;
                 room.RoomTokens++;
@@ -425,7 +428,7 @@ namespace Services
             {
                 TakeCard(idRoom, username);
             }
-            
+
         }
     }
     public partial class PlayerManager : IUpdateProfile
@@ -470,7 +473,7 @@ namespace Services
             }
             return status;
         }
-    
+
 
         public void GetImage(int idProfile)
         {
