@@ -27,14 +27,14 @@ namespace NoThanks
         {
             InitializeComponent();
             ConfigureWindow();
-            ImagenInit();
+            //ImagenInit();
         }
 
         private void ImagenInit()
         {
             if (!Domain.Player.PlayerClient.IsGuest)
             {
-                Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
+                Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.ProfileImage);
 
                 BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
                     bmp.GetHbitmap(),

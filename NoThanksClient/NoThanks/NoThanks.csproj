@@ -86,9 +86,6 @@
     <Compile Include="Friends.xaml.cs">
       <DependentUpon>Friends.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FriendsProfile.xaml.cs">
-      <DependentUpon>FriendsProfile.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PlaySelection.xaml.cs">
       <DependentUpon>PlaySelection.xaml</DependentUpon>
     </Compile>
@@ -109,6 +106,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourcesImage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\ResourcesSounds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesSounds.resx</DependentUpon>
     </Compile>
     <Compile Include="Room.xaml.cs">
       <DependentUpon>Room.xaml</DependentUpon>
@@ -131,10 +133,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Friends.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FriendsProfile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,6 +236,10 @@
     <EmbeddedResource Include="Properties\ResourcesImage.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesImage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ResourcesSounds.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesSounds.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Connected Services\PlayerManager\item.xsd">
       <SubType>Designer</SubType>
@@ -391,6 +393,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\nina.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sounds\noThanksMusic.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

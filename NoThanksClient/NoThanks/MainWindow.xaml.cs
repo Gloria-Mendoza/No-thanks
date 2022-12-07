@@ -83,7 +83,7 @@ namespace NoThanks
                     LastName = playerLogin.LastName,
                     Email = playerLogin.Email,
                     TotalScore = playerLogin.TotalScore,
-                    Photo = playerLogin.ProfileImage,
+                    ProfileImage = playerLogin.ProfileImage,
                     IsGuest = false
                 };
 

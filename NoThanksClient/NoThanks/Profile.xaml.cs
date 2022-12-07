@@ -29,7 +29,7 @@ namespace NoThanks
             InitializeComponent();
             ConfigureWindow();
             //updateImage();
-            ImagenInit();
+            //ImagenInit();
         }
         private void updateImage()
         {
@@ -82,7 +82,7 @@ namespace NoThanks
         {
             if (!Domain.Player.PlayerClient.IsGuest)
             {
-                Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
+                Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.ProfileImage);
 
                 BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
                     bmp.GetHbitmap(),

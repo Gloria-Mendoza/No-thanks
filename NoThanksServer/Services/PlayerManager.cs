@@ -136,7 +136,6 @@ namespace Services
     public partial class PlayerManager : IGameService
     {
         private List<Logic.Room> globalRooms = new List<Room>();
-        //List<CardType> deck;
 
         public string GenerateRoomCode()
         {
@@ -381,13 +380,10 @@ namespace Services
             {
                 var card = room.Deck[0];
                 room.Deck.RemoveAt(0);
-                //var room = GetRoom(idRoom);
-                if (room != null)
-                {
                     room.NextRound();
                     foreach (var player in room.Players)
                     {
-                        //var callback = player.AOperationContext.GetCallbackChannel<IGameServiceCallback>();
+                        var callback = player.AOperationContext.GetCallbackChannel<IGameServiceCallback>();
                         if (player.Nickname.Equals(username))
                         {
                             player.Cards.Add(card);
@@ -395,11 +391,9 @@ namespace Services
                             player.Tokens += room.RoomTokens;
                             room.RoomTokens = 0;
                         }
-
-                        player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().UpdateDeck(room.Deck.ToArray(),room.RoomTokens); //Actualiza el mazo de todos los jugadores
-                        player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().NextTurn(room.Round, room.Players.ToArray());
+                        callback.UpdateDeck(room.Deck.ToArray(),room.RoomTokens); //Actualiza el mazo de todos los jugadores
+                        callback.NextTurn(room.Round, room.Players.ToArray());
                     }
-                }
             }
             else
             {
@@ -511,7 +505,6 @@ namespace Services
             }
             return status;
         }
-
     }
 
 
