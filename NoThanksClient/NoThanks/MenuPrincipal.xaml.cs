@@ -34,8 +34,13 @@ namespace NoThanks
         {
             if (!Domain.Player.PlayerClient.IsGuest)
             {
-                Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
-
+                var playerImage = Domain.Player.PlayerClient.ProfileImage;
+                if(playerImage == null) 
+                {
+                    playerImage = "acosador";
+                }
+                Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.ProfileImage);
+                
                 BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
                     bmp.GetHbitmap(),
                     IntPtr.Zero,

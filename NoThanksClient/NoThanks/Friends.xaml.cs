@@ -35,7 +35,6 @@ namespace NoThanks
             var context = new InstanceContext(this);
             PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
             strings = updateProfileClient.GetGlobalPlayers().ToList();
-            ltbAllUser.ItemsSource = strings;
         }
 
         public void cargeallFriend()
@@ -64,33 +63,5 @@ namespace NoThanks
             go.Show();
             this.Close();
         }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            if (String.IsNullOrEmpty(txtConsult.Text))
-            {
-                ltbAllUser.ItemsSource = strings;
-            }
-            else
-            {
-                List<String> resultSearch = new List<string>();
-
-                string nickFriend = txtConsult.Text;
-                resultSearch.Add(strings.Find(i => i.Contains(nickFriend)));
-                ltbAllUser.ItemsSource = resultSearch;
-            }
-        }
-
-        private void ltbAllUser_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            FriendsProfile go = new FriendsProfile()
-            { 
-                
-                WindowState = this.WindowState,
-                Left = this.Left
-            };
-            go.Show();
-        }
-
     }
 }

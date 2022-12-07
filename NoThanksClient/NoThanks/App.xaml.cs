@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Threading;
 using System.Media;
+using NoThanks.Properties;
 
 namespace NoThanks
 {
@@ -21,8 +22,15 @@ namespace NoThanks
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(langCode);   
             base.OnStartup(e);
 
-            //SoundPlayer musicPlayer = new SoundPlayer("noThanksMusic.wav");
-            //musicPlayer.PlayLooping();
+            Task.Run(() =>
+            {
+                System.IO.Stream str = NoThanks.Properties.ResourcesSounds.noThanksMusic;
+                SoundPlayer musicPlayer = new SoundPlayer(str);
+                while (true)
+                {
+                    musicPlayer.PlaySync();
+                }
+            });
         }
         
         

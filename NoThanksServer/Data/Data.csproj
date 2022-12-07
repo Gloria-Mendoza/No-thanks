@@ -101,6 +101,7 @@
       <LastGenOutput>NoThanksDataModel.Context.cs</LastGenOutput>
       <DependentUpon>NoThanksDataModel.edmx</DependentUpon>
     </Content>
+    <Content Include="NoThanksDataModel.edmx.sql" />
     <Content Include="NoThanksDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NoThanksDataModel.edmx</DependentUpon>
