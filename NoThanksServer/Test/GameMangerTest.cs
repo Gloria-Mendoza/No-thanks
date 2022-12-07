@@ -72,7 +72,15 @@ namespace Test
             players.Add(new Player()
             {
                 IdPlayer = 1,
-                TotalScore = 30
+                TotalScore = 30,
+                Nickname = "Panther"
+            });
+
+            players.Add(new Player()
+            {
+                IdPlayer = 0,
+                TotalScore = 30,
+                Nickname = "Prueba"
             });
 
             var finishedRoom = new Room()

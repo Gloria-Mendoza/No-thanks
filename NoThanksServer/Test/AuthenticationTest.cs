@@ -67,25 +67,26 @@ namespace Test
 
             Authentication authentication = new Authentication();
 
-            var expectedResult = new Player()
+            Logic.Player expectedResult = new Logic.Player()
             {
                 IdPlayer = 1,
                 Nickname = "Panther",
                 Email = "nothanks364@outlook.com",
                 Name = "",
                 LastName = "",
-                TotalScore = 0,
+                TotalScore = 30,
                 Status = true,
                 Password = "",
                 Tokens = 0,
-                ProfileImage = "gato",
+                ProfileImage = "nina",
                 Cards = null,
                 CardsString = null,
                 AOperationContext = null 
             };
             var result = authentication.Login(nickname, password);
 
-            Assert.AreEqual(expectedResult, result, "Jugadores iguales");
+            //Assert.Equals(expectedResult, result);
+            Assert.AreEqual(expectedResult.ToString(), result.ToString(), $"Jugadores iguales");
         }
 
         [TestMethod]

@@ -276,6 +276,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="FinishGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="players" nillable="true" type="q5:ArrayOfPlayer" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="MessageCallBack">
     <xs:complexType>
       <xs:sequence>
@@ -294,8 +302,8 @@
   <xs:element name="StartGameRoom">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="roomStatus" type="q5:RoomStatus" />
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="players" nillable="true" type="q6:ArrayOfPlayer" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="roomStatus" type="q6:RoomStatus" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="players" nillable="true" type="q7:ArrayOfPlayer" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -319,15 +327,22 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="round" type="xs:int" />
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="roomPlayers" nillable="true" type="q7:ArrayOfPlayer" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="roomPlayers" nillable="true" type="q8:ArrayOfPlayer" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateDeck">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q8:ArrayOfCardType" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="gameDeck" nillable="true" type="q9:ArrayOfCardType" />
         <xs:element minOccurs="0" name="roomTokens" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EndGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="roomStatus" type="q10:RoomStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -361,7 +376,7 @@
   <xs:element name="GetGlobalPlayersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetGlobalPlayersResult" nillable="true" type="q9:ArrayOfstring" />
+        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetGlobalPlayersResult" nillable="true" type="q11:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -375,7 +390,7 @@
   <xs:element name="GetGlobalFriendsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetGlobalFriendsResult" nillable="true" type="q10:ArrayOfstring" />
+        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetGlobalFriendsResult" nillable="true" type="q12:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -387,7 +402,7 @@
   <xs:element name="GetGlobalRequestResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetGlobalRequestResult" nillable="true" type="q11:ArrayOfstring" />
+        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetGlobalRequestResult" nillable="true" type="q13:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

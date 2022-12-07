@@ -48,7 +48,7 @@ namespace NoThanks
         }
         private void ImagenInit()
         {
-            Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.Photo);
+            Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.ProfileImage);
 
             BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
                 bmp.GetHbitmap(),
@@ -67,7 +67,7 @@ namespace NoThanks
                 var context = new InstanceContext(this);
                 PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
 
-                Domain.Player.PlayerClient.Photo = imageResource;
+                Domain.Player.PlayerClient.ProfileImage = imageResource;
 
                 updateProfileClient.SaveImage(imageResource, Domain.Player.PlayerClient.IdPlayer);
 

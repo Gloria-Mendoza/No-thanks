@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.ServiceModel.Channels;
 
 namespace Logic
 {
@@ -24,17 +23,15 @@ namespace Logic
                                 select players);
                 if (accounts.Any())
                 {
-                    
                     player.IdPlayer = accounts.First().idPlayer;
                     player.Nickname = accounts.First().nickname;
                     player.Email = accounts.First().email;
                     player.Name = accounts.First().name;
                     player.LastName = accounts.First().lastName;
                     player.TotalScore = accounts.First().totalScore;
-                    player.ProfileImage = accounts.First().photo;
-                    Console.WriteLine(accounts.First().photo);
                     player.Status = true;
-                    
+                    player.Password = "";
+                    player.ProfileImage = accounts.First().photo;
                 }
             }
             return player;
@@ -71,7 +68,7 @@ namespace Logic
                 var imageUpdate = context.Players.First(c => c.idPlayer.Equals(idProfile));
                 imageUpdate.photo = imageManager;
                 status = context.SaveChanges() > 0;
-                Console.WriteLine(imageUpdate);
+
             }
             return status;
         }

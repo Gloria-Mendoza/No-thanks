@@ -21,87 +21,27 @@ namespace NoThanks
     public partial class RoomScores : Window
     {
         private List<PlayerManager.Player> playersList = new List<PlayerManager.Player>();
-        //private List<PlayerManager.Player> listaDePrueba = new List<PlayerManager.Player>();
+        private bool isHost = false;
+        private GameServiceClient gameServiceClient;
+        private string idRoom;
 
         public RoomScores()
         {
             InitializeComponent();
-            //GenerateScores(listaDePrueba);
         }
-
+        
+        public void ChargeWindow(GameServiceClient gameServiceClient, bool isHost, string idRoom)
+        {
+            this.gameServiceClient = gameServiceClient;
+            this.isHost = isHost;
+            this.idRoom = idRoom;
+        }
         public void GenerateScores(List<PlayerManager.Player> players)
         {
-            /* For Debug, delete later
-            List<CardType> test = new List<CardType>
-            {
-                CardType.Three,
 
-                CardType.Four,
-
-                CardType.Five,
-
-                CardType.Six,
-
-                CardType.Nine,
-
-                CardType.Sixteen,
-
-                CardType.Seventeen,
-
-                CardType.Eightteen,
-
-                CardType.TwentyOne,
-
-                CardType.TwentyTwo,
-
-                CardType.TwentyThree,
-
-                CardType.ThirtyFive,
-
-                CardType.TwentyFour,
-
-                CardType.Thirty,
-
-                CardType.TwentyFive
-            };
-
-
-            List<CardType> test1 = new List<CardType>
-            {
-                CardType.Three,
-
-                CardType.Four,
-
-                CardType.Five,
-
-                CardType.Six,
-
-                CardType.Nine,
-
-                CardType.Sixteen,
-
-                CardType.Thirty,
-
-                CardType.TwentyFive
-            };
-
-            players.Add(new PlayerManager.Player
-            {
-                Nickname = "Panther"
-            });
-            players.First().Cards = test1.ToArray();
-            
-            players.Add(new PlayerManager.Player
-            {
-                Nickname = "Lucio"
-            });
-            players.First(p => p.Nickname.Equals("Lucio")).Cards = test.ToArray();*/
-            
             players.ForEach(p => {
                 CardsScore(p);
             });
-
-            //MessageBox.Show($"{playersList.Min(p => p.TotalScore)}");
 
             playersList.Sort(( x, y) =>  x.TotalScore.Value.CompareTo(y.TotalScore));
 
@@ -109,6 +49,10 @@ namespace NoThanks
 
             lbWinner.Content = Properties.Resources.RESULT_WINNER_LABEL;
 
+            if (isHost)
+            {
+                gameServiceClient.FinishGame(this.idRoom, playersList.ToArray());
+            }
         }
 
         public void CardsScore(PlayerManager.Player player)
@@ -148,14 +92,21 @@ namespace NoThanks
                     }
                 }
             }
-            catch
+            catch(ArgumentOutOfRangeException e)
             {
-
+                _ = e.Message;
             }
-            cardsOrdered = cardsFromPlayer.ToArray();
 
-            cardsToPreserve.Add(cardsOrdered.First());
-            cardsToRemove.Add(cardsFromPlayer.Last());
+            if (cardsFromPlayer.Count != 0)
+            {
+                cardsOrdered = cardsFromPlayer.ToArray();
+                cardsToPreserve.Add(cardsOrdered.First());
+                cardsToRemove.Add(cardsFromPlayer.Last());
+            }
+            else
+            {
+                cardsOrdered = player.Cards;
+            }
 
             try
             {
@@ -173,9 +124,9 @@ namespace NoThanks
                     }
                 }
             }
-            catch
+            catch (ArgumentOutOfRangeException e)
             {
-
+                _ = e.Message;
             }
 
             List<CardType> cardsToPlayer = player.Cards.ToList();
@@ -188,6 +139,11 @@ namespace NoThanks
             player.Cards = cardsToPlayer.ToArray();
 
             return player;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DialogResult = true;
         }
     }
 }

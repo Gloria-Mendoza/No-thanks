@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NoThanks"
         mc:Ignorable="d"
-        Title="RoomScores" Height="535" Width="385" ResizeMode="NoResize">
+        Title="RoomScores" Height="535" Width="385" ResizeMode="NoResize" Closing="Window_Closing">
     <Window.Background>
         <ImageBrush ImageSource="/Images/5053309.jpg" Stretch="UniformToFill"/>
     </Window.Background>
