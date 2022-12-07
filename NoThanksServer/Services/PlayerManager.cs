@@ -381,6 +381,18 @@ namespace Services
                     }
                 }
             }
+            else
+            {
+                foreach (var player in room.Players)
+                {
+                    room.RoomTokens = 0;
+                    room.MatchStatus = RoomStatus.Finished;
+                    player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().EndGame(RoomStatus.Finished);
+                }
+                
+                GameManager gameManager = new GameManager();
+                gameManager.AddFinishedGame(room);
+            }
             
         }
         public void SkipPlayersTurn(string idRoom, string username)

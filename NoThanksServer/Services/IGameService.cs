@@ -62,7 +62,11 @@ namespace Services
         void SkipPlayersTurnCallback(int round, int roomTokens);
         [OperationContract(IsOneWay = true)]
         void NextTurn(int round, Player[] roomPlayers);
+
         [OperationContract(IsOneWay = true)]
         void UpdateDeck(CardType[] gameDeck, int roomTokens);
+
+        [OperationContract(IsOneWay = true)]
+        void EndGame(RoomStatus roomStatus);
     }
 }

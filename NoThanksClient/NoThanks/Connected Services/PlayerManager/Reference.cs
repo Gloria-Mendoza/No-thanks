@@ -617,6 +617,9 @@ namespace NoThanks.PlayerManager {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/UpdateDeck")]
         void UpdateDeck(NoThanks.PlayerManager.CardType[] gameDeck, int roomTokens);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/EndGame")]
+        void EndGame(NoThanks.PlayerManager.RoomStatus roomStatus);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

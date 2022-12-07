@@ -165,6 +165,29 @@ namespace NoThanks
                 }
             }
         }
+
+        public void EndGame(RoomStatus roomStatus)
+        {
+            if(roomStatus == RoomStatus.Finished)
+            {
+                RoomScores go = new RoomScores()
+                {
+                    WindowState = this.WindowState,
+                    Left = this.Left
+                };
+                go.GenerateScores(playerList.ToList());
+                if ((bool)go.ShowDialog())
+                {
+                    MenuPrincipal goBack = new MenuPrincipal()
+                    {
+                        WindowState = this.WindowState,
+                        Left = this.Left
+                    };
+                    goBack.Show();
+                    this.Close();
+                }
+            }
+        }
         #endregion
 
         #region Listeners

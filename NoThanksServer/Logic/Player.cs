@@ -62,7 +62,7 @@ namespace Logic
         #endregion
 
         #region Methods
-        public override bool Equals(object obj)
+        /*public override bool Equals(object obj)
         {
             bool isEquals = false;
             if (obj == this)
@@ -81,17 +81,16 @@ namespace Logic
                     this.Status.Equals(other.Status);
             }
             return isEquals;
-        }
+        }*/
 
-        /*public override bool Equals(object obj)
+        public override bool Equals(object obj)
         {
             return base.Equals(obj);
-        }*/
+        }
 
         public override int GetHashCode()
         {
-            int hash = 3;
-            return hash;
+            return base.GetHashCode();
         }
 
         public override string ToString()

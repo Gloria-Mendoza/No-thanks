@@ -230,6 +230,9 @@
   <wsdl:message name="IGameService_UpdateDeck_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UpdateDeck" />
   </wsdl:message>
+  <wsdl:message name="IGameService_EndGame_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:EndGame" />
+  </wsdl:message>
   <wsdl:message name="IUpdateProfile_SaveImage_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveImage" />
   </wsdl:message>
@@ -371,6 +374,9 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateDeck">
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/UpdateDeck" message="tns:IGameService_UpdateDeck_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EndGame">
+      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/EndGame" message="tns:IGameService_EndGame_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUpdateProfile">
@@ -626,6 +632,12 @@
     </wsdl:operation>
     <wsdl:operation name="UpdateDeck">
       <soap12:operation soapAction="http://tempuri.org/IGameService/UpdateDeck" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndGame">
+      <soap12:operation soapAction="http://tempuri.org/IGameService/EndGame" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
