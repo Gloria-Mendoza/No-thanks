@@ -74,7 +74,6 @@ namespace Logic
                 Player other = (Player)obj;
                 isEquals = this.IdPlayer == other.IdPlayer &&
                     this.Nickname.Equals(other.Nickname) &&
-                    this.Password.Equals(other.Password) &&
                     this.Email.Equals(other.Email) &&
                     this.TotalScore.Equals(other.TotalScore) &&
                     this.Name.Equals(other.Name) &&
@@ -82,6 +81,11 @@ namespace Logic
                     this.Status.Equals(other.Status);
             }
             return isEquals;
+        }*/
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
         }
 
         public override int GetHashCode()
@@ -91,8 +95,8 @@ namespace Logic
 
         public override string ToString()
         {
-            return base.ToString();
-        }*/
+            return $"Id-{idPlayer}Nick-{nickname}Pass-{password}email-{email}cards-{cards}cardsstring-{cardsString}tokens-{tokens}total-{totalScore}Nombre-{name}apellido-{lastName}imagen-{profileImage}status-{status}";
+        }
         #endregion
     }
 }

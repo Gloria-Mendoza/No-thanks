@@ -182,7 +182,6 @@ namespace Services
                 Player[] players = room.Players.ToArray();
                 if (room.HadMinPlayersToStart())
                 {
-                    room.Round++;
                     room.MatchStatus = RoomStatus.Started;
                     foreach (var player in room.Players)
                     {
@@ -200,6 +199,27 @@ namespace Services
                 }
             }
         }
+
+        public void FinishGame(string idRoom, Player[] players)
+        {
+            List<int> scores = new List<int>();
+
+            players.ToList().ForEach(p =>
+            {
+                scores.Add((int)p.TotalScore);
+            });
+
+            var room = globalRooms.Find(r => r.Id.Equals(idRoom));
+            room.Players.ForEach(p =>
+            {
+                p.TotalScore = players.First(ap => ap.Nickname.Equals(p.Nickname)).TotalScore;
+            });
+
+            room.Scores = scores;
+            GameManager gameManager = new GameManager();
+            gameManager.AddFinishedGame(room);
+        }
+
         public bool CheckQuota(string idRoom)
         {
             var status = false;
@@ -379,6 +399,15 @@ namespace Services
                         player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().UpdateDeck(room.Deck.ToArray(),room.RoomTokens); //Actualiza el mazo de todos los jugadores
                         player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().NextTurn(room.Round, room.Players.ToArray());
                     }
+                }
+            }
+            else
+            {
+                foreach (var player in room.Players)
+                {
+                    room.RoomTokens = 0;
+                    room.MatchStatus = RoomStatus.Finished;
+                    player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().EndGame(RoomStatus.Finished);
                 }
             }
             
