@@ -22,9 +22,15 @@ namespace NoThanks
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(langCode);   
             base.OnStartup(e);
 
-            System.IO.Stream str = NoThanks.Properties.ResourcesSounds.noThanksMusic;
-            SoundPlayer musicPlayer = new SoundPlayer(str);
-            musicPlayer.PlayLooping();
+            Task.Run(() =>
+            {
+                System.IO.Stream str = NoThanks.Properties.ResourcesSounds.noThanksMusic;
+                SoundPlayer musicPlayer = new SoundPlayer(str);
+                while (true)
+                {
+                    musicPlayer.PlaySync();
+                }
+            });
         }
         
         
