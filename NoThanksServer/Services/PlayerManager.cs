@@ -471,6 +471,7 @@ namespace Services
                 //TODO
                 Console.WriteLine(entityException.Message);
             }
+            Console.WriteLine();
             return status;
         }
 
