@@ -24,7 +24,7 @@
           <Key>
             <PropertyRef Name="idMatch" />
           </Key>
-          <Property Name="idMatch" Type="int" Nullable="false" />
+          <Property Name="idMatch" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="point" Type="int" />
           <Property Name="result" Type="varchar" MaxLength="8" />
           <Property Name="idGame" Type="int" />
@@ -41,7 +41,7 @@
           <Property Name="totalScore" Type="int" />
           <Property Name="name" Type="nvarchar" MaxLength="1" />
           <Property Name="lastName" Type="nvarchar" MaxLength="1" />
-          <Property Name="photo" Type="nchar" MaxLength="50" />
+          <Property Name="photo" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Requests">
           <Key>
@@ -212,7 +212,7 @@
           <Key>
             <PropertyRef Name="idMatch" />
           </Key>
-          <Property Name="idMatch" Type="Int32" Nullable="false" />
+          <Property Name="idMatch" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="point" Type="Int32" />
           <Property Name="result" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="idGame" Type="Int32" />
@@ -231,7 +231,7 @@
           <Property Name="totalScore" Type="Int32" />
           <Property Name="name" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="lastName" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="photo" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Friends" Relationship="NoThanksDataModel.FK__Friends__idPlaye__29572725" FromRole="Player" ToRole="Friend" />
           <NavigationProperty Name="Friends1" Relationship="NoThanksDataModel.FK__Friends__idPlaye__2A4B4B5E" FromRole="Player" ToRole="Friend" />
           <NavigationProperty Name="MatchsHistories" Relationship="NoThanksDataModel.FK__MatchsHis__idPla__2E1BDC42" FromRole="Player" ToRole="MatchsHistory" />

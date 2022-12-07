@@ -29,6 +29,7 @@ namespace Logic
                     player.LastName = accounts.First().lastName;
                     player.TotalScore = accounts.First().totalScore;
                     player.Status = true;
+                    player.Password = "";
                     player.ProfileImage = accounts.First().photo;
                 }
             }
