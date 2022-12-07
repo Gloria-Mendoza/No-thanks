@@ -29,7 +29,7 @@ namespace NoThanks
             InitializeComponent();
             ConfigureWindow();
             //updateImage();
-            //ImagenInit();
+            ImagenInit();
         }
         private void updateImage()
         {
