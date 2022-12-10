@@ -241,22 +241,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesSounds.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\PlayerManager\item.xsd">
+    <None Include="Connected Services\PlayerManager\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\item1.xsd">
+    <None Include="Connected Services\PlayerManager\item21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\item3.xsd">
+    <None Include="Connected Services\PlayerManager\item22.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\item4.xsd">
+    <None Include="Connected Services\PlayerManager\item23.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\PlayerManager\NoThanks.PlayerManager.Player.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\PlayerManager\PlayerManager.wsdl" />
+    <None Include="Connected Services\PlayerManager\PlayerManager1.wsdl" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -310,9 +310,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\PlayerManager\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\PlayerManager\item.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\PlayerManager\configuration91.svcinfo" />
@@ -395,6 +392,7 @@
     <None Include="Resources\nina.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\PlayerManager\item1.disco" />
     <Content Include="Sounds\noThanksMusic.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
