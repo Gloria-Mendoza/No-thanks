@@ -1,7 +1,7 @@
-using Domain;
-using NoThanks.PlayerManager;
+using log4net;
+using Logs;
+using NoThanks.NoThanksService;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.Windows;
@@ -18,15 +18,16 @@ namespace NoThanks
     {
         #region Atributtes & Properties
         private GameServiceClient gameServiceClient;
-        private PlayerManager.Player[] playerList;
-        private PlayerManager.CardType[] gameDeck;
+        private NoThanksService.Player[] playerList;
         private bool isNewRoom;
         private string idRoom;
         private bool isConected = false;
         private bool isHost = false;
         private int globaltokens = 0;
-        private int actualRound = 0;
-        
+        private int currentRound = 0;
+
+        private static readonly ILog Log = Logger.GetLogger();
+
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
         public string IdRoom { get { return idRoom; } set { idRoom = value; } }
         #endregion
@@ -54,22 +55,20 @@ namespace NoThanks
             try
             {
                 Start();
-
             }
-            catch (EndpointNotFoundException)
+            catch (EndpointNotFoundException ex)
             {
+                Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (CommunicationObjectFaultedException)
+            catch (CommunicationObjectFaultedException ex)
             {
+                Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (NullReferenceException)
+            catch (TimeoutException ex)
             {
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (FaultException)
-            {
+                Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -77,8 +76,32 @@ namespace NoThanks
         public bool CheckQuota()
         {
             gameServiceClient = new GameServiceClient(new InstanceContext(this));
-            var aviable = gameServiceClient.CheckQuota(IdRoom);
-            gameServiceClient.Close();
+            var aviable = false;
+
+            try
+            {
+                aviable = gameServiceClient.CheckQuota(IdRoom);
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationObjectFaultedException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                gameServiceClient.Abort();
+            }
+
             return aviable;
         }
         #endregion
@@ -96,14 +119,14 @@ namespace NoThanks
             lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
         }
 
-        public void StartGameRoom(RoomStatus roomStatus, PlayerManager.Player[] players)
+        public void StartGameRoom(RoomStatus roomStatus, NoThanksService.Player[] players)
         {
             if (roomStatus == RoomStatus.Started)
             {
                 playerList = players;
                 lxtPlayersBox.ItemsSource = playerList;
                 gridLobby.Visibility = Visibility.Collapsed;
-                if (Domain.Player.PlayerClient.Nickname.Equals(playerList.ElementAt(actualRound).Nickname))
+                if (Domain.Player.PlayerClient.Nickname.Equals(playerList.ElementAt(currentRound).Nickname))
                 {
                     btnTake.IsEnabled = true;
                     btnPass.IsEnabled = true;
@@ -133,13 +156,12 @@ namespace NoThanks
 
         }
 
-        public void UpdateDeck(PlayerManager.CardType[] gameDeck, int roomTokens)
+        public void UpdateDeck(NoThanksService.CardType[] gameDeck, int roomTokens)
         {
             globaltokens = roomTokens;            
             if(gameDeck.Count() > 0)
             {
                 int i = (int)gameDeck[0];
-                this.gameDeck = gameDeck;
                 TopCard.Source = new BitmapImage(new Uri($"/Images/{i}.png", UriKind.Relative));
             }
             
@@ -150,12 +172,12 @@ namespace NoThanks
             globaltokens = roomTokens;
         }
 
-        public void NextTurn(int round, PlayerManager.Player[] roomPlayers)
+        public void NextTurn(int round, NoThanksService.Player[] roomPlayers)
         {
             lbtokens.Content = $"Round: {round} \nTokens: {globaltokens}";
             playerList = roomPlayers;
             lxtPlayersBox.ItemsSource = playerList;
-            actualRound = round;
+            currentRound = round;
             if (round < playerList.Count())
             {
                 if (Domain.Player.PlayerClient.Nickname.Equals(playerList.ElementAt(round).Nickname))
@@ -170,84 +192,86 @@ namespace NoThanks
         {
             if(roomStatus == RoomStatus.Finished)
             {
-                RoomScores go = new RoomScores()
+                RoomScores goRoomScores = new RoomScores()
                 {
                     WindowState = this.WindowState,
                     Left = this.Left
                 };
-                go.ChargeWindow(this.gameServiceClient, this.isHost, this.idRoom);
-                go.GenerateScores(playerList.ToList());
-                go.ShowDialog();
+                goRoomScores.ChargeWindow(this.gameServiceClient, this.isHost, this.idRoom);
+                goRoomScores.GenerateScores(playerList.ToList());
+                goRoomScores.ShowDialog();
 
-                MenuPrincipal goBack = new MenuPrincipal()
+                MenuPrincipal goMainMenu = new MenuPrincipal()
                 {
                     WindowState = this.WindowState,
                     Left = this.Left
                 };
-                goBack.Show();
+                goMainMenu.Show();
                 this.Close();
             }
         }
         #endregion
 
         #region Listeners
-        private void TxtMesageContainer_KeyDown(object sender, KeyEventArgs e)
+        private void SendMessageKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                if (gameServiceClient != null)
+                try
                 {
-                    if (txtMesageContainer.Text.StartsWith("/whisper"))
-                    {
-                        string[] args = txtMesageContainer.Text.Split(' ');
-                        if (args.Length > 2)
-                        {
-                            string message = "";
-                            for (int i = 2; i < args.Length; i++)
-                            {
-                                message += args[i] + " ";
-                            }
-                            gameServiceClient.SendWhisper(Domain.Player.PlayerClient.Nickname, args[1], message, idRoom);
-                        }
-                    }
-                    else
-                    {
-                        gameServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname, idRoom);
-                    }
+                    Messages();
+                }
+                catch (EndpointNotFoundException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (CommunicationObjectFaultedException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (TimeoutException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 txtMesageContainer.Text = string.Empty;
             }
 
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try
             {
                 End();
             }
-            catch (EndpointNotFoundException)
+            catch (EndpointNotFoundException ex)
             {
+                Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (CommunicationObjectFaultedException)
+            catch (CommunicationObjectFaultedException ex)
             {
+                Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (NullReferenceException)
+            catch (TimeoutException ex)
             {
+                Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void Back_Click(object sender, RoutedEventArgs e)
+        private void BackClick(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal go = new MenuPrincipal()
+            MenuPrincipal goMainMenu = new MenuPrincipal()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            goMainMenu.Show();
             this.Close();
         }
 
@@ -255,38 +279,76 @@ namespace NoThanks
         {
             btnTake.IsEnabled = false;
             btnPass.IsEnabled = false;
-            gameServiceClient.TakeCard(idRoom,Domain.Player.PlayerClient.Nickname);
+            try
+            {
+                gameServiceClient.TakeCard(idRoom, Domain.Player.PlayerClient.Nickname);
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationObjectFaultedException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void PassClick(object sender, RoutedEventArgs e)
         {
             btnTake.IsEnabled = false;
             btnPass.IsEnabled = false;
-            gameServiceClient.SkipPlayersTurn(idRoom, Domain.Player.PlayerClient.Nickname);
+            try
+            {
+                gameServiceClient.SkipPlayersTurn(idRoom, Domain.Player.PlayerClient.Nickname);
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationObjectFaultedException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void StartGameClick(object sender, RoutedEventArgs e)
         {
+            string[] messages = new string[2];
+            messages[0] = Properties.Resources.ROOM_STARTEDGAME_MESSAGE;
+            messages[1] = Properties.Resources.ROOM_CANTSTART_MESSAGE;
+
             try
             {
-                string[] messages = new string[2];
-                messages[0] = Properties.Resources.ROOM_STARTEDGAME_MESSAGE;
-                messages[1] = Properties.Resources.ROOM_CANTSTART_MESSAGE;
-
                 gameServiceClient.StartGame(IdRoom, messages);
                 gameServiceClient.CreateDeck(IdRoom);
-
             }
-            catch (EndpointNotFoundException)
+            catch (EndpointNotFoundException ex)
             {
+                Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (CommunicationObjectFaultedException)
+            catch (CommunicationObjectFaultedException ex)
             {
+                Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (NullReferenceException)
+            catch (TimeoutException ex)
             {
+                Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -295,12 +357,12 @@ namespace NoThanks
         {
             Image expelImage = (Image)sender;
             Grid parent = (Grid)expelImage.Parent;
-            PlayerManager.Player player = (PlayerManager.Player)parent.DataContext;
+            NoThanksService.Player player = (NoThanksService.Player)parent.DataContext;
             if (isHost)
             {
-                ExpelPlayer go = new ExpelPlayer();
-                go.SendPlayer(player, gameServiceClient, IdRoom);
-                go.ShowDialog();
+                ExpelPlayer goExpelPlayer = new ExpelPlayer();
+                goExpelPlayer.SendPlayer(player, gameServiceClient, IdRoom);
+                goExpelPlayer.ShowDialog();
             }
             else
             {
@@ -333,9 +395,33 @@ namespace NoThanks
             if (isConected)
             {
                 gameServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_LEAVEMESSAGE_MESSAGE);
-                gameServiceClient.Close();
+                gameServiceClient.Abort();
                 gameServiceClient = null;
                 isConected = false;
+            }
+        }
+
+        private void Messages()
+        {
+            if (gameServiceClient != null)
+            {
+                if (txtMesageContainer.Text.StartsWith("/whisper"))
+                {
+                    string[] args = txtMesageContainer.Text.Split(' ');
+                    if (args.Length > 2)
+                    {
+                        string message = "";
+                        for (int i = 2; i < args.Length; i++)
+                        {
+                            message += args[i] + " ";
+                        }
+                        gameServiceClient.SendWhisper(Domain.Player.PlayerClient.Nickname, args[1], message, idRoom);
+                    }
+                }
+                else
+                {
+                    gameServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname, idRoom);
+                }
             }
         }
         #endregion

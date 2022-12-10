@@ -26,7 +26,6 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Button Margin="57,44,57,45" Width="153" Height="56" Content="{x:Static p:Resources.PLAYSELECTION_JOIN_BUTTON}" Grid.Column="0" Click="JoinWithCodeClick" />
-            <Button Margin="57,44,57,45" Width="153" Height="56" Content="{x:Static p:Resources.PLAYSELECTION_FINDMATCH_BUTTON}" Grid.Column="1" Click="FastMatchClick"/>
             <Button Margin="57,44,57,45" Width="153" Height="56" Content="{x:Static p:Resources.PLAYSELECTION_NEWROOM_BUTTON}" Grid.Column="2" Click="NewGameClick"/>
         </Grid>
         <Grid Grid.Row="2">

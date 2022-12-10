@@ -25,7 +25,7 @@ namespace Logic.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("nothanks364@outlook.com")]
+        [global::System.Configuration.DefaultSettingValueAttribute("NoThanksOfficial@outlook.com")]
         public string Email {
             get {
                 return ((string)(this["Email"]));
@@ -37,7 +37,7 @@ namespace Logic.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Holamundo3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("JuanMyriamBryan")]
         public string EmailPassword {
             get {
                 return ((string)(this["EmailPassword"]));

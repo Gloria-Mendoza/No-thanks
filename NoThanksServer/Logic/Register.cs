@@ -18,7 +18,17 @@ namespace Logic
 
         }
 
-        public Boolean NewRegister(Logic.Player player)
+        public bool RegisterUser(Logic.Player player)
+        {
+            var status = false;
+            if (!ExistsEmailOrNickname(player.Nickname, player.Email))
+            {
+                status = NewRecord(player);
+            }
+            return status;
+        }
+
+        public bool NewRecord(Logic.Player player)
         {
             var status = false;
             using (var context = new NoThanksEntities())
@@ -30,27 +40,28 @@ namespace Logic
                     nickname = player.Nickname,
                     email = player.Email,
                     password = player.Password
-                };              
+                };
 
                 context.Players.Add(player1);
-                try
-                {
-                    status = context.SaveChanges() > 0;
-                }
-                catch (DbEntityValidationException dbEx)
-                {
-                    foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            Trace.TraceInformation("Property: {0} Error: {1}",
-                                validationError.PropertyName,
-                                validationError.ErrorMessage);
-                        }
-                    }
-                }
+                status = context.SaveChanges() > 0;
             }
             return status;
+        }
+
+        public bool ExistsEmailOrNickname(string nickname, string email)
+        {
+            bool result = false;
+            using (var context = new NoThanksEntities())
+            {
+                var accounts = (from players in context.Players
+                                where players.email == nickname || players.email == email
+                                select players).Count();
+                if (accounts > 0)
+                {
+                    result = true;
+                }
+            }
+            return result;
         }
     }
 }

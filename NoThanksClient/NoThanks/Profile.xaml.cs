@@ -22,21 +22,15 @@ namespace NoThanks
     /// <summary>
     /// Lógica de interacción para Profile.xaml
     /// </summary>
-    public partial class Profile : Window, PlayerManager.IUpdateProfileCallback
+    public partial class Profile : Window
     {
         public Profile()
         {
             InitializeComponent();
             ConfigureWindow();
-            //updateImage();
             ImagenInit();
         }
-        private void updateImage()
-        {
-            var context = new InstanceContext(this);
-            PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
-            updateProfileClient.GetImage(Domain.Player.PlayerClient.IdPlayer);
-        }
+
         private void ConfigureWindow()
         {
             LabelName.Content = Domain.Player.PlayerClient.Nickname;
@@ -50,17 +44,6 @@ namespace NoThanks
             go.WindowState = this.WindowState;
             go.Show();
             this.Close();
-        }
-
-        public void ImageCallBack(byte[] imageBytes)
-        {
-            BitmapImage photo = new BitmapImage();
-            photo.BeginInit();
-            photo.StreamSource = new MemoryStream(imageBytes);
-            photo.EndInit();
-            photo.Freeze();
-            imagenProfile.Source = photo;
-
         }
 
         private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

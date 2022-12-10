@@ -1,59 +1,74 @@
-﻿using System;
+﻿using log4net;
+using Logs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace NoThanks
 {
     /// <summary>
     /// Lógica de interacción para Friends.xaml
     /// </summary>
-    public partial class Friends : Window, PlayerManager.IUpdateProfileCallback
+    public partial class Friends : Window
     {
-        private List<String> strings = new List<String>();
+        NoThanksService.UpdateProfileClient updateProfileClient = new NoThanksService.UpdateProfileClient();
+        private static readonly ILog Log = Logger.GetLogger();
+
         public Friends()
         {
             InitializeComponent();
-            cargealluser();
-            cargeallFriend();
+            CargeAllUsers();
         }
 
-
-
-        public void cargealluser()
+        public void CargeAllUsers()
         {
-            var context = new InstanceContext(this);
-            PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
-            strings = updateProfileClient.GetGlobalPlayers().ToList();
+            try
+            {
+                ltbAllFriends.ItemsSource = updateProfileClient.GetGlobalPlayers().ToList();
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationObjectFaultedException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        public void cargeallFriend()
+        public void CargeAllFriends()
         {
-            var context = new InstanceContext(this);
-            PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
-            updateProfileClient.GetGlobalFriends(Domain.Player.PlayerClient.IdPlayer).ToList();
-            ltbAllFriends.ItemsSource = strings;
-
+            try
+            {
+                ltbAllFriends.ItemsSource = updateProfileClient.GetGlobalFriends(Domain.Player.PlayerClient.IdPlayer).ToList();
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationObjectFaultedException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        public void ImageCallBack(byte[] image)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void BackClick(object sender, RoutedEventArgs e)
         {
             MenuPrincipal go = new MenuPrincipal()
             {

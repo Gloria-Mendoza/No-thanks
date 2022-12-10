@@ -1,8 +1,11 @@
-﻿using NoThanks.PlayerManager;
+﻿using log4net;
+using Logs;
+using NoThanks.NoThanksService;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,7 +14,6 @@ using System.Windows.Documents;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using static NoThanks.PlayerManager.Player;
 
 namespace NoThanks
 {
@@ -20,10 +22,11 @@ namespace NoThanks
     /// </summary>
     public partial class RoomScores : Window
     {
-        private List<PlayerManager.Player> playersList = new List<PlayerManager.Player>();
+        private List<NoThanksService.Player> playersList = new List<NoThanksService.Player>();
         private bool isHost = false;
         private GameServiceClient gameServiceClient;
         private string idRoom;
+        private static readonly ILog Log = Logger.GetLogger();
 
         public RoomScores()
         {
@@ -36,7 +39,7 @@ namespace NoThanks
             this.isHost = isHost;
             this.idRoom = idRoom;
         }
-        public void GenerateScores(List<PlayerManager.Player> players)
+        public void GenerateScores(List<NoThanksService.Player> players)
         {
 
             players.ForEach(p => {
@@ -51,11 +54,30 @@ namespace NoThanks
 
             if (isHost)
             {
-                gameServiceClient.FinishGame(this.idRoom, playersList.ToArray());
+                try
+                {
+                    gameServiceClient.FinishGame(this.idRoom, playersList.ToArray());
+
+                }
+                catch (EndpointNotFoundException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (CommunicationObjectFaultedException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (TimeoutException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
-        public void CardsScore(PlayerManager.Player player)
+        public void CardsScore(NoThanksService.Player player)
         {
             player = DiscardConsecutiveNumbers(player);
 
@@ -68,7 +90,7 @@ namespace NoThanks
             playersList.Add(player);
         }
 
-        public PlayerManager.Player DiscardConsecutiveNumbers(PlayerManager.Player player)
+        public NoThanksService.Player DiscardConsecutiveNumbers(NoThanksService.Player player)
         {
             List<CardType> cardsFromPlayer = new List<CardType>();
 
@@ -92,9 +114,9 @@ namespace NoThanks
                     }
                 }
             }
-            catch(ArgumentOutOfRangeException e)
+            catch(ArgumentOutOfRangeException ex)
             {
-                _ = e.Message;
+                Log.Error($"{ex.Message}");
             }
 
             if (cardsFromPlayer.Count != 0)
@@ -124,9 +146,9 @@ namespace NoThanks
                     }
                 }
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException ex)
             {
-                _ = e.Message;
+                Log.Error($"{ex.Message}");
             }
 
             List<CardType> cardsToPlayer = player.Cards.ToList();
