@@ -9,9 +9,9 @@ namespace Logic
 {
     public class Validation
     {
-        public Boolean ExistEmail(string text)
+        public bool ExistEmail(string text)
         {
-            Boolean result = false;
+            bool result = false;
             using (var context = new NoThanksEntities())
             {
                 var accounts = (from players in context.Players
@@ -25,9 +25,9 @@ namespace Logic
             return result;
         }
 
-        public Boolean ExistNickname(string text)
+        public bool ExistNickname(string text)
         {
-            Boolean result = false;
+            bool result = false;
             using (var context = new NoThanksEntities())
             {
                 var accounts = (from players in context.Players

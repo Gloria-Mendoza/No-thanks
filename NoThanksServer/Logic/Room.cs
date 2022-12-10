@@ -58,7 +58,7 @@ namespace Logic
 
         public void NextRound()
         {
-            if(Round < actualPlayersCount-1)
+            if (Round < actualPlayersCount - 1)
             {
                 Round += 1;
             }

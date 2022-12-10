@@ -11,7 +11,7 @@ namespace Logic
 
         public const string DISPLAY_NAME = "No Thanks: The Game!";
         public const string BODY = "Your validation code is: ";
-        
+
         public bool SendValidationEmail(String toEmail, String affair, int validationCode)
         {
             bool result = true;

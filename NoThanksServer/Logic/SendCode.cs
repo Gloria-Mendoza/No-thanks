@@ -14,16 +14,13 @@ namespace Logic
 
         public bool SendMail(string email, int code)
         {
-            Boolean result = false;
-            /*String body = @"<style>
-                            h1{color:dodgerblue;}
-                            </style>
-                            <h1>Your code is: {code}</h1>";*/
-
+            bool result = false;
             try
             {
-                MailMessage newEmail = new MailMessage();
-                newEmail.From = new MailAddress("nothanks364@outlook.com", "Holamundo3");
+                MailMessage newEmail = new MailMessage
+                {
+                    From = new MailAddress("nothanks364@outlook.com", "Holamundo3")
+                };
                 newEmail.To.Add(email);
                 newEmail.Subject = "Email verification";
                 newEmail.SubjectEncoding = System.Text.Encoding.UTF8;
@@ -43,7 +40,6 @@ namespace Logic
                 {
                     Console.WriteLine(exception.StackTrace);
                 }
-
                 result = true;
             }
             catch (SmtpException exception)

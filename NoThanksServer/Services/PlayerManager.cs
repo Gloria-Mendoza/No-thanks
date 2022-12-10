@@ -494,13 +494,13 @@ namespace Services
             }
         }
 
-        public bool UpdateNewNickname(string nickname, string newnickname)
+        public bool UpdateNewNickname(string nickname, string newNickname)
         {
             var status = false;
             try
             {
                 var client = new Authentication();
-                status = client.UpdateNewNickname(nickname, newnickname);
+                status = client.UpdatePlayerNickname(nickname, newNickname);
             }
             catch (EntityException entityException)
             {
