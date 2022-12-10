@@ -37,7 +37,7 @@ namespace Logic
             return player;
         }
 
-        public bool UpdatePlayerPassword(string password,string email)
+        public bool UpdatePlayerPassword(string password, string email)
         {
             var status = false;
             using (var context = new NoThanksEntities())
@@ -48,15 +48,14 @@ namespace Logic
             }
             return status;
         }
-        public bool UpdateNewNickname(string nickname, string newnickname)
+        public bool UpdatePlayerNickname(string nickname, string updatedNickname)
         {
             var status = false;
-            using(var context = new NoThanksEntities())
+            using (var context = new NoThanksEntities())
             {
-                var nickNameUpdate = context.Players.FirstOrDefault(n => n.nickname.Equals(newnickname));
-                nickNameUpdate.nickname = nickname;
+                var playerToUpdate = context.Players.FirstOrDefault(n => n.nickname.Equals(updatedNickname));
+                playerToUpdate.nickname = nickname;
                 status = context.SaveChanges() > 0;
-
             }
             return status;
         }
@@ -66,10 +65,9 @@ namespace Logic
             var status = false;
             using (var context = new NoThanksEntities())
             {
-                var imageUpdate = context.Players.First(c => c.idPlayer.Equals(idProfile));
-                imageUpdate.photo = imageManager;
+                var playerToUpdate = context.Players.First(c => c.idPlayer.Equals(idProfile));
+                playerToUpdate.photo = imageManager;
                 status = context.SaveChanges() > 0;
-
             }
             return status;
         }

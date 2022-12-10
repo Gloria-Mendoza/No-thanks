@@ -33,7 +33,7 @@ namespace Logic
             var status = false;
             using (var context = new NoThanksEntities())
             {
-                Data.Player player1 = new Data.Player()
+                Data.Player newPlayer = new Data.Player()
                 {
                     name = player.Name,
                     lastName = player.LastName,

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Logic
 {
-    //OperationContext en esta clase para devolver un objeto Player completo utilizamos el OperationContext sin
-    //serializar, y poder convertir los datos del EntitiyFramework a una clase serializable que pueda ocupar
-    //el servicio en conjunto con los demás OperationContext 
+    //El OperationContext que se encuentra en esta clase cumple la función de devolver un objeto Player completo
+    //Utilizamos el OperationContext sin serializar, y poder convertir los datos del EntitiyFramework a una clase
+    //serializable que pueda ocupar el servicio en conjunto con los demás OperationContext 
     [DataContract]
     public class Player
     {
@@ -62,20 +62,18 @@ namespace Logic
         #endregion
 
         #region Methods
-
         public override bool Equals(object obj)
         {
             return base.Equals(obj);
         }
-
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
-
         public override string ToString()
         {
-            return $"Id-{idPlayer}Nick-{nickname}Pass-{password}email-{email}cards-{cards}cardsstring-{cardsString}tokens-{tokens}total-{totalScore}Nombre-{name}apellido-{lastName}imagen-{profileImage}status-{status}";
+            return $"Id-{idPlayer}Nick-{nickname}Pass-{password}email-{email}cards-{cards}cardsstring-{cardsString}" +
+                $"tokens-{tokens}total-{totalScore}Nombre-{name}apellido-{lastName}imagen-{profileImage}status-{status}";
         }
         #endregion
     }

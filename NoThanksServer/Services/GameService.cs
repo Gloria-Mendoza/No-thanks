@@ -435,7 +435,7 @@ namespace Services
             try
             {
                 var client = new Authentication();
-                status = client.UpdateNewNickname(nickname, newnickname);
+                status = client.UpdatePlayerNickname(nickname, newNickname);
             }
             catch (EntityException entityException)
             {

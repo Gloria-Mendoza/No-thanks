@@ -25,9 +25,9 @@ namespace NoThanks
             if (!Domain.Player.PlayerClient.IsGuest)
             {
                 var playerImage = Domain.Player.PlayerClient.ProfileImage;
-                if (playerImage == null)
+                if(playerImage == "") 
                 {
-                    playerImage = "acosador";
+                    Domain.Player.PlayerClient.ProfileImage = "acosador";
                 }
                 Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.ProfileImage);
 
