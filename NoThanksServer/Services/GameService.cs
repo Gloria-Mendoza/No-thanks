@@ -1,26 +1,19 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.Entity.Core;
-using System.IO;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
-using System.Security.Cryptography;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.Text;
-using static Logic.Player;
 using Logic;
+using log4net;
+using Logs;
 
 namespace Services
 {
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
-    public partial class PlayerManager : IPlayerManager
+    public partial class GameService : IPlayerManager
     {
-        int number = 0;
+        private static readonly ILog Log = Logger.GetLogger();
+
         public Logic.Player Login(String nickname, String password)
         {
             var player = new Logic.Player()
@@ -34,7 +27,7 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                Console.WriteLine(entityException.Message);
+                Log.Error($"{entityException.Message}");
             };
             return player;
         }
@@ -56,8 +49,7 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                //TODO
-                Console.WriteLine(entityException.Message);
+                Log.Error($"{entityException.Message}");
             }
             return status;
         }
@@ -76,64 +68,26 @@ namespace Services
                     Email = player.Email,
                     Password = player.Password
                 };
-                status = register.NewRegister(player1);
+                status = register.RegisterUser(player1);
             }
             catch (EntityException entityException)
             {
-                //TODO
-                Console.WriteLine(entityException.Message);
+                Log.Error($"{entityException.Message}");
             }
             return status;
         }
-
-        public bool SendCode(String emailFrom, int code)
-        {
-            var status = false;
-            try
-            {
-                SendCode email = new SendCode();
-                email.SendMail(emailFrom, code);
-            }
-            catch (Exception e)
-            {
-                //TODO
-                Console.WriteLine(e.Message);
-            }
-            return status;
-        }
-
-        public bool ExitsEmail(string text)
-        {
-            var status = false;
-            Validation validation = new Validation();
-            return status = validation.ExistEmail(text);
-        }
-
-        public bool ExitsNickname(string text)
-        {
-            var status = false;
-            Validation validation = new Validation();
-            return status = validation.ExistNickname(text);
-        }
-
+                
         public int GenerateCode()
         {
             Random random = new Random();
-            int maximum = 999999;
-            int minimum = 100000;
+            int MAX = 999999;
+            int MIN = 100000;
 
-            number = random.Next(minimum, maximum + 1);
-            return number;
-        }
-
-        public int GetGenerateCode()
-        {
-            return number;
-        }
-
+            return random.Next(MIN, MAX + 1); ;
+        }        
     }
 
-    public partial class PlayerManager : IGameService
+    public partial class GameService : IGameService
     {
         private List<Logic.Room> globalRooms = new List<Room>();
 
@@ -150,7 +104,7 @@ namespace Services
                 Id = idRoom,
                 HostUsername = hostUsername,
                 MatchStatus = RoomStatus.Waitting,
-                ActualPlayersCount = 0,
+                CurrentPlayersCount = 0,
                 Players = new List<Player>(),
                 Round = 0,
                 Scores = new List<int>(),
@@ -217,8 +171,15 @@ namespace Services
 
             room.Scores = scores;
 
-            GameManager gameManager = new GameManager();
-            gameManager.AddFinishedGame(room);
+            try
+            {
+                GameManager gameManager = new GameManager();
+                gameManager.AddFinishedGame(room);
+            }
+            catch(EntityException entityException)
+            {
+                Log.Error($"{entityException.Message}");
+            }
         }
 
         public bool CheckQuota(string idRoom)
@@ -248,40 +209,30 @@ namespace Services
                 Cards = new List<CardType>(),
                 Tokens = 11
             };
-            try
+
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            if (room.Players.Count() > 0)
             {
-                var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
-                if (room.Players.Count() > 0)
-                {
-                    SendMessage($": {player.Nickname} {message}!", player.Nickname, idRoom);
-                }
-                room.Players.Add(player);
-                room.ActualPlayersCount++;
+                SendMessage($": {player.Nickname} {message}!", player.Nickname, idRoom);
             }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine(e);
-            }
+            room.Players.Add(player);
+            room.CurrentPlayersCount++;
         }
 
         public void Disconnect(string username, string idRoom, string message)
         {
             Logic.Player player = null;
             var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
-            try
+
+            if(room != null)
             {
-                player = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom))
-                .Players.FirstOrDefault(i => i.Nickname.Equals(username));
-            }
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine(e);
+                player = room.Players.FirstOrDefault(i => i.Nickname.Equals(username));
             }
 
             if (player != null)
             {
                 room.Players.Remove(player);
-                room.ActualPlayersCount--;
+                room.CurrentPlayersCount--;
                 if (room.Players.Count() == 0)
                 {
                     globalRooms.Remove(room);
@@ -346,7 +297,7 @@ namespace Services
                 ShuffleDeck(roomId);
                 DiscardFirstNine(roomId);
             }
-            //var room = GetRoom(roomId);
+
             if (room != null)
             {
                 room.RoomTokens = 0;
@@ -383,16 +334,20 @@ namespace Services
                 var card = room.Deck[0];
                 room.Deck.RemoveAt(0);
                 room.NextRound();
-                foreach (var player in room.Players)
+
+                var player = room.Players.FirstOrDefault(p => p.Nickname.Equals(username));
+
+                if (player != null)
                 {
-                    var callback = player.AOperationContext.GetCallbackChannel<IGameServiceCallback>();
-                    if (player.Nickname.Equals(username))
-                    {
-                        player.Cards.Add(card);
-                        player.CardsString += $"{(int)card},";
-                        player.Tokens += room.RoomTokens;
-                        room.RoomTokens = 0;
-                    }
+                    player.Cards.Add(card);
+                    player.CardsString += $"{(int)card},";
+                    player.Tokens += room.RoomTokens;
+                    room.RoomTokens = 0;
+                }
+
+                foreach (var aPlayer in room.Players)
+                {
+                    var callback = aPlayer.AOperationContext.GetCallbackChannel<IGameServiceCallback>();
                     callback.UpdateDeck(room.Deck.ToArray(), room.RoomTokens); //Actualiza el mazo de todos los jugadores
                     callback.NextTurn(room.Round, room.Players.ToArray());
                 }
@@ -431,7 +386,7 @@ namespace Services
 
         }
     }
-    public partial class PlayerManager : IUpdateProfile
+    public partial class GameService : IUpdateProfile
     {
         public List<String> GetGlobalPlayers()
         {
@@ -468,33 +423,13 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                //TODO
-                Console.WriteLine(entityException.Message);
+                Log.Error($"Fallo: {entityException.Message}");
             }
             Console.WriteLine();
             return status;
         }
 
-
-        public void GetImage(int idProfile)
-        {
-            try
-            {
-                if (File.Exists($"imageProfile\\{idProfile}.jpg"))
-                {
-                    byte[] image = File.ReadAllBytes($"imageProfile\\{idProfile}.jpg");
-                    var callbackchannel = OperationContext.Current.GetCallbackChannel<IUdateProfileCallBack>();
-                    callbackchannel.ImageCallBack(image);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-
-        public bool UpdateNewNickname(string nickname, string newNickname)
+        public bool UpdateNewNickname(string nickname, string newnickname)
         {
             var status = false;
             try
@@ -504,8 +439,7 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                //TODO
-                Console.WriteLine(entityException.Message);
+                Log.Error($"Fallo: {entityException.Message}");
             }
             return status;
         }

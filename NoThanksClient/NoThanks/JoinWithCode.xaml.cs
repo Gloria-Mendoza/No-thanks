@@ -27,22 +27,22 @@ namespace NoThanks
 
         private void JoinClick(object sender, RoutedEventArgs e)
         {
-            Room go = new Room()
+            Room goRoom = new Room()
             {
                 WindowState = this.WindowState,
                 Left = this.Left,
                 IsNewRoom = false,
                 IdRoom = txtCode.Text
             };
-            if (go.CheckQuota())
+            if (goRoom.CheckQuota())
             {
-                go.CreateNewRoom(false);
-                go.Show();
+                goRoom.CreateNewRoom(false);
+                goRoom.Show();
                 this.Close();
             }
             else
             {
-                go.Close();
+                goRoom.Close();
                 MessageBox.Show(Properties.Resources.JOINGAME_CANTJOIN_MESSAGE, Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
                 txtCode.Text = string.Empty;
             }
@@ -50,12 +50,12 @@ namespace NoThanks
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            PlaySelection go = new PlaySelection()
+            PlaySelection goPlaySelection = new PlaySelection()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            goPlaySelection.Show();
             this.Close();
         }
         

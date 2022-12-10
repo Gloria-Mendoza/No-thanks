@@ -18,7 +18,7 @@ namespace Logic
         private string winner;
         private const int MAX_PLAYERS = 7;
         private const int MIN_PLAYERS = 3;
-        private int actualPlayersCount = 0;
+        private int currentPlayersCount = 0;
         private int roomTokens;
         List<CardType> deck;
         private List<int> scores;
@@ -40,7 +40,7 @@ namespace Logic
         [DataMember]
         public int MIN_PLAYERS1 => MIN_PLAYERS;
         [DataMember]
-        public int ActualPlayersCount { get { return actualPlayersCount; } set { actualPlayersCount = value; } }
+        public int CurrentPlayersCount { get { return currentPlayersCount; } set { currentPlayersCount = value; } }
         [DataMember]
         public int RoomTokens { get { return roomTokens; } set { roomTokens = value; } }
         [DataMember]
@@ -53,12 +53,12 @@ namespace Logic
 
         public bool HasSpace()
         {
-            return actualPlayersCount < MAX_PLAYERS;
+            return currentPlayersCount < MAX_PLAYERS;
         }
 
         public void NextRound()
         {
-            if (Round < actualPlayersCount - 1)
+            if(Round < currentPlayersCount-1)
             {
                 Round += 1;
             }
@@ -70,7 +70,7 @@ namespace Logic
 
         public bool HadMinPlayersToStart()
         {
-            return actualPlayersCount >= MIN_PLAYERS;
+            return currentPlayersCount >= MIN_PLAYERS;
         }
     }
 }

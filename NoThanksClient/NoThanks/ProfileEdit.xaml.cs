@@ -7,15 +7,19 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.ServiceModel;
 using System.Windows.Interop;
+using log4net;
+using Logs;
 
 namespace NoThanks
 {
     /// <summary>
     /// Lógica de interacción para Profile_Edit.xaml
     /// </summary>
-    public partial class Profile_Edit : Window, PlayerManager.IUpdateProfileCallback
+    public partial class Profile_Edit : Window
     {
         String imageResource = "";
+        NoThanksService.UpdateProfileClient updateProfileClient = new NoThanksService.UpdateProfileClient();
+        private static readonly ILog Log = Logger.GetLogger();
 
         public Profile_Edit()
         {
@@ -46,6 +50,7 @@ namespace NoThanks
         {
             //Botón Abrir
         }
+
         private void ImagenInit()
         {
             Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.ProfileImage);
@@ -64,9 +69,6 @@ namespace NoThanks
         {
             try
             {
-                var context = new InstanceContext(this);
-                PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
-
                 Domain.Player.PlayerClient.ProfileImage = imageResource;
 
                 updateProfileClient.SaveImage(imageResource, Domain.Player.PlayerClient.IdPlayer);
@@ -77,9 +79,20 @@ namespace NoThanks
                     Domain.Player.PlayerClient.Nickname = tbName.Text;
                 }
             }
-            catch (Exception ex)
+            catch (EndpointNotFoundException ex)
             {
-                MessageBox.Show("Error al cargar la imagen: " + ex.Message, "Error");
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationObjectFaultedException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             Profile go = new Profile()
@@ -101,10 +114,6 @@ namespace NoThanks
             };
             go.Show();
             this.Close();
-        }
-        public void ImageCallBack(byte[] image)
-        {
-            throw new NotImplementedException();
         }
 
         private void lxtImageSelector_MouseLeftButtonDown(object sender, SelectionChangedEventArgs e)

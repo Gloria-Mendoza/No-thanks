@@ -1,19 +1,10 @@
-﻿using NoThanks.PlayerManager;
+﻿using log4net;
+using Logs;
+using NoThanks.NoThanksService;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
+using System.ServiceModel;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace NoThanks
 {
@@ -28,6 +19,7 @@ namespace NoThanks
         String email = "";
         String password = "";
         String repeatPassword = "";
+        private static readonly ILog Log = Logger.GetLogger();
 
         public SignIn()
         {
@@ -36,7 +28,11 @@ namespace NoThanks
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
             mainWindow.Show();
             this.Close();
         }
@@ -49,23 +45,11 @@ namespace NoThanks
             email = txtEmail.Text;
             password = pfPassword.Password;
             repeatPassword = pfRepeatPassword.Password;
-            PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
-            var exitsEmail = client.ExitsEmail(email);
-            var exitsNickname = client.ExitsNickname(username);
-            if (exitsEmail == true)
-            {
-                MessageBox.Show("El correo ingresado ya se encuentra registrado. \n" +
-                                "Por favor ingrese uno nuevo", "Correo registrado", MessageBoxButton.OK);
-            }
-            if (exitsNickname == true)
-            {
-                MessageBox.Show("El nombre de usuario ingresado ya se encuentra registrado. \n" +
-                                "Por favor ingrese uno nuevo", "Nombre de usuario registrado", MessageBoxButton.OK);
-            }
+            NoThanksService.PlayerManagerClient client = new NoThanksService.PlayerManagerClient();
 
-            if (!existsInvalidFields() && !exitsEmail && !exitsNickname)
+            if (!ExistsInvalidFields())
             {
-                string passwordHashed = ComputeSHA512Hash(password);
+                string passwordHashed = Security.PasswordEncryptor.ComputeSHA512Hash(password);
                 Player player = new Player()
                 {
                     Name = name,
@@ -74,104 +58,107 @@ namespace NoThanks
                     Email = email,
                     Password = passwordHashed
                 };
-                //client.SendCode(email, client.GenerateCode());
-                //VerifyEmail verifyEmail = new VerifyEmail();
-               // verifyEmail.ShowDialog();
-               // var result = verifyEmail.GetVerifyEmail();
-                var aux = client.Register(player);
 
-                if (aux) // && result)
+                Random randomNumber = new Random();
+                var validationCode = randomNumber.Next(100000, 1000000);
+                var result = client.SendValidationEmail(email, "Validation Code", validationCode);
+
+                if (result)
                 {
-
-                    //TODO
-                    MessageBox.Show("Registro exitoso", "Confirmación de registro", MessageBoxButton.OK);
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    this.Close();
+                    VerifyEmail verifyEmail = new VerifyEmail()
+                    {
+                        WindowState = this.WindowState,
+                        Left = this.Left
+                    };
+                    verifyEmail.ValidationCode = validationCode;
+                    var resultCode = (bool)verifyEmail.ShowDialog();
+                    var aux = client.Register(player);
+                    if (aux && resultCode)
+                    {
+                        MessageBox.Show($"{Properties.Resources.SIGNIN_CONFIRMATION_MESSAGE}", $"{Properties.Resources.SIGNIN_CONFIRMATION_MESSAGEWINDOW}", MessageBoxButton.OK);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"{Properties.Resources.SIGNIN_SAVEERROR_MESSAGE}", $"{Properties.Resources.SIGNIN_SAVEERROR_MESSAGEWINDOW}", MessageBoxButton.OK);
+                    }
                 }
                 else
                 {
-                    //TODO
-                    MessageBox.Show("No Funciona", "Upss", MessageBoxButton.OK);
+                    MessageBox.Show($"{Properties.Resources.SIGNIN_SAVEERROR_MESSAGE}", $"{Properties.Resources.SIGNIN_SAVEERROR_MESSAGEWINDOW}", MessageBoxButton.OK);
                 }
-            }
-            else
-            {
-                //TODO
             }
         }
 
-        private Boolean existsInvalidFields()
+        #region Validations
+        private Boolean ExistsInvalidFields()
         {
             Boolean invalidFields = false;
-            if (existsEmptyFields() || existsInvalidStrings() || existsExcessLength() || existIncorrectPassword()
-                || existsInvalidPassword(password))
+            if (ExistsEmptyFields() || ExistsInvalidStrings() || ExistsExcessLength() || ExistIncorrectPassword()
+                || ExistsInvalidPassword(password))
             {
                 invalidFields = true;
             }
             return invalidFields;
         }
 
-        private Boolean existsEmptyFields()
+        private Boolean ExistsEmptyFields()
         {
             Boolean emptyFields = false;
             if (String.IsNullOrWhiteSpace(name) || String.IsNullOrWhiteSpace(lastName) || String.IsNullOrWhiteSpace(username)
                || String.IsNullOrWhiteSpace(email) || String.IsNullOrWhiteSpace(password) || String.IsNullOrWhiteSpace(repeatPassword))
             {
                 emptyFields = true;
-                MessageBox.Show("Existen campos vacíos. Verifica los datos", "Campos vacíos", MessageBoxButton.OK);
+                MessageBox.Show($"{Properties.Resources.SIGNIN_EMPTYFIELDS_MESSAGE}", $"{Properties.Resources.SIGNIN_EMPTYFIELDS_MESSAGEWINDOW}", MessageBoxButton.OK);
             }
             return emptyFields;
         }
 
-        private Boolean existsExcessLength()
+        private Boolean ExistsExcessLength()
         {
             Boolean emptyFields = false;
             if (name.Length > 50 || lastName.Length > 75 || username.Length > 45 || email.Length > 100)
             {
                 emptyFields = true;
-                MessageBox.Show("Existen campos que exceden la longitud permitida. Verifica los datos", "Longitud excedida", MessageBoxButton.OK);
+                MessageBox.Show($"{Properties.Resources.SIGNIN_EXCESSLENGTH_MESSAGE}", $"{Properties.Resources.SIGNIN_EXCESSLENGTH_MESSAGEWINDOW}", MessageBoxButton.OK);
             }
             return emptyFields;
         }
 
-        private Boolean existsInvalidStrings()
+        private Boolean ExistsInvalidStrings()
         {
             Boolean invalidStrings = false;
-            if (existsInvalidCharactersForName(txtName.Text))
+            if (ExistsInvalidCharacters(txtName.Text))
             {
-                MessageBox.Show("Existen caracteres invalidos. Verifica los datos de nombre", "Campos inválidos", MessageBoxButton.OK);
+                MessageBox.Show($"{Properties.Resources.SIGNIN_INVALIDSTRINGS_MESSAGE}", $"{Properties.Resources.SIGNIN_INVALIDSTRINGS_MESSAGEWINDOW}", MessageBoxButton.OK);
                 invalidStrings = true;
             }
 
-            if (existsInvalidCharactersForLastName(txtLastName.Text))
+            if (ExistsInvalidCharacters(txtLastName.Text))
             {
-                MessageBox.Show("Existen caracteres invalidos. Verifica los datos de apellidos", "Campos inválidos", MessageBoxButton.OK);
+                MessageBox.Show($"{Properties.Resources.SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGE}", $"{Properties.Resources.SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGEWINDOW}", MessageBoxButton.OK);
                 invalidStrings = true;
             }
-            if (existsInvalidCharactersForEmail(txtEmail.Text))
+            if (ExistsInvalidCharactersForEmail(txtEmail.Text))
             {
-                MessageBox.Show("Existen caracteres invalidos. Verifica los datos del correo electrónico", "Campos inválidos", MessageBoxButton.OK);
+                MessageBox.Show($"{Properties.Resources.SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGE}", $"{Properties.Resources.SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGEWINDOW}", MessageBoxButton.OK);
                 invalidStrings = true;
             }
             return invalidStrings;
         }
 
-        private Boolean existsInvalidPassword(String password)
+        private Boolean ExistsInvalidPassword(String password)
         {
             Boolean invalidPassword = false;
             if (Regex.IsMatch(password, "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$") == false)
             {
-                MessageBox.Show("La contraseña debe tener entre 8 y 16 caracteres \n"
-                                 + "La contraseña debe tener por lo menos un número \n"
-                                 + "La contraseña debe tener por lo menos una letra mayúscula \n"
-                                 + "La contraseña debe tener por lo menos una letra minúscula", "Contraseña inválida", MessageBoxButton.OK);
+                MessageBox.Show($"{Properties.Resources.SIGNIN_INVALIDPASSWORD_MESSAGE}", $"{Properties.Resources.SIGNIN_INVALIDPASSWORD_MESSAGEWINDOW}", MessageBoxButton.OK);
                 invalidPassword = true;
             }
             return invalidPassword;
         }
 
-        private Boolean existsInvalidCharactersForEmail(String textValid)
+        private Boolean ExistsInvalidCharactersForEmail(String textValid)
         {
             Boolean invalidCharacter = false;
             if (Regex.IsMatch(textValid, @"^[^@\s]+@[^@\s]+\.[^@\s]+$") == false)
@@ -181,7 +168,7 @@ namespace NoThanks
             return invalidCharacter;
         }
 
-        private Boolean existsInvalidCharactersForName(String textValid)
+        private Boolean ExistsInvalidCharacters(String textValid)
         {
             Boolean invalidCharacter = false;
             if (Regex.IsMatch(textValid, "^[A-Za-zÁÉÍÓÚáéíóúñÑ\\s]+$") == false)
@@ -191,17 +178,7 @@ namespace NoThanks
             return invalidCharacter;
         }
 
-        private Boolean existsInvalidCharactersForLastName(String textValid)
-        {
-            Boolean invalidCharacter = false;
-            if (Regex.IsMatch(textValid, "^[A-Za-zÁÉÍÓÚáéíóúñÑ\\s]+$") == false)
-            {
-                invalidCharacter = true;
-            }
-            return invalidCharacter;
-        }
-
-        private Boolean existIncorrectPassword()
+        private Boolean ExistIncorrectPassword()
         {
             Boolean invalidPassword;
             if (password == repeatPassword)
@@ -210,37 +187,35 @@ namespace NoThanks
             }
             else
             {
-                MessageBox.Show("Las contraseñas ingresadas no coinciden. Verifica los datos", "Campos inválidos", MessageBoxButton.OK);
+                MessageBox.Show($"{Properties.Resources.SIGNIN_INCORRECTPASSWORD_MESSAGE}", $"{Properties.Resources.SIGNIN_INCORRECTPASSWORD_MESSAGEWINDOW}", MessageBoxButton.OK);
                 invalidPassword = true;
             }
             return invalidPassword;
 
         }
-
+        #endregion
 
         private void SignInClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                //MenuPrincipal nameprofile = new MenuPrincipal();
                 SignInAction();
             }
-            catch (Exception exception)
+            catch (EndpointNotFoundException ex)
             {
-                //TODO
-                Console.WriteLine(exception.Message);
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private string ComputeSHA512Hash(string input)
-        {
-            var encryptedPassword = "";
-            using (SHA512 sHA512Hash = SHA512.Create())
+            catch (CommunicationObjectFaultedException ex)
             {
-                byte[] hash = sHA512Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-                encryptedPassword = BitConverter.ToString(hash).Replace("-", string.Empty).ToLowerInvariant();
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            return encryptedPassword;
+            catch (TimeoutException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
     }
