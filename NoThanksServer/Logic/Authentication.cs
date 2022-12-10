@@ -60,6 +60,7 @@ namespace Logic
             }
             return status;
         }
+
         public bool SaveImage(string imageManager, int idProfile)
         {
             var status = false;

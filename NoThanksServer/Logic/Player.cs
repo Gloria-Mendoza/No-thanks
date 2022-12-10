@@ -62,26 +62,6 @@ namespace Logic
         #endregion
 
         #region Methods
-        /*public override bool Equals(object obj)
-        {
-            bool isEquals = false;
-            if (obj == this)
-            {
-                isEquals = true;
-            }
-            if (obj != null && obj is Player)
-            {
-                Player other = (Player)obj;
-                isEquals = this.IdPlayer == other.IdPlayer &&
-                    this.Nickname.Equals(other.Nickname) &&
-                    this.Email.Equals(other.Email) &&
-                    this.TotalScore.Equals(other.TotalScore) &&
-                    this.Name.Equals(other.Name) &&
-                    this.LastName.Equals(other.LastName) &&
-                    this.Status.Equals(other.Status);
-            }
-            return isEquals;
-        }*/
 
         public override bool Equals(object obj)
         {

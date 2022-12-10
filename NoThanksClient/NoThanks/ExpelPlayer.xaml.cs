@@ -1,8 +1,11 @@
 ﻿using Domain;
-using NoThanks.PlayerManager;
+using log4net;
+using Logs;
+using NoThanks.NoThanksService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,9 +24,10 @@ namespace NoThanks
     /// </summary>
     public partial class ExpelPlayer : Window
     {
-        private PlayerManager.Player player;
+        private NoThanksService.Player player;
         private GameServiceClient gameServiceClient1;
         private string idRoom1;
+        private static readonly ILog Log = Logger.GetLogger();
 
         public ExpelPlayer()
         {
@@ -33,7 +37,26 @@ namespace NoThanks
         #region Listeners
         private void ConfirmClick(object sender, RoutedEventArgs e)
         {
-            Expel();
+            try
+            {
+                Expel();
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationObjectFaultedException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
             DialogResult = true;
             this.Close();
         }
@@ -71,7 +94,7 @@ namespace NoThanks
         #endregion
 
         #region Public Functions
-        public void SendPlayer(PlayerManager.Player playerToExpel, PlayerManager.GameServiceClient gameServiceClient, string idRoom)
+        public void SendPlayer(NoThanksService.Player playerToExpel, NoThanksService.GameServiceClient gameServiceClient, string idRoom)
         {
             player = playerToExpel;
             gameServiceClient1 = gameServiceClient;

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using log4net;
+using Logs;
+using System;
+using System.ServiceModel;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace NoThanks
@@ -9,7 +13,8 @@ namespace NoThanks
     public partial class ChangePassword : Window
     {
         private int validationCode;
-        private PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
+        private NoThanksService.PlayerManagerClient client = new NoThanksService.PlayerManagerClient();
+        private static readonly ILog Log = Logger.GetLogger();
 
         public ChangePassword()
         {
@@ -24,13 +29,32 @@ namespace NoThanks
         {
             if (!String.IsNullOrWhiteSpace(pfActualPassword.Password) && !String.IsNullOrWhiteSpace(pfConfirmPassword.Password) && !String.IsNullOrWhiteSpace(pfNewPassword.Password))
             {
-                SendVerification();
+                try
+                {
+                    SendVerification();
+                }
+                catch (EndpointNotFoundException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (CommunicationObjectFaultedException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (TimeoutException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
             {
                 MessageBox.Show(Properties.Resources.GENERAL_WHITESPACES_MESSAGE, Properties.Resources.GENERAL_WARNING_TITLE, MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
         private void ConfirmClick(object sender, RoutedEventArgs e)
         {
             if (Convert.ToInt32(txtToken.Text).Equals(validationCode))
@@ -45,7 +69,7 @@ namespace NoThanks
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            client.Close();
+            client.Abort();
             Close();
         }
         #endregion
@@ -58,7 +82,7 @@ namespace NoThanks
             validationCode = randomNumber.Next(100000, 1000000);
             String affair = "Validation Code";
 
-            if (ValidatePassword())
+            if (IsValidPassword())
             {
                 if (client.SendValidationEmail(Domain.Player.PlayerClient.Email, affair, validationCode))
                 {
@@ -84,14 +108,35 @@ namespace NoThanks
 
         public void UpdateNewPassword(string password, string email)
         {
-            if (client.UpdatePassword(password, email))
+            var status = false;
+            try
+            {
+                status = client.UpdatePassword(password, email);
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationObjectFaultedException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            if (status)
             {
                 MessageBox.Show(Properties.Resources.CHANGEPASSWORD_SUCCESSFUL_MESSAGE, Properties.Resources.GENERAL_SUCCSESSFUL_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
         }
 
-        public bool ValidatePassword()
+        public bool IsValidPassword()
         {
             bool result = true;
             if (!pfNewPassword.Password.Equals(pfConfirmPassword.Password))
@@ -99,7 +144,23 @@ namespace NoThanks
                 result = false;
             }
 
+            if (HadValidFormat(pfNewPassword.Password))
+            {
+                result = false;
+            }
+
             return result;
+        }
+
+        private bool HadValidFormat(string password)
+        {
+            bool invalidPassword = false;
+            if (!Regex.IsMatch(password, "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$"))
+            {
+                MessageBox.Show($"{Properties.Resources.SIGNIN_INCORRECTPASSWORD_MESSAGE}", $"{Properties.Resources.GENERAL_ERROR_TITLE}", MessageBoxButton.OK);
+                invalidPassword = true;
+            }
+            return invalidPassword;
         }
     }
 }

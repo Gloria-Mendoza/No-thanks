@@ -1,13 +1,8 @@
-﻿using Microsoft.Win32;
+﻿using log4net;
+using Logs;
 using System;
-using System.Media;
-using System.Security.Cryptography;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Media;
 
 
 namespace NoThanks
@@ -17,6 +12,8 @@ namespace NoThanks
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static readonly ILog Log = Logger.GetLogger();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,8 +30,19 @@ namespace NoThanks
                 {
                     LoginAction(username, password);
                 }
-                catch (EndpointNotFoundException)
+                catch (EndpointNotFoundException ex)
                 {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (CommunicationObjectFaultedException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (TimeoutException ex)
+                {
+                    Log.Error($"{ex.Message}");
                     MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
@@ -70,7 +78,7 @@ namespace NoThanks
 
         private void LoginAction(string username, string password)
         {
-            PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
+            NoThanksService.PlayerManagerClient client = new NoThanksService.PlayerManagerClient();
             var playerLogin = client.Login(username, Security.PasswordEncryptor.ComputeSHA512Hash(password));
 
             if (playerLogin.Status)
@@ -99,7 +107,7 @@ namespace NoThanks
             {
                 MessageBox.Show(Properties.Resources.LOGIN_CANTLOGIN_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Close();
+            client.Abort();
             
         }
     }

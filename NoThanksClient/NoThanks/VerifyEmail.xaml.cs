@@ -1,4 +1,4 @@
-﻿using NoThanks.PlayerManager;
+﻿using NoThanks.NoThanksService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +21,13 @@ namespace NoThanks
     /// </summary>
     public partial class VerifyEmail : Window
     {
-        bool result = false;
+        private int validationCode;
+
+        public int ValidationCode { get { return validationCode; } set { validationCode = value; } }
+
         public VerifyEmail()
         {
             InitializeComponent();
-        }
-
-        public Boolean GetVerifyEmail()
-        {
-            return result;
         }
 
         private void CancelClick(object sender, RoutedEventArgs e)
@@ -39,33 +37,26 @@ namespace NoThanks
 
         private void SendCodeClick(object sender, RoutedEventArgs e)
         {
-            PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
-            var number = txtNumber.Text;
-            var numberCode = client.GetGenerateCode();
-            if (!String.IsNullOrWhiteSpace(number) && existsInvalidField(number))
+            var code = txtNumber.Text;
+            if (!String.IsNullOrWhiteSpace(code))
             {
-                if (number.Equals(numberCode))
+                if (code.Equals(validationCode))
                 {
-                    MessageBox.Show("El correo electróncio se ha verificado correctamente", "Confirmación de correo", MessageBoxButton.OK);
-                    result = true;
+                    MessageBox.Show($"{Properties.Resources.VERIFYEMAIL_CONFIRMATION_MESSAGE}", $"{Properties.Resources.VERIFYEMAIL_CONFIRMATION_MESSAGEWINDOW}", MessageBoxButton.OK);
+                    DialogResult = true;
+                    MainWindow main = new MainWindow() 
+                    {
+                        WindowState = this.WindowState,
+                        Left = this.Left 
+                    };
+                    main.Show();
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("El código ingresado es incorrecto. Verifique la información", "Error de corfirmación de correo", MessageBoxButton.OK);
+                    MessageBox.Show($"{Properties.Resources.VERIFYEMAIL_CONFIRMATIONERROR_MESSAGE}", $"{Properties.Resources.VERIFYEMAIL_CONFIRMATIONERROR_MESSAGEWINDOW}", MessageBoxButton.OK);
                 }
             }
-        }
-
-        private Boolean existsInvalidField(String textValid)
-        {
-            Boolean invalidNumber = false;
-            if (Regex.IsMatch(textValid, "^\\d+$") == false)
-            {
-                MessageBox.Show("El código ingresado es inválido. Verifique la información", "Campo inválido", MessageBoxButton.OK);
-                invalidNumber = true;
-            }
-            return invalidNumber;
         }
     }
 }

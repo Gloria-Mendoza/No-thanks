@@ -327,4 +327,10 @@
   <data name="ROOM_STARTEDGAME_MESSAGE" xml:space="preserve">
     <value>Game Started!</value>
   </data>
+  <data name="SIGNIN_SIGNIN_BUTTON" xml:space="preserve">
+    <value>Check in</value>
+  </data>
+  <data name="SIGNIN_TITLE_WINDOW" xml:space="preserve">
+    <value>Check in</value>
+  </data>
 </root>

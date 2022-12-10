@@ -53,6 +53,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\Logs\bin\Debug\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -78,7 +81,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Connected Services\PlayerManager\Reference.cs">
+    <Compile Include="Connected Services\NoThanksService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -241,22 +244,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesSounds.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\PlayerManager\item.xsd">
+    <None Include="Connected Services\NoThanksService\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\item1.xsd">
+    <None Include="Connected Services\NoThanksService\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\item3.xsd">
+    <None Include="Connected Services\NoThanksService\item3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\item4.xsd">
+    <None Include="Connected Services\NoThanksService\item4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\NoThanks.PlayerManager.Player.datasource">
+    <None Include="Connected Services\NoThanksService\NoThanks.NoThanksService.Player.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\PlayerManager\PlayerManager.wsdl" />
+    <None Include="Connected Services\NoThanksService\PlayerManager.wsdl" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -300,6 +303,10 @@
       <Project>{a2d0710f-c678-4c40-a16a-5c79f042b48c}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logs\Logs.csproj">
+      <Project>{15A7C467-097D-4BA9-9921-D50E177C70AD}</Project>
+      <Name>Logs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Security\Security.csproj">
       <Project>{a055f5b4-7ee9-44cb-b639-6af9f51db68f}</Project>
       <Name>Security</Name>
@@ -309,19 +316,19 @@
     <Resource Include="Images\pincel.png" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\PlayerManager\" />
+    <WCFMetadataStorage Include="Connected Services\NoThanksService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\PlayerManager\item.disco" />
+    <None Include="Connected Services\NoThanksService\item.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\PlayerManager\configuration91.svcinfo" />
+    <None Include="Connected Services\NoThanksService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\PlayerManager\configuration.svcinfo" />
+    <None Include="Connected Services\NoThanksService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\PlayerManager\Reference.svcmap">
+    <None Include="Connected Services\NoThanksService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
