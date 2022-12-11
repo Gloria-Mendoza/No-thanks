@@ -528,10 +528,10 @@ namespace NoThanks.NoThanksService {
         System.Threading.Tasks.Task SendMessageAsync(string message, string username, string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SendWhisper")]
-        void SendWhisper(string sender, string receiver, string message, string idRoom);
+        void SendWhisper(string receiver, string message, string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SendWhisper")]
-        System.Threading.Tasks.Task SendWhisperAsync(string sender, string receiver, string message, string idRoom);
+        System.Threading.Tasks.Task SendWhisperAsync(string receiver, string message, string idRoom);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/CreateDeck")]
         void CreateDeck(string roomId);
@@ -565,7 +565,7 @@ namespace NoThanks.NoThanksService {
         void MessageCallBack(string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/WhisperCallBack")]
-        void WhisperCallBack(string sender, string message);
+        void WhisperCallBack(string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/StartGameRoom")]
         void StartGameRoom(NoThanks.NoThanksService.RoomStatus roomStatus, NoThanks.NoThanksService.Player[] players);
@@ -686,12 +686,12 @@ namespace NoThanks.NoThanksService {
             return base.Channel.SendMessageAsync(message, username, idRoom);
         }
         
-        public void SendWhisper(string sender, string receiver, string message, string idRoom) {
-            base.Channel.SendWhisper(sender, receiver, message, idRoom);
+        public void SendWhisper(string receiver, string message, string idRoom) {
+            base.Channel.SendWhisper(receiver, message, idRoom);
         }
         
-        public System.Threading.Tasks.Task SendWhisperAsync(string sender, string receiver, string message, string idRoom) {
-            return base.Channel.SendWhisperAsync(sender, receiver, message, idRoom);
+        public System.Threading.Tasks.Task SendWhisperAsync(string receiver, string message, string idRoom) {
+            return base.Channel.SendWhisperAsync(receiver, message, idRoom);
         }
         
         public void CreateDeck(string roomId) {

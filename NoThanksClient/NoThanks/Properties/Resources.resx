@@ -369,7 +369,7 @@
   <data name="ROOM_STARTEDGAME_MESSAGE" xml:space="preserve">
     <value>¡Juego Iniciado!</value>
   </data>
-   <data name="SIGNIN_CONFIRMATION_MESSAGE" xml:space="preserve">
+  <data name="SIGNIN_CONFIRMATION_MESSAGE" xml:space="preserve">
     <value>Registro exitoso</value>
   </data>
   <data name="SIGNIN_CONFIRMATION_MESSAGEWINDOW" xml:space="preserve">
@@ -461,5 +461,8 @@
   </data>
   <data name="CONSULTRECORD_TITLE_WINDOW" xml:space="preserve">
     <value>Records</value>
+  </data>
+  <data name="LOGIN_INVALIDFORMAT_MESSAGE" xml:space="preserve">
+    <value>El formato del nombre y/o contraseña no es correcto</value>
   </data>
 </root>

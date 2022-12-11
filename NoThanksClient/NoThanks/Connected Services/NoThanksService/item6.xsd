@@ -206,7 +206,6 @@
   <xs:element name="SendWhisper">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="sender" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="receiver" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
@@ -254,7 +253,6 @@
   <xs:element name="WhisperCallBack">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="sender" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>

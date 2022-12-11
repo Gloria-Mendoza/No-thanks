@@ -295,11 +295,18 @@ namespace Services
             }
         }
 
-        public void SendWhisper(string sender, string receiver, string message, string idRoom)
+        public void SendWhisper(string receiver, string message, string idRoom)
         {
-            var player = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom))
-                .Players.FirstOrDefault(i => i.Nickname.Equals(receiver));
-            player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().WhisperCallBack(sender, message);
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            if (room != null)
+            {
+                var player = room.Players.FirstOrDefault(i => i.Nickname.Equals(receiver));
+
+                if (player != null)
+                {
+                    player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().WhisperCallBack(message);
+                }
+            }
         }
 
         public void CreateDeck(String roomId)
@@ -409,9 +416,8 @@ namespace Services
     {
         public List<String> GetGlobalPlayers()
         {
-            List<String> result = new List<String>();
             ListPlayers list = new ListPlayers();
-            result = list.ListAllPlayer();
+            List<String> result = list.ListAllPlayer();
             return result;
         }
 
@@ -438,7 +444,7 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                Log.Error($"Fallo: {entityException.Message}");
+                Log.Error($"{entityException.Message}");
             }
             Console.WriteLine();
             return status;
@@ -454,7 +460,7 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                Log.Error($"Fallo: {entityException.Message}");
+                Log.Error($"{entityException.Message}");
             }
             return status;
         }
