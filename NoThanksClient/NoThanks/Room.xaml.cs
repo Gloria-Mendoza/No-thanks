@@ -141,7 +141,7 @@ namespace NoThanks
 
         public void PlayerExpeled(string nickname, string message)
         {
-            
+
             if (Domain.Player.PlayerClient.Nickname.Equals(nickname))
             {
                 MenuPrincipal go = new MenuPrincipal()
@@ -158,13 +158,13 @@ namespace NoThanks
 
         public void UpdateDeck(NoThanksService.CardType[] gameDeck, int roomTokens)
         {
-            globaltokens = roomTokens;            
-            if(gameDeck.Count() > 0)
+            globaltokens = roomTokens;
+            if (gameDeck.Count() > 0)
             {
                 int i = (int)gameDeck[0];
                 TopCard.Source = new BitmapImage(new Uri($"/Images/{i}.png", UriKind.Relative));
             }
-            
+
         }
 
         public void SkipPlayersTurnCallback(int round, int roomTokens)
@@ -190,7 +190,7 @@ namespace NoThanks
 
         public void EndGame(RoomStatus roomStatus)
         {
-            if(roomStatus == RoomStatus.Finished)
+            if (roomStatus == RoomStatus.Finished)
             {
                 RoomScores goRoomScores = new RoomScores()
                 {
