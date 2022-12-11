@@ -1,5 +1,6 @@
 ﻿using log4net;
 using Logs;
+using Microsoft.SqlServer.Management.Smo;
 using System;
 using System.ServiceModel;
 
