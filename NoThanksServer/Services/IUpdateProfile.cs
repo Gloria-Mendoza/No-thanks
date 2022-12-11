@@ -23,6 +23,6 @@ namespace Services
         List<String> GetGlobalRequest();
 
         [OperationContract]
-        bool UpdateNewNickname(string nickname, string newnickname);
+        bool UpdateNewNickname(string nickname, string newNickname);
     }
 }

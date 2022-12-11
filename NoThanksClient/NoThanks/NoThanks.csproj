@@ -244,16 +244,29 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourcesSounds.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\NoThanksService\GameService.wsdl" />
     <None Include="Connected Services\NoThanksService\item.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\NoThanksService\item1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\NoThanksService\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\NoThanksService\item3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\NoThanksService\item4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NoThanksService\item5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NoThanksService\item6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NoThanksService\item7.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\NoThanksService\NoThanks.NoThanksService.Player.datasource">
@@ -402,6 +415,7 @@
     <None Include="Resources\nina.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\NoThanksService\item1.disco" />
     <Content Include="Sounds\noThanksMusic.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

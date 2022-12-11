@@ -66,7 +66,9 @@ namespace Services
                     LastName = player.LastName,
                     Nickname = player.Nickname,
                     Email = player.Email,
-                    Password = player.Password
+                    Password = player.Password,
+                    ProfileImage = player.ProfileImage,
+                    TotalScore = player.TotalScore
                 };
                 status = register.RegisterUser(player1);
             }
@@ -84,7 +86,23 @@ namespace Services
             int MIN = 100000;
 
             return random.Next(MIN, MAX + 1); ;
-        }        
+        }
+
+        public bool ExistsEmailOrNickname(string nickname, string email)
+        {
+            Register register = new Register();
+            var status = false;
+
+            try
+            {
+                status = register.ExistsEmailOrNickname(nickname, email);
+            }
+            catch (EntityException entityException)
+            {
+                Log.Error($"{entityException.Message}");
+            }
+            return status;
+        }
     }
 
     public partial class GameService : IGameService
@@ -123,13 +141,13 @@ namespace Services
 
         public List<Logic.Player> RecoverRoomPlayers(string idRoom)
         {
-            var roomPlayersList = globalRooms.Find(r => r.Id.Equals(idRoom)).Players;
+            var roomPlayersList = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players;
             return roomPlayersList;
         }
 
         public void StartGame(string idRoom, string[] message)
         {
-            var room = globalRooms.Find(r => r.Id.Equals(idRoom));
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
             if (room != null)
             {
                 Player[] players = room.Players.ToArray();
@@ -162,7 +180,7 @@ namespace Services
                 scores.Add((int)p.TotalScore);
             });
 
-            var room = globalRooms.Find(r => r.Id.Equals(idRoom));
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
 
             room.Players.ForEach(p =>
             {
@@ -185,7 +203,7 @@ namespace Services
         public bool CheckQuota(string idRoom)
         {
             var status = false;
-            var room = globalRooms.Find(r => r.Id.Equals(idRoom));
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
             if (room != null)
             {
                 if (room.HasSpace())
@@ -246,7 +264,7 @@ namespace Services
 
         public void ExpelPlayer(string username, string idRoom, string message)
         {
-            var room = globalRooms.Find(r => r.Id.Equals(idRoom));
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
             if (room != null)
             {
                 Player[] players = room.Players.ToArray();
@@ -399,16 +417,12 @@ namespace Services
         public List<String> GetGlobalFriends(int idPlayer)
         {
             List<String> result = new List<String>();
-            ListFriends list = new ListFriends();
-            result = list.ListAllFriend(idPlayer);
             return result;
         }
 
         public List<String> GetGlobalRequest()
         {
             List<String> result = new List<String>();
-            ListFriends list = new ListFriends();
-            //result = list.ListAllFriend();
             return result;
         }
 
@@ -429,7 +443,7 @@ namespace Services
             return status;
         }
 
-        public bool UpdateNewNickname(string nickname, string newnickname)
+        public bool UpdateNewNickname(string nickname, string newNickname)
         {
             var status = false;
             try

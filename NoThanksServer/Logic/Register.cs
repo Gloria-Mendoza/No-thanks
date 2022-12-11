@@ -1,13 +1,5 @@
 ﻿using Data;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Validation;
-using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic
 {
@@ -21,10 +13,7 @@ namespace Logic
         public bool RegisterUser(Logic.Player player)
         {
             var status = false;
-            if (!ExistsEmailOrNickname(player.Nickname, player.Email))
-            {
-                status = NewRecord(player);
-            }
+            status = NewRecord(player);
             return status;
         }
 
@@ -39,10 +28,12 @@ namespace Logic
                     lastName = player.LastName,
                     nickname = player.Nickname,
                     email = player.Email,
-                    password = player.Password
+                    password = player.Password,
+                    photo = player.ProfileImage,
+                    totalScore = player.TotalScore,
                 };
 
-                context.Players.Add(player1);
+                context.Players.Add(newPlayer);
                 status = context.SaveChanges() > 0;
             }
             return status;
