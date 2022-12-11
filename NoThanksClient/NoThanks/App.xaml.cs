@@ -45,8 +45,6 @@ namespace NoThanks
 
         public void SwitchLanguage(string newLanguage)
         {
-            var currentLanguage = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
-            //var newLanguage = languages[(languages.IndexOf(currentLanguage) + 1) % languages.Count];
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(newLanguage);
             CurrentLanguage = newLanguage;
         }

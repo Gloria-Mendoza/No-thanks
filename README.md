@@ -12,6 +12,6 @@ Proyecto final de la Experiencia Educativa Tecnologías para la construcción de
         - En caso de que nadie tome la carta, se dará otra vuelta hasta que alguien la tome.
     - **Para obtener la carta:** Se toman las fichas de los anteriores jugadores (turno).
 - El puntaje final se obtiene sumando el numero de las cartas menos el número de fichas obtenidos.
-    - Si se tienen al menos 3 cartas continuas (14, 15, 16), solo se considera el valor más bajo.
+    - Si se tienen al menos 2 cartas continuas (14, 15), solo se considera el valor más bajo.
 - El juego termina cuando no haya más cartas en el mazo.
 - **Gana** el jugador con el menor número de puntos.
