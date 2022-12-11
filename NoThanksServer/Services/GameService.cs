@@ -414,18 +414,6 @@ namespace Services
             return result;
         }
 
-        public List<String> GetGlobalFriends(int idPlayer)
-        {
-            List<String> result = new List<String>();
-            return result;
-        }
-
-        public List<String> GetGlobalRequest()
-        {
-            List<String> result = new List<String>();
-            return result;
-        }
-
         public bool SaveImage(String imageManager, int idProfile)
         {
 

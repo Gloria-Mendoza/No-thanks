@@ -144,7 +144,7 @@ namespace NoThanks
             
             if (Domain.Player.PlayerClient.Nickname.Equals(nickname))
             {
-                MenuPrincipal go = new MenuPrincipal()
+                MainMenu go = new MainMenu()
                 {
                     WindowState = this.WindowState,
                     Left = this.Left
@@ -201,7 +201,7 @@ namespace NoThanks
                 goRoomScores.GenerateScores(playerList.ToList());
                 goRoomScores.ShowDialog();
 
-                MenuPrincipal goMainMenu = new MenuPrincipal()
+                MainMenu goMainMenu = new MainMenu()
                 {
                     WindowState = this.WindowState,
                     Left = this.Left
@@ -266,7 +266,7 @@ namespace NoThanks
 
         private void BackClick(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal goMainMenu = new MenuPrincipal()
+            MainMenu goMainMenu = new MainMenu()
             {
                 WindowState = this.WindowState,
                 Left = this.Left

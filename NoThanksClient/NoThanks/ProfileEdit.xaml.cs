@@ -9,6 +9,10 @@ using System.ServiceModel;
 using System.Windows.Interop;
 using log4net;
 using Logs;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace NoThanks
 {
@@ -31,24 +35,17 @@ namespace NoThanks
         private void ReadResource()
         {
             string[] files = Directory.GetFiles(@"..\..\Resources", "*.jpg");
-            for (int i = 0; i < files.Length; i++)
-            {
-                var ext = files[i].Split('\\');
-                ext = ext.Last().Split('.');
+            lxtImageSelector.Items.Add("acosardor");
+            lxtImageSelector.Items.Add("gato");
+            lxtImageSelector.Items.Add("hamster");
+            lxtImageSelector.Items.Add("nina");
 
-                lxtImageSelector.Items.Add(ext.First());
-            }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void ChangedNickname(object sender, TextChangedEventArgs e)
         {
             Domain.Player user = new Domain.Player();
-            user.Nickname = tbName.Text;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //Botón Abrir
+            user.Nickname = txtName.Text;
         }
 
         private void ImagenInit()
@@ -62,10 +59,10 @@ namespace NoThanks
                 BitmapSizeOptions.FromEmptyOptions()
                 );
 
-            imagenProfile.Source = bmpImage;
+            imageProfile.Source = bmpImage;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)//Botón Guardar
+        private void ConfirmButton(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -73,10 +70,13 @@ namespace NoThanks
 
                 updateProfileClient.SaveImage(imageResource, Domain.Player.PlayerClient.IdPlayer);
 
-                if (!String.IsNullOrWhiteSpace(tbName.Text))
+                if (!String.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    updateProfileClient.UpdateNewNickname(tbName.Text, Domain.Player.PlayerClient.Nickname);
-                    Domain.Player.PlayerClient.Nickname = tbName.Text;
+                    if (!ExistsInvalidFields()) 
+                    { 
+                    updateProfileClient.UpdateNewNickname(txtName.Text, Domain.Player.PlayerClient.Nickname);
+                    Domain.Player.PlayerClient.Nickname = txtName.Text;
+                    }
                 }
             }
             catch (EndpointNotFoundException ex)
@@ -95,28 +95,28 @@ namespace NoThanks
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            Profile go = new Profile()
+            Profile goProfile = new Profile()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            goProfile.Show();
             this.Close();
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)//Cancelar?
+        private void BackButton(object sender, RoutedEventArgs e)
         {
-            Profile go = new Profile()
+            Profile goProfile = new Profile()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            goProfile.Show();
             this.Close();
         }
 
-        private void lxtImageSelector_MouseLeftButtonDown(object sender, SelectionChangedEventArgs e)
+        private void ChangedImage(object sender, SelectionChangedEventArgs e)
         {
             if (lxtImageSelector.SelectedItem != null)
             {
@@ -130,9 +130,42 @@ namespace NoThanks
                     BitmapSizeOptions.FromEmptyOptions()
                     );
 
-                imagenProfile.Source = bmpImage;
+                imageProfile.Source = bmpImage;
                 imageResource = lxtImageSelector.SelectedItem.ToString();
             }
         }
+
+        #region Validations
+        private Boolean ExistsInvalidFields()
+        {
+            Boolean invalidFields = false;
+            if (ExistsEmptyFields() || ExistsExcessLength())
+            {
+                invalidFields = true;
+            }
+            return invalidFields;
+        }
+
+        private Boolean ExistsEmptyFields()
+        {
+            Boolean emptyFields = false;
+            if (String.IsNullOrWhiteSpace(txtName.Text))
+            {
+                emptyFields = true;
+                MessageBox.Show($"{Properties.Resources.SIGNIN_EMPTYFIELDS_MESSAGE}", $"{Properties.Resources.SIGNIN_EMPTYFIELDS_MESSAGEWINDOW}", MessageBoxButton.OK);
+            }
+            return emptyFields;
+        }
+        private Boolean ExistsExcessLength()
+        {
+            Boolean emptyFields = false;
+            if (txtName.Text.Length > 45)
+            {
+                emptyFields = true;
+                MessageBox.Show($"{Properties.Resources.SIGNIN_EXCESSLENGTH_MESSAGE}", $"{Properties.Resources.SIGNIN_EXCESSLENGTH_MESSAGEWINDOW}", MessageBoxButton.OK);
+            }
+            return emptyFields;
+        }
+        #endregion
     }
 }

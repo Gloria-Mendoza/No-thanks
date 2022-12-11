@@ -66,7 +66,7 @@ namespace NoThanks
                 Nickname = $"Guest{new Random().Next()}",
                 IsGuest = true
             };
-            MenuPrincipal go = new MenuPrincipal()
+            MainMenu go = new MainMenu()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
@@ -95,7 +95,7 @@ namespace NoThanks
                     IsGuest = false
                 };
 
-                MenuPrincipal go = new MenuPrincipal()
+                MainMenu go = new MainMenu()
                 {
                     WindowState = this.WindowState,
                     Left = this.Left

@@ -51,7 +51,7 @@ namespace NoThanks
 
         private void BackClick(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal goMainMenu = new MenuPrincipal()
+            MainMenu goMainMenu = new MainMenu()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
