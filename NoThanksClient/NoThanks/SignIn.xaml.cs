@@ -56,13 +56,21 @@ namespace NoThanks
                     LastName = lastName,
                     Nickname = username,
                     Email = email,
-                    Password = passwordHashed
+                    Password = passwordHashed,
+                    ProfileImage = "",
+                    TotalScore = 0,
                 };
 
                 Random randomNumber = new Random();
                 var validationCode = randomNumber.Next(100000, 1000000);
-                var result = client.SendValidationEmail(email, "Validation Code", validationCode);
+                
+                var result = false;
 
+                if (!client.ExistsEmailOrNickname(username, email))
+                {
+                    result = client.SendValidationEmail(email, "Validation Code", validationCode);
+                }
+                
                 if (result)
                 {
                     VerifyEmail verifyEmail = new VerifyEmail()
@@ -76,6 +84,12 @@ namespace NoThanks
                     if (aux && resultCode)
                     {
                         MessageBox.Show($"{Properties.Resources.SIGNIN_CONFIRMATION_MESSAGE}", $"{Properties.Resources.SIGNIN_CONFIRMATION_MESSAGEWINDOW}", MessageBoxButton.OK);
+                        MainWindow main = new MainWindow()
+                        {
+                            WindowState = this.WindowState,
+                            Left = this.Left
+                        };
+                        main.Show();
                         this.Close();
                     }
                     else

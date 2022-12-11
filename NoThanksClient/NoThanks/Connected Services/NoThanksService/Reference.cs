@@ -374,6 +374,12 @@ namespace NoThanks.NoThanksService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/GenerateCode", ReplyAction="http://tempuri.org/IPlayerManager/GenerateCodeResponse")]
         System.Threading.Tasks.Task<int> GenerateCodeAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/ExistsEmailOrNickname", ReplyAction="http://tempuri.org/IPlayerManager/ExistsEmailOrNicknameResponse")]
+        bool ExistsEmailOrNickname(string nickname, string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/ExistsEmailOrNickname", ReplyAction="http://tempuri.org/IPlayerManager/ExistsEmailOrNicknameResponse")]
+        System.Threading.Tasks.Task<bool> ExistsEmailOrNicknameAsync(string nickname, string email);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPlayerManager/SendValidationEmail", ReplyAction="http://tempuri.org/IPlayerManager/SendValidationEmailResponse")]
         bool SendValidationEmail(string toEmail, string affair, int validationCode);
         
@@ -436,6 +442,14 @@ namespace NoThanks.NoThanksService {
         
         public System.Threading.Tasks.Task<int> GenerateCodeAsync() {
             return base.Channel.GenerateCodeAsync();
+        }
+        
+        public bool ExistsEmailOrNickname(string nickname, string email) {
+            return base.Channel.ExistsEmailOrNickname(nickname, email);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ExistsEmailOrNicknameAsync(string nickname, string email) {
+            return base.Channel.ExistsEmailOrNicknameAsync(nickname, email);
         }
         
         public bool SendValidationEmail(string toEmail, string affair, int validationCode) {
@@ -742,10 +756,10 @@ namespace NoThanks.NoThanksService {
         System.Threading.Tasks.Task<string[]> GetGlobalRequestAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/UpdateNewNickname", ReplyAction="http://tempuri.org/IUpdateProfile/UpdateNewNicknameResponse")]
-        bool UpdateNewNickname(string nickname, string newnickname);
+        bool UpdateNewNickname(string nickname, string newNickname);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/UpdateNewNickname", ReplyAction="http://tempuri.org/IUpdateProfile/UpdateNewNicknameResponse")]
-        System.Threading.Tasks.Task<bool> UpdateNewNicknameAsync(string nickname, string newnickname);
+        System.Threading.Tasks.Task<bool> UpdateNewNicknameAsync(string nickname, string newNickname);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -807,12 +821,12 @@ namespace NoThanks.NoThanksService {
             return base.Channel.GetGlobalRequestAsync();
         }
         
-        public bool UpdateNewNickname(string nickname, string newnickname) {
-            return base.Channel.UpdateNewNickname(nickname, newnickname);
+        public bool UpdateNewNickname(string nickname, string newNickname) {
+            return base.Channel.UpdateNewNickname(nickname, newNickname);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateNewNicknameAsync(string nickname, string newnickname) {
-            return base.Channel.UpdateNewNicknameAsync(nickname, newnickname);
+        public System.Threading.Tasks.Task<bool> UpdateNewNicknameAsync(string nickname, string newNickname) {
+            return base.Channel.UpdateNewNicknameAsync(nickname, newNickname);
         }
     }
 }

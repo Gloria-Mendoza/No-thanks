@@ -23,6 +23,9 @@ namespace Services
         int GenerateCode();
 
         [OperationContract]
+        bool ExistsEmailOrNickname(string nickname, string email);
+
+        [OperationContract]
         bool SendValidationEmail(String toEmail, String affair, int validationCode);
 
         [OperationContract]

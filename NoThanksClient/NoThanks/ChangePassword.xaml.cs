@@ -4,6 +4,9 @@ using System;
 using System.ServiceModel;
 using System.Text.RegularExpressions;
 using System.Windows;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Xml.Linq;
 
 namespace NoThanks
 {
@@ -69,21 +72,28 @@ namespace NoThanks
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
+            Profile go = new Profile()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
+            go.Show();
             client.Abort();
             Close();
         }
         #endregion
 
-        public bool SendVerification()
+        #region Private Functions
+        private bool SendVerification()
         {
             var result = false;
 
-            Random randomNumber = new Random();
-            validationCode = randomNumber.Next(100000, 1000000);
-            String affair = "Validation Code";
-
             if (IsValidPassword())
             {
+                Random randomNumber = new Random();
+                validationCode = randomNumber.Next(100000, 1000000);
+                String affair = "Validation Code";
+
                 if (client.SendValidationEmail(Domain.Player.PlayerClient.Email, affair, validationCode))
                 {
                     MessageBox.Show(Properties.Resources.CHANGEPASSWORD_VALIDATIONSEND_MESSAGE, Properties.Resources.GENERAL_SUCCSESSFUL_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
@@ -106,7 +116,7 @@ namespace NoThanks
             return result;
         }
 
-        public void UpdateNewPassword(string password, string email)
+        private void UpdateNewPassword(string password, string email)
         {
             var status = false;
             try
@@ -132,11 +142,17 @@ namespace NoThanks
             if (status)
             {
                 MessageBox.Show(Properties.Resources.CHANGEPASSWORD_SUCCESSFUL_MESSAGE, Properties.Resources.GENERAL_SUCCSESSFUL_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
+                Profile go = new Profile()
+                {
+                    WindowState = this.WindowState,
+                    Left = this.Left
+                };
+                go.Show();
                 Close();
             }
         }
 
-        public bool IsValidPassword()
+        private bool IsValidPassword()
         {
             bool result = true;
             if (!pfNewPassword.Password.Equals(pfConfirmPassword.Password))
@@ -144,23 +160,39 @@ namespace NoThanks
                 result = false;
             }
 
-            if (HadValidFormat(pfNewPassword.Password))
+            if (HadValidFormat())
             {
                 result = false;
             }
 
+            if (TooLongPassword())
+            {
+                result = false;
+            }
             return result;
         }
+        #endregion
 
-        private bool HadValidFormat(string password)
+        #region Validations
+        private bool HadValidFormat()
         {
             bool invalidPassword = false;
-            if (!Regex.IsMatch(password, "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$"))
+            if (!Regex.IsMatch(pfNewPassword.Password, "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$"))
             {
-                MessageBox.Show($"{Properties.Resources.SIGNIN_INCORRECTPASSWORD_MESSAGE}", $"{Properties.Resources.GENERAL_ERROR_TITLE}", MessageBoxButton.OK);
                 invalidPassword = true;
             }
             return invalidPassword;
         }
+
+        private bool TooLongPassword()
+        {
+            bool tooLong = false;
+            if (pfActualPassword.Password.Length > 17 || pfConfirmPassword.Password.Length > 17 || pfNewPassword.Password.Length > 17)
+            {
+                tooLong = true;
+            }
+            return tooLong;
+        }
+        #endregion
     }
 }

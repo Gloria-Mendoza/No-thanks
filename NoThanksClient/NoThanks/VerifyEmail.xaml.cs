@@ -32,6 +32,7 @@ namespace NoThanks
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
+            DialogResult = false;
             this.Close();
         }
 
@@ -40,20 +41,15 @@ namespace NoThanks
             var code = txtNumber.Text;
             if (!String.IsNullOrWhiteSpace(code))
             {
-                if (code.Equals(validationCode))
+                if (Convert.ToInt32(code) == validationCode)
                 {
                     MessageBox.Show($"{Properties.Resources.VERIFYEMAIL_CONFIRMATION_MESSAGE}", $"{Properties.Resources.VERIFYEMAIL_CONFIRMATION_MESSAGEWINDOW}", MessageBoxButton.OK);
                     DialogResult = true;
-                    MainWindow main = new MainWindow() 
-                    {
-                        WindowState = this.WindowState,
-                        Left = this.Left 
-                    };
-                    main.Show();
                     this.Close();
                 }
                 else
                 {
+                    DialogResult = false;
                     MessageBox.Show($"{Properties.Resources.VERIFYEMAIL_CONFIRMATIONERROR_MESSAGE}", $"{Properties.Resources.VERIFYEMAIL_CONFIRMATIONERROR_MESSAGEWINDOW}", MessageBoxButton.OK);
                 }
             }

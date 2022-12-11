@@ -82,8 +82,8 @@ CREATE TABLE [dbo].[Players] (
     [password] nvarchar(128)  DEFAULT "",
     [email] nvarchar(100)  DEFAULT "",
     [totalScore] int  DEFAULT 0,
-    [name] nvarchar(1)  DEFAULT "",
-    [lastName] nvarchar(1)  DEFAULT "",
+    [name] nvarchar(50)  DEFAULT "",
+    [lastName] nvarchar(50)  DEFAULT "",
     [photo] nvarchar(50)  DEFAULT ""
 );
 GO
