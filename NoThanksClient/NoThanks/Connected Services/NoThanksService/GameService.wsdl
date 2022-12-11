@@ -167,18 +167,6 @@
   <wsdl:message name="IUpdateProfile_GetGlobalPlayers_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetGlobalPlayersResponse" />
   </wsdl:message>
-  <wsdl:message name="IUpdateProfile_GetGlobalFriends_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetGlobalFriends" />
-  </wsdl:message>
-  <wsdl:message name="IUpdateProfile_GetGlobalFriends_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetGlobalFriendsResponse" />
-  </wsdl:message>
-  <wsdl:message name="IUpdateProfile_GetGlobalRequest_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetGlobalRequest" />
-  </wsdl:message>
-  <wsdl:message name="IUpdateProfile_GetGlobalRequest_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetGlobalRequestResponse" />
-  </wsdl:message>
   <wsdl:message name="IUpdateProfile_UpdateNewNickname_InputMessage">
     <wsdl:part name="parameters" element="tns:UpdateNewNickname" />
   </wsdl:message>
@@ -294,14 +282,6 @@
     <wsdl:operation name="GetGlobalPlayers">
       <wsdl:input wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalPlayers" message="tns:IUpdateProfile_GetGlobalPlayers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalPlayersResponse" message="tns:IUpdateProfile_GetGlobalPlayers_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetGlobalFriends">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalFriends" message="tns:IUpdateProfile_GetGlobalFriends_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalFriendsResponse" message="tns:IUpdateProfile_GetGlobalFriends_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetGlobalRequest">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalRequest" message="tns:IUpdateProfile_GetGlobalRequest_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUpdateProfile/GetGlobalRequestResponse" message="tns:IUpdateProfile_GetGlobalRequest_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="UpdateNewNickname">
       <wsdl:input wsaw:Action="http://tempuri.org/IUpdateProfile/UpdateNewNickname" message="tns:IUpdateProfile_UpdateNewNickname_InputMessage" />
@@ -537,24 +517,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetGlobalPlayers">
       <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/GetGlobalPlayers" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetGlobalFriends">
-      <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/GetGlobalFriends" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetGlobalRequest">
-      <soap12:operation soapAction="http://tempuri.org/IUpdateProfile/GetGlobalRequest" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

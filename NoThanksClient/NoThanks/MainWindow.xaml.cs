@@ -15,6 +15,7 @@ namespace NoThanks
     /// </summary>
     public partial class MainWindow : Window
     {
+        NoThanksService.PlayerManagerClient client = new NoThanksService.PlayerManagerClient();
         private static readonly ILog Log = Logger.GetLogger();
 
         public MainWindow()
@@ -49,6 +50,10 @@ namespace NoThanks
                     {
                         Log.Error($"{ex.Message}");
                         MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    finally
+                    {
+                        client.Abort();
                     }
                 }
                 else
@@ -88,7 +93,6 @@ namespace NoThanks
 
         private void LoginAction(string username, string password)
         {
-            NoThanksService.PlayerManagerClient client = new NoThanksService.PlayerManagerClient();
             var playerLogin = client.Login(username, Security.PasswordEncryptor.ComputeSHA512Hash(password));
 
             if (playerLogin.Status)
@@ -117,7 +121,6 @@ namespace NoThanks
             {
                 MessageBox.Show(Properties.Resources.LOGIN_CANTLOGIN_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            client.Abort();
         }
 
         private bool AreValidStrings(string username, string password)

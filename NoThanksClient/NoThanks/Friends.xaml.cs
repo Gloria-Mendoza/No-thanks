@@ -13,7 +13,6 @@ namespace NoThanks
     /// </summary>
     public partial class Friends : Window
     {
-        NoThanksService.UpdateProfileClient updateProfileClient = new NoThanksService.UpdateProfileClient();
         private static readonly ILog Log = Logger.GetLogger();
 
         public Friends()
@@ -24,6 +23,7 @@ namespace NoThanks
 
         public void CargeAllUsers()
         {
+            NoThanksService.UpdateProfileClient updateProfileClient = new NoThanksService.UpdateProfileClient();
             try
             {
                 ltbAllFriends.ItemsSource = updateProfileClient.GetGlobalPlayers().ToList();
@@ -43,28 +43,9 @@ namespace NoThanks
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        public void CargeAllFriends()
-        {
-            try
+            finally
             {
-                ltbAllFriends.ItemsSource = updateProfileClient.GetGlobalFriends(Domain.Player.PlayerClient.IdPlayer).ToList();
-            }
-            catch (EndpointNotFoundException ex)
-            {
-                Log.Error($"{ex.Message}");
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (CommunicationObjectFaultedException ex)
-            {
-                Log.Error($"{ex.Message}");
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (TimeoutException ex)
-            {
-                Log.Error($"{ex.Message}");
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                updateProfileClient.Abort();
             }
         }
 
