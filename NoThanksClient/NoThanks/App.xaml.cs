@@ -16,12 +16,43 @@ namespace NoThanks
     /// </summary>
     public partial class App : Application
     {
+        private List<string> languages = new List<string>() { "es-MX", "en-US" };
+        private string _CurrentLanguage;
+        public string CurrentLanguage
+        {
+            get
+            {
+                return _CurrentLanguage;
+            }
+            private set
+            {
+                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(value);
+                _CurrentLanguage = value;
+            }
+        }
+
+        public static new App Current
+        {
+            get
+            {
+                return (App)Application.Current;
+            }
+        }
+
+        App() {
+            CurrentLanguage = languages[0];
+        }
+
+        public void SwitchLanguage(string newLanguage)
+        {
+            var currentLanguage = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+            //var newLanguage = languages[(languages.IndexOf(currentLanguage) + 1) % languages.Count];
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(newLanguage);
+            CurrentLanguage = newLanguage;
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            var langCode = NoThanks.Properties.Settings.Default.LanguageCode;
-            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(langCode);   
-            base.OnStartup(e);
-
             Task.Run(() =>
             {
                 System.IO.Stream str = NoThanks.Properties.ResourcesSounds.noThanksMusic;

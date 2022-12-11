@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,6 +20,8 @@ namespace NoThanks
     /// </summary>
     public partial class Personalization : Window
     {
+        string language = "es-MX";
+        
         public Personalization()
         {
             InitializeComponent();
@@ -39,14 +42,15 @@ namespace NoThanks
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cmb.SelectedIndex == 0)
-                Properties.Settings.Default.LanguageCode = "en-US";
+                language = "en-US";
             else
-                Properties.Settings.Default.LanguageCode = "es-MX";
-            Properties.Settings.Default.Save();
+                language = "es-MX";
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            App.Current.SwitchLanguage(language);
+
             Personalization go = new Personalization();
             go.Activate();
             go.Show();
