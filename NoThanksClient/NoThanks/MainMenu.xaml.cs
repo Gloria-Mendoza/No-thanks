@@ -9,11 +9,11 @@ using System.Windows.Media.Imaging;
 namespace NoThanks
 {
     /// <summary>
-    /// Lógica de interacción para MenuPrincipal.xaml
+    /// Lógica de interacción para MainMenu.xaml
     /// </summary>
-    public partial class MenuPrincipal : Window
+    public partial class MainMenu : Window
     {
-        public MenuPrincipal()
+        public MainMenu()
         {
             InitializeComponent();
             ConfigureWindow();
