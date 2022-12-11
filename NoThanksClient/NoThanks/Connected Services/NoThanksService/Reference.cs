@@ -743,18 +743,6 @@ namespace NoThanks.NoThanksService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalPlayers", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalPlayersResponse")]
         System.Threading.Tasks.Task<string[]> GetGlobalPlayersAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalFriends", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalFriendsResponse")]
-        string[] GetGlobalFriends(int idPlayer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalFriends", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalFriendsResponse")]
-        System.Threading.Tasks.Task<string[]> GetGlobalFriendsAsync(int idPlayer);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalRequest", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalRequestResponse")]
-        string[] GetGlobalRequest();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/GetGlobalRequest", ReplyAction="http://tempuri.org/IUpdateProfile/GetGlobalRequestResponse")]
-        System.Threading.Tasks.Task<string[]> GetGlobalRequestAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUpdateProfile/UpdateNewNickname", ReplyAction="http://tempuri.org/IUpdateProfile/UpdateNewNicknameResponse")]
         bool UpdateNewNickname(string nickname, string newNickname);
         
@@ -803,22 +791,6 @@ namespace NoThanks.NoThanksService {
         
         public System.Threading.Tasks.Task<string[]> GetGlobalPlayersAsync() {
             return base.Channel.GetGlobalPlayersAsync();
-        }
-        
-        public string[] GetGlobalFriends(int idPlayer) {
-            return base.Channel.GetGlobalFriends(idPlayer);
-        }
-        
-        public System.Threading.Tasks.Task<string[]> GetGlobalFriendsAsync(int idPlayer) {
-            return base.Channel.GetGlobalFriendsAsync(idPlayer);
-        }
-        
-        public string[] GetGlobalRequest() {
-            return base.Channel.GetGlobalRequest();
-        }
-        
-        public System.Threading.Tasks.Task<string[]> GetGlobalRequestAsync() {
-            return base.Channel.GetGlobalRequestAsync();
         }
         
         public bool UpdateNewNickname(string nickname, string newNickname) {

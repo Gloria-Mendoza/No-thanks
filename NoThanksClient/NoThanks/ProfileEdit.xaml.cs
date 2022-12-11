@@ -40,17 +40,6 @@ namespace NoThanks
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Domain.Player user = new Domain.Player();
-            user.Nickname = tbName.Text;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //Botón Abrir
-        }
-
         private void ImagenInit()
         {
             Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.ProfileImage);
@@ -65,7 +54,7 @@ namespace NoThanks
             imagenProfile.Source = bmpImage;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)//Botón Guardar
+        private void SaveClick(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -94,7 +83,11 @@ namespace NoThanks
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
+            finally
+            {
+                updateProfileClient.Abort();
+            }
+            
             Profile go = new Profile()
             {
                 WindowState = this.WindowState,
@@ -105,8 +98,9 @@ namespace NoThanks
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)//Cancelar?
+        private void CancelClick(object sender, RoutedEventArgs e)//Cancelar?
         {
+            updateProfileClient.Abort();
             Profile go = new Profile()
             {
                 WindowState = this.WindowState,
@@ -116,7 +110,7 @@ namespace NoThanks
             this.Close();
         }
 
-        private void lxtImageSelector_MouseLeftButtonDown(object sender, SelectionChangedEventArgs e)
+        private void ImageSelector(object sender, SelectionChangedEventArgs e)
         {
             if (lxtImageSelector.SelectedItem != null)
             {

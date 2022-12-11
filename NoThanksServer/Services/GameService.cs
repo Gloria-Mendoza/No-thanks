@@ -417,19 +417,15 @@ namespace Services
         public List<String> GetGlobalPlayers()
         {
             ListPlayers list = new ListPlayers();
-            List<String> result = list.ListAllPlayer();
-            return result;
-        }
-
-        public List<String> GetGlobalFriends(int idPlayer)
-        {
-            List<String> result = new List<String>();
-            return result;
-        }
-
-        public List<String> GetGlobalRequest()
-        {
-            List<String> result = new List<String>();
+            List<string> result = new List<string>();
+            try
+            {
+                result = list.ListAllPlayer();
+            }
+            catch (EntityException entityException)
+            {
+                Log.Error($"{entityException.Message}");
+            };
             return result;
         }
 
