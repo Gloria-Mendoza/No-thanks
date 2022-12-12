@@ -42,7 +42,11 @@ namespace Logic
             var status = false;
             using (var context = new NoThanksEntities())
             {
-                var playerToUpdate = context.Players.First(e => e.email.Equals(email));
+                var playerToUpdate = context.Players.FirstOrDefault(e => e.email.Equals(email));
+                if (playerToUpdate == null)
+                {
+                    return false;
+                }
                 playerToUpdate.password = password;
                 status = context.SaveChanges() > 0;
             }
@@ -54,6 +58,10 @@ namespace Logic
             using (var context = new NoThanksEntities())
             {
                 var playerToUpdate = context.Players.FirstOrDefault(n => n.nickname.Equals(updatedNickname));
+                if (playerToUpdate == null)
+                {
+                    return false;
+                }
                 playerToUpdate.nickname = nickname;
                 status = context.SaveChanges() > 0;
             }
@@ -65,7 +73,11 @@ namespace Logic
             var status = false;
             using (var context = new NoThanksEntities())
             {
-                var playerToUpdate = context.Players.First(c => c.idPlayer.Equals(idProfile));
+                var playerToUpdate = context.Players.FirstOrDefault(c => c.idPlayer.Equals(idProfile));
+                if (playerToUpdate == null)
+                {
+                    return false;
+                }
                 playerToUpdate.photo = imageManager;
                 status = context.SaveChanges() > 0;
             }
