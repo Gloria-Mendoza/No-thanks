@@ -11,17 +11,6 @@ namespace Test
     [TestClass]
     public class RegisterTest
     {
-        [TestMethod]
-        public void TestRegisterUserSuccess()
-        {
-            
-        }
-
-        [TestMethod]
-        public void TestRegisterUserFailure()
-        {
-            
-        }
         
         [TestMethod]
         public void TestNewRecordSuccess()
@@ -48,8 +37,8 @@ namespace Test
             Register register = new Register();
             Logic.Player player = new Logic.Player
             {
-                Name = "Nobu",
-                LastName = "Pereyra",
+                Name = "",
+                LastName = "",
                 Nickname = "Nobushi",
                 Email = "nobushi@outlook.com",
                 Password = "bdd117f45b413e54e0e3b0e14aa3352e298c29b9ed6b4b25b41b3374bd45578453695190eb628d8330f6732534f16764465a857d6d50697c27a7d2a3c7de04bc",
@@ -64,12 +53,27 @@ namespace Test
         [TestMethod]
         public void TestExistsEmailOrNicknameSuccess()
         {
-            
+            string nickname = "Panther";
+            string email = "nothanks364@outlook.com";
+
+            Register register = new Register();
+
+            register.ExistsEmailOrNickname(nickname, email);
+
+            Assert.IsTrue(true, "El usuario existe");
         }
 
         [TestMethod]
         public void TestExistsEmailOrNicknameFailure()
         {
+            string nickname = "Panther";
+            string email = "nothanks365@outlook.com";
+
+            Register register = new Register();
+            
+            register.ExistsEmailOrNickname(nickname, email);
+
+            Assert.IsFalse(false, "El usuario no existe");
 
         }
     }

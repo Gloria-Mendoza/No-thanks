@@ -15,33 +15,9 @@ namespace Test
         public void TestListAllPlayersSuccess()
         {
             ListPlayers listPlayers = new ListPlayers();
-            List<String> expectedResult = new List<String>
-            {
-                "Panther",
-                "Nobushi",
-                "Nobu",
-                "No"
-            };
-
-            Assert.AreEqual(expectedResult, listPlayers.ListAllPlayer(), "Lista de jugadores no vacía");
-            
-            //Assert.AreNotEqual(0, new ListPlayers().ListAllPlayer().Count, "Lista de jugadores no vacía");
-            
+            listPlayers.ListAllPlayer();
+            Assert.AreNotEqual(0, listPlayers.ListAllPlayer().Count, "Lista de jugadores NO vacía");
         }
 
-        [TestMethod]
-        public void TestListAllPlayersFailure()
-        {
-            ListPlayers listPlayers = new ListPlayers();
-            List<String> expectedResult = new List<String>
-            {
-                "Panther",
-                "Nobushi",
-                "Nobu",
-                "No"
-            };
-
-            Assert.AreNotEqual(expectedResult, listPlayers.ListAllPlayer(), "Lista de jugadores vacía");
-        }
     }
 }
