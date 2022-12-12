@@ -69,7 +69,11 @@ namespace NoThanks
 
         private void RegisterClick(object sender, RoutedEventArgs e)
         {
-            SignIn register = new SignIn();
+            SignIn register = new SignIn()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
             register.Show();
             this.Close();
         }
@@ -81,13 +85,13 @@ namespace NoThanks
                 Nickname = $"Guest{new Random().Next()}",
                 IsGuest = true
             };
-            MainMenu go = new MainMenu()
+            MainMenu mainMenu = new MainMenu()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
 
-            go.Show();
+            mainMenu.Show();
             this.Close();
         }
 
@@ -95,27 +99,30 @@ namespace NoThanks
         {
             var playerLogin = client.Login(username, Security.PasswordEncryptor.ComputeSHA512Hash(password));
 
-            if (playerLogin.Status)
+            if (playerLogin != null)
             {
-                Domain.Player.PlayerClient = new Domain.Player()
+                if (playerLogin.Status)
                 {
-                    IdPlayer = playerLogin.IdPlayer,
-                    Nickname = playerLogin.Nickname,
-                    Name = playerLogin.Name,
-                    LastName = playerLogin.LastName,
-                    Email = playerLogin.Email,
-                    TotalScore = playerLogin.TotalScore,
-                    ProfileImage = playerLogin.ProfileImage,
-                    IsGuest = false
-                };
+                    Domain.Player.PlayerClient = new Domain.Player()
+                    {
+                        IdPlayer = playerLogin.IdPlayer,
+                        Nickname = playerLogin.Nickname,
+                        Name = playerLogin.Name,
+                        LastName = playerLogin.LastName,
+                        Email = playerLogin.Email,
+                        TotalScore = playerLogin.TotalScore,
+                        ProfileImage = playerLogin.ProfileImage,
+                        IsGuest = false
+                    };
 
-                MainMenu go = new MainMenu()
-                {
-                    WindowState = this.WindowState,
-                    Left = this.Left
-                };
-                go.Show();
-                this.Close();
+                    MainMenu mainmenu = new MainMenu()
+                    {
+                        WindowState = this.WindowState,
+                        Left = this.Left
+                    };
+                    mainmenu.Show();
+                    this.Close();
+                }
             }
             else
             {

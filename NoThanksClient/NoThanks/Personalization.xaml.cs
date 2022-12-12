@@ -51,7 +51,11 @@ namespace NoThanks
         {
             App.Current.SwitchLanguage(language);
 
-            Personalization goPersonalization = new Personalization();
+            Personalization goPersonalization = new Personalization()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
             goPersonalization.Activate();
             goPersonalization.Show();
             this.Close();
