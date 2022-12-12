@@ -27,19 +27,19 @@ namespace NoThanks
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BackBotton(object sender, RoutedEventArgs e)
         {
-            MainMenu go = new MainMenu()
+            MainMenu goMainMenu = new MainMenu()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            goMainMenu.Show();
             this.Close();
         }
 
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SelectionLanguage(object sender, SelectionChangedEventArgs e)
         {
             if (cmb.SelectedIndex == 0)
                 language = "en-US";
@@ -47,14 +47,15 @@ namespace NoThanks
                 language = "es-MX";
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ConfirmBottom(object sender, RoutedEventArgs e)
         {
             App.Current.SwitchLanguage(language);
 
-            Personalization go = new Personalization();
-            go.Activate();
-            go.Show();
+            Personalization goPersonalization = new Personalization();
+            goPersonalization.Activate();
+            goPersonalization.Show();
             this.Close();
         }
+
     }
 }

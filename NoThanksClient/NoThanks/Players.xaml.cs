@@ -11,11 +11,12 @@ namespace NoThanks
     /// <summary>
     /// Lógica de interacción para Friends.xaml
     /// </summary>
-    public partial class Friends : Window
+    public partial class Players : Window
     {
         private static readonly ILog Log = Logger.GetLogger();
+        private List<String> strings = new List<String>();
 
-        public Friends()
+        public Players()
         {
             InitializeComponent();
             CargeAllUsers();
@@ -26,7 +27,8 @@ namespace NoThanks
             NoThanksService.UpdateProfileClient updateProfileClient = new NoThanksService.UpdateProfileClient();
             try
             {
-                ltbAllFriends.ItemsSource = updateProfileClient.GetGlobalPlayers().ToList();
+                strings = updateProfileClient.GetGlobalPlayers().ToList();
+                lxtAllUsers.ItemsSource = strings;
             }
             catch (EndpointNotFoundException ex)
             {
