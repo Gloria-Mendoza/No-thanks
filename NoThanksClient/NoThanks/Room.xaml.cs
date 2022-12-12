@@ -119,9 +119,9 @@ namespace NoThanks
             lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
         }
 
-        public void WhisperCallBack(string message)
+        public void WhisperCallBack(string sender, string message)
         {
-            lxtChatBox.Items.Add(sender + ": " + message);
+            lxtChatBox.Items.Add($"{sender}:{message}");
             lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
         }
 
@@ -180,7 +180,7 @@ namespace NoThanks
 
         public void NextTurn(int round, NoThanksService.Player[] roomPlayers)
         {
-            lbtokens.Content = $"Round: {round} \nTokens: {globaltokens}";
+            lbtokens.Content = $"{globaltokens}";
             playerList = roomPlayers;
             lxtPlayersBox.ItemsSource = playerList;
             currentRound = round;
@@ -416,12 +416,12 @@ namespace NoThanks
                     string[] args = txtMesageContainer.Text.Split(' ');
                     if (args.Length > 2)
                     {
-                        string message = "";
+                        string message = $"{Domain.Player.PlayerClient.Nickname}:";
                         for (int i = 2; i < args.Length; i++)
                         {
                             message += args[i] + " ";
                         }
-                        gameServiceClient.SendWhisper(args[1], message, idRoom);
+                        gameServiceClient.SendWhisper(args[1], message);
                     }
                 }
                 else

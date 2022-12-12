@@ -474,10 +474,10 @@ namespace NoThanks.NoThanksService {
     public interface IGameService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/NewRoom", ReplyAction="http://tempuri.org/IGameService/NewRoomResponse")]
-        bool NewRoom(string hostUsername, string idRoom);
+        bool NewRoom(string hostUsername, string roomId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/NewRoom", ReplyAction="http://tempuri.org/IGameService/NewRoomResponse")]
-        System.Threading.Tasks.Task<bool> NewRoomAsync(string hostUsername, string idRoom);
+        System.Threading.Tasks.Task<bool> NewRoomAsync(string hostUsername, string roomId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/GenerateRoomCode", ReplyAction="http://tempuri.org/IGameService/GenerateRoomCodeResponse")]
         string GenerateRoomCode();
@@ -486,52 +486,52 @@ namespace NoThanks.NoThanksService {
         System.Threading.Tasks.Task<string> GenerateRoomCodeAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/CheckQuota", ReplyAction="http://tempuri.org/IGameService/CheckQuotaResponse")]
-        bool CheckQuota(string idRoom);
+        bool CheckQuota(string roomId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/CheckQuota", ReplyAction="http://tempuri.org/IGameService/CheckQuotaResponse")]
-        System.Threading.Tasks.Task<bool> CheckQuotaAsync(string idRoom);
+        System.Threading.Tasks.Task<bool> CheckQuotaAsync(string roomId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/RecoverRoomPlayers", ReplyAction="http://tempuri.org/IGameService/RecoverRoomPlayersResponse")]
-        NoThanks.NoThanksService.Player[] RecoverRoomPlayers(string idRoom);
+        NoThanks.NoThanksService.Player[] RecoverRoomPlayers(string roomId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/RecoverRoomPlayers", ReplyAction="http://tempuri.org/IGameService/RecoverRoomPlayersResponse")]
-        System.Threading.Tasks.Task<NoThanks.NoThanksService.Player[]> RecoverRoomPlayersAsync(string idRoom);
+        System.Threading.Tasks.Task<NoThanks.NoThanksService.Player[]> RecoverRoomPlayersAsync(string roomId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/StartGame")]
-        void StartGame(string idRoom, string[] message);
+        void StartGame(string roomId, string[] message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/StartGame")]
-        System.Threading.Tasks.Task StartGameAsync(string idRoom, string[] message);
+        System.Threading.Tasks.Task StartGameAsync(string roomId, string[] message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Connect", ReplyAction="http://tempuri.org/IGameService/ConnectResponse")]
-        void Connect(string username, string idRoom, string message);
+        void Connect(string username, string roomId, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Connect", ReplyAction="http://tempuri.org/IGameService/ConnectResponse")]
-        System.Threading.Tasks.Task ConnectAsync(string username, string idRoom, string message);
+        System.Threading.Tasks.Task ConnectAsync(string username, string roomId, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Disconnect", ReplyAction="http://tempuri.org/IGameService/DisconnectResponse")]
-        void Disconnect(string username, string idRoom, string message);
+        void Disconnect(string username, string roomId, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Disconnect", ReplyAction="http://tempuri.org/IGameService/DisconnectResponse")]
-        System.Threading.Tasks.Task DisconnectAsync(string username, string idRoom, string message);
+        System.Threading.Tasks.Task DisconnectAsync(string username, string roomId, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/ExpelPlayer", ReplyAction="http://tempuri.org/IGameService/ExpelPlayerResponse")]
-        void ExpelPlayer(string username, string idRoom, string message);
+        void ExpelPlayer(string username, string roomId, string message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/ExpelPlayer", ReplyAction="http://tempuri.org/IGameService/ExpelPlayerResponse")]
-        System.Threading.Tasks.Task ExpelPlayerAsync(string username, string idRoom, string message);
+        System.Threading.Tasks.Task ExpelPlayerAsync(string username, string roomId, string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SendMessage")]
-        void SendMessage(string message, string username, string idRoom);
+        void SendMessage(string message, string username, string roomId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SendMessage")]
-        System.Threading.Tasks.Task SendMessageAsync(string message, string username, string idRoom);
+        System.Threading.Tasks.Task SendMessageAsync(string message, string username, string roomId);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SendWhisper")]
-        void SendWhisper(string receiver, string message, string idRoom);
+        void SendWhisper(string receiver, string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SendWhisper")]
-        System.Threading.Tasks.Task SendWhisperAsync(string receiver, string message, string idRoom);
+        System.Threading.Tasks.Task SendWhisperAsync(string receiver, string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/CreateDeck")]
         void CreateDeck(string roomId);
@@ -546,16 +546,16 @@ namespace NoThanks.NoThanksService {
         System.Threading.Tasks.Task TakeCardAsync(string roomId, string username);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SkipPlayersTurn")]
-        void SkipPlayersTurn(string idRoom, string username);
+        void SkipPlayersTurn(string roomId, string username);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/SkipPlayersTurn")]
-        System.Threading.Tasks.Task SkipPlayersTurnAsync(string idRoom, string username);
+        System.Threading.Tasks.Task SkipPlayersTurnAsync(string roomId, string username);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/FinishGame")]
-        void FinishGame(string idRoom, NoThanks.NoThanksService.Player[] players);
+        void FinishGame(string roomId, NoThanks.NoThanksService.Player[] players);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/FinishGame")]
-        System.Threading.Tasks.Task FinishGameAsync(string idRoom, NoThanks.NoThanksService.Player[] players);
+        System.Threading.Tasks.Task FinishGameAsync(string roomId, NoThanks.NoThanksService.Player[] players);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -565,7 +565,7 @@ namespace NoThanks.NoThanksService {
         void MessageCallBack(string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/WhisperCallBack")]
-        void WhisperCallBack(string message);
+        void WhisperCallBack(string sender, string message);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/StartGameRoom")]
         void StartGameRoom(NoThanks.NoThanksService.RoomStatus roomStatus, NoThanks.NoThanksService.Player[] players);
@@ -614,12 +614,12 @@ namespace NoThanks.NoThanksService {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public bool NewRoom(string hostUsername, string idRoom) {
-            return base.Channel.NewRoom(hostUsername, idRoom);
+        public bool NewRoom(string hostUsername, string roomId) {
+            return base.Channel.NewRoom(hostUsername, roomId);
         }
         
-        public System.Threading.Tasks.Task<bool> NewRoomAsync(string hostUsername, string idRoom) {
-            return base.Channel.NewRoomAsync(hostUsername, idRoom);
+        public System.Threading.Tasks.Task<bool> NewRoomAsync(string hostUsername, string roomId) {
+            return base.Channel.NewRoomAsync(hostUsername, roomId);
         }
         
         public string GenerateRoomCode() {
@@ -630,68 +630,68 @@ namespace NoThanks.NoThanksService {
             return base.Channel.GenerateRoomCodeAsync();
         }
         
-        public bool CheckQuota(string idRoom) {
-            return base.Channel.CheckQuota(idRoom);
+        public bool CheckQuota(string roomId) {
+            return base.Channel.CheckQuota(roomId);
         }
         
-        public System.Threading.Tasks.Task<bool> CheckQuotaAsync(string idRoom) {
-            return base.Channel.CheckQuotaAsync(idRoom);
+        public System.Threading.Tasks.Task<bool> CheckQuotaAsync(string roomId) {
+            return base.Channel.CheckQuotaAsync(roomId);
         }
         
-        public NoThanks.NoThanksService.Player[] RecoverRoomPlayers(string idRoom) {
-            return base.Channel.RecoverRoomPlayers(idRoom);
+        public NoThanks.NoThanksService.Player[] RecoverRoomPlayers(string roomId) {
+            return base.Channel.RecoverRoomPlayers(roomId);
         }
         
-        public System.Threading.Tasks.Task<NoThanks.NoThanksService.Player[]> RecoverRoomPlayersAsync(string idRoom) {
-            return base.Channel.RecoverRoomPlayersAsync(idRoom);
+        public System.Threading.Tasks.Task<NoThanks.NoThanksService.Player[]> RecoverRoomPlayersAsync(string roomId) {
+            return base.Channel.RecoverRoomPlayersAsync(roomId);
         }
         
-        public void StartGame(string idRoom, string[] message) {
-            base.Channel.StartGame(idRoom, message);
+        public void StartGame(string roomId, string[] message) {
+            base.Channel.StartGame(roomId, message);
         }
         
-        public System.Threading.Tasks.Task StartGameAsync(string idRoom, string[] message) {
-            return base.Channel.StartGameAsync(idRoom, message);
+        public System.Threading.Tasks.Task StartGameAsync(string roomId, string[] message) {
+            return base.Channel.StartGameAsync(roomId, message);
         }
         
-        public void Connect(string username, string idRoom, string message) {
-            base.Channel.Connect(username, idRoom, message);
+        public void Connect(string username, string roomId, string message) {
+            base.Channel.Connect(username, roomId, message);
         }
         
-        public System.Threading.Tasks.Task ConnectAsync(string username, string idRoom, string message) {
-            return base.Channel.ConnectAsync(username, idRoom, message);
+        public System.Threading.Tasks.Task ConnectAsync(string username, string roomId, string message) {
+            return base.Channel.ConnectAsync(username, roomId, message);
         }
         
-        public void Disconnect(string username, string idRoom, string message) {
-            base.Channel.Disconnect(username, idRoom, message);
+        public void Disconnect(string username, string roomId, string message) {
+            base.Channel.Disconnect(username, roomId, message);
         }
         
-        public System.Threading.Tasks.Task DisconnectAsync(string username, string idRoom, string message) {
-            return base.Channel.DisconnectAsync(username, idRoom, message);
+        public System.Threading.Tasks.Task DisconnectAsync(string username, string roomId, string message) {
+            return base.Channel.DisconnectAsync(username, roomId, message);
         }
         
-        public void ExpelPlayer(string username, string idRoom, string message) {
-            base.Channel.ExpelPlayer(username, idRoom, message);
+        public void ExpelPlayer(string username, string roomId, string message) {
+            base.Channel.ExpelPlayer(username, roomId, message);
         }
         
-        public System.Threading.Tasks.Task ExpelPlayerAsync(string username, string idRoom, string message) {
-            return base.Channel.ExpelPlayerAsync(username, idRoom, message);
+        public System.Threading.Tasks.Task ExpelPlayerAsync(string username, string roomId, string message) {
+            return base.Channel.ExpelPlayerAsync(username, roomId, message);
         }
         
-        public void SendMessage(string message, string username, string idRoom) {
-            base.Channel.SendMessage(message, username, idRoom);
+        public void SendMessage(string message, string username, string roomId) {
+            base.Channel.SendMessage(message, username, roomId);
         }
         
-        public System.Threading.Tasks.Task SendMessageAsync(string message, string username, string idRoom) {
-            return base.Channel.SendMessageAsync(message, username, idRoom);
+        public System.Threading.Tasks.Task SendMessageAsync(string message, string username, string roomId) {
+            return base.Channel.SendMessageAsync(message, username, roomId);
         }
         
-        public void SendWhisper(string receiver, string message, string idRoom) {
-            base.Channel.SendWhisper(receiver, message, idRoom);
+        public void SendWhisper(string receiver, string message) {
+            base.Channel.SendWhisper(receiver, message);
         }
         
-        public System.Threading.Tasks.Task SendWhisperAsync(string receiver, string message, string idRoom) {
-            return base.Channel.SendWhisperAsync(receiver, message, idRoom);
+        public System.Threading.Tasks.Task SendWhisperAsync(string receiver, string message) {
+            return base.Channel.SendWhisperAsync(receiver, message);
         }
         
         public void CreateDeck(string roomId) {
@@ -710,20 +710,20 @@ namespace NoThanks.NoThanksService {
             return base.Channel.TakeCardAsync(roomId, username);
         }
         
-        public void SkipPlayersTurn(string idRoom, string username) {
-            base.Channel.SkipPlayersTurn(idRoom, username);
+        public void SkipPlayersTurn(string roomId, string username) {
+            base.Channel.SkipPlayersTurn(roomId, username);
         }
         
-        public System.Threading.Tasks.Task SkipPlayersTurnAsync(string idRoom, string username) {
-            return base.Channel.SkipPlayersTurnAsync(idRoom, username);
+        public System.Threading.Tasks.Task SkipPlayersTurnAsync(string roomId, string username) {
+            return base.Channel.SkipPlayersTurnAsync(roomId, username);
         }
         
-        public void FinishGame(string idRoom, NoThanks.NoThanksService.Player[] players) {
-            base.Channel.FinishGame(idRoom, players);
+        public void FinishGame(string roomId, NoThanks.NoThanksService.Player[] players) {
+            base.Channel.FinishGame(roomId, players);
         }
         
-        public System.Threading.Tasks.Task FinishGameAsync(string idRoom, NoThanks.NoThanksService.Player[] players) {
-            return base.Channel.FinishGameAsync(idRoom, players);
+        public System.Threading.Tasks.Task FinishGameAsync(string roomId, NoThanks.NoThanksService.Player[] players) {
+            return base.Channel.FinishGameAsync(roomId, players);
         }
     }
     

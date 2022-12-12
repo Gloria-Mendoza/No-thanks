@@ -34,7 +34,7 @@ namespace NoThanks
                     WindowState = this.WindowState,
                     Left = this.Left,
                     IsNewRoom = false,
-                    IdRoom = txtCode.Text
+                    RoomId = txtCode.Text
                 };
                 if (room.CheckQuota())
                 {
