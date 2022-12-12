@@ -99,8 +99,8 @@ namespace Test
         [TestMethod]
         public void TestUpdatePlayerNicknameSuccess()
         {
-            string nickname = "Panther";
-            string updatedNickname = "Licuadora";
+            string nickname = "Licuadora";
+            string updatedNickname = "Panther";
 
             Authentication authentication = new Authentication();
 
