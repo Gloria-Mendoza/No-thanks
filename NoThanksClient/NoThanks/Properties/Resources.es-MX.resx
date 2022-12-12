@@ -327,6 +327,156 @@
   <data name="ROOM_STARTEDGAME_MESSAGE" xml:space="preserve">
     <value>¡Juego Iniciado!</value>
   </data>
+  <data name="GENERAL_SEARCH_BUTTON" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="PLAYERS_TITLE-WINDOW" xml:space="preserve">
+    <value>No Thanks: Jugadores</value>
+  </data>
+  <data name="PROFILEDIT_TITLE-WINDOW" xml:space="preserve">
+    <value>No Thanks: Editar Perfil</value>
+  </data>
+  <data name="PLAYERS_LISTPLAYERS_LABEL" xml:space="preserve">
+    <value>Lista de Jugadores:</value>
+  </data>
+  <data name="PLAYERS_SEARCH_LABEL" xml:space="preserve">
+    <value>Buscar Jugador:</value>
+  </data>
+  <data name="CONSULTRECORD_SCORE_COLUMN" xml:space="preserve">
+    <value>Puntaje</value>
+  </data>
+  <data name="CONSULTRECORD_TITLE_COLUMN" xml:space="preserve">
+    <value>Nombre de usuario</value>
+  </data>
+  <data name="CONSULTRECORD_TITLE_LABEL" xml:space="preserve">
+    <value>Mejores Puntajes</value>
+  </data>
+  <data name="CONSULTRECORD_TITLE_WINDOW" xml:space="preserve">
+    <value>Records</value>
+  </data>
+  <data name="SIGNIN_CONFIRMATION_MESSAGE" xml:space="preserve">
+    <value>Registro Exitoso</value>
+  </data>
+  <data name="SIGNIN_CONFIRMATION_MESSAGEWINDOW" xml:space="preserve">
+    <value>Confirmacion de registro</value>
+  </data>
+  <data name="SIGNIN_EMAIL_LABEL" xml:space="preserve">
+    <value>Correo Electronico:</value>
+  </data>
+  <data name="SIGNIN_EMPTYFIELDS_MESSAGE" xml:space="preserve">
+    <value>Existen campos vacíos. Verifica los datos</value>
+  </data>
+  <data name="SIGNIN_EMPTYFIELDS_MESSAGEWINDOW" xml:space="preserve">
+    <value>Campos Vacios</value>
+  </data>
+  <data name="SIGNIN_EXCESSLENGTH_MESSAGE" xml:space="preserve">
+    <value>Existen campos que exceden la longitud permitida. Verifica los datos</value>
+  </data>
+  <data name="SIGNIN_EXCESSLENGTH_MESSAGEWINDOW" xml:space="preserve">
+    <value>Longitud excedida</value>
+  </data>
+  <data name="SIGNIN_INCORRECTPASSWORD_MESSAGE" xml:space="preserve">
+    <value>Las contraseñas ingresadas no coinciden. Verifica los datos</value>
+  </data>
+  <data name="SIGNIN_INCORRECTPASSWORD_MESSAGEWINDOW" xml:space="preserve">
+    <value>Contraseña incorrecta</value>
+  </data>
+  <data name="SIGNIN_INVALIDPASSWORD_MESSAGE" xml:space="preserve">
+    <value>La contraseña debe tener entre 8 y 16 caracteres. La contraseña debe tener por lo menos un número. La contraseña debe tener por lo menos una letra mayúscula. La contraseña debe tener por lo menos una letra minúscula</value>
+  </data>
+  <data name="SIGNIN_INVALIDPASSWORD_MESSAGEWINDOW" xml:space="preserve">
+    <value>Contraseña inválida</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGE" xml:space="preserve">
+    <value>Existen caracteres invalidos. Verifica los datos del correo electrónico</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGEWINDOW" xml:space="preserve">
+    <value>Campos inválidos en correo electrónico</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGE" xml:space="preserve">
+    <value>Existen caracteres invalidos. Verifica los datos de apellidos</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGEWINDOW" xml:space="preserve">
+    <value>Campos inválidos en apellidos</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGS_MESSAGE" xml:space="preserve">
+    <value>Existen caracteres invalidos. Verifica los datos de nombre</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGS_MESSAGEWINDOW" xml:space="preserve">
+    <value>Campos inválidos en nombre</value>
+  </data>
+  <data name="SIGNIN_LASTNAME_LABEL" xml:space="preserve">
+    <value>Apellidos:</value>
+  </data>
+  <data name="SIGNIN_NAME_LABEL" xml:space="preserve">
+    <value>Nombre:</value>
+  </data>
+  <data name="SIGNIN_PASSWORD_LABEL" xml:space="preserve">
+    <value>Constraseña:</value>
+  </data>
+  <data name="SIGNIN_REPEATEDEMAIL_MESSAGE" xml:space="preserve">
+    <value>El correo ingresado ya se encuentra registrado. Por favor ingrese uno nuevo</value>
+  </data>
+  <data name="SIGNIN_REPEATEDEMAIL_MESSAGEWINDOW" xml:space="preserve">
+    <value>Correo registrado</value>
+  </data>
+  <data name="SIGNIN_REPEATEDUSERNAME_MESSAGE" xml:space="preserve">
+    <value>El nombre de usuario ingresado ya se encuentra registrado. Por favor ingrese uno nuevo</value>
+  </data>
+  <data name="SIGNIN_REPEATEDUSERNAME_MESSAGEWINDOW" xml:space="preserve">
+    <value>Nombre de usuario registrado</value>
+  </data>
+  <data name="SIGNIN_REPEATPASSWORD_LABEL" xml:space="preserve">
+    <value>Repetir contraseña:</value>
+  </data>
+  <data name="SIGNIN_SAVEERROR_MESSAGE" xml:space="preserve">
+    <value>No Funciona</value>
+  </data>
+  <data name="SIGNIN_SAVEERROR_MESSAGEWINDOW" xml:space="preserve">
+    <value>Upss</value>
+  </data>
+  <data name="SIGNIN_SIGNIN_BUTTON" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="SIGNIN_TITLESIGNIN_LABEL" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="SIGNIN_TITLE_WINDOW" xml:space="preserve">
+    <value>No Thanks: Registrarse</value>
+  </data>
+  <data name="SIGNIN_USERNAME_LABEL" xml:space="preserve">
+    <value>Nombre de usuario:</value>
+  </data>
+  <data name="VERIFYEMAIL_BUTTON" xml:space="preserve">
+    <value>Enviar código</value>
+  </data>
+  <data name="VERIFYEMAIL_CONFIRMATIONERROR_MESSAGE" xml:space="preserve">
+    <value>El código ingresado es incorrecto. Verifique la información</value>
+  </data>
+  <data name="VERIFYEMAIL_CONFIRMATIONERROR_MESSAGEWINDOW" xml:space="preserve">
+    <value>Error de corfirmación de correo</value>
+  </data>
+  <data name="VERIFYEMAIL_CONFIRMATION_MESSAGE" xml:space="preserve">
+    <value>El correo electróncio se ha verificado correctamente</value>
+  </data>
+  <data name="VERIFYEMAIL_CONFIRMATION_MESSAGEWINDOW" xml:space="preserve">
+    <value>Confirmación de correo</value>
+  </data>
+  <data name="VERIFYEMAIL_INSTRUCTIONS_LABEL" xml:space="preserve">
+    <value>Se ha enviado un código para verificar su correo electrónico</value>
+  </data>
+  <data name="VERIFYEMAIL_INVALIDFIELD_MESSAGE" xml:space="preserve">
+    <value>El código ingresado es inválido. Verifique la información</value>
+  </data>
+  <data name="VERIFYEMAIL_NUMBER_LABEL" xml:space="preserve">
+    <value>Número de verificación:</value>
+  </data>
+  <data name="VERIFYEMAIL_TITLE_LABEL" xml:space="preserve">
+    <value>Comprobación de correo electrónico</value>
+  </data>
+  <data name="VERIFYEMAIL_TITLE_WINDOW" xml:space="preserve">
+    <value>Verificación de correo electrónico</value>
+  </data>
   <data name="LOGIN_INVALIDFORMAT_MESSAGE" xml:space="preserve">
     <value>El formato del nombre y/o contraseña no es correcto</value>
   </data>
