@@ -480,4 +480,7 @@
   <data name="VERIFYEMAIL_TITLE_WINDOW" xml:space="preserve">
     <value>email verification</value>
   </data>
+  <data name="JOINGAME_NOCODE_MESSAGE" xml:space="preserve">
+    <value>You must enter a code</value>
+  </data>
 </root>

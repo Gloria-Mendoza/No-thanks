@@ -480,4 +480,7 @@
   <data name="LOGIN_INVALIDFORMAT_MESSAGE" xml:space="preserve">
     <value>El formato del nombre y/o contraseña no es correcto</value>
   </data>
+  <data name="JOINGAME_NOCODE_MESSAGE" xml:space="preserve">
+    <value>Debes ingresar un codigo</value>
+  </data>
 </root>

@@ -385,6 +385,15 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Debes ingresar un codigo.
+        /// </summary>
+        public static string JOINGAME_NOCODE_MESSAGE {
+            get {
+                return ResourceManager.GetString("JOINGAME_NOCODE_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Unirse a Partida (con Código).
         /// </summary>
         public static string JOINGAME_TITLE_WINDOW {

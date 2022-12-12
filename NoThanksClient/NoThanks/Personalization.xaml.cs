@@ -29,12 +29,12 @@ namespace NoThanks
 
         private void BackBotton(object sender, RoutedEventArgs e)
         {
-            MainMenu go = new MainMenu()
+            MainMenu mainMenu = new MainMenu()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            goMainMenu.Show();
+            mainMenu.Show();
             this.Close();
         }
 

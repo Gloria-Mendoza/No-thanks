@@ -61,5 +61,21 @@ namespace NoThanks
             go.Show();
             this.Close();
         }
+
+        private void SearchClick(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtConsult.Text))
+            {
+                lxtAllUsers.ItemsSource = strings;
+            }
+            else
+            {
+                List<String> resultSearch = new List<string>();
+
+                string nickFriend = txtConsult.Text;
+                resultSearch.Add(strings.Find(i => i.Contains(nickFriend)));
+                lxtAllUsers.ItemsSource = resultSearch;
+            }
+        }
     }
 }

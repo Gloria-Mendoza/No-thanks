@@ -34,7 +34,6 @@ namespace NoThanks
 
         private void ReadResource()
         {
-            string[] files = Directory.GetFiles(@"..\..\Resources", "*.jpg");
             lxtImageSelector.Items.Add("acosardor");
             lxtImageSelector.Items.Add("gato");
             lxtImageSelector.Items.Add("hamster");
@@ -66,10 +65,10 @@ namespace NoThanks
 
                 if (!String.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    if (!ExistsInvalidFields()) 
-                    { 
-                    updateProfileClient.UpdateNewNickname(txtName.Text, Domain.Player.PlayerClient.Nickname);
-                    Domain.Player.PlayerClient.Nickname = txtName.Text;
+                    if (!ExistsInvalidFields())
+                    {
+                        updateProfileClient.UpdateNewNickname(txtName.Text, Domain.Player.PlayerClient.Nickname);
+                        Domain.Player.PlayerClient.Nickname = txtName.Text;
                     }
                 }
             }
@@ -92,8 +91,8 @@ namespace NoThanks
             {
                 updateProfileClient.Abort();
             }
-            
-            Profile go = new Profile()
+
+            Profile goProfile = new Profile()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
@@ -106,12 +105,12 @@ namespace NoThanks
         private void CancelClick(object sender, RoutedEventArgs e)//Cancelar?
         {
             updateProfileClient.Abort();
-            Profile go = new Profile()
+            Profile profile = new Profile()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            goProfile.Show();
+            profile.Show();
             this.Close();
         }
 
