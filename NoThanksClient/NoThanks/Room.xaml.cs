@@ -39,8 +39,10 @@ namespace NoThanks
         }
 
         #region Public Functions
-        public void CreateNewRoom(bool isNewRoom)
+        public bool CreateNewRoom(bool isNewRoom)
         {
+            var status = true;
+
             this.isNewRoom = isNewRoom;
             if (isNewRoom)
             {
@@ -58,19 +60,23 @@ namespace NoThanks
             }
             catch (EndpointNotFoundException ex)
             {
+                status = false;
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationObjectFaultedException ex)
             {
+                status = false;
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException ex)
             {
+                status = false;
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            return status;
         }
 
         public bool CheckQuota()
@@ -115,7 +121,7 @@ namespace NoThanks
 
         public void WhisperCallBack(string sender, string message)
         {
-            lxtChatBox.Items.Add(sender + ": " + message);
+            lxtChatBox.Items.Add($"{sender}:{message}");
             lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
         }
 
@@ -144,7 +150,7 @@ namespace NoThanks
 
             if (Domain.Player.PlayerClient.Nickname.Equals(nickname))
             {
-                MenuPrincipal go = new MenuPrincipal()
+                MainMenu go = new MainMenu()
                 {
                     WindowState = this.WindowState,
                     Left = this.Left
@@ -174,7 +180,7 @@ namespace NoThanks
 
         public void NextTurn(int round, NoThanksService.Player[] roomPlayers)
         {
-            lbtokens.Content = $"Round: {round} \nTokens: {globaltokens}";
+            lbtokens.Content = $"{globaltokens}";
             playerList = roomPlayers;
             lxtPlayersBox.ItemsSource = playerList;
             currentRound = round;
@@ -201,7 +207,7 @@ namespace NoThanks
                 goRoomScores.GenerateScores(playerList.ToList());
                 goRoomScores.ShowDialog();
 
-                MenuPrincipal goMainMenu = new MenuPrincipal()
+                MainMenu goMainMenu = new MainMenu()
                 {
                     WindowState = this.WindowState,
                     Left = this.Left
@@ -266,7 +272,7 @@ namespace NoThanks
 
         private void BackClick(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal goMainMenu = new MenuPrincipal()
+            MainMenu goMainMenu = new MainMenu()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
@@ -410,7 +416,7 @@ namespace NoThanks
                     string[] args = txtMesageContainer.Text.Split(' ');
                     if (args.Length > 2)
                     {
-                        string message = "";
+                        string message = $"{Domain.Player.PlayerClient.Nickname}:";
                         for (int i = 2; i < args.Length; i++)
                         {
                             message += args[i] + " ";

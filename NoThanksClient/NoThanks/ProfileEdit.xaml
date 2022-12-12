@@ -6,17 +6,20 @@
         xmlns:local="clr-namespace:NoThanks"
         xmlns:p = "clr-namespace:NoThanks.Properties"
         mc:Ignorable="d"
-        Title="ProfileEdit" Height="450" Width="800">
+        Title="{x:Static p:Resources.PROFILEDIT_TITLE_WINDOW}" Height="450" Width="800">
     <Grid>
-        <Image Source="/Images/5053309.jpg" Height="NaN" Margin="0,-1,0,-1" Width="NaN" Stretch="UniformToFill"/>
-        <Label Content="{x:Static p:Resources.RESULT_PLAYERNAME_LABEL}" HorizontalAlignment="Left" Margin="310,95,0,0" VerticalAlignment="Top" Foreground="#FFFB6D57" FontSize="36" FontFamily="Arial" FontWeight="Bold" Height="64" Width="466"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Margin="320,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="319" Height="39" FontSize="16" TextChanged="TextBox_TextChanged" SelectionOpacity="-5"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="131*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="/Images/5053309.jpg" Height="NaN" Margin="0,-1,0,-1" Width="NaN" Stretch="UniformToFill" Grid.ColumnSpan="2"/>
+        <Label Content="{x:Static p:Resources.RESULT_PLAYERNAME_LABEL}" HorizontalAlignment="Left" Margin="165,95,0,0" VerticalAlignment="Top" Foreground="#FFFB6D57" FontSize="36" FontFamily="Arial" FontWeight="Bold" Height="64" Width="466" Grid.Column="1"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="175,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="330" Height="30" FontSize="16" SelectionOpacity="-5" Grid.Column="1"/>
         <Border BorderThickness="1" HorizontalAlignment="Left" Height="272" Margin="10,28,0,0" VerticalAlignment="Top" Width="274" BorderBrush="#FFF7F7F7" Background="#FF6B6868" Grid.ColumnSpan="2"/>
-        <Image x:Name="imagenProfile" HorizontalAlignment="Left" Height="272" Margin="10,28,0,0" VerticalAlignment="Top" Width="274" Grid.ColumnSpan="2"/>
-        <Button Content="Abrir" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" Height="35" Width="97" FontSize="22" Click="Button_Click"/>
-        <Button Content="Guardar" HorizontalAlignment="Left" Margin="498,384,0,0" VerticalAlignment="Top" Height="40" Width="88" Grid.Column="1" Click="Button_Click_1"/>
-        <Button Content="Cancelar" HorizontalAlignment="Left" Margin="604,384,0,0" VerticalAlignment="Top" Height="40" Width="88" Grid.Column="1" Click="Button_Click_2"/>
-        <ListBox x:Name="lxtImageSelector" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,304,515,50" SelectionChanged="lxtImageSelector_MouseLeftButtonDown" />
+        <Image x:Name="imageProfile" HorizontalAlignment="Left" Height="272" Margin="10,28,0,0" VerticalAlignment="Top" Width="274" Grid.ColumnSpan="2"/>
+        <Button Content="{x:Static p:Resources.GENERAL_CONFIRM_BUTTON}" HorizontalAlignment="Left" Margin="430,384,0,0" VerticalAlignment="Top" Height="40" Width="88" Grid.Column="1" Click="SaveClick"/>
+        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" HorizontalAlignment="Left" Margin="535,384,0,0" VerticalAlignment="Top" Height="40" Width="88" Grid.Column="1" Click="CancelClick"/>
+        <ListBox x:Name="lxtImageSelector" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,515,30" SelectionChanged="ImageSelector" Background="{x:Null}" Foreground="Red" HorizontalAlignment="Right" Width="275" Grid.ColumnSpan="2" Height="80" VerticalAlignment="Bottom" />
 
 
     </Grid>
