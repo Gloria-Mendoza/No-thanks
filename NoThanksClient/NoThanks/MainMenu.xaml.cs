@@ -48,68 +48,70 @@ namespace NoThanks
         }
 
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void BackBotton(object sender, RoutedEventArgs e)
         {
-            MainWindow go = new MainWindow()
+            MainWindow goMainWindow = new MainWindow()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            goMainWindow.Show();
             this.Close();
         }
 
 
-        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void ProfileClick(object sender, MouseButtonEventArgs e)
         {
             if (!Domain.Player.PlayerClient.IsGuest)
             {
-                Profile go = new Profile()
+                Profile goProfile = new Profile()
                 {
                     WindowState = this.WindowState,
                     Left = this.Left
                 };
 
-                go.Show();
+                goProfile.Show();
                 this.Close();
             }
 
         }
 
-        private void Image_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
+        private void PlayersClick(object sender, MouseButtonEventArgs e)
         {
             if (!Domain.Player.PlayerClient.IsGuest)
             {
-                Friends go = new Friends()
+                Players goPlayers = new Players()
                 {
                     WindowState = this.WindowState,
                     Left = this.Left
                 };
-                go.Show();
+                goPlayers.Show();
                 this.Close();
             }
         }
 
-        private void Image_MouseLeftButtonUp_2(object sender, MouseButtonEventArgs e)
+        private void LanguageClick(object sender, MouseButtonEventArgs e)
         {
-            Personalization go = new Personalization()
+            Personalization goPersonalization = new Personalization()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            goPersonalization.Show();
             this.Close();
         }
 
-        private void Image_MouseLeftButtonUp_3(object sender, MouseButtonEventArgs e)
+        private void PlayClick(object sender, MouseButtonEventArgs e)
         {
-            PlaySelection go = new PlaySelection()
+            PlaySelection goPlaySelection = new PlaySelection()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            goPlaySelection.Show();
             this.Close();
         }
+
+
     }
 }
