@@ -140,5 +140,32 @@ namespace Test
 
             Assert.IsFalse(result, $"Nickname NO actualizado");
         }
+
+        [TestMethod]
+        public void TestSaveImageSuccess()
+        {
+            int playerId = 1;
+            string image = "nina";
+
+            Authentication authentication = new Authentication();
+            
+            var result = authentication.SaveImage(image, playerId);
+
+            Assert.IsTrue(result, $"Imagen guardada");
+        }
+        
+        [TestMethod]
+        public void TestImageSaveFailure()
+        {
+            int playerId = 1;
+            string image = "ola";
+
+            Authentication authentication = new Authentication();
+
+            var result = authentication.SaveImage(image, playerId);
+
+            Assert.IsFalse(result, $"Imagen NO guardada");
+        }
+        
     }
 }

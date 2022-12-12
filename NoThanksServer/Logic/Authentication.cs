@@ -73,7 +73,11 @@ namespace Logic
             var status = false;
             using (var context = new NoThanksEntities())
             {
-                var playerToUpdate = context.Players.First(c => c.idPlayer.Equals(idProfile));
+                var playerToUpdate = context.Players.FirstOrDefault(c => c.idPlayer.Equals(idProfile));
+                if (playerToUpdate == null)
+                {
+                    return false;
+                }
                 playerToUpdate.photo = imageManager;
                 status = context.SaveChanges() > 0;
             }
