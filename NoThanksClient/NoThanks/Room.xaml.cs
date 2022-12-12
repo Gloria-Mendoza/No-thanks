@@ -113,7 +113,7 @@ namespace NoThanks
             lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
         }
 
-        public void WhisperCallBack(string sender, string message)
+        public void WhisperCallBack(string message)
         {
             lxtChatBox.Items.Add(message);
             lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
@@ -415,7 +415,7 @@ namespace NoThanks
                         {
                             message += args[i] + " ";
                         }
-                        gameServiceClient.SendWhisper(Domain.Player.PlayerClient.Nickname, args[1], message, idRoom);
+                        gameServiceClient.SendWhisper(args[1], message, idRoom);
                     }
                 }
                 else

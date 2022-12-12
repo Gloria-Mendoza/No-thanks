@@ -7,6 +7,7 @@ using Logic;
 using log4net;
 using Logs;
 
+
 namespace Services
 {
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Multiple, InstanceContextMode = InstanceContextMode.Single)]
@@ -78,7 +79,7 @@ namespace Services
             }
             return status;
         }
-                
+
         public int GenerateCode()
         {
             Random random = new Random();
@@ -115,11 +116,11 @@ namespace Services
             return roomId.ToString();
         }
 
-        public bool NewRoom(string hostUsername, string idRoom)
+        public bool NewRoom(string hostUsername, string roomId)
         {
             var newRoom = new Logic.Room()
             {
-                Id = idRoom,
+                Id = roomId,
                 HostUsername = hostUsername,
                 MatchStatus = RoomStatus.Waitting,
                 CurrentPlayersCount = 0,
@@ -139,15 +140,15 @@ namespace Services
             return room;
         }
 
-        public List<Logic.Player> RecoverRoomPlayers(string idRoom)
+        public List<Logic.Player> RecoverRoomPlayers(string roomId)
         {
-            var roomPlayersList = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom)).Players;
+            var roomPlayersList = globalRooms.FirstOrDefault(r => r.Id.Equals(roomId)).Players;
             return roomPlayersList;
         }
 
-        public void StartGame(string idRoom, string[] message)
+        public void StartGame(string roomId, string[] message)
         {
-            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(roomId));
             if (room != null)
             {
                 Player[] players = room.Players.ToArray();
@@ -158,7 +159,7 @@ namespace Services
                     {
                         player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().StartGameRoom(RoomStatus.Started, players);
                     }
-                    SendMessage(message[0], null, idRoom);
+                    SendMessage(message[0], null, roomId);
                 }
                 else
                 {
@@ -166,7 +167,7 @@ namespace Services
                     {
                         player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().StartGameRoom(RoomStatus.Waitting, players);
                     }
-                    SendMessage(message[1], null, idRoom);
+                    SendMessage(message[1], null, roomId);
                 }
             }
         }
@@ -194,7 +195,7 @@ namespace Services
                 GameManager gameManager = new GameManager();
                 gameManager.AddFinishedGame(room);
             }
-            catch(EntityException entityException)
+            catch (EntityException entityException)
             {
                 Log.Error($"{entityException.Message}");
             }
@@ -242,7 +243,7 @@ namespace Services
             Logic.Player player = null;
             var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
 
-            if(room != null)
+            if (room != null)
             {
                 player = room.Players.FirstOrDefault(i => i.Nickname.Equals(username));
             }
@@ -294,11 +295,18 @@ namespace Services
             }
         }
 
-        public void SendWhisper(string sender, string receiver, string message, string idRoom)
+        public void SendWhisper(string receiver, string message, string idRoom)
         {
-            var player = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom))
-                .Players.FirstOrDefault(i => i.Nickname.Equals(receiver));
-            player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().WhisperCallBack(sender, message);
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            if (room != null)
+            {
+                var player = room.Players.FirstOrDefault(i => i.Nickname.Equals(receiver));
+
+                if (player != null)
+                {
+                    player.AOperationContext.GetCallbackChannel<IGameServiceCallback>().WhisperCallBack(message);
+                }
+            }
         }
 
         public void CreateDeck(String roomId)
@@ -408,9 +416,16 @@ namespace Services
     {
         public List<String> GetGlobalPlayers()
         {
-            List<String> result = new List<String>();
             ListPlayers list = new ListPlayers();
-            result = list.ListAllPlayer();
+            List<string> result = new List<string>();
+            try
+            {
+                result = list.ListAllPlayer();
+            }
+            catch (EntityException entityException)
+            {
+                Log.Error($"{entityException.Message}");
+            };
             return result;
         }
 
@@ -425,7 +440,7 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                Log.Error($"Fallo: {entityException.Message}");
+                Log.Error($"{entityException.Message}");
             }
             Console.WriteLine();
             return status;
@@ -441,7 +456,7 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                Log.Error($"Fallo: {entityException.Message}");
+                Log.Error($"{entityException.Message}");
             }
             return status;
         }

@@ -462,6 +462,9 @@
   <data name="CONSULTRECORD_TITLE_WINDOW" xml:space="preserve">
     <value>Records</value>
   </data>
+  <data name="LOGIN_INVALIDFORMAT_MESSAGE" xml:space="preserve">
+    <value>El formato del nombre y/o contraseña no es correcto</value>
+  </data>
   <data name="GENERAL_SEARCH_BUTTON" xml:space="preserve">
     <value>Buscar</value>
   </data>

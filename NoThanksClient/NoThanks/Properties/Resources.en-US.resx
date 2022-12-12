@@ -477,4 +477,7 @@
   <data name="VERIFYEMAIL_TITLE_WINDOW" xml:space="preserve">
     <value>email verification</value>
   </data>
+  <data name="LOGIN_INVALIDFORMAT_MESSAGE" xml:space="preserve">
+    <value>The format of the name and/or password is not correct</value>
+  </data>
 </root>

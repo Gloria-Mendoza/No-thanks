@@ -38,7 +38,7 @@ namespace Services
         void SendMessage(string message, string username, string idRoom);
 
         [OperationContract(IsOneWay = true)]
-        void SendWhisper(string sender, string receiver, string message, string idRoom);
+        void SendWhisper(string receiver, string message, string idRoom);
 
         [OperationContract(IsOneWay = true)]
         void CreateDeck(string roomId);
@@ -59,7 +59,7 @@ namespace Services
         [OperationContract(IsOneWay = true)]
         void MessageCallBack(string message);
         [OperationContract (IsOneWay = true)]
-        void WhisperCallBack(string sender, string message);
+        void WhisperCallBack(string message);
         [OperationContract(IsOneWay = true)]
         void StartGameRoom(RoomStatus roomStatus, Player[] players);
         [OperationContract(IsOneWay = true)]

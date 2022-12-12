@@ -42,10 +42,9 @@ namespace NoThanks
 
         }
 
-        private void ChangedNickname(object sender, TextChangedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Domain.Player user = new Domain.Player();
-            user.Nickname = txtName.Text;
+            //Botón Abrir
         }
 
         private void ImagenInit()
@@ -57,12 +56,12 @@ namespace NoThanks
                 IntPtr.Zero,
                 Int32Rect.Empty,
                 BitmapSizeOptions.FromEmptyOptions()
-                );
+        private void ConfirmButton(object sender, RoutedEventArgs e)
 
             imageProfile.Source = bmpImage;
         }
 
-        private void ConfirmButton(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)//Botón Guardar
         {
             try
             {
@@ -89,34 +88,39 @@ namespace NoThanks
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch (TimeoutException ex)
+            finally
             {
+                updateProfileClient.Abort();
+            }
+
+            Profile goProfile = new Profile()
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            Profile goProfile = new Profile()
+            Profile go = new Profile()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            goProfile.Show();
-            this.Close();
-
-        }
-
         private void BackButton(object sender, RoutedEventArgs e)
+            this.Close();
+            updateProfileClient.Abort();
+            Profile go = new Profile()
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)//Cancelar?
         {
-            Profile goProfile = new Profile()
+            Profile go = new Profile()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
-            };
+        private void ChangedImage(object sender, SelectionChangedEventArgs e)
             goProfile.Show();
             this.Close();
         }
 
-        private void ChangedImage(object sender, SelectionChangedEventArgs e)
+        private void lxtImageSelector_MouseLeftButtonDown(object sender, SelectionChangedEventArgs e)
         {
             if (lxtImageSelector.SelectedItem != null)
             {

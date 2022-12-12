@@ -448,6 +448,15 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a El formato del nombre y/o contraseña no es correcto.
+        /// </summary>
+        public static string LOGIN_INVALIDFORMAT_MESSAGE {
+            get {
+                return ResourceManager.GetString("LOGIN_INVALIDFORMAT_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Iniciar Sesión.
         /// </summary>
         public static string LOGIN_LOGIN_BUTTON {

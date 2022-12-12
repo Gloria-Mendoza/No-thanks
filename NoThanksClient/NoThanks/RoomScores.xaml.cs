@@ -167,5 +167,10 @@ namespace NoThanks
         {
             DialogResult = true;
         }
+
+        private void BackClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
