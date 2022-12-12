@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CHANGEPASSWORD_ACTUALPASSWORD_LABEL" xml:space="preserve">
+    <value>Contraseña Actual</value>
+  </data>
+  <data name="CHANGEPASSWORD_COMFIRMPASSWORD_LABEL" xml:space="preserve">
+    <value>Confirmar Nueva Contraseña</value>
+  </data>
+  <data name="CHANGEPASSWORD_NEWPASSWORD_LABEL" xml:space="preserve">
+    <value>Nueva Contraseña</value>
+  </data>
+  <data name="CHANGEPASSWORD_TITLE_WINDOW" xml:space="preserve">
+    <value>No Thanks: el Juego – Cambiar Contraseña</value>
+  </data>
+  <data name="CHANGEPASSWORD_TOKEN_LABEL" xml:space="preserve">
+    <value>Token</value>
+  </data>
+  <data name="CHAT_SEND_BUTTON" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="CHAT_TITLE_WINDOW" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="EXPEL_REASONAFK_CHECKBOX" xml:space="preserve">
+    <value>AFK</value>
+  </data>
+  <data name="EXPEL_REASONCHEAT_CHECKBOX" xml:space="preserve">
+    <value>Trampas</value>
+  </data>
+  <data name="EXPEL_REASONMESSAGE_CHECKBOX" xml:space="preserve">
+    <value>Recuerda mantener un comportamiento sano para no arruinar la experiencia de juego de los demás</value>
+  </data>
+  <data name="EXPEL_REASONTOXIC_CHECKBOK" xml:space="preserve">
+    <value>Comportamiento Toxico</value>
+  </data>
+  <data name="EXPEL_TITLE_LABEL" xml:space="preserve">
+    <value>Motivo de la Expulsión</value>
+  </data>
+  <data name="EXPEL_TITLE_WINDOW" xml:space="preserve">
+    <value>Expulsar Jugador</value>
+  </data>
+  <data name="GENERAL_BACK_BUTTON" xml:space="preserve">
+    <value>Volver</value>
+  </data>
+  <data name="GENERAL_CANCEL_BUTTON" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="GENERAL_CONFIRM_BUTTON" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="GENERAL_NEXT_BUTTON" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="JOINGAME_GAMECODE_LABEL" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="JOINGAME_JOIN_BUTTON" xml:space="preserve">
+    <value>Unirse</value>
+  </data>
+  <data name="JOINGAME_TITLE_WINDOW" xml:space="preserve">
+    <value>Unirse a Partida (con Código)</value>
+  </data>
+  <data name="LANGUAGE_ENGLISH_COLUMN" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="LANGUAGE_SELECT_BUTTON" xml:space="preserve">
+    <value>Seleccionar</value>
+  </data>
+  <data name="LANGUAGE_SPANISH_COLUMN" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="LANGUAGE_TITLE_TABLE" xml:space="preserve">
+    <value>Lenguaje</value>
+  </data>
+  <data name="LOGIN_GUEST_LABEL" xml:space="preserve">
+    <value>Jugar como Invitado</value>
+  </data>
+  <data name="LOGIN_LOGINTITLE_LABEL" xml:space="preserve">
+    <value>Inicio de Sesión</value>
+  </data>
+  <data name="LOGIN_LOGIN_BUTTON" xml:space="preserve">
+    <value>Iniciar Sesión</value>
+  </data>
+  <data name="LOGIN_PASSWORD_LABEL" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="LOGIN_REGISTER_BUTTON" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="LOGIN_TITLE_WINDOW" xml:space="preserve">
+    <value>No Thanks: El Juego</value>
+  </data>
+  <data name="LOGIN_USERNAME_LABEL" xml:space="preserve">
+    <value>Nombre de Usuario</value>
+  </data>
+  <data name="MAINMENU_TITLE-WINDOW" xml:space="preserve">
+    <value>No Thanks: Menu Principal</value>
+  </data>
+  <data name="PERSONALIZATION_BUTTON" xml:space="preserve">
+    <value>Personalizacion</value>
+  </data>
+  <data name="PERSONALIZATION_TITLE-WINDOW" xml:space="preserve">
+    <value>No Thanks: Personalizacion</value>
+  </data>
+  <data name="PLAY_BUTTON" xml:space="preserve">
+    <value>Jugar</value>
+  </data>
+  <data name="PROFILE_TITLE-WINDOW" xml:space="preserve">
+    <value>No Thanks: Perfil</value>
+  </data>
+  <data name="RESULT_PLAYERNAME_LABEL" xml:space="preserve">
+    <value>Nombre del jugador</value>
+  </data>
+  <data name="RESULT_SCOREUNIT_LABEL" xml:space="preserve">
+    <value>puntos</value>
+  </data>
+  <data name="RESULT_TITLE_WINDOW" xml:space="preserve">
+    <value>Resultados</value>
+  </data>
+  <data name="RESULT_WINNER_LABEL" xml:space="preserve">
+    <value>Ganador</value>
+  </data>
+  <data name="RESULT_YOU_LABEL" xml:space="preserve">
+    <value>Tú</value>
+  </data>
+  <data name="ROOM_STARTGAME_BUTTON" xml:space="preserve">
+    <value>Iniciar Partida</value>
+  </data>
+  <data name="ROOM_TITLE_WINDOW" xml:space="preserve">
+    <value>Sala</value>
+  </data>
+  <data name="ROOM_WAITING_MESSAGE" xml:space="preserve">
+    <value>Esperando a que el anfitrión comience la partida…</value>
+  </data>
+  <data name="ROOM_TAKE_BUTTON" xml:space="preserve">
+    <value>Tomar</value>
+  </data>
+  <data name="ROOM_PASS_BUTTON" xml:space="preserve">
+    <value>Pasar</value>
+  </data>
+  <data name="SIGNIN_EMAIL_LABEL" xml:space="preserve">
+    <value>Correo electrónico:</value>
+  </data>
+  <data name="SIGNIN_LASTNAME_LABEL" xml:space="preserve">
+    <value>Apellidos:</value>
+  </data>
+  <data name="SIGNIN_NAME_LABEL" xml:space="preserve">
+    <value>Nombre:</value>
+  </data>
+  <data name="SIGNIN_PASSWORD_LABEL" xml:space="preserve">
+    <value>Contraseña:</value>
+  </data>
+  <data name="SIGNIN_REPEATPASSWORD_LABEL" xml:space="preserve">
+    <value>Repetir contraseña:</value>
+  </data>
+  <data name="SIGNIN_SIGNIN_BUTTON" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="SIGNIN_TITLESIGNIN_LABEL" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="SIGNIN_TITLE_WINDOW" xml:space="preserve">
+    <value>No Thanks: Registrarse</value>
+  </data>
+  <data name="SIGNIN_USERNAME_LABEL" xml:space="preserve">
+    <value>Nombre de usuario:</value>
+  </data>
+  <data name="VERIFYEMAIL_BUTTON" xml:space="preserve">
+    <value>Enviar código</value>
+  </data>
+  <data name="VERIFYEMAIL_INSTRUCTIONS_LABEL" xml:space="preserve">
+    <value>Se ha enviado un código para verificar su correo electrónico</value>
+  </data>
+  <data name="VERIFYEMAIL_NUMBER_LABEL" xml:space="preserve">
+    <value>Número de verificación:</value>
+  </data>
+  <data name="VERIFYEMAIL_TITLE_LABEL" xml:space="preserve">
+    <value>Comprobación de correo electrónico</value>
+  </data>
+  <data name="VERIFYEMAIL_TITLE_WINDOW" xml:space="preserve">
+    <value>Verificación de correo electrónico</value>
+  </data>
+  <data name="PLAYSELECTION_TITLE_WINDOW" xml:space="preserve">
+    <value>Unirse o Crear Sala</value>
+  </data>
+  <data name="PLAYSELECTION_JOIN_BUTTON" xml:space="preserve">
+    <value>Unirse con Codigo</value>
+  </data>
+  <data name="PLAYSELECTION_FINDMATCH_BUTTON" xml:space="preserve">
+    <value>Encontrar Partida</value>
+  </data>
+  <data name="PLAYSELECTION_NEWROOM_BUTTON" xml:space="preserve">
+    <value>Crear Sala</value>
+  </data>
+  <data name="PLAYSELECTION_TITLE_LABEL" xml:space="preserve">
+    <value>Unirse a partida o Crear una nueva Sala</value>
+  </data>
+  <data name="CHAT_JOINMESSAGE_MESSAGE" xml:space="preserve">
+    <value>se ha conectado</value>
+  </data>
+  <data name="CHAT_LEAVEMESSAGE_MESSAGE" xml:space="preserve">
+    <value>se ha desconectado</value>
+  </data>
+  <data name="GENERAL_NOCONNECTION_MESSAGE" xml:space="preserve">
+    <value>No se pudo conectar con el servidor</value>
+  </data>
+  <data name="JOINGAME_CANTJOIN_MESSAGE" xml:space="preserve">
+    <value>No se puede unir a la sala, está llena o la partida ha iniciado</value>
+  </data>
+  <data name="GENERAL_WHITESPACES_MESSAGE" xml:space="preserve">
+    <value>No puedes dejar campos vacios</value>
+  </data>
+  <data name="CHANGEPASSWORD_INCORRECTTOKEN_MESSAGE" xml:space="preserve">
+    <value>Token Incorrecto</value>
+  </data>
+  <data name="CHANGEPASSWORD_VALIDATIONSEND_MESSAGE" xml:space="preserve">
+    <value>Código de validación enviado con exito</value>
+  </data>
+  <data name="GENERAL_CANTSEND_MESSAGE" xml:space="preserve">
+    <value>No se pudo enviar el mensaje</value>
+  </data>
+  <data name="CHANGEPASSWORD_SUCCESSFUL_MESSAGE" xml:space="preserve">
+    <value>La contraseña ha sido cambiada con exito</value>
+  </data>
+  <data name="GENERAL_SUCCSESSFUL_TITLE" xml:space="preserve">
+    <value>Éxito</value>
+  </data>
+  <data name="GENERAL_ERROR_TITLE" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="GENERAL_WARNING_TITLE" xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
+  <data name="LOGIN_NOUSERORPASSWORD_MESSAGE" xml:space="preserve">
+    <value>Debes ingresar tu usuario y contraseña</value>
+  </data>
+  <data name="LOGIN_CANTLOGIN_MESSAGE" xml:space="preserve">
+    <value>No se pudo iniciar sesión, intentelo mas tarde</value>
+  </data>
+  <data name="ROOM_CANTEXPEL_MESSAGE" xml:space="preserve">
+    <value>Solo el anfitrión de la partida puede expulsar a un jugador</value>
+  </data>
+  <data name="ROOM_ROUND_LABEL" xml:space="preserve">
+    <value>Round</value>
+  </data>
+  <data name="ROOM_TOKENS_LABEL" xml:space="preserve">
+    <value>Tokens</value>
+  </data>
+  <data name="ROOM_CANTSTART_MESSAGE" xml:space="preserve">
+    <value>Deben ser 3 jugadores como minimo para poder empezar la partida</value>
+  </data>
+  <data name="ROOM_STARTEDGAME_MESSAGE" xml:space="preserve">
+    <value>¡Juego Iniciado!</value>
+  </data>
+  <data name="SIGNIN_CONFIRMATION_MESSAGE" xml:space="preserve">
+    <value>Registro exitoso</value>
+  </data>
+  <data name="SIGNIN_CONFIRMATION_MESSAGEWINDOW" xml:space="preserve">
+    <value>Confirmación de registro</value>
+  </data>
+  <data name="SIGNIN_EMPTYFIELDS_MESSAGE" xml:space="preserve">
+    <value>Existen campos vacíos. Verifica los datos</value>
+  </data>
+  <data name="SIGNIN_EMPTYFIELDS_MESSAGEWINDOW" xml:space="preserve">
+    <value>Campos vacíos</value>
+  </data>
+  <data name="SIGNIN_EXCESSLENGTH_MESSAGE" xml:space="preserve">
+    <value>Existen campos que exceden la longitud permitida. Verifica los datos</value>
+  </data>
+  <data name="SIGNIN_EXCESSLENGTH_MESSAGEWINDOW" xml:space="preserve">
+    <value>Longitud excedida</value>
+  </data>
+  <data name="SIGNIN_INCORRECTPASSWORD_MESSAGE" xml:space="preserve">
+    <value>Las contraseñas ingresadas no coinciden. Verifica los datos</value>
+  </data>
+  <data name="SIGNIN_INCORRECTPASSWORD_MESSAGEWINDOW" xml:space="preserve">
+    <value>Contraseña incorrecta</value>
+  </data>
+  <data name="SIGNIN_INVALIDPASSWORD_MESSAGE" xml:space="preserve">
+    <value>La contraseña debe tener entre 8 y 16 caracteres. La contraseña debe tener por lo menos un número. La contraseña debe tener por lo menos una letra mayúscula. La contraseña debe tener por lo menos una letra minúscula</value>
+  </data>
+  <data name="SIGNIN_INVALIDPASSWORD_MESSAGEWINDOW" xml:space="preserve">
+    <value>Contraseña inválida</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGE" xml:space="preserve">
+    <value>Existen caracteres invalidos. Verifica los datos del correo electrónico</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGSFOREMAIL_MESSAGEWINDOW" xml:space="preserve">
+    <value>Campos inválidos en correo electrónico</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGE" xml:space="preserve">
+    <value>Existen caracteres invalidos. Verifica los datos de apellidos</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGSFORLASTNAME_MESSAGEWINDOW" xml:space="preserve">
+    <value>Campos inválidos en apellidos</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGS_MESSAGE" xml:space="preserve">
+    <value>Existen caracteres invalidos. Verifica los datos de nombre</value>
+  </data>
+  <data name="SIGNIN_INVALIDSTRINGS_MESSAGEWINDOW" xml:space="preserve">
+    <value>Campos inválidos en nombre</value>
+  </data>
+  <data name="SIGNIN_REPEATEDEMAIL_MESSAGE" xml:space="preserve">
+    <value>El correo ingresado ya se encuentra registrado. Por favor ingrese uno nuevo</value>
+  </data>
+  <data name="SIGNIN_REPEATEDEMAIL_MESSAGEWINDOW" xml:space="preserve">
+    <value>Correo registrado</value>
+  </data>
+  <data name="SIGNIN_REPEATEDUSERNAME_MESSAGE" xml:space="preserve">
+    <value>El nombre de usuario ingresado ya se encuentra registrado. Por favor ingrese uno nuevo</value>
+  </data>
+  <data name="SIGNIN_REPEATEDUSERNAME_MESSAGEWINDOW" xml:space="preserve">
+    <value>Nombre de usuario registrado</value>
+  </data>
+  <data name="SIGNIN_SAVEERROR_MESSAGE" xml:space="preserve">
+    <value>No Funciona</value>
+  </data>
+  <data name="SIGNIN_SAVEERROR_MESSAGEWINDOW" xml:space="preserve">
+    <value>Upss</value>
+  </data>
+  <data name="VERIFYEMAIL_CONFIRMATIONERROR_MESSAGE" xml:space="preserve">
+    <value>El código ingresado es incorrecto. Verifique la información</value>
+  </data>
+  <data name="VERIFYEMAIL_CONFIRMATIONERROR_MESSAGEWINDOW" xml:space="preserve">
+    <value>Error de corfirmación de correo</value>
+  </data>
+  <data name="VERIFYEMAIL_CONFIRMATION_MESSAGE" xml:space="preserve">
+    <value>El correo electróncio se ha verificado correctamente</value>
+  </data>
+  <data name="VERIFYEMAIL_CONFIRMATION_MESSAGEWINDOW" xml:space="preserve">
+    <value>Confirmación de correo</value>
+  </data>
+  <data name="VERIFYEMAIL_INVALIDFIELD_MESSAGE" xml:space="preserve">
+    <value>El código ingresado es inválido. Verifique la información</value>
+  </data>
+  <data name="CONSULTRECORD_SCORE_COLUMN" xml:space="preserve">
+    <value>Puntaje</value>
+  </data>
+  <data name="CONSULTRECORD_TITLE_COLUMN" xml:space="preserve">
+    <value>Nombre de usuario</value>
+  </data>
+  <data name="CONSULTRECORD_TITLE_LABEL" xml:space="preserve">
+    <value>Mejores puntajes</value>
+  </data>
+  <data name="CONSULTRECORD_TITLE_WINDOW" xml:space="preserve">
+    <value>Records</value>
+  </data>
+  <data name="GENERAL_SEARCH_BUTTON" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="PLAYERS_LISTPLAYERS_LABEL" xml:space="preserve">
+    <value>Lista de Jugadores:</value>
+  </data>
+  <data name="PLAYERS_SEARCH_LABEL" xml:space="preserve">
+    <value>Buscar Jugador:</value>
+  </data>
+  <data name="PLAYERS_TITLE-WINDOW" xml:space="preserve">
+    <value>No Thanks: Jugadores</value>
+  </data>
+  <data name="PROFILEDIT_TITLE-WINDOW" xml:space="preserve">
+    <value>Editar Perfil</value>
+  </data>
+  <data name="LOGIN_INVALIDFORMAT_MESSAGE" xml:space="preserve">
+    <value>El formato del nombre y/o contraseña no es correcto</value>
+  </data>
+  <data name="JOINGAME_NOCODE_MESSAGE" xml:space="preserve">
+    <value>Debes ingresar un codigo</value>
+  </data>
+</root>

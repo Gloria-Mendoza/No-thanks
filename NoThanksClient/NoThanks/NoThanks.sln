@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoThanks", "NoThanks.csproj", "{E1C23737-CBAD-4879-A801-3BCC1E434D73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "..\Domain\Domain.csproj", "{A2D0710F-C678-4C40-A16A-5C79F042B48C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "..\Security\Security.csproj", "{A055F5B4-7EE9-44CB-B639-6AF9F51DB68F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs", "..\Logs\Logs.csproj", "{15A7C467-097D-4BA9-9921-D50E177C70AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1C23737-CBAD-4879-A801-3BCC1E434D73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1C23737-CBAD-4879-A801-3BCC1E434D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1C23737-CBAD-4879-A801-3BCC1E434D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1C23737-CBAD-4879-A801-3BCC1E434D73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2D0710F-C678-4C40-A16A-5C79F042B48C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2D0710F-C678-4C40-A16A-5C79F042B48C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2D0710F-C678-4C40-A16A-5C79F042B48C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2D0710F-C678-4C40-A16A-5C79F042B48C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A055F5B4-7EE9-44CB-B639-6AF9F51DB68F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A055F5B4-7EE9-44CB-B639-6AF9F51DB68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A055F5B4-7EE9-44CB-B639-6AF9F51DB68F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A055F5B4-7EE9-44CB-B639-6AF9F51DB68F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15A7C467-097D-4BA9-9921-D50E177C70AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15A7C467-097D-4BA9-9921-D50E177C70AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15A7C467-097D-4BA9-9921-D50E177C70AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15A7C467-097D-4BA9-9921-D50E177C70AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7D5B5A6-3BC4-48AF-827B-E51730FF4FB1}
+		RESX_NeutralResourcesLanguage = es-MX
+	EndGlobalSection
+EndGlobal
