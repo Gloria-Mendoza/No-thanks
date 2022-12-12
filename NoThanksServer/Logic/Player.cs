@@ -72,7 +72,7 @@ namespace Logic
         }
         public override string ToString()
         {
-            return $"Id-{idPlayer}Nick-{nickname}Pass-{password}email-{email}cards-{cards}cardsstring-{cardsString}" +
+            return $"Nick-{nickname}Pass-{password}email-{email}cards-{cards}cardsstring-{cardsString}" +
                 $"tokens-{tokens}total-{totalScore}Nombre-{name}apellido-{lastName}imagen-{profileImage}status-{status}";
         }
         #endregion

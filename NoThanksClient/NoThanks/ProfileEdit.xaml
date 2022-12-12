@@ -7,20 +7,24 @@
         xmlns:p = "clr-namespace:NoThanks.Properties"
         mc:Ignorable="d"
         Title="{x:Static p:Resources.PROFILEDIT_TITLE_WINDOW}" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush Stretch="UniformToFill" ImageSource="/Images/5053309.jpg"/>
+    </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="29*"/>
-            <ColumnDefinition Width="131*"/>
+            <ColumnDefinition Width="300*"/>
+            <ColumnDefinition Width="500*"/>
         </Grid.ColumnDefinitions>
-        <Image Source="/Images/5053309.jpg" Height="NaN" Margin="0,-1,0,-1" Width="NaN" Stretch="UniformToFill" Grid.ColumnSpan="2"/>
-        <Label Content="{x:Static p:Resources.RESULT_PLAYERNAME_LABEL}" HorizontalAlignment="Left" Margin="165,95,0,0" VerticalAlignment="Top" Foreground="#FFFB6D57" FontSize="36" FontFamily="Arial" FontWeight="Bold" Height="64" Width="466" Grid.Column="1"/>
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="175,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="330" Height="30" FontSize="16" SelectionOpacity="-5" Grid.Column="1"/>
-        <Border BorderThickness="1" HorizontalAlignment="Left" Height="272" Margin="10,28,0,0" VerticalAlignment="Top" Width="274" BorderBrush="#FFF7F7F7" Background="#FF6B6868" Grid.ColumnSpan="2"/>
-        <Image x:Name="imageProfile" HorizontalAlignment="Left" Height="272" Margin="10,28,0,0" VerticalAlignment="Top" Width="274" Grid.ColumnSpan="2"/>
-        <Button Content="{x:Static p:Resources.GENERAL_CONFIRM_BUTTON}" HorizontalAlignment="Left" Margin="430,384,0,0" VerticalAlignment="Top" Height="40" Width="88" Grid.Column="1" Click="SaveClick"/>
-        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" HorizontalAlignment="Left" Margin="535,384,0,0" VerticalAlignment="Top" Height="40" Width="88" Grid.Column="1" Click="CancelClick"/>
-        <ListBox x:Name="lxtImageSelector" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,515,30" SelectionChanged="ImageSelector" Background="{x:Null}" Foreground="Red" HorizontalAlignment="Right" Width="275" Grid.ColumnSpan="2" Height="80" VerticalAlignment="Bottom" />
-
-
+        <Grid Grid.Column="0">
+            <Border BorderThickness="1" HorizontalAlignment="Left" Height="272" Margin="10,28,0,0" VerticalAlignment="Top" Width="274" BorderBrush="#FFF7F7F7" Background="#FF6B6868" Grid.ColumnSpan="2"/>
+            <Image x:Name="imageProfile" Height="272" Margin="10,28,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="274"/>
+            <ListBox x:Name="lxtImageSelector" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,328,0,0" SelectionChanged="ImageSelector" Background="{x:Null}" Foreground="Red" Height="80" VerticalAlignment="Top" HorizontalAlignment="Left" Width="280" />
+        </Grid>
+        <Grid Grid.Column="1">
+            <Label Content="{x:Static p:Resources.RESULT_PLAYERNAME_LABEL}" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Foreground="#FFFB6D57" FontSize="36" FontFamily="Arial" FontWeight="Bold" Height="64" Width="466"/>
+            <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="17,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="330" Height="30" FontSize="16" SelectionOpacity="-5"/>
+            <Button Content="{x:Static p:Resources.GENERAL_CONFIRM_BUTTON}" Margin="0,0,153,10" Click="SaveClick" HorizontalAlignment="Right" Width="88" Height="40" VerticalAlignment="Bottom"/>
+            <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" Margin="0,0,17,10" Click="CancelClick" HorizontalAlignment="Right" Width="88" Height="40" VerticalAlignment="Bottom"/>
+        </Grid>
     </Grid>
 </Window>

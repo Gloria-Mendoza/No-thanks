@@ -11,12 +11,11 @@
         <ImageBrush ImageSource="/Images/5053309.jpg"/>
     </Window.Background>
     <Grid>
-        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" Margin="0,33,66,0" FontFamily="Arial" FontWeight="Bold" FontSize="16" Click="BackBotton" Height="34" VerticalAlignment="Top" HorizontalAlignment="Right" Width="62"/>
-        <ComboBox x:Name="cmb" HorizontalAlignment="Left" Margin="57,306,0,0" VerticalAlignment="Top" Width="197" SelectionChanged="SelectionLanguage">
+        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" Margin="0,0,10,10" FontFamily="Arial" FontWeight="Bold" FontSize="16" Click="BackBotton" HorizontalAlignment="Right" Width="69" Height="34" VerticalAlignment="Bottom"/>
+        <ComboBox x:Name="cmb" HorizontalAlignment="Left" Margin="27,24,0,0" VerticalAlignment="Top" Width="197" SelectionChanged="SelectionLanguage">
             <ComboBoxItem Content="{x:Static p:Resources.LANGUAGE_ENGLISH_COLUMN}"/>
             <ComboBoxItem Content="{x:Static p:Resources.LANGUAGE_SPANISH_COLUMN}"/>
         </ComboBox>
-        <Button Content="{x:Static p:Resources.GENERAL_CONFIRM_BUTTON}" HorizontalAlignment="Left" Margin="275,304,0,0" VerticalAlignment="Top" Click="ConfirmBottom" Height="25" Width="75"/>
-
+        <Button Content="{x:Static p:Resources.GENERAL_CONFIRM_BUTTON}" HorizontalAlignment="Left" Margin="257,22,0,0" VerticalAlignment="Top" Click="ConfirmBottom" Height="25" Width="75"/>
     </Grid>
 </Window>

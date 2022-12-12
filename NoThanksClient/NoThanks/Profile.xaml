@@ -11,12 +11,12 @@
         <ImageBrush ImageSource="/Images/5053309.jpg"/>
     </Window.Background>
     <Grid>
-        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" Margin="670,364,0,0" Click="BackBotton" FontFamily="Arial" FontWeight="Bold" HorizontalAlignment="Left" Width="95" Height="40" VerticalAlignment="Top"/>
+        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" Margin="0,0,35,30" Click="BackBotton" FontFamily="Arial" FontWeight="Bold" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="95"/>
         <Label x:Name="lbName" Content="Invitado" HorizontalAlignment="Left" Margin="155,24,0,0" VerticalAlignment="Top" FontSize="48" FontWeight="Bold" FontFamily="Arial" Foreground="Red"/>
         <Label x:Name ="lbReal" Content="" HorizontalAlignment="Left" Margin="168,89,0,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="#FFD8C22B" FontSize="24" FontFamily="Arial" Width="187"/>
         <Image x:Name="imageProfile"   HorizontalAlignment="Left" Height="147" Margin="10,34,0,0" VerticalAlignment="Top" Width="158" Source="/Images/persona.png"/>
         <Image HorizontalAlignment="Left" Height="75" Margin="100,109,0,0" VerticalAlignment="Top" Width="75" Source="/Images/lapiz.png" MouseLeftButtonUp="ProfileEditClick"/>
-        <Button Content="Cambiar Contraseña" HorizontalAlignment="Left" Margin="635,39,0,0" VerticalAlignment="Top" Height="35" Width="155" FontFamily="Arial" FontWeight="Bold" FontSize="14" Click="ChangePasswordClick"/>
+        <Button Content="Cambiar Contraseña" HorizontalAlignment="Right" Margin="0,39,10,0" VerticalAlignment="Top" Height="35" Width="155" FontFamily="Arial" FontWeight="Bold" FontSize="14" Click="ChangePasswordClick"/>
 
     </Grid>
 </Window>
