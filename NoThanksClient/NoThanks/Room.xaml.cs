@@ -39,8 +39,10 @@ namespace NoThanks
         }
 
         #region Public Functions
-        public void CreateNewRoom(bool isNewRoom)
+        public bool CreateNewRoom(bool isNewRoom)
         {
+            var status = true;
+
             this.isNewRoom = isNewRoom;
             if (isNewRoom)
             {
@@ -58,19 +60,23 @@ namespace NoThanks
             }
             catch (EndpointNotFoundException ex)
             {
+                status = false;
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationObjectFaultedException ex)
             {
+                status = false;
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException ex)
             {
+                status = false;
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            return status;
         }
 
         public bool CheckQuota()

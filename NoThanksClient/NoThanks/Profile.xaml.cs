@@ -33,32 +33,32 @@ namespace NoThanks
 
         private void ConfigureWindow()
         {
-            LabelName.Content = Domain.Player.PlayerClient.Nickname;
-            LabelReal.Content = Domain.Player.PlayerClient.Name;
+            lbName.Content = Domain.Player.PlayerClient.Nickname;
+            lbReal.Content = Domain.Player.PlayerClient.Name;
             
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BackBotton(object sender, RoutedEventArgs e)
         {
-            MainMenu go = new MainMenu();
-            go.WindowState = this.WindowState;
-            go.Show();
+            MainMenu goMainMenu = new MainMenu();
+            goMainMenu.WindowState = this.WindowState;
+            goMainMenu.Show();
             this.Close();
         }
 
-        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void ProfileEditClick(object sender, MouseButtonEventArgs e)
         {
-            Profile_Edit go = new Profile_Edit();
-            go.WindowState = this.WindowState;
-            go.Show();
+            Profile_Edit goProfileEdit = new Profile_Edit();
+            goProfileEdit.WindowState = this.WindowState;
+            goProfileEdit.Show();
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ChangePasswordClick(object sender, RoutedEventArgs e)
         {
-            ChangePassword go = new ChangePassword();
-            go.WindowState = this.WindowState;
-            go.Show();
+            ChangePassword goChangePassword = new ChangePassword();
+            goChangePassword.WindowState = this.WindowState;
+            goChangePassword.Show();
             this.Close();
         }
         private void ImagenInit()
@@ -74,8 +74,9 @@ namespace NoThanks
                     BitmapSizeOptions.FromEmptyOptions()
                     );
 
-                imagenProfile.Source = bmpImage;
+                imageProfile.Source = bmpImage;
             }
         }
+
     }
 }

@@ -322,6 +322,15 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Buscar.
+        /// </summary>
+        public static string GENERAL_SEARCH_BUTTON {
+            get {
+                return ResourceManager.GetString("GENERAL_SEARCH_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Éxito.
         /// </summary>
         public static string GENERAL_SUCCSESSFUL_TITLE {
@@ -372,6 +381,15 @@ namespace NoThanks.Properties {
         public static string JOINGAME_JOIN_BUTTON {
             get {
                 return ResourceManager.GetString("JOINGAME_JOIN_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Debes ingresar un codigo.
+        /// </summary>
+        public static string JOINGAME_NOCODE_MESSAGE {
+            get {
+                return ResourceManager.GetString("JOINGAME_NOCODE_MESSAGE", resourceCulture);
             }
         }
         
@@ -547,6 +565,33 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Lista de Jugadores:.
+        /// </summary>
+        public static string PLAYERS_LISTPLAYERS_LABEL {
+            get {
+                return ResourceManager.GetString("PLAYERS_LISTPLAYERS_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Buscar Jugador:.
+        /// </summary>
+        public static string PLAYERS_SEARCH_LABEL {
+            get {
+                return ResourceManager.GetString("PLAYERS_SEARCH_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No Thanks: Jugadores.
+        /// </summary>
+        public static string PLAYERS_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("PLAYERS_TITLE-WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Encontrar Partida.
         /// </summary>
         public static string PLAYSELECTION_FINDMATCH_BUTTON {
@@ -597,6 +642,15 @@ namespace NoThanks.Properties {
         public static string PROFILE_TITLE_WINDOW {
             get {
                 return ResourceManager.GetString("PROFILE_TITLE-WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Editar Perfil.
+        /// </summary>
+        public static string PROFILEDIT_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("PROFILEDIT_TITLE-WINDOW", resourceCulture);
             }
         }
         
@@ -988,7 +1042,7 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Registrarse.
+        ///   Busca una cadena traducida similar a No Thanks: Registrarse.
         /// </summary>
         public static string SIGNIN_TITLE_WINDOW {
             get {

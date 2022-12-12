@@ -11,13 +11,13 @@
         <ImageBrush ImageSource="/Images/5053309.jpg"/>
     </Window.Background>
     <Grid>
-        <Label x:Name="LabelName" Content="Invitado" HorizontalAlignment="Left" Margin="113,43,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" FontWeight="Bold"/>
+        <Label x:Name="LabelName" Content="Invitado" HorizontalAlignment="Left" Margin="113,43,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" FontWeight="Bold" Background="{x:Null}" Foreground="Red"/>
         <Image Margin="0,94,13,93" Source="/Images/logo.png" HorizontalAlignment="Right" Width="372"/>
-        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" Margin="0,0,55,56" Click="Button_Click_1" FontFamily="Arial" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right" Width="68" Height="32" VerticalAlignment="Bottom"/>
-        <Image x:Name="imagenProfile" HorizontalAlignment="Left" Height="95" Margin="17,14,0,0" VerticalAlignment="Top" Width="100" Source="/Images/persona.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
-        <Image HorizontalAlignment="Left" Height="100" Margin="17,394,0,0" VerticalAlignment="Top" Width="100" Source="/Images/amigos.png" MouseLeftButtonUp="Image_MouseLeftButtonUp_1"/>
-        <Image HorizontalAlignment="Left" Height="100" Margin="17,274,0,0" VerticalAlignment="Top" Width="100" Source="/Images/world.png" RenderTransformOrigin="1.05,1.05" MouseLeftButtonUp="Image_MouseLeftButtonUp_2"/>
-        <Image HorizontalAlignment="Left" Height="100" Margin="17,145,0,0" VerticalAlignment="Top" Width="100" Source="/Images/tarjeta.png" MouseLeftButtonUp="Image_MouseLeftButtonUp_3"/>
+        <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" Margin="0,0,55,56" Click="BackBotton" FontFamily="Arial" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right" Width="68" Height="32" VerticalAlignment="Bottom"/>
+        <Image x:Name="imagenProfile" HorizontalAlignment="Left" Height="95" Margin="17,14,0,0" VerticalAlignment="Top" Width="100" Source="/Images/persona.png" MouseLeftButtonUp="ProfileClick"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="17,394,0,0" VerticalAlignment="Top" Width="100" Source="/Images/amigos.png" MouseLeftButtonUp="PlayersClick"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="17,274,0,0" VerticalAlignment="Top" Width="100" Source="/Images/world.png" RenderTransformOrigin="1.05,1.05" MouseLeftButtonUp="LanguageClick"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="17,145,0,0" VerticalAlignment="Top" Width="100" Source="/Images/tarjeta.png" MouseLeftButtonUp="PlayClick"/>
 
     </Grid>
 </Window>

@@ -9,6 +9,10 @@ using System.ServiceModel;
 using System.Windows.Interop;
 using log4net;
 using Logs;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace NoThanks
 {
@@ -30,14 +34,11 @@ namespace NoThanks
 
         private void ReadResource()
         {
-            string[] files = Directory.GetFiles(@"..\..\Resources", "*.jpg");
-            for (int i = 0; i < files.Length; i++)
-            {
-                var ext = files[i].Split('\\');
-                ext = ext.Last().Split('.');
+            lxtImageSelector.Items.Add("acosardor");
+            lxtImageSelector.Items.Add("gato");
+            lxtImageSelector.Items.Add("hamster");
+            lxtImageSelector.Items.Add("nina");
 
-                lxtImageSelector.Items.Add(ext.First());
-            }
         }
 
         private void ImagenInit()
@@ -51,7 +52,7 @@ namespace NoThanks
                 BitmapSizeOptions.FromEmptyOptions()
                 );
 
-            imagenProfile.Source = bmpImage;
+            imageProfile.Source = bmpImage;
         }
 
         private void SaveClick(object sender, RoutedEventArgs e)
@@ -62,10 +63,13 @@ namespace NoThanks
 
                 updateProfileClient.SaveImage(imageResource, Domain.Player.PlayerClient.IdPlayer);
 
-                if (!String.IsNullOrWhiteSpace(tbName.Text))
+                if (!String.IsNullOrWhiteSpace(txtName.Text))
                 {
-                    updateProfileClient.UpdateNewNickname(tbName.Text, Domain.Player.PlayerClient.Nickname);
-                    Domain.Player.PlayerClient.Nickname = tbName.Text;
+                    if (!ExistsInvalidFields())
+                    {
+                        updateProfileClient.UpdateNewNickname(txtName.Text, Domain.Player.PlayerClient.Nickname);
+                        Domain.Player.PlayerClient.Nickname = txtName.Text;
+                    }
                 }
             }
             catch (EndpointNotFoundException ex)
@@ -87,13 +91,13 @@ namespace NoThanks
             {
                 updateProfileClient.Abort();
             }
-            
-            Profile go = new Profile()
+
+            Profile goProfile = new Profile()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            goProfile.Show();
             this.Close();
 
         }
@@ -101,12 +105,12 @@ namespace NoThanks
         private void CancelClick(object sender, RoutedEventArgs e)//Cancelar?
         {
             updateProfileClient.Abort();
-            Profile go = new Profile()
+            Profile profile = new Profile()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            profile.Show();
             this.Close();
         }
 
@@ -124,9 +128,42 @@ namespace NoThanks
                     BitmapSizeOptions.FromEmptyOptions()
                     );
 
-                imagenProfile.Source = bmpImage;
+                imageProfile.Source = bmpImage;
                 imageResource = lxtImageSelector.SelectedItem.ToString();
             }
         }
+
+        #region Validations
+        private Boolean ExistsInvalidFields()
+        {
+            Boolean invalidFields = false;
+            if (ExistsEmptyFields() || ExistsExcessLength())
+            {
+                invalidFields = true;
+            }
+            return invalidFields;
+        }
+
+        private Boolean ExistsEmptyFields()
+        {
+            Boolean emptyFields = false;
+            if (String.IsNullOrWhiteSpace(txtName.Text))
+            {
+                emptyFields = true;
+                MessageBox.Show($"{Properties.Resources.SIGNIN_EMPTYFIELDS_MESSAGE}", $"{Properties.Resources.SIGNIN_EMPTYFIELDS_MESSAGEWINDOW}", MessageBoxButton.OK);
+            }
+            return emptyFields;
+        }
+        private Boolean ExistsExcessLength()
+        {
+            Boolean emptyFields = false;
+            if (txtName.Text.Length > 45)
+            {
+                emptyFields = true;
+                MessageBox.Show($"{Properties.Resources.SIGNIN_EXCESSLENGTH_MESSAGE}", $"{Properties.Resources.SIGNIN_EXCESSLENGTH_MESSAGEWINDOW}", MessageBoxButton.OK);
+            }
+            return emptyFields;
+        }
+        #endregion
     }
 }
