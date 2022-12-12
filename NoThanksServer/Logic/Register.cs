@@ -1,13 +1,5 @@
 ﻿using Data;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Validation;
-using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic
 {
@@ -18,39 +10,49 @@ namespace Logic
 
         }
 
-        public Boolean NewRegister(Logic.Player player)
+        public bool RegisterUser(Logic.Player player)
+        {
+            var status = false;
+            status = NewRecord(player);
+            return status;
+        }
+
+        public bool NewRecord(Logic.Player player)
         {
             var status = false;
             using (var context = new NoThanksEntities())
             {
-                Data.Player player1 = new Data.Player()
+                Data.Player newPlayer = new Data.Player()
                 {
                     name = player.Name,
                     lastName = player.LastName,
                     nickname = player.Nickname,
                     email = player.Email,
-                    password = player.Password
-                };              
+                    password = player.Password,
+                    photo = player.ProfileImage,
+                    totalScore = player.TotalScore,
+                };
 
-                context.Players.Add(player1);
-                try
-                {
-                    status = context.SaveChanges() > 0;
-                }
-                catch (DbEntityValidationException dbEx)
-                {
-                    foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            Trace.TraceInformation("Property: {0} Error: {1}",
-                                validationError.PropertyName,
-                                validationError.ErrorMessage);
-                        }
-                    }
-                }
+                context.Players.Add(newPlayer);
+                status = context.SaveChanges() > 0;
             }
             return status;
+        }
+
+        public bool ExistsEmailOrNickname(string nickname, string email)
+        {
+            bool result = false;
+            using (var context = new NoThanksEntities())
+            {
+                var accounts = (from players in context.Players
+                                where players.email == nickname || players.email == email
+                                select players).Count();
+                if (accounts > 0)
+                {
+                    result = true;
+                }
+            }
+            return result;
         }
     }
 }

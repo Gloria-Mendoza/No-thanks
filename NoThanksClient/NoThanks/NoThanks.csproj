@@ -53,12 +53,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -77,16 +83,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Connected Services\PlayerManager\Reference.cs">
+    <Compile Include="Connected Services\NoThanksService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ConsultRecord.xaml.cs">
-      <DependentUpon>ConsultRecord.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="FriendsProfile.xaml.cs">
-      <DependentUpon>FriendsProfile.xaml</DependentUpon>
+    <Compile Include="Players.xaml.cs">
+      <DependentUpon>Players.xaml</DependentUpon>
     </Compile>
     <Compile Include="PlaySelection.xaml.cs">
       <DependentUpon>PlaySelection.xaml</DependentUpon>
@@ -104,6 +107,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Properties\ResourcesImage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesImage.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\ResourcesSounds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesSounds.resx</DependentUpon>
+    </Compile>
     <Compile Include="Room.xaml.cs">
       <DependentUpon>Room.xaml</DependentUpon>
     </Compile>
@@ -120,19 +133,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ConsultRecord.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ExpelPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Friends.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FriendsProfile.xaml">
+    <Page Include="Players.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,7 +166,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MenuPrincipal.xaml">
+    <Page Include="MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,8 +204,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuPrincipal.xaml.cs">
-      <DependentUpon>MenuPrincipal.xaml</DependentUpon>
+    <Compile Include="MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Personalization.xaml.cs">
       <DependentUpon>Personalization.xaml</DependentUpon>
@@ -233,25 +238,44 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\PlayerManager\item.xsd">
+    <EmbeddedResource Include="Properties\ResourcesImage.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesImage.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ResourcesSounds.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourcesSounds.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Connected Services\NoThanksService\GameService.wsdl" />
+    <None Include="Connected Services\NoThanksService\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\item1.xsd">
+    <None Include="Connected Services\NoThanksService\item1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\item2.xsd">
+    <None Include="Connected Services\NoThanksService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\item3.xsd">
+    <None Include="Connected Services\NoThanksService\item3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\item4.xsd">
+    <None Include="Connected Services\NoThanksService\item4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\PlayerManager\NoThanks.PlayerManager.Player.datasource">
+    <None Include="Connected Services\NoThanksService\item5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NoThanksService\item6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NoThanksService\item7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\NoThanksService\NoThanks.NoThanksService.Player.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\PlayerManager\PlayerManager.wsdl" />
+    <None Include="Connected Services\NoThanksService\PlayerManager.wsdl" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -295,6 +319,10 @@
       <Project>{a2d0710f-c678-4c40-a16a-5c79f042b48c}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logs\Logs.csproj">
+      <Project>{15A7C467-097D-4BA9-9921-D50E177C70AD}</Project>
+      <Name>Logs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Security\Security.csproj">
       <Project>{a055f5b4-7ee9-44cb-b639-6af9f51db68f}</Project>
       <Name>Security</Name>
@@ -304,19 +332,19 @@
     <Resource Include="Images\pincel.png" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\PlayerManager\" />
+    <WCFMetadataStorage Include="Connected Services\NoThanksService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\PlayerManager\item.disco" />
+    <None Include="Connected Services\NoThanksService\item.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\PlayerManager\configuration91.svcinfo" />
+    <None Include="Connected Services\NoThanksService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\PlayerManager\configuration.svcinfo" />
+    <None Include="Connected Services\NoThanksService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\PlayerManager\Reference.svcmap">
+    <None Include="Connected Services\NoThanksService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -325,16 +353,10 @@
     <Resource Include="Images\LETTER_X_ICON.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="amigos.png" />
+    <Resource Include="Images\amigos.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="persona.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="pincel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="lapiz.png" />
+    <Resource Include="Images\lapiz.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\10.png" />
@@ -375,7 +397,29 @@
     <Resource Include="Images\3_2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\trofeo.png" />
+    <Resource Include="Images\addFriend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\unfriend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\world.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acosador.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gato.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hamster.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nina.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\NoThanksService\item1.disco" />
+    <Content Include="Sounds\noThanksMusic.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

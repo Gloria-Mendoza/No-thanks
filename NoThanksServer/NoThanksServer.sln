@@ -14,6 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{8DA3E2B6-F27B-4C3E-98C5-57B3C5D0294C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs", "Logs\Logs.csproj", "{15A7C467-097D-4BA9-9921-D50E177C70AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingNoThanks", "..\TestingNoThanks\TestingNoThanks.csproj", "{57A69C8E-05B6-4FB1-9C5C-123BCA6A2C07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +40,14 @@ Global
 		{8DA3E2B6-F27B-4C3E-98C5-57B3C5D0294C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DA3E2B6-F27B-4C3E-98C5-57B3C5D0294C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DA3E2B6-F27B-4C3E-98C5-57B3C5D0294C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15A7C467-097D-4BA9-9921-D50E177C70AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15A7C467-097D-4BA9-9921-D50E177C70AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15A7C467-097D-4BA9-9921-D50E177C70AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15A7C467-097D-4BA9-9921-D50E177C70AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57A69C8E-05B6-4FB1-9C5C-123BCA6A2C07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57A69C8E-05B6-4FB1-9C5C-123BCA6A2C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57A69C8E-05B6-4FB1-9C5C-123BCA6A2C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57A69C8E-05B6-4FB1-9C5C-123BCA6A2C07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

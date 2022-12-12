@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -17,7 +18,9 @@ namespace Logic
         private string winner;
         private const int MAX_PLAYERS = 7;
         private const int MIN_PLAYERS = 3;
-        private int actualPlayersCount = 0;
+        private int currentPlayersCount = 0;
+        private int roomTokens;
+        List<CardType> deck;
         private List<int> scores;
         private List<Player> players;
 
@@ -37,7 +40,11 @@ namespace Logic
         [DataMember]
         public int MIN_PLAYERS1 => MIN_PLAYERS;
         [DataMember]
-        public int ActualPlayersCount { get { return actualPlayersCount; } set { actualPlayersCount = value; } }
+        public int CurrentPlayersCount { get { return currentPlayersCount; } set { currentPlayersCount = value; } }
+        [DataMember]
+        public int RoomTokens { get { return roomTokens; } set { roomTokens = value; } }
+        [DataMember]
+        public List<CardType> Deck { get { return deck; } set { deck = value; } }
         [DataMember]
         public List<int> Scores { get { return scores; } set { scores = value; } }
         [DataMember]
@@ -46,7 +53,24 @@ namespace Logic
 
         public bool HasSpace()
         {
-            return actualPlayersCount < MAX_PLAYERS;
+            return currentPlayersCount < MAX_PLAYERS;
+        }
+
+        public void NextRound()
+        {
+            if(Round < currentPlayersCount-1)
+            {
+                Round += 1;
+            }
+            else
+            {
+                Round = 0;
+            }
+        }
+
+        public bool HadMinPlayersToStart()
+        {
+            return currentPlayersCount >= MIN_PLAYERS;
         }
     }
 }

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "..\Domain\Domain.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "..\Security\Security.csproj", "{A055F5B4-7EE9-44CB-B639-6AF9F51DB68F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logs", "..\Logs\Logs.csproj", "{15A7C467-097D-4BA9-9921-D50E177C70AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,11 +29,16 @@ Global
 		{A055F5B4-7EE9-44CB-B639-6AF9F51DB68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A055F5B4-7EE9-44CB-B639-6AF9F51DB68F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A055F5B4-7EE9-44CB-B639-6AF9F51DB68F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15A7C467-097D-4BA9-9921-D50E177C70AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15A7C467-097D-4BA9-9921-D50E177C70AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15A7C467-097D-4BA9-9921-D50E177C70AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15A7C467-097D-4BA9-9921-D50E177C70AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7D5B5A6-3BC4-48AF-827B-E51730FF4FB1}
+		RESX_NeutralResourcesLanguage = es-MX
 	EndGlobalSection
 EndGlobal

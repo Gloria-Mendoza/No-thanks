@@ -1,4 +1,4 @@
-﻿using NoThanks.PlayerManager;
+﻿using NoThanks.NoThanksService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,39 +21,35 @@ namespace NoThanks
     /// </summary>
     public partial class VerifyEmail : Window
     {
-        bool result = false;
+        private int validationCode;
+
+        public int ValidationCode { get { return validationCode; } set { validationCode = value; } }
+
         public VerifyEmail()
         {
             InitializeComponent();
         }
 
-        public Boolean GetVerifyEmail()
-        {
-            return result;
-        }
-
         private void CancelClick(object sender, RoutedEventArgs e)
         {
+            DialogResult = false;
             this.Close();
         }
 
         private void SendCodeClick(object sender, RoutedEventArgs e)
         {
-            PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
             var code = txtNumber.Text;
-            var codeCorrect = "HTY025RG#789/4DX";
             if (!String.IsNullOrWhiteSpace(code))
             {
-                if (code.Equals(codeCorrect))
+                if (Convert.ToInt32(code) == validationCode)
                 {
                     MessageBox.Show($"{Properties.Resources.VERIFYEMAIL_CONFIRMATION_MESSAGE}", $"{Properties.Resources.VERIFYEMAIL_CONFIRMATION_MESSAGEWINDOW}", MessageBoxButton.OK);
-                    result = true;
+                    DialogResult = true;
                     this.Close();
-                    MainWindow main = new MainWindow();
-                    main.Show();
                 }
                 else
                 {
+                    DialogResult = false;
                     MessageBox.Show($"{Properties.Resources.VERIFYEMAIL_CONFIRMATIONERROR_MESSAGE}", $"{Properties.Resources.VERIFYEMAIL_CONFIRMATIONERROR_MESSAGEWINDOW}", MessageBoxButton.OK);
                 }
             }

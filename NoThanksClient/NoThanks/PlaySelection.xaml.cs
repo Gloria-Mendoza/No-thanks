@@ -27,41 +27,42 @@ namespace NoThanks
 
         private void JoinWithCodeClick(object sender, RoutedEventArgs e)
         {
-            JoinWithCode go = new JoinWithCode()
+            JoinWithCode joinWithCode = new JoinWithCode()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            joinWithCode.Show();
             this.Close();
-        }
-
-        private void FastMatchClick(object sender, RoutedEventArgs e)
-        {
-            //TODO
         }
 
         private void NewGameClick(object sender, RoutedEventArgs e)
         {
-            Room go = new Room()
+            Room room = new Room()
             {
                 WindowState = this.WindowState,
                 Left = this.Left,
                 IsNewRoom = true
             };
-            go.CreateNewRoom(true);
-            go.Show();
-            this.Close();
+            if (room.CreateNewRoom(true))
+            {
+                room.Show();
+                this.Close();
+            }
+            else
+            {
+                room.Close();
+            }
         }
 
         private void BackClick(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal go = new MenuPrincipal()
+            MainMenu mainMenu = new MainMenu()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            mainMenu.Show();
             this.Close();
         }
     }

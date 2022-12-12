@@ -1,19 +1,10 @@
-﻿using NoThanks.PlayerManager;
+﻿using log4net;
+using Logs;
+using NoThanks.NoThanksService;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
+using System.ServiceModel;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace NoThanks
 {
@@ -28,6 +19,7 @@ namespace NoThanks
         String email = "";
         String password = "";
         String repeatPassword = "";
+        private static readonly ILog Log = Logger.GetLogger();
 
         public SignIn()
         {
@@ -36,7 +28,11 @@ namespace NoThanks
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow()
+            {
+                WindowState = this.WindowState,
+                Left = this.Left
+            };
             mainWindow.Show();
             this.Close();
         }
@@ -49,19 +45,9 @@ namespace NoThanks
             email = txtEmail.Text;
             password = pfPassword.Password;
             repeatPassword = pfRepeatPassword.Password;
-            PlayerManager.PlayerManagerClient client = new PlayerManager.PlayerManagerClient();
-            /*var exitsEmail = client.ExitsEmail(email);
-            var exitsNickname = client.ExitsNickname(username);
-            if (exitsEmail == true)
-            {
-                MessageBox.Show($"{Properties.Resources.SIGNIN_REPEATEDEMAIL_MESSAGE}", $"{Properties.Resources.SIGNIN_REPEATEDEMAIL_MESSAGEWINDOW}", MessageBoxButton.OK);
-            }
-            if (exitsNickname == true)
-            {
-                MessageBox.Show($"{Properties.Resources.SIGNIN_REPEATEDUSERNAME_MESSAGE}", $"{Properties.Resources.SIGNIN_REPEATEDUSERNAME_MESSAGEWINDOW}", MessageBoxButton.OK);
-            }*/
+            NoThanksService.PlayerManagerClient client = new NoThanksService.PlayerManagerClient();
 
-            if (!ExistsInvalidFields()) //&& !exitsEmail && !exitsNickname)
+            if (!ExistsInvalidFields())
             {
                 string passwordHashed = Security.PasswordEncryptor.ComputeSHA512Hash(password);
                 Player player = new Player()
@@ -70,20 +56,41 @@ namespace NoThanks
                     LastName = lastName,
                     Nickname = username,
                     Email = email,
-                    Password = passwordHashed
+                    Password = passwordHashed,
+                    ProfileImage = "",
+                    TotalScore = 0,
                 };
-                var result = client.SendCode(email);
 
+                Random randomNumber = new Random();
+                var validationCode = randomNumber.Next(100000, 1000000);
+                
+                var result = false;
+
+                if (!client.ExistsEmailOrNickname(username, email))
+                {
+                    result = client.SendValidationEmail(email, "Validation Code", validationCode);
+                }
+                
                 if (result)
                 {
-                    VerifyEmail verifyEmail = new VerifyEmail();
-                    verifyEmail.ShowDialog();
-                    var resultCode = verifyEmail.GetVerifyEmail();
+                    VerifyEmail verifyEmail = new VerifyEmail()
+                    {
+                        WindowState = this.WindowState,
+                        Left = this.Left
+                    };
+                    verifyEmail.ValidationCode = validationCode;
+                    var resultCode = (bool)verifyEmail.ShowDialog();
                     var aux = client.Register(player);
                     if (aux && resultCode)
                     {
-                        //TODO
                         MessageBox.Show($"{Properties.Resources.SIGNIN_CONFIRMATION_MESSAGE}", $"{Properties.Resources.SIGNIN_CONFIRMATION_MESSAGEWINDOW}", MessageBoxButton.OK);
+                        client.Abort();
+                        MainWindow main = new MainWindow()
+                        {
+                            WindowState = this.WindowState,
+                            Left = this.Left
+                        };
+                        main.Show();
                         this.Close();
                     }
                     else
@@ -93,12 +100,12 @@ namespace NoThanks
                 }
                 else
                 {
-                    //TODO
                     MessageBox.Show($"{Properties.Resources.SIGNIN_SAVEERROR_MESSAGE}", $"{Properties.Resources.SIGNIN_SAVEERROR_MESSAGEWINDOW}", MessageBoxButton.OK);
                 }
             }
         }
 
+        #region Validations
         private Boolean ExistsInvalidFields()
         {
             Boolean invalidFields = false;
@@ -201,19 +208,28 @@ namespace NoThanks
             return invalidPassword;
 
         }
-
+        #endregion
 
         private void SignInClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                //MenuPrincipal nameprofile = new MenuPrincipal();
                 SignInAction();
             }
-            catch (Exception exception)
+            catch (EndpointNotFoundException ex)
             {
-                //TODO
-                Console.WriteLine(exception.Message);
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (CommunicationObjectFaultedException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (TimeoutException ex)
+            {
+                Log.Error($"{ex.Message}");
+                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

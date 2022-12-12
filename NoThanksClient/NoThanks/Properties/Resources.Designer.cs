@@ -19,7 +19,7 @@ namespace NoThanks.Properties {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -322,6 +322,15 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Buscar.
+        /// </summary>
+        public static string GENERAL_SEARCH_BUTTON {
+            get {
+                return ResourceManager.GetString("GENERAL_SEARCH_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Éxito.
         /// </summary>
         public static string GENERAL_SUCCSESSFUL_TITLE {
@@ -372,6 +381,15 @@ namespace NoThanks.Properties {
         public static string JOINGAME_JOIN_BUTTON {
             get {
                 return ResourceManager.GetString("JOINGAME_JOIN_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Debes ingresar un codigo.
+        /// </summary>
+        public static string JOINGAME_NOCODE_MESSAGE {
+            get {
+                return ResourceManager.GetString("JOINGAME_NOCODE_MESSAGE", resourceCulture);
             }
         }
         
@@ -435,6 +453,15 @@ namespace NoThanks.Properties {
         public static string LOGIN_GUEST_LABEL {
             get {
                 return ResourceManager.GetString("LOGIN_GUEST_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El formato del nombre y/o contraseña no es correcto.
+        /// </summary>
+        public static string LOGIN_INVALIDFORMAT_MESSAGE {
+            get {
+                return ResourceManager.GetString("LOGIN_INVALIDFORMAT_MESSAGE", resourceCulture);
             }
         }
         
@@ -538,6 +565,33 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Lista de Jugadores:.
+        /// </summary>
+        public static string PLAYERS_LISTPLAYERS_LABEL {
+            get {
+                return ResourceManager.GetString("PLAYERS_LISTPLAYERS_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Buscar Jugador:.
+        /// </summary>
+        public static string PLAYERS_SEARCH_LABEL {
+            get {
+                return ResourceManager.GetString("PLAYERS_SEARCH_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No Thanks: Jugadores.
+        /// </summary>
+        public static string PLAYERS_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("PLAYERS_TITLE-WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Encontrar Partida.
         /// </summary>
         public static string PLAYSELECTION_FINDMATCH_BUTTON {
@@ -588,6 +642,15 @@ namespace NoThanks.Properties {
         public static string PROFILE_TITLE_WINDOW {
             get {
                 return ResourceManager.GetString("PROFILE_TITLE-WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Editar Perfil.
+        /// </summary>
+        public static string PROFILEDIT_TITLE_WINDOW {
+            get {
+                return ResourceManager.GetString("PROFILEDIT_TITLE-WINDOW", resourceCulture);
             }
         }
         
@@ -646,11 +709,38 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Deben ser 3 jugadores como minimo para poder empezar la partida.
+        /// </summary>
+        public static string ROOM_CANTSTART_MESSAGE {
+            get {
+                return ResourceManager.GetString("ROOM_CANTSTART_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Pasar.
         /// </summary>
         public static string ROOM_PASS_BUTTON {
             get {
                 return ResourceManager.GetString("ROOM_PASS_BUTTON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Round.
+        /// </summary>
+        public static string ROOM_ROUND_LABEL {
+            get {
+                return ResourceManager.GetString("ROOM_ROUND_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a ¡Juego Iniciado!.
+        /// </summary>
+        public static string ROOM_STARTEDGAME_MESSAGE {
+            get {
+                return ResourceManager.GetString("ROOM_STARTEDGAME_MESSAGE", resourceCulture);
             }
         }
         
@@ -678,6 +768,15 @@ namespace NoThanks.Properties {
         public static string ROOM_TITLE_WINDOW {
             get {
                 return ResourceManager.GetString("ROOM_TITLE_WINDOW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Tokens.
+        /// </summary>
+        public static string ROOM_TOKENS_LABEL {
+            get {
+                return ResourceManager.GetString("ROOM_TOKENS_LABEL", resourceCulture);
             }
         }
         
@@ -943,7 +1042,7 @@ namespace NoThanks.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Registrarse.
+        ///   Busca una cadena traducida similar a No Thanks: Registrarse.
         /// </summary>
         public static string SIGNIN_TITLE_WINDOW {
             get {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,38 +20,42 @@ namespace NoThanks
     /// </summary>
     public partial class Personalization : Window
     {
+        string language = "es-MX";
+        
         public Personalization()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BackBotton(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal go = new MenuPrincipal()
+            MainMenu mainMenu = new MainMenu()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
-            go.Show();
+            mainMenu.Show();
             this.Close();
         }
 
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SelectionLanguage(object sender, SelectionChangedEventArgs e)
         {
             if (cmb.SelectedIndex == 0)
-                Properties.Settings.Default.LanguageCode = "en-US";
+                language = "en-US";
             else
-                Properties.Settings.Default.LanguageCode = "es-MX";
-            Properties.Settings.Default.Save();
+                language = "es-MX";
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ConfirmBottom(object sender, RoutedEventArgs e)
         {
-            Personalization go = new Personalization();
-            go.Activate();
-            go.Show();
+            App.Current.SwitchLanguage(language);
+
+            Personalization goPersonalization = new Personalization();
+            goPersonalization.Activate();
+            goPersonalization.Show();
             this.Close();
         }
+
     }
 }

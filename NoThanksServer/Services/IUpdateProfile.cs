@@ -7,24 +7,16 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    [ServiceContract(CallbackContract = typeof(IUdateProfileCallBack))]
+    [ServiceContract]
     public interface IUpdateProfile
     {
         [OperationContract]
-        bool SaveImage(byte[] imageManager, string nameProfile);
-        [OperationContract(IsOneWay = true)]
-        void GetImage(string nameProfile);
+        bool SaveImage(string imageManager, int idProfile);
+
         [OperationContract]
         List<String> GetGlobalPlayers();
+
         [OperationContract]
-        List<String> GetGlobalFriends();
-    }
-
-    [ServiceContract]
-    public interface IUdateProfileCallBack
-    {
-        [OperationContract(IsOneWay = true)]
-        void ImageCallBack(byte[] image);
-
+        bool UpdateNewNickname(string nickname, string newNickname);
     }
 }

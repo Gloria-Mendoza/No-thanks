@@ -15,57 +15,68 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Drawing;
 using System.Windows.Media.Imaging;
+using System.Windows.Interop;
 
 namespace NoThanks
 {
     /// <summary>
     /// Lógica de interacción para Profile.xaml
     /// </summary>
-    public partial class Profile : Window, PlayerManager.IUpdateProfileCallback
+    public partial class Profile : Window
     {
         public Profile()
         {
             InitializeComponent();
             ConfigureWindow();
-            updateImage();
+            ImagenInit();
         }
-        private void updateImage()
-        {
-            var context = new InstanceContext(this);
-            PlayerManager.UpdateProfileClient updateProfileClient = new PlayerManager.UpdateProfileClient(context);
-            updateProfileClient.GetImage(Domain.Player.PlayerClient.Nickname);
-        }
+
         private void ConfigureWindow()
         {
-            LabelName.Content = Domain.Player.PlayerClient.Nickname;
-            LabelReal.Content = Domain.Player.PlayerClient.Name;
+            lbName.Content = Domain.Player.PlayerClient.Nickname;
+            lbReal.Content = Domain.Player.PlayerClient.Name;
+            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BackBotton(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal go = new MenuPrincipal();
-            go.WindowState = this.WindowState;
-            go.Show();
+            MainMenu goMainMenu = new MainMenu();
+            goMainMenu.WindowState = this.WindowState;
+            goMainMenu.Show();
             this.Close();
         }
 
-        public void ImageCallBack(byte[] imageBytes)
+        private void ProfileEditClick(object sender, MouseButtonEventArgs e)
         {
-            BitmapImage photo = new BitmapImage();
-            photo.BeginInit();
-            photo.StreamSource = new MemoryStream(imageBytes);
-            photo.EndInit();
-            photo.Freeze();
-            imagenProfile.Source = photo;
-
-        }
-
-        private void Image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            Profile_Edit go = new Profile_Edit();
-            go.WindowState = this.WindowState;
-            go.Show();
+            Profile_Edit goProfileEdit = new Profile_Edit();
+            goProfileEdit.WindowState = this.WindowState;
+            goProfileEdit.Show();
             this.Close();
         }
+
+        private void ChangePasswordClick(object sender, RoutedEventArgs e)
+        {
+            ChangePassword goChangePassword = new ChangePassword();
+            goChangePassword.WindowState = this.WindowState;
+            goChangePassword.Show();
+            this.Close();
+        }
+        private void ImagenInit()
+        {
+            if (!Domain.Player.PlayerClient.IsGuest)
+            {
+                Bitmap bmp = (Bitmap)Properties.ResourcesImage.ResourceManager.GetObject(Domain.Player.PlayerClient.ProfileImage);
+
+                BitmapSource bmpImage = Imaging.CreateBitmapSourceFromHBitmap(
+                    bmp.GetHbitmap(),
+                    IntPtr.Zero,
+                    Int32Rect.Empty,
+                    BitmapSizeOptions.FromEmptyOptions()
+                    );
+
+                imageProfile.Source = bmpImage;
+            }
+        }
+
     }
 }

@@ -1,8 +1,11 @@
-﻿using NoThanks.PlayerManager;
+﻿using log4net;
+using Logs;
+using NoThanks.NoThanksService;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,7 +14,6 @@ using System.Windows.Documents;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using static NoThanks.PlayerManager.Player;
 
 namespace NoThanks
 {
@@ -20,88 +22,29 @@ namespace NoThanks
     /// </summary>
     public partial class RoomScores : Window
     {
-        private List<PlayerManager.Player> playersList = new List<PlayerManager.Player>();
-        //private List<PlayerManager.Player> listaDePrueba = new List<PlayerManager.Player>();
+        private List<NoThanksService.Player> playersList = new List<NoThanksService.Player>();
+        private bool isHost = false;
+        private GameServiceClient gameServiceClient;
+        private string roomId;
+        private static readonly ILog Log = Logger.GetLogger();
 
         public RoomScores()
         {
             InitializeComponent();
-            //GenerateScores(listaDePrueba);
         }
-
-        public void GenerateScores(List<PlayerManager.Player> players)
+        
+        public void ChargeWindow(GameServiceClient gameServiceClient, bool isHost, string roomId)
         {
-            /* For Debug, delete later
-            List<CardType> test = new List<CardType>
-            {
-                CardType.Three,
+            this.gameServiceClient = gameServiceClient;
+            this.isHost = isHost;
+            this.roomId = roomId;
+        }
+        public void GenerateScores(List<NoThanksService.Player> players)
+        {
 
-                CardType.Four,
-
-                CardType.Five,
-
-                CardType.Six,
-
-                CardType.Nine,
-
-                CardType.Sixteen,
-
-                CardType.Seventeen,
-
-                CardType.Eightteen,
-
-                CardType.TwentyOne,
-
-                CardType.TwentyTwo,
-
-                CardType.TwentyThree,
-
-                CardType.ThirtyFive,
-
-                CardType.TwentyFour,
-
-                CardType.Thirty,
-
-                CardType.TwentyFive
-            };
-
-
-            List<CardType> test1 = new List<CardType>
-            {
-                CardType.Three,
-
-                CardType.Four,
-
-                CardType.Five,
-
-                CardType.Six,
-
-                CardType.Nine,
-
-                CardType.Sixteen,
-
-                CardType.Thirty,
-
-                CardType.TwentyFive
-            };
-
-            players.Add(new PlayerManager.Player
-            {
-                Nickname = "Panther"
-            });
-            players.First().Cards = test1.ToArray();
-            
-            players.Add(new PlayerManager.Player
-            {
-                Nickname = "Lucio"
-            });
-            players.First(p => p.Nickname.Equals("Lucio")).Cards = test.ToArray();*/
-            
             players.ForEach(p => {
                 CardsScore(p);
             });
-
-            //MessageBox.Show($"{playersList.Min(p => p.TotalScore)}");
 
             playersList.Sort(( x, y) =>  x.TotalScore.Value.CompareTo(y.TotalScore));
 
@@ -109,9 +52,32 @@ namespace NoThanks
 
             lbWinner.Content = Properties.Resources.RESULT_WINNER_LABEL;
 
+            if (isHost)
+            {
+                try
+                {
+                    gameServiceClient.FinishGame(this.roomId, playersList.ToArray());
+
+                }
+                catch (EndpointNotFoundException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (CommunicationObjectFaultedException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (TimeoutException ex)
+                {
+                    Log.Error($"{ex.Message}");
+                    MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
-        public void CardsScore(PlayerManager.Player player)
+        public void CardsScore(NoThanksService.Player player)
         {
             player = DiscardConsecutiveNumbers(player);
 
@@ -124,70 +90,87 @@ namespace NoThanks
             playersList.Add(player);
         }
 
-        public PlayerManager.Player DiscardConsecutiveNumbers(PlayerManager.Player player)
+        public NoThanksService.Player DiscardConsecutiveNumbers(NoThanksService.Player player)
         {
-            List<CardType> cards = new List<CardType>();
+            List<CardType> cardsFromPlayer = new List<CardType>();
 
-            List<CardType> cards1 = new List<CardType>();
+            List<CardType> cardsToRemove = new List<CardType>();
 
-            List<CardType> cards2 = new List<CardType>();
+            List<CardType> cardsToPreserve = new List<CardType>();
 
-            CardType[] cardsArray = player.Cards;
-            Array.Sort(cardsArray);
+            CardType[] cardsOrdered = player.Cards;
+            Array.Sort(cardsOrdered);
 
             try
             {
-                for (int i = 0; i < cardsArray.Length + 1; i++)
+                for (int i = 0; i < cardsOrdered.Length + 1; i++)
                 {
                     if ((player.Cards.ElementAt(i) - player.Cards.ElementAt(i + 1) == 1) ||
                         (player.Cards.ElementAt(i) - player.Cards.ElementAt(i + 1) == -1) ||
                         (player.Cards.ElementAt(i) - player.Cards.ElementAt(i - 1) == -1) ||
                         (player.Cards.ElementAt(i) - player.Cards.ElementAt(i - 1) == 1))
                     {
-                        cards.Add(player.Cards[i]);
+                        cardsFromPlayer.Add(player.Cards[i]);
                     }
                 }
             }
-            catch
+            catch(ArgumentOutOfRangeException ex)
             {
-
+                Log.Error($"{ex.Message}");
             }
-            cardsArray = cards.ToArray();
 
-            cards2.Add(cardsArray.First());
-            cards1.Add(cards.Last());
+            if (cardsFromPlayer.Count != 0)
+            {
+                cardsOrdered = cardsFromPlayer.ToArray();
+                cardsToPreserve.Add(cardsOrdered.First());
+                cardsToRemove.Add(cardsFromPlayer.Last());
+            }
+            else
+            {
+                cardsOrdered = player.Cards;
+            }
 
             try
             {
-                for (int i = 1; i < cardsArray.Length + 1; i++)
+                for (int i = 1; i < cardsOrdered.Length + 1; i++)
                 {
-                    if ((cards.ElementAt(i) - cards.ElementAt(i + 1) == 1) ||
-                        (cards.ElementAt(i) - cards.ElementAt(i - 1) == -1) ||
-                        (cards.ElementAt(i) - cards.ElementAt(i - 1) == 1))
+                    if ((cardsFromPlayer.ElementAt(i) - cardsFromPlayer.ElementAt(i + 1) == 1) ||
+                        (cardsFromPlayer.ElementAt(i) - cardsFromPlayer.ElementAt(i - 1) == -1) ||
+                        (cardsFromPlayer.ElementAt(i) - cardsFromPlayer.ElementAt(i - 1) == 1))
                     {
-                        cards1.Add(cards.ElementAt(i));
+                        cardsToRemove.Add(cardsFromPlayer.ElementAt(i));
                     }
                     else
                     {
-                        cards2.Add(cards.ElementAt(i));
+                        cardsToPreserve.Add(cardsFromPlayer.ElementAt(i));
                     }
                 }
             }
-            catch
+            catch (ArgumentOutOfRangeException ex)
             {
-
+                Log.Error($"{ex.Message}");
             }
 
-            List<CardType> cardsAux = player.Cards.ToList();
+            List<CardType> cardsToPlayer = player.Cards.ToList();
 
-            for (int i = 0; i < cards1.Count; i++)
+            for (int i = 0; i < cardsToRemove.Count; i++)
             {
-                cardsAux.Remove(cards1[i]);
+                cardsToPlayer.Remove(cardsToRemove[i]);
             }
 
-            player.Cards = cardsAux.ToArray();
+            player.Cards = cardsToPlayer.ToArray();
 
             return player;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DialogResult = true;
+        }
+
+        private void BackClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

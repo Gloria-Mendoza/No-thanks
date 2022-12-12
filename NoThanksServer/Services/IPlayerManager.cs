@@ -20,30 +20,15 @@ namespace Services
         bool Register(Player player);
 
         [OperationContract]
-        bool SendCode(string emailFrom);
+        int GenerateCode();
 
         [OperationContract]
-        List<String> GetRecord();
-
-        [OperationContract]
-        List<int?> GetScore();
+        bool ExistsEmailOrNickname(string nickname, string email);
 
         [OperationContract]
         bool SendValidationEmail(String toEmail, String affair, int validationCode);
 
         [OperationContract]
         bool UpdatePassword(string password, string email);
-
-        [OperationContract]
-        bool ExitsEmail(string text); // ==> ESTÁ MAL ESCRITO!!! :V
-        [OperationContract]
-        bool ExitsNickname(string text); // ==> ESTÁ MAL ESCRITO!!! :V
-    }
-
-    [DataContract]
-    public partial class MatchMember
-    {
-        [DataMember]
-        public Player player;
     }
 }

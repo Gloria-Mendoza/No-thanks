@@ -21,34 +21,11 @@ namespace Logic
                     foreach (var account in accounts)
                     {
                         logicPlayers.Add(account.nickname);
-
                     }
-
                 }
             }
             return logicPlayers;
         }
     }
-    public class ListFriends
-    {
-        public List<String> ListAllFriend()
-        {
-            List<String> logicFriend = new List<String>();
-            using (var context = new NoThanksEntities())
-            {
-                var accounts = (from Friends in context.Players
-                                select Friends);
-                if (accounts.Any())
-                {
-                    foreach (var account in accounts)
-                    {
-                        logicFriend.Add(account.nickname);
-
-                    }
-
-                }
-            }
-            return logicFriend;
-        }
-    }
 }
+

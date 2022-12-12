@@ -1,4 +1,5 @@
 ﻿using Data;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -29,12 +30,14 @@ namespace Logic
                     player.LastName = accounts.First().lastName;
                     player.TotalScore = accounts.First().totalScore;
                     player.Status = true;
+                    player.Password = "";
+                    player.ProfileImage = accounts.First().photo;
                 }
             }
             return player;
         }
 
-        public bool UpdatePlayerPassword(string password,string email)
+        public bool UpdatePlayerPassword(string password, string email)
         {
             var status = false;
             using (var context = new NoThanksEntities())
@@ -45,6 +48,28 @@ namespace Logic
             }
             return status;
         }
+        public bool UpdatePlayerNickname(string nickname, string updatedNickname)
+        {
+            var status = false;
+            using (var context = new NoThanksEntities())
+            {
+                var playerToUpdate = context.Players.FirstOrDefault(n => n.nickname.Equals(updatedNickname));
+                playerToUpdate.nickname = nickname;
+                status = context.SaveChanges() > 0;
+            }
+            return status;
+        }
 
+        public bool SaveImage(string imageManager, int idProfile)
+        {
+            var status = false;
+            using (var context = new NoThanksEntities())
+            {
+                var playerToUpdate = context.Players.First(c => c.idPlayer.Equals(idProfile));
+                playerToUpdate.photo = imageManager;
+                status = context.SaveChanges() > 0;
+            }
+            return status;
+        }
     }
 }
