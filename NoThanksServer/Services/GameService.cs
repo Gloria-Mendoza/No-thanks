@@ -333,15 +333,15 @@ namespace Services
                 }
             }
         }
-        public void DiscardFirstNine(string idRoom)
+        public void DiscardFirstNine(string roomId)
         {
-            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(roomId));
             room.Deck.RemoveRange(0, 9);
         }
 
-        public void ShuffleDeck(string idRoom)
+        public void ShuffleDeck(string roomId)
         {
-            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(roomId));
             var random = new Random();
             for (int i = 0; i < room.Deck.Count; i++)
             {
@@ -352,9 +352,9 @@ namespace Services
             }
         }
 
-        public void TakeCard(string idRoom, string username)
+        public void TakeCard(string roomId, string username)
         {
-            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(roomId));
             if (room.Deck.Count > 0)
             {
                 var card = room.Deck[0];
@@ -390,9 +390,9 @@ namespace Services
 
         }
 
-        public void SkipPlayersTurn(string idRoom, string username)
+        public void SkipPlayersTurn(string roomId, string username)
         {
-            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(idRoom));
+            var room = globalRooms.FirstOrDefault(r => r.Id.Equals(roomId));
             var player = room.Players.FirstOrDefault(i => i.Nickname.Equals(username));
             if (player.Tokens > 0)
             {
@@ -407,7 +407,7 @@ namespace Services
             }
             else
             {
-                TakeCard(idRoom, username);
+                TakeCard(roomId, username);
             }
 
         }

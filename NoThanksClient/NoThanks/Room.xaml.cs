@@ -20,7 +20,7 @@ namespace NoThanks
         private GameServiceClient gameServiceClient;
         private NoThanksService.Player[] playerList;
         private bool isNewRoom;
-        private string idRoom;
+        private string roomId;
         private bool isConected = false;
         private bool isHost = false;
         private int globaltokens = 0;
@@ -29,7 +29,7 @@ namespace NoThanks
         private static readonly ILog Log = Logger.GetLogger();
 
         public bool IsNewRoom { get { return isNewRoom; } set { isNewRoom = value; } }
-        public string IdRoom { get { return idRoom; } set { idRoom = value; } }
+        public string RoomId { get { return roomId; } set { roomId = value; } }
         #endregion
 
         public Room()
@@ -80,7 +80,7 @@ namespace NoThanks
 
             try
             {
-                aviable = gameServiceClient.CheckQuota(IdRoom);
+                aviable = gameServiceClient.CheckQuota(RoomId);
             }
             catch (EndpointNotFoundException ex)
             {
@@ -115,7 +115,7 @@ namespace NoThanks
 
         public void WhisperCallBack(string sender, string message)
         {
-            lxtChatBox.Items.Add(message);
+            lxtChatBox.Items.Add(sender + ": " + message);
             lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
         }
 
@@ -197,7 +197,7 @@ namespace NoThanks
                     WindowState = this.WindowState,
                     Left = this.Left
                 };
-                goRoomScores.ChargeWindow(this.gameServiceClient, this.isHost, this.idRoom);
+                goRoomScores.ChargeWindow(this.gameServiceClient, this.isHost, this.roomId);
                 goRoomScores.GenerateScores(playerList.ToList());
                 goRoomScores.ShowDialog();
 
@@ -281,7 +281,7 @@ namespace NoThanks
             btnPass.IsEnabled = false;
             try
             {
-                gameServiceClient.TakeCard(idRoom, Domain.Player.PlayerClient.Nickname);
+                gameServiceClient.TakeCard(roomId, Domain.Player.PlayerClient.Nickname);
             }
             catch (EndpointNotFoundException ex)
             {
@@ -306,7 +306,7 @@ namespace NoThanks
             btnPass.IsEnabled = false;
             try
             {
-                gameServiceClient.SkipPlayersTurn(idRoom, Domain.Player.PlayerClient.Nickname);
+                gameServiceClient.SkipPlayersTurn(roomId, Domain.Player.PlayerClient.Nickname);
             }
             catch (EndpointNotFoundException ex)
             {
@@ -333,8 +333,8 @@ namespace NoThanks
 
             try
             {
-                gameServiceClient.StartGame(IdRoom, messages);
-                gameServiceClient.CreateDeck(IdRoom);
+                gameServiceClient.StartGame(RoomId, messages);
+                gameServiceClient.CreateDeck(RoomId);
             }
             catch (EndpointNotFoundException ex)
             {
@@ -361,7 +361,7 @@ namespace NoThanks
             if (isHost)
             {
                 ExpelPlayer goExpelPlayer = new ExpelPlayer();
-                goExpelPlayer.SendPlayer(player, gameServiceClient, IdRoom);
+                goExpelPlayer.SendPlayer(player, gameServiceClient, RoomId);
                 goExpelPlayer.ShowDialog();
             }
             else
@@ -379,13 +379,13 @@ namespace NoThanks
                 gameServiceClient = new GameServiceClient(new InstanceContext(this));
                 if (isNewRoom)
                 {
-                    idRoom = gameServiceClient.GenerateRoomCode();
-                    txtCode.Text = idRoom;
-                    gameServiceClient.NewRoom(Domain.Player.PlayerClient.Nickname, idRoom);
+                    roomId = gameServiceClient.GenerateRoomCode();
+                    txtCode.Text = roomId;
+                    gameServiceClient.NewRoom(Domain.Player.PlayerClient.Nickname, roomId);
                     isHost = true;
                 }
-                txtCode.Text = idRoom;
-                gameServiceClient.Connect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_JOINMESSAGE_MESSAGE);
+                txtCode.Text = roomId;
+                gameServiceClient.Connect(Domain.Player.PlayerClient.Nickname, roomId, Properties.Resources.CHAT_JOINMESSAGE_MESSAGE);
                 isConected = true;
             }
         }
@@ -394,7 +394,7 @@ namespace NoThanks
         {
             if (isConected)
             {
-                gameServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, idRoom, Properties.Resources.CHAT_LEAVEMESSAGE_MESSAGE);
+                gameServiceClient.Disconnect(Domain.Player.PlayerClient.Nickname, roomId, Properties.Resources.CHAT_LEAVEMESSAGE_MESSAGE);
                 gameServiceClient.Abort();
                 gameServiceClient = null;
                 isConected = false;
@@ -415,12 +415,12 @@ namespace NoThanks
                         {
                             message += args[i] + " ";
                         }
-                        gameServiceClient.SendWhisper(Domain.Player.PlayerClient.Nickname, args[1], message, idRoom);
+                        gameServiceClient.SendWhisper(args[1], message);
                     }
                 }
                 else
                 {
-                    gameServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname, idRoom);
+                    gameServiceClient.SendMessage(txtMesageContainer.Text, Domain.Player.PlayerClient.Nickname, roomId);
                 }
             }
         }

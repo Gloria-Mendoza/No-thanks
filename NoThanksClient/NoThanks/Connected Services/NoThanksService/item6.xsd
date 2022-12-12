@@ -93,7 +93,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="hostUsername" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -119,7 +119,7 @@
   <xs:element name="CheckQuota">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -133,7 +133,7 @@
   <xs:element name="RecoverRoomPlayers">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -147,7 +147,7 @@
   <xs:element name="StartGame">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomId" nillable="true" type="xs:string" />
         <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="message" nillable="true" type="q4:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
@@ -156,7 +156,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -170,7 +170,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -184,7 +184,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -199,17 +199,15 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomId" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SendWhisper">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="sender" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="receiver" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -231,7 +229,7 @@
   <xs:element name="SkipPlayersTurn">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomId" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -239,7 +237,7 @@
   <xs:element name="FinishGame">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="idRoom" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomId" nillable="true" type="xs:string" />
         <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Logic" minOccurs="0" name="players" nillable="true" type="q5:ArrayOfPlayer" />
       </xs:sequence>
     </xs:complexType>
