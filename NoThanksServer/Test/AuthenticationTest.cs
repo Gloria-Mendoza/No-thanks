@@ -10,23 +10,6 @@ namespace Test
     [TestClass]
     public class AuthenticationTest
     {
-        public AuthenticationTest()
-        {
-        }
-
-        private TestContext testContextInstance;
-
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
 
         [TestMethod]
         public void TestLoginSuccess()
@@ -155,8 +138,8 @@ namespace Test
         [TestMethod]
         public void TestImageSaveFailure()
         {
-            int playerId = 1;
-            string image = "ola";
+            int playerId = 99;
+            string image = "nina";
 
             Authentication authentication = new Authentication();
 

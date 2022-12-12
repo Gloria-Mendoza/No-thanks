@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.Entity.Core;
 using Logs;
 using log4net;
+using System.Web.Security;
 
 namespace Logic
 {
@@ -38,6 +39,11 @@ namespace Logic
             catch (SmtpException ex)
             {
                 Log.Error($"{ex.Message}");
+                result = false;
+            }
+            catch(System.FormatException formatException)
+            {
+                Log.Error($"{formatException.Message}");
                 result = false;
             }
             finally
