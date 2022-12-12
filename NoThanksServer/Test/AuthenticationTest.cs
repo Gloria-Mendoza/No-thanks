@@ -6,9 +6,7 @@ using System.Text;
 
 namespace Test
 {
-    /// <summary>
-    /// Descripción resumida de AuthenticationTest
-    /// </summary>
+
     [TestClass]
     public class AuthenticationTest
     {
@@ -17,7 +15,7 @@ namespace Test
         }
 
         private TestContext testContextInstance;
-        
+
         public TestContext TestContext
         {
             get
@@ -52,7 +50,7 @@ namespace Test
                 ProfileImage = "",
                 Cards = null,
                 CardsString = null,
-                AOperationContext = null 
+                AOperationContext = null
             };
             var result = authentication.Login(nickname, password);
 
@@ -92,7 +90,7 @@ namespace Test
         [TestMethod]
         public void TestUpdatePlayerPasswordSuccess()
         {
-            string password = "3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2"; 
+            string password = "dca06bc0c345b4da28521920b59492b505b1f9c40becfda89b4689b2cffb903986f36ed36a24c3213acf10025d6bff116898dea14a28d2db259bc0ecb331b75e";
             string email = "nothanks364@outlook.com";
 
             Authentication authentication = new Authentication();
@@ -148,12 +146,12 @@ namespace Test
             string image = "nina";
 
             Authentication authentication = new Authentication();
-            
+
             var result = authentication.SaveImage(image, playerId);
 
             Assert.IsTrue(result, $"Imagen guardada");
         }
-        
+
         [TestMethod]
         public void TestImageSaveFailure()
         {
@@ -166,6 +164,6 @@ namespace Test
 
             Assert.IsFalse(result, $"Imagen NO guardada");
         }
-        
+
     }
 }
