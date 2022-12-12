@@ -26,7 +26,7 @@ namespace NoThanks
     {
         private NoThanksService.Player player;
         private GameServiceClient gameServiceClient1;
-        private string idRoom1;
+        private string roomId1;
         private static readonly ILog Log = Logger.GetLogger();
 
         public ExpelPlayer()
@@ -89,16 +89,16 @@ namespace NoThanks
             }
             expelReason += $"\n{txtMessage.Text} ";
 
-            gameServiceClient1.ExpelPlayer(player.Nickname, idRoom1, expelReason);
+            gameServiceClient1.ExpelPlayer(player.Nickname, roomId1, expelReason);
         }
         #endregion
 
         #region Public Functions
-        public void SendPlayer(NoThanksService.Player playerToExpel, NoThanksService.GameServiceClient gameServiceClient, string idRoom)
+        public void SendPlayer(NoThanksService.Player playerToExpel, NoThanksService.GameServiceClient gameServiceClient, string roomId)
         {
             player = playerToExpel;
             gameServiceClient1 = gameServiceClient;
-            idRoom1 = idRoom;
+            roomId1 = roomId;
         }
         #endregion
     }

@@ -12,33 +12,33 @@ namespace Services
     public interface IGameService
     {
         [OperationContract]
-        bool NewRoom(string hostUsername, string idRoom);
+        bool NewRoom(string hostUsername, string roomId);
 
         [OperationContract]
         string GenerateRoomCode();
 
         [OperationContract]
-        bool CheckQuota(string idRoom);
+        bool CheckQuota(string roomId);
 
         [OperationContract]
-        List<Logic.Player> RecoverRoomPlayers(string idRoom);
+        List<Logic.Player> RecoverRoomPlayers(string roomId);
 
         [OperationContract(IsOneWay = true)]
-        void StartGame(string idRoom, string[] message);
+        void StartGame(string roomId, string[] message);
 
         [OperationContract]
-        void Connect(string username,string idRoom, string message);
+        void Connect(string username,string roomId, string message);
 
         [OperationContract]
-        void Disconnect(string username, string idRoom, string message);
+        void Disconnect(string username, string roomId, string message);
         [OperationContract]
-        void ExpelPlayer(string username, string idRoom, string message);
+        void ExpelPlayer(string username, string roomId, string message);
 
         [OperationContract(IsOneWay = true)]
-        void SendMessage(string message, string username, string idRoom);
+        void SendMessage(string message, string username, string roomId);
 
         [OperationContract(IsOneWay = true)]
-        void SendWhisper(string receiver, string message, string idRoom);
+        void SendWhisper(string receiver, string message);
 
         [OperationContract(IsOneWay = true)]
         void CreateDeck(string roomId);
@@ -47,10 +47,10 @@ namespace Services
         void TakeCard(string roomId, string username);
 
         [OperationContract(IsOneWay = true)]
-        void SkipPlayersTurn(string idRoom, string username);
+        void SkipPlayersTurn(string roomId, string username);
 
         [OperationContract(IsOneWay = true)]
-        void FinishGame(string idRoom, Player[] players);
+        void FinishGame(string roomId, Player[] players);
     }
 
     [ServiceContract]
@@ -59,7 +59,7 @@ namespace Services
         [OperationContract(IsOneWay = true)]
         void MessageCallBack(string message);
         [OperationContract (IsOneWay = true)]
-        void WhisperCallBack(string message);
+        void WhisperCallBack(string sender, string message);
         [OperationContract(IsOneWay = true)]
         void StartGameRoom(RoomStatus roomStatus, Player[] players);
         [OperationContract(IsOneWay = true)]

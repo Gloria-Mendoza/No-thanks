@@ -25,7 +25,7 @@ namespace NoThanks
         private List<NoThanksService.Player> playersList = new List<NoThanksService.Player>();
         private bool isHost = false;
         private GameServiceClient gameServiceClient;
-        private string idRoom;
+        private string roomId;
         private static readonly ILog Log = Logger.GetLogger();
 
         public RoomScores()
@@ -33,11 +33,11 @@ namespace NoThanks
             InitializeComponent();
         }
         
-        public void ChargeWindow(GameServiceClient gameServiceClient, bool isHost, string idRoom)
+        public void ChargeWindow(GameServiceClient gameServiceClient, bool isHost, string roomId)
         {
             this.gameServiceClient = gameServiceClient;
             this.isHost = isHost;
-            this.idRoom = idRoom;
+            this.roomId = roomId;
         }
         public void GenerateScores(List<NoThanksService.Player> players)
         {
@@ -56,7 +56,7 @@ namespace NoThanks
             {
                 try
                 {
-                    gameServiceClient.FinishGame(this.idRoom, playersList.ToArray());
+                    gameServiceClient.FinishGame(this.roomId, playersList.ToArray());
 
                 }
                 catch (EndpointNotFoundException ex)
