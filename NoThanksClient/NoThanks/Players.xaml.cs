@@ -11,12 +11,12 @@ namespace NoThanks
     /// <summary>
     /// Lógica de interacción para Friends.xaml
     /// </summary>
-    public partial class Friends : Window
+    public partial class Players : Window
     {
-        NoThanksService.UpdateProfileClient updateProfileClient = new NoThanksService.UpdateProfileClient();
         private static readonly ILog Log = Logger.GetLogger();
+        private List<String> strings = new List<String>();
 
-        public Friends()
+        public Players()
         {
             InitializeComponent();
             CargeAllUsers();
@@ -24,9 +24,11 @@ namespace NoThanks
 
         public void CargeAllUsers()
         {
+            NoThanksService.UpdateProfileClient updateProfileClient = new NoThanksService.UpdateProfileClient();
             try
             {
-                ltbAllFriends.ItemsSource = updateProfileClient.GetGlobalPlayers().ToList();
+                strings = updateProfileClient.GetGlobalPlayers().ToList();
+                lxtAllUsers.ItemsSource = strings;
             }
             catch (EndpointNotFoundException ex)
             {
@@ -43,40 +45,37 @@ namespace NoThanks
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        public void CargeAllFriends()
-        {
-            try
+            finally
             {
-                ltbAllFriends.ItemsSource = updateProfileClient.GetGlobalFriends(Domain.Player.PlayerClient.IdPlayer).ToList();
-            }
-            catch (EndpointNotFoundException ex)
-            {
-                Log.Error($"{ex.Message}");
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (CommunicationObjectFaultedException ex)
-            {
-                Log.Error($"{ex.Message}");
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            catch (TimeoutException ex)
-            {
-                Log.Error($"{ex.Message}");
-                MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
+                updateProfileClient.Abort();
             }
         }
 
         private void BackClick(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal go = new MenuPrincipal()
+            MainMenu go = new MainMenu()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
             };
             go.Show();
             this.Close();
+        }
+
+        private void SearchClick(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(txtConsult.Text))
+            {
+                lxtAllUsers.ItemsSource = strings;
+            }
+            else
+            {
+                List<String> resultSearch = new List<string>();
+
+                string nickFriend = txtConsult.Text;
+                resultSearch.Add(strings.Find(i => i.Contains(nickFriend)));
+                lxtAllUsers.ItemsSource = resultSearch;
+            }
         }
     }
 }

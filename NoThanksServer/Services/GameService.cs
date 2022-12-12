@@ -416,21 +416,16 @@ namespace Services
     {
         public List<String> GetGlobalPlayers()
         {
-            List<String> result = new List<String>();
             ListPlayers list = new ListPlayers();
-            result = list.ListAllPlayer();
-            return result;
-        }
-
-        public List<String> GetGlobalFriends(int idPlayer)
-        {
-            List<String> result = new List<String>();
-            return result;
-        }
-
-        public List<String> GetGlobalRequest()
-        {
-            List<String> result = new List<String>();
+            List<string> result = new List<string>();
+            try
+            {
+                result = list.ListAllPlayer();
+            }
+            catch (EntityException entityException)
+            {
+                Log.Error($"{entityException.Message}");
+            };
             return result;
         }
 
@@ -445,7 +440,7 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                Log.Error($"Fallo: {entityException.Message}");
+                Log.Error($"{entityException.Message}");
             }
             Console.WriteLine();
             return status;
@@ -461,7 +456,7 @@ namespace Services
             }
             catch (EntityException entityException)
             {
-                Log.Error($"Fallo: {entityException.Message}");
+                Log.Error($"{entityException.Message}");
             }
             return status;
         }

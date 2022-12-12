@@ -17,12 +17,6 @@ namespace Services
         List<String> GetGlobalPlayers();
 
         [OperationContract]
-        List<String> GetGlobalFriends(int idPlayer);
-
-        [OperationContract]
-        List<String> GetGlobalRequest();
-
-        [OperationContract]
         bool UpdateNewNickname(string nickname, string newNickname);
     }
 }

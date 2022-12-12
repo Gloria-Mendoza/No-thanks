@@ -142,6 +142,7 @@ namespace NoThanks
             if (status)
             {
                 MessageBox.Show(Properties.Resources.CHANGEPASSWORD_SUCCESSFUL_MESSAGE, Properties.Resources.GENERAL_SUCCSESSFUL_TITLE, MessageBoxButton.OK, MessageBoxImage.Information);
+                client.Abort();
                 Profile go = new Profile()
                 {
                     WindowState = this.WindowState,

@@ -84,6 +84,7 @@ namespace NoThanks
                     if (aux && resultCode)
                     {
                         MessageBox.Show($"{Properties.Resources.SIGNIN_CONFIRMATION_MESSAGE}", $"{Properties.Resources.SIGNIN_CONFIRMATION_MESSAGEWINDOW}", MessageBoxButton.OK);
+                        client.Abort();
                         MainWindow main = new MainWindow()
                         {
                             WindowState = this.WindowState,

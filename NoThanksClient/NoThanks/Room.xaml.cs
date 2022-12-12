@@ -39,8 +39,10 @@ namespace NoThanks
         }
 
         #region Public Functions
-        public void CreateNewRoom(bool isNewRoom)
+        public bool CreateNewRoom(bool isNewRoom)
         {
+            var status = true;
+
             this.isNewRoom = isNewRoom;
             if (isNewRoom)
             {
@@ -58,19 +60,23 @@ namespace NoThanks
             }
             catch (EndpointNotFoundException ex)
             {
+                status = false;
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (CommunicationObjectFaultedException ex)
             {
+                status = false;
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (TimeoutException ex)
             {
+                status = false;
                 Log.Error($"{ex.Message}");
                 MessageBox.Show(Properties.Resources.GENERAL_NOCONNECTION_MESSAGE, Properties.Resources.GENERAL_ERROR_TITLE, MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            return status;
         }
 
         public bool CheckQuota()
@@ -113,7 +119,7 @@ namespace NoThanks
             lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
         }
 
-        public void WhisperCallBack(string sender, string message)
+        public void WhisperCallBack(string message)
         {
             lxtChatBox.Items.Add(sender + ": " + message);
             lxtChatBox.ScrollIntoView(lxtChatBox.Items[lxtChatBox.Items.Count - 1]);
@@ -144,7 +150,7 @@ namespace NoThanks
 
             if (Domain.Player.PlayerClient.Nickname.Equals(nickname))
             {
-                MenuPrincipal go = new MenuPrincipal()
+                MainMenu go = new MainMenu()
                 {
                     WindowState = this.WindowState,
                     Left = this.Left
@@ -201,7 +207,7 @@ namespace NoThanks
                 goRoomScores.GenerateScores(playerList.ToList());
                 goRoomScores.ShowDialog();
 
-                MenuPrincipal goMainMenu = new MenuPrincipal()
+                MainMenu goMainMenu = new MainMenu()
                 {
                     WindowState = this.WindowState,
                     Left = this.Left
@@ -266,7 +272,7 @@ namespace NoThanks
 
         private void BackClick(object sender, RoutedEventArgs e)
         {
-            MenuPrincipal goMainMenu = new MenuPrincipal()
+            MainMenu goMainMenu = new MainMenu()
             {
                 WindowState = this.WindowState,
                 Left = this.Left
@@ -415,7 +421,7 @@ namespace NoThanks
                         {
                             message += args[i] + " ";
                         }
-                        gameServiceClient.SendWhisper(args[1], message);
+                        gameServiceClient.SendWhisper(args[1], message, idRoom);
                     }
                 }
                 else

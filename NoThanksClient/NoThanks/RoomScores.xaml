@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NoThanks"
+        xmlns:p = "clr-namespace:NoThanks.Properties"
         mc:Ignorable="d"
-        Title="RoomScores" Height="535" Width="385" ResizeMode="NoResize" Closing="Window_Closing">
+        Title="{x:Static p:Resources.ROOM_TITLE_WINDOW}" Height="535" Width="385" ResizeMode="NoResize" Closing="Window_Closing">
     <Window.Background>
         <ImageBrush ImageSource="/Images/5053309.jpg" Stretch="UniformToFill"/>
     </Window.Background>
@@ -36,6 +37,7 @@
 
         <Grid Grid.Column="1">
             <Label x:Name="lbWinner" Content="Winner" Margin="10,48,0,0" VerticalAlignment="Top" Height="28" HorizontalAlignment="Left" Width="94" Background="{x:Null}" Foreground="White" FontSize="14" FontWeight="Bold" FontStyle="Italic"/>
+            <Button Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" HorizontalAlignment="Center" Margin="0,469,0,0" Width="58" Click="BackClick" Height="20" VerticalAlignment="Top"/>
         </Grid>
 
     </Grid>

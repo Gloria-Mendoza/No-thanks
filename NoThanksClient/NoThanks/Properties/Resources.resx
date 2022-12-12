@@ -277,7 +277,7 @@
     <value>Registro</value>
   </data>
   <data name="SIGNIN_TITLE_WINDOW" xml:space="preserve">
-    <value>Registrarse</value>
+    <value>No Thanks: Registrarse</value>
   </data>
   <data name="SIGNIN_USERNAME_LABEL" xml:space="preserve">
     <value>Nombre de usuario:</value>
@@ -369,7 +369,7 @@
   <data name="ROOM_STARTEDGAME_MESSAGE" xml:space="preserve">
     <value>¡Juego Iniciado!</value>
   </data>
-   <data name="SIGNIN_CONFIRMATION_MESSAGE" xml:space="preserve">
+  <data name="SIGNIN_CONFIRMATION_MESSAGE" xml:space="preserve">
     <value>Registro exitoso</value>
   </data>
   <data name="SIGNIN_CONFIRMATION_MESSAGEWINDOW" xml:space="preserve">
@@ -461,5 +461,26 @@
   </data>
   <data name="CONSULTRECORD_TITLE_WINDOW" xml:space="preserve">
     <value>Records</value>
+  </data>
+  <data name="GENERAL_SEARCH_BUTTON" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="PLAYERS_LISTPLAYERS_LABEL" xml:space="preserve">
+    <value>Lista de Jugadores:</value>
+  </data>
+  <data name="PLAYERS_SEARCH_LABEL" xml:space="preserve">
+    <value>Buscar Jugador:</value>
+  </data>
+  <data name="PLAYERS_TITLE-WINDOW" xml:space="preserve">
+    <value>No Thanks: Jugadores</value>
+  </data>
+  <data name="PROFILEDIT_TITLE-WINDOW" xml:space="preserve">
+    <value>Editar Perfil</value>
+  </data>
+  <data name="LOGIN_INVALIDFORMAT_MESSAGE" xml:space="preserve">
+    <value>El formato del nombre y/o contraseña no es correcto</value>
+  </data>
+  <data name="JOINGAME_NOCODE_MESSAGE" xml:space="preserve">
+    <value>Debes ingresar un codigo</value>
   </data>
 </root>
