@@ -75,7 +75,6 @@ namespace NoThanks
                 {
                     VerifyEmail verifyEmail = new VerifyEmail()
                     {
-                        WindowState = this.WindowState,
                         Left = this.Left
                     };
                     verifyEmail.ValidationCode = validationCode;

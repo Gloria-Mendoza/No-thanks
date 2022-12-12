@@ -17,7 +17,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Label Margin="225,47,225,48" Width="350" Height="50" Content="{x:Static p:Resources.PLAYSELECTION_TITLE_LABEL}" Foreground="White" FontSize="22"/>
+            <Label Margin="176,47,176,0" Height="50" Content="{x:Static p:Resources.PLAYSELECTION_TITLE_LABEL}" Foreground="White" FontSize="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Top"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -25,11 +25,16 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Margin="28,0,28,73" Content="{x:Static p:Resources.PLAYSELECTION_JOIN_BUTTON}" Grid.Column="1" Click="JoinWithCodeClick" />
-            <Button Margin="28,127,28,-58" Content="{x:Static p:Resources.PLAYSELECTION_NEWROOM_BUTTON}" Grid.Column="1" Click="NewGameClick"/>
+            <Button Margin="28,36,28,0" Content="{x:Static p:Resources.PLAYSELECTION_JOIN_BUTTON}" Grid.Column="1" Click="JoinWithCodeClick" Height="72" VerticalAlignment="Top" />
         </Grid>
         <Grid Grid.Row="2">
-            <Button Margin="0,0,10,10" Width="100" Height="30" Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="BackClick"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Margin="0,0,10,10" Width="100" Height="30" Content="{x:Static p:Resources.GENERAL_BACK_BUTTON}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="BackClick" Grid.Column="2"/>
+            <Button Margin="28,34,28,0" Content="{x:Static p:Resources.PLAYSELECTION_NEWROOM_BUTTON}" Grid.Column="1" Click="NewGameClick" Height="76" VerticalAlignment="Top"/>
         </Grid>
     </Grid>
 

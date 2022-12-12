@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.IO;
 using System.ServiceModel;
 using System.Windows.Interop;
-using log4net;
 using Logs;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Xml.Linq;
-using System.Text.RegularExpressions;
+using log4net;
 
 namespace NoThanks
 {
@@ -34,7 +28,7 @@ namespace NoThanks
 
         private void ReadResource()
         {
-            lxtImageSelector.Items.Add("acosardor");
+            lxtImageSelector.Items.Add("acosador");
             lxtImageSelector.Items.Add("gato");
             lxtImageSelector.Items.Add("hamster");
             lxtImageSelector.Items.Add("nina");
